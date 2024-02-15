@@ -8,3 +8,5 @@ crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
 flutter_rust_bridge = "=2.0.0-dev.24"
+steam_shortcuts_util = "1.1.8"
+anyhow = { version = "1.0.75", features = ["backtrace"] }

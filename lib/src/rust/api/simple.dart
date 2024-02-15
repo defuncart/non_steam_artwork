@@ -5,5 +5,19 @@
 
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
+import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
+import 'package:meta/meta.dart' as meta;
+part 'simple.freezed.dart';
 
-String greet({required String name, dynamic hint}) => RustLib.instance.api.greet(name: name, hint: hint);
+Future<List<SteamShortcut>> parse({required String path, dynamic hint}) =>
+    RustLib.instance.api.parse(path: path, hint: hint);
+
+@freezed
+@meta.immutable
+class SteamShortcut with _$SteamShortcut {
+  const factory SteamShortcut({
+    required int appId,
+    required String appName,
+    required String launchOptions,
+  }) = _SteamShortcut;
+}

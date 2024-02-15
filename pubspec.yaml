@@ -14,15 +14,19 @@ dependencies:
     sdk: flutter 
   intl:
   flex_color_scheme: ^7.3.1
+  flutter_rust_bridge: 2.0.0-dev.24
   rust_lib_non_steam_artwork:
     path: rust_builder
-  flutter_rust_bridge: 2.0.0-dev.24
+  freezed_annotation:
+  meta:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.1
   arb_generator:
+  freezed: ^2.4.7
+  build_runner:
 
 flutter:
   uses-material-design: true
