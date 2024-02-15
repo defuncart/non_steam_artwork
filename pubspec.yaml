@@ -19,6 +19,8 @@ dependencies:
     path: rust_builder
   freezed_annotation:
   meta:
+  path:
+  path_provider:
 
 dev_dependencies:
   flutter_test:

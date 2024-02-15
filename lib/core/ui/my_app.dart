@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:non_steam_artwork/core/steam/steam_shortcuts.dart';
+import 'package:non_steam_artwork/core/steam/steam_manager.dart';
 import 'package:non_steam_artwork/core/theme/themes.dart';
 
 class MyApp extends StatelessWidget {
@@ -8,9 +8,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const steamShortcuts = SteamShortcuts();
-    steamShortcuts.init().then((_) => steamShortcuts.getShortcuts());
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
@@ -45,9 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _init() async {
-    const shortcutsService = SteamShortcuts();
-    await shortcutsService.init();
-    shortcuts = await shortcutsService.getShortcuts();
+    const steamManager = SteamManager();
+    await steamManager.init();
+    shortcuts = await steamManager.getShortcuts();
     lutrisShortcuts = shortcuts.where((element) => element.launchOptions.contains('net.lutris.Lutris')).toList();
     heroicShortcuts = shortcuts.where((element) => element.launchOptions.contains('com.heroicgameslauncher')).toList();
     romShortcuts = shortcuts.where((element) => element.launchOptions.contains('Emulation/roms')).toList();
