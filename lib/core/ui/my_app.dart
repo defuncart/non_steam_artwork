@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:non_steam_artwork/core/steam/steam_shortcuts.dart';
 import 'package:non_steam_artwork/core/theme/themes.dart';
 
 class MyApp extends StatelessWidget {
@@ -7,6 +8,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const steamShortcuts = SteamShortcuts();
+    steamShortcuts.init().then((_) => steamShortcuts.getShortcuts());
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
