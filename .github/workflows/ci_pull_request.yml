@@ -1,0 +1,22 @@
+name: ci_pull_request
+on: pull_request
+jobs:
+  lint-unit-test:
+    name: Lint + Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: kuhnroyal/flutter-fvm-config-action@v1
+        id: fvm-config-action
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
+          channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
+      - name: Generate loca
+        run: sh bin/loca_generate.sh
+      - name: Install packages
+        run: flutter pub get
+      - name: Lint
+        run: flutter analyze
+      - name: Unit tests
+        run: flutter test
