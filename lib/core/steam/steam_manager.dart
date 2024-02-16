@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:non_steam_artwork/core/extensions/int_extension.dart';
 import 'package:non_steam_artwork/core/steam/steam_cache.dart';
 import 'package:non_steam_artwork/core/steam/steam_shortcuts.dart';
 import 'package:non_steam_artwork/src/rust/api/simple.dart';
@@ -16,6 +17,7 @@ class SteamManager {
 
   final SteamShortcuts steamShortcuts;
   var _cachedArtwork = <SteamGridCacheProgram>[];
+  var _shortcutPrograms = <SteamShortcut>[];
 
   String? _userSteamDir;
 
@@ -39,7 +41,11 @@ class SteamManager {
     await steamShortcuts.init();
     _userSteamDir = await _getUserSteamDir();
     if (_userSteamDir != null) {
-      await getCache();
+      await _getCache();
+      try {
+        _shortcutPrograms = await getShortcuts();
+        await _determineUnusedCache();
+      } catch (_) {}
     }
   }
 
@@ -74,11 +80,30 @@ class SteamManager {
     throw const SteamShortcutsFileNotFoundException();
   }
 
-  Future<void> getCache() async {
+  Future<void> _getCache() async {
     final gridPath = _gridPath;
     if (await Directory(gridPath).exists()) {
       _cachedArtwork = await SteamGridCache(gridPath).getCachePrograms();
     }
+  }
+
+  Future<void> _determineUnusedCache() async {
+    final shortcutGameIds = _shortcutPrograms.map((e) => e.appId);
+    final unused = _cachedArtwork.where((element) => !shortcutGameIds.contains(int.parse(element.id)));
+
+    final files = unused.fold(
+        [],
+        (previousValue, element) => [
+              ...previousValue,
+              element.icon,
+              element.cover,
+              element.background,
+              element.logo,
+              element.hero,
+            ]).whereType<File>();
+
+    final totalBytes = files.fold(0, (previousValue, element) => previousValue + element.lengthSync());
+    print(totalBytes.displaySize);
   }
 }
 
