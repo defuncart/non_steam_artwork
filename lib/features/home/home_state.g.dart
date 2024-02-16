@@ -6,7 +6,7 @@ part of 'home_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$freeCacheHash() => r'f41507bd9e8b8fd3cf4e08f36b0c1a041d5a8666';
+String _$freeCacheHash() => r'1381d2972bc0b1a59571c5e87c6a00e9399916a2';
 
 /// See also [FreeCache].
 @ProviderFor(FreeCache)

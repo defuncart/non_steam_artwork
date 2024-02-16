@@ -5,6 +5,10 @@ extension IntExtension on int {
   ///
   /// Taken from https://stackoverflow.com/a/66473018
   String get displaySize {
+    if (this <= 0) {
+      return '0 B';
+    }
+
     const suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     final i = (log(this) / log(1024)).floor();
     return '${(this / pow(1024, i)).toStringAsFixed(1)} ${suffixes[i]}';
