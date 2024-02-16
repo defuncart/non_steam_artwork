@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:non_steam_artwork/core/extensions/int_extension.dart';
 import 'package:non_steam_artwork/core/steam/steam_cache.dart';
 import 'package:non_steam_artwork/core/steam/steam_shortcuts.dart';
 import 'package:non_steam_artwork/src/rust/api/simple.dart';
@@ -21,6 +20,11 @@ class SteamManager {
 
   String? _userSteamDir;
 
+  Future<void> init() async {
+    await steamShortcuts.init();
+    _userSteamDir = await _getUserSteamDir();
+  }
+
   String get _shortcutPath {
     if (_userSteamDir == null) {
       throw const SteamUserFolderNotFoundException();
@@ -35,18 +39,6 @@ class SteamManager {
     }
 
     return path.join(_userSteamDir!, 'config', 'grid');
-  }
-
-  Future<void> init() async {
-    await steamShortcuts.init();
-    _userSteamDir = await _getUserSteamDir();
-    if (_userSteamDir != null) {
-      await _getCache();
-      try {
-        _shortcutPrograms = await getShortcuts();
-        await _determineUnusedCache();
-      } catch (_) {}
-    }
   }
 
   Future<String?> _getUserSteamDir() async {
@@ -80,6 +72,17 @@ class SteamManager {
     throw const SteamShortcutsFileNotFoundException();
   }
 
+  Future<Iterable<File>> determineUnusedCache() async {
+    await _getCache();
+
+    try {
+      _shortcutPrograms = await getShortcuts();
+      return _determineUnusedCache();
+    } catch (_) {}
+
+    return [];
+  }
+
   Future<void> _getCache() async {
     final gridPath = _gridPath;
     if (await Directory(gridPath).exists()) {
@@ -87,11 +90,11 @@ class SteamManager {
     }
   }
 
-  Future<void> _determineUnusedCache() async {
+  Future<Iterable<File>> _determineUnusedCache() async {
     final shortcutGameIds = _shortcutPrograms.map((e) => e.appId);
     final unused = _cachedArtwork.where((element) => !shortcutGameIds.contains(int.parse(element.id)));
 
-    final files = unused.fold(
+    return unused.fold(
         [],
         (previousValue, element) => [
               ...previousValue,
@@ -101,9 +104,6 @@ class SteamManager {
               element.logo,
               element.hero,
             ]).whereType<File>();
-
-    final totalBytes = files.fold(0, (previousValue, element) => previousValue + element.lengthSync());
-    print(totalBytes.displaySize);
   }
 }
 
