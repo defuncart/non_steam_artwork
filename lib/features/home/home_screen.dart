@@ -174,6 +174,11 @@ class SteamArtwork extends ConsumerWidget {
             ? Image.file(file!)
             : ColoredBox(
                 color: context.colorScheme.tertiary,
+                child: Icon(
+                  Icons.broken_image,
+                  size: artType.size.width * 0.25 * 0.25,
+                  color: context.colorScheme.onTertiary,
+                ),
               ),
       ),
     );
