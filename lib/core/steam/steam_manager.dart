@@ -17,6 +17,14 @@ class SteamManager {
 
   String? _userSteamDir;
 
+  String get _shortcutPath {
+    if (_userSteamDir == null) {
+      throw const SteamUserFolderNotFoundException();
+    }
+
+    return path.join(_userSteamDir!, 'config', 'shortcuts.vdf');
+  }
+
   Future<void> init() async {
     await steamShortcuts.init();
     _userSteamDir = await _getUserSteamDir();
@@ -40,15 +48,30 @@ class SteamManager {
     return null;
   }
 
-  // TODO Add error handling
   Future<List<SteamShortcut>> getShortcuts() async {
-    if (_userSteamDir != null) {
-      final shortcutsPath = path.join(_userSteamDir!, 'config', 'shortcuts.vdf');
-      if (await File(shortcutsPath).exists()) {
+    final shortcutsPath = _shortcutPath;
+    if (await File(shortcutsPath).exists()) {
+      try {
         return steamShortcuts.getShortcuts(shortcutsPath);
+      } catch (_) {
+        throw const SteamShortcutsFileCannotBeParsedException();
       }
     }
 
-    throw Exception();
+    throw const SteamShortcutsFileNotFoundException();
   }
+}
+
+sealed class SteamException {}
+
+final class SteamUserFolderNotFoundException implements SteamException {
+  const SteamUserFolderNotFoundException();
+}
+
+final class SteamShortcutsFileNotFoundException implements SteamException {
+  const SteamShortcutsFileNotFoundException();
+}
+
+final class SteamShortcutsFileCannotBeParsedException implements SteamException {
+  const SteamShortcutsFileCannotBeParsedException();
 }
