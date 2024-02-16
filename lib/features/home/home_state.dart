@@ -5,6 +5,8 @@ import 'package:non_steam_artwork/core/extensions/file_extension.dart';
 import 'package:non_steam_artwork/core/steam/file_manager.dart';
 import 'package:non_steam_artwork/core/steam/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
+import 'package:non_steam_artwork/features/home/home_screen.dart';
+import 'package:path/path.dart' as p;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_state.g.dart';
@@ -49,5 +51,27 @@ Future<void> deleteArtwork(
   required File file,
 }) async {
   await file.delete();
+  ref.invalidate(steamProgramsProvider);
+}
+
+@riverpod
+Future<void> copyArtwork(
+  CopyArtworkRef ref, {
+  required File file,
+  required SteamGridArtType artType,
+}) async {
+  assert(artType == SteamGridArtType.hero || artType == SteamGridArtType.background);
+
+  final dir = p.dirname(file.path);
+  final fileExt = p.extension(file.path);
+  var filename = p.basenameWithoutExtension(file.path);
+  if (artType == SteamGridArtType.hero) {
+    filename += '_hero';
+  } else {
+    filename = filename.replaceAll('_hero', '');
+  }
+  final fullpath = p.join(dir, '$filename$fileExt');
+
+  await file.copy(fullpath);
   ref.invalidate(steamProgramsProvider);
 }

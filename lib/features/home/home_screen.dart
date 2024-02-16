@@ -157,14 +157,26 @@ class SteamArtwork extends ConsumerWidget {
     return ContextMenuRegion(
       onDismissed: () {},
       onItemSelected: (item) {
-        if (file != null) {
-          ref.read(DeleteArtworkProvider(file: file!));
+        if (item.title == 'Delete') {
+          ref.read(deleteArtworkProvider(file: file!));
+        } else if (item.title == 'Set as hero') {
+          ref.read(copyArtworkProvider(file: file!, artType: SteamGridArtType.hero));
+        } else if (item.title == 'Set as background') {
+          ref.read(copyArtworkProvider(file: file!, artType: SteamGridArtType.background));
         }
       },
       menuItems: [
         if (file != null)
           MenuItem(
             title: 'Delete',
+          ),
+        if (file != null && artType == SteamGridArtType.background)
+          MenuItem(
+            title: 'Set as hero',
+          ),
+        if (file != null && artType == SteamGridArtType.hero)
+          MenuItem(
+            title: 'Set as background',
           ),
       ],
       child: SizedBox(
