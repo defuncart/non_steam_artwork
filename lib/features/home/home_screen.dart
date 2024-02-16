@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:non_steam_artwork/core/extensions/int_extension.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
+import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,7 +15,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: CleanUpCacheView(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CleanUpCacheView(),
+            Expanded(
+              child: ProgramsView(),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: DeleteAllCacheButton(),
     );
@@ -66,4 +77,102 @@ class CleanUpCacheView extends ConsumerWidget {
       _ => const SizedBox.shrink(),
     };
   }
+}
+
+@visibleForTesting
+class ProgramsView extends ConsumerWidget {
+  const ProgramsView({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(steamProgramsProvider);
+
+    return switch (state) {
+      AsyncData(:final value) => value.isEmpty
+          ? Text('No programs')
+          : ListView.builder(
+              shrinkWrap: true,
+              itemCount: value.length,
+              itemBuilder: (context, index) => ProgramView(
+                program: value.toList()[index],
+              ),
+            ),
+      _ => const SizedBox.shrink(),
+    };
+  }
+}
+
+class ProgramView extends StatelessWidget {
+  const ProgramView({
+    required this.program,
+    super.key,
+  });
+
+  final SteamProgram program;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          program.appName,
+        ),
+        Wrap(
+          spacing: 4,
+          runSpacing: 4,
+          children: [
+            for (final artType in SteamGridArtType.values)
+              SteamArtwork(
+                artType: artType,
+                file: switch (artType) {
+                  SteamGridArtType.icon => program.icon,
+                  SteamGridArtType.cover => program.cover,
+                  SteamGridArtType.background => program.background,
+                  SteamGridArtType.logo => program.logo,
+                  SteamGridArtType.hero => program.hero,
+                },
+              ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class SteamArtwork extends StatelessWidget {
+  const SteamArtwork({
+    required this.artType,
+    required this.file,
+    super.key,
+  });
+
+  final SteamGridArtType artType;
+  final File? file;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: artType.size.width * 0.25,
+      height: artType.size.height * 0.25,
+      child: file != null
+          ? Image.file(file!)
+          : ColoredBox(
+              color: context.colorScheme.tertiary,
+            ),
+    );
+  }
+}
+
+enum SteamGridArtType {
+  icon(Size(256, 256)),
+  cover(Size(600, 900)),
+  background(Size(1290, 620)),
+  logo(Size(650, 248)),
+  hero(Size(1290, 620));
+
+  const SteamGridArtType(this.size);
+
+  final Size size;
 }

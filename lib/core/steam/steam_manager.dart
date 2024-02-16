@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:non_steam_artwork/core/steam/steam_cache.dart';
+import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/core/steam/steam_shortcuts.dart';
 import 'package:non_steam_artwork/src/rust/api/simple.dart';
 import 'package:path/path.dart' as path;
@@ -59,19 +60,6 @@ class SteamManager {
     return null;
   }
 
-  Future<List<SteamShortcut>> getShortcuts() async {
-    final shortcutsPath = _shortcutPath;
-    if (await File(shortcutsPath).exists()) {
-      try {
-        return steamShortcuts.getShortcuts(shortcutsPath);
-      } catch (_) {
-        throw const SteamShortcutsFileCannotBeParsedException();
-      }
-    }
-
-    throw const SteamShortcutsFileNotFoundException();
-  }
-
   Future<Iterable<File>> determineUnusedCache() async {
     await _getCache();
 
@@ -104,6 +92,42 @@ class SteamManager {
               element.logo,
               element.hero,
             ]).whereType<File>();
+  }
+
+  Future<Iterable<SteamProgram>> getPrograms() async {
+    await _getCache();
+
+    try {
+      _shortcutPrograms = await getShortcuts();
+
+      final shortcutGameIds = _shortcutPrograms.map((e) => e.appId);
+      final used = _cachedArtwork.where((element) => shortcutGameIds.contains(element.id));
+
+      return used.map((item) => SteamProgram(
+            appId: item.id,
+            appName: _shortcutPrograms.firstWhere((element) => element.appId == item.id).appName,
+            icon: item.icon,
+            cover: item.cover,
+            background: item.background,
+            logo: item.logo,
+            hero: item.hero,
+          ));
+    } catch (_) {}
+
+    return [];
+  }
+
+  Future<List<SteamShortcut>> getShortcuts() async {
+    final shortcutsPath = _shortcutPath;
+    if (await File(shortcutsPath).exists()) {
+      try {
+        return steamShortcuts.getShortcuts(shortcutsPath);
+      } catch (_) {
+        throw const SteamShortcutsFileCannotBeParsedException();
+      }
+    }
+
+    throw const SteamShortcutsFileNotFoundException();
   }
 
   Future<void> deleteCache() async {

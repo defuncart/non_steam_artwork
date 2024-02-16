@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:non_steam_artwork/core/extensions/file_extension.dart';
 import 'package:non_steam_artwork/core/steam/file_manager.dart';
 import 'package:non_steam_artwork/core/steam/state.dart';
+import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_state.g.dart';
@@ -34,6 +35,10 @@ class FreeCache extends _$FreeCache {
   FutureOr<void> deleteAll() async {
     state = const AsyncValue.loading();
     await ref.read(steamManagerProvider).deleteCache();
+    ref.invalidate(steamProgramsProvider);
     state = await AsyncValue.guard(_determineBytesUnusedInCache);
   }
 }
+
+@riverpod
+Future<Iterable<SteamProgram>> steamPrograms(SteamProgramsRef ref) => ref.read(steamManagerProvider).getPrograms();
