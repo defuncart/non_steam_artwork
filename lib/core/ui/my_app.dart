@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _init() async {
-    const steamManager = SteamManager();
+    final steamManager = SteamManager();
     await steamManager.init();
     shortcuts = await steamManager.getShortcuts();
     lutrisShortcuts = shortcuts.where((element) => element.launchOptions.contains('net.lutris.Lutris')).toList();

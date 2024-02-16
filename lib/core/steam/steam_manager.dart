@@ -9,17 +9,20 @@ import 'package:path_provider/path_provider.dart';
 export 'package:non_steam_artwork/src/rust/api/simple.dart' show SteamShortcut;
 
 class SteamManager {
-  const SteamManager({
+  SteamManager({
     this.steamShortcuts = const SteamShortcuts(),
   });
 
   final SteamShortcuts steamShortcuts;
 
+  String? _userSteamDir;
+
   Future<void> init() async {
     await steamShortcuts.init();
+    _userSteamDir = await _getUserSteamDir();
   }
 
-  Future<String?> _getSteamDir() async {
+  Future<String?> _getUserSteamDir() async {
     final userPath = switch (defaultTargetPlatform) {
       TargetPlatform.linux => '/home/deck/.steam/steam/userdata/',
       _ => path.join((await getDownloadsDirectory())!.path, '_steam'),
@@ -39,10 +42,11 @@ class SteamManager {
 
   // TODO Add error handling
   Future<List<SteamShortcut>> getShortcuts() async {
-    final steamDir = await _getSteamDir();
-    final shortcutsPath = path.join(steamDir!, 'config', 'shortcuts.vdf');
-    if (await File(shortcutsPath).exists()) {
-      return steamShortcuts.getShortcuts(shortcutsPath);
+    if (_userSteamDir != null) {
+      final shortcutsPath = path.join(_userSteamDir!, 'config', 'shortcuts.vdf');
+      if (await File(shortcutsPath).exists()) {
+        return steamShortcuts.getShortcuts(shortcutsPath);
+      }
     }
 
     throw Exception();
