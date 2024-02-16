@@ -24,6 +24,7 @@ dependencies:
   collection:
   flutter_riverpod: ^3.0.0-dev.3
   riverpod_annotation: ^3.0.0-dev.3
+  native_context_menu: ^0.2.2+5
 
 dev_dependencies:
   flutter_test:

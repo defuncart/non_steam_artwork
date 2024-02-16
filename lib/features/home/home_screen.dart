@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:native_context_menu/native_context_menu.dart';
 import 'package:non_steam_artwork/core/extensions/int_extension.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
@@ -141,7 +142,7 @@ class ProgramView extends StatelessWidget {
   }
 }
 
-class SteamArtwork extends StatelessWidget {
+class SteamArtwork extends ConsumerWidget {
   const SteamArtwork({
     required this.artType,
     required this.file,
@@ -152,15 +153,29 @@ class SteamArtwork extends StatelessWidget {
   final File? file;
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: artType.size.width * 0.25,
-      height: artType.size.height * 0.25,
-      child: file != null
-          ? Image.file(file!)
-          : ColoredBox(
-              color: context.colorScheme.tertiary,
-            ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ContextMenuRegion(
+      onDismissed: () {},
+      onItemSelected: (item) {
+        if (file != null) {
+          ref.read(DeleteArtworkProvider(file: file!));
+        }
+      },
+      menuItems: [
+        if (file != null)
+          MenuItem(
+            title: 'Delete',
+          ),
+      ],
+      child: SizedBox(
+        width: artType.size.width * 0.25,
+        height: artType.size.height * 0.25,
+        child: file != null
+            ? Image.file(file!)
+            : ColoredBox(
+                color: context.colorScheme.tertiary,
+              ),
+      ),
     );
   }
 }

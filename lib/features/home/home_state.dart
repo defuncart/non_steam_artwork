@@ -42,3 +42,12 @@ class FreeCache extends _$FreeCache {
 
 @riverpod
 Future<Iterable<SteamProgram>> steamPrograms(SteamProgramsRef ref) => ref.read(steamManagerProvider).getPrograms();
+
+@riverpod
+Future<void> deleteArtwork(
+  DeleteArtworkRef ref, {
+  required File file,
+}) async {
+  await file.delete();
+  ref.invalidate(steamProgramsProvider);
+}
