@@ -1,2 +1,3 @@
 keys;en
-myKey;Hello world!
+homeCleanUpCacheDescription;There is unused art in your cache. You can free up {value}.
+homeCleanUpCacheButton;Clean up

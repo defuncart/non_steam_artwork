@@ -42,11 +42,15 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# local targets
-macos/
-
 # FVM
 .fvm/flutter_sdk
 
+# local assets
+assets_dev/l10n/
+
+# debug platforms
+/macos/
+
 # frb
 logs/
+rust_builder/macos/

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:non_steam_artwork/core/extensions/int_extension.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
+import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -36,13 +37,13 @@ class CleanUpCacheView extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'There is unused art in your cache. You can free up ${value.displaySize}.',
+                      context.l10n.homeCleanUpCacheDescription(value.displaySize),
                     ),
                     const SizedBox(height: 16),
                     TextButton.icon(
                       onPressed: ref.read(freeCacheProvider.notifier).cleanUp,
                       icon: const Icon(Icons.delete_sweep_rounded),
-                      label: Text('Clean up'),
+                      label: Text(context.l10n.homeCleanUpCacheButton),
                     ),
                   ],
                 ),
