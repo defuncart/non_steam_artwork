@@ -8,6 +8,7 @@ import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
+import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -90,7 +91,7 @@ class ProgramsView extends ConsumerWidget {
 
     return switch (state) {
       AsyncData(:final value) => value.isEmpty
-          ? Text('No programs')
+          ? Text(context.l10n.homeProgramsEmpty)
           : ListView.builder(
               shrinkWrap: true,
               itemCount: value.length,
@@ -103,7 +104,7 @@ class ProgramsView extends ConsumerWidget {
   }
 }
 
-class ProgramView extends StatelessWidget {
+class ProgramView extends ConsumerWidget {
   const ProgramView({
     required this.program,
     super.key,
@@ -112,7 +113,7 @@ class ProgramView extends StatelessWidget {
   final SteamProgram program;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,6 +135,8 @@ class ProgramView extends StatelessWidget {
                   SteamGridArtType.logo => program.logo,
                   SteamGridArtType.hero => program.hero,
                 },
+                onDeleteFile: (file) => ref.read(deleteArtworkProvider(file: file)),
+                onCopyFile: (file, artType) => ref.read(copyArtworkProvider(file: file, artType: artType)),
               ),
           ],
         ),
@@ -142,41 +145,45 @@ class ProgramView extends StatelessWidget {
   }
 }
 
-class SteamArtwork extends ConsumerWidget {
+class SteamArtwork extends StatelessWidget {
   const SteamArtwork({
     required this.artType,
     required this.file,
+    required this.onDeleteFile,
+    required this.onCopyFile,
     super.key,
   });
 
   final SteamGridArtType artType;
   final File? file;
+  final void Function(File) onDeleteFile;
+  final void Function(File, SteamGridArtType) onCopyFile;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return ContextMenuRegion(
       onDismissed: () {},
       onItemSelected: (item) {
-        if (item.title == 'Delete') {
-          ref.read(deleteArtworkProvider(file: file!));
-        } else if (item.title == 'Set as hero') {
-          ref.read(copyArtworkProvider(file: file!, artType: SteamGridArtType.hero));
-        } else if (item.title == 'Set as background') {
-          ref.read(copyArtworkProvider(file: file!, artType: SteamGridArtType.background));
+        if (item.title == context.l10n.homeProgramArtworkDelete) {
+          onDeleteFile(file!);
+        } else if (item.title == context.l10n.homeProgramArtworkSetBackgroundAsHero) {
+          onCopyFile(file!, SteamGridArtType.hero);
+        } else if (item.title == context.l10n.homeProgramArtworkSetHeroAsBackground) {
+          onCopyFile(file!, SteamGridArtType.background);
         }
       },
       menuItems: [
         if (file != null)
           MenuItem(
-            title: 'Delete',
+            title: context.l10n.homeProgramArtworkDelete,
           ),
         if (file != null && artType == SteamGridArtType.background)
           MenuItem(
-            title: 'Set as hero',
+            title: context.l10n.homeProgramArtworkSetBackgroundAsHero,
           ),
         if (file != null && artType == SteamGridArtType.hero)
           MenuItem(
-            title: 'Set as background',
+            title: context.l10n.homeProgramArtworkSetHeroAsBackground,
           ),
       ],
       child: SizedBox(
@@ -195,16 +202,4 @@ class SteamArtwork extends ConsumerWidget {
       ),
     );
   }
-}
-
-enum SteamGridArtType {
-  icon(Size(256, 256)),
-  cover(Size(600, 900)),
-  background(Size(1290, 620)),
-  logo(Size(650, 248)),
-  hero(Size(1290, 620));
-
-  const SteamGridArtType(this.size);
-
-  final Size size;
 }

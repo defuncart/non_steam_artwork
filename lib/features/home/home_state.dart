@@ -5,7 +5,7 @@ import 'package:non_steam_artwork/core/extensions/file_extension.dart';
 import 'package:non_steam_artwork/core/steam/file_manager.dart';
 import 'package:non_steam_artwork/core/steam/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
-import 'package:non_steam_artwork/features/home/home_screen.dart';
+import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:path/path.dart' as p;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
