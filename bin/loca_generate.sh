@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 
-# enable arb_utils globally on machine
-# use version 0.0.2 which is dart compliant
-# dart pub global activate arb_utils 0.0.2
+# when running locally (default), fvm is used
+# on ci, fvm is not used
+IS_CI=${1-false}
+if [ "$IS_CI" = "false" ]; then COMMAND="fvm "; else COMMAND=""; fi
 
 # generate from csv
-fvm dart run arb_generator
-
-# sort arbs
-# pub global run arb_utils:sort assets_dev/l10n/l10n_en.arb
+$COMMAND dart run arb_generator
 
 # generate localization delegates
-fvm flutter gen-l10n
+$COMMAND flutter gen-l10n

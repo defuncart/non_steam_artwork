@@ -13,7 +13,7 @@ jobs:
           flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
           channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
       - name: Generate loca
-        run: sh bin/loca_generate.sh
+        run: sh bin/loca_generate.sh true
       - name: Install packages
         run: flutter pub get
       - name: Lint
