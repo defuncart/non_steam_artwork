@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_state.dart';
+part of 'splash_state.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$freeCacheHash() => r'131f7eb1bd840f3593bee19e54e8a64104ba43da';
+String _$splashStateHash() => r'097b762e7d2d7cae5c5b73a941e5fdd4b82446e8';
 
-/// See also [FreeCache].
-@ProviderFor(FreeCache)
-final freeCacheProvider = AutoDisposeAsyncNotifierProvider<FreeCache, int>.internal(
-  FreeCache.new,
-  name: r'freeCacheProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$freeCacheHash,
+/// See also [splashState].
+@ProviderFor(splashState)
+final splashStateProvider = AutoDisposeFutureProvider<bool>.internal(
+  splashState,
+  name: r'splashStateProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$splashStateHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$FreeCache = AutoDisposeAsyncNotifier<int>;
+typedef SplashStateRef = AutoDisposeFutureProviderRef<bool>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
