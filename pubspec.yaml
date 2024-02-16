@@ -21,6 +21,7 @@ dependencies:
   meta:
   path:
   path_provider:
+  collection:
 
 dev_dependencies:
   flutter_test:

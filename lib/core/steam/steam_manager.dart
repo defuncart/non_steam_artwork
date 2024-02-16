@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:non_steam_artwork/core/steam/steam_cache.dart';
 import 'package:non_steam_artwork/core/steam/steam_shortcuts.dart';
 import 'package:non_steam_artwork/src/rust/api/simple.dart';
 import 'package:path/path.dart' as path;
@@ -14,6 +15,7 @@ class SteamManager {
   });
 
   final SteamShortcuts steamShortcuts;
+  var _cachedArtwork = <SteamGridCacheProgram>[];
 
   String? _userSteamDir;
 
@@ -25,9 +27,20 @@ class SteamManager {
     return path.join(_userSteamDir!, 'config', 'shortcuts.vdf');
   }
 
+  String get _gridPath {
+    if (_userSteamDir == null) {
+      throw const SteamUserFolderNotFoundException();
+    }
+
+    return path.join(_userSteamDir!, 'config', 'grid');
+  }
+
   Future<void> init() async {
     await steamShortcuts.init();
     _userSteamDir = await _getUserSteamDir();
+    if (_userSteamDir != null) {
+      await getCache();
+    }
   }
 
   Future<String?> _getUserSteamDir() async {
@@ -59,6 +72,13 @@ class SteamManager {
     }
 
     throw const SteamShortcutsFileNotFoundException();
+  }
+
+  Future<void> getCache() async {
+    final gridPath = _gridPath;
+    if (await Directory(gridPath).exists()) {
+      _cachedArtwork = await SteamGridCache(gridPath).getCachePrograms();
+    }
   }
 }
 
