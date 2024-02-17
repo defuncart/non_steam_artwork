@@ -11,6 +11,7 @@ import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
+import 'package:super_clipboard/super_clipboard.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -232,7 +233,24 @@ class _SteamArtworkState extends State<SteamArtwork> {
         child: ContextMenuRegion(
           onDismissed: () {},
           onItemSelected: (item) {
-            if (item.title == context.l10n.homeProgramArtworkDelete) {
+            if (item.title == context.l10n.homeProgramArtworkPaste) {
+              SystemClipboard.instance?.read().then((reader) {
+                if (reader.canProvide(Formats.jpeg)) {
+                  reader.getFile(Formats.jpeg, (file) {
+                    widget.onCreateFile(file.getStream(), '.jpg');
+                  }, onError: (error) {
+                    log('Error reading value $error');
+                  });
+                } else if (reader.canProvide(Formats.png)) {
+                  reader.getFile(Formats.png, (file) {
+                    widget.onCreateFile(file.getStream(), '.png');
+                  }, onError: (error) {
+                    log('Error reading value $error');
+                  });
+                }
+              });
+              // TODO: show toast when clipboard content isn't valid
+            } else if (item.title == context.l10n.homeProgramArtworkDelete) {
               widget.onDeleteFile(widget.file!);
             } else if (item.title == context.l10n.homeProgramArtworkSetBackgroundAsHero) {
               widget.onCopyFile(widget.file!, SteamGridArtType.hero);
@@ -241,6 +259,9 @@ class _SteamArtworkState extends State<SteamArtwork> {
             }
           },
           menuItems: [
+            MenuItem(
+              title: context.l10n.homeProgramArtworkPaste,
+            ),
             if (widget.file != null)
               MenuItem(
                 title: context.l10n.homeProgramArtworkDelete,
