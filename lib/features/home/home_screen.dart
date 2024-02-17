@@ -1,4 +1,6 @@
+import 'dart:developer' show log;
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +11,7 @@ import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
+import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -104,6 +107,7 @@ class ProgramsView extends ConsumerWidget {
   }
 }
 
+@visibleForTesting
 class ProgramView extends ConsumerWidget {
   const ProgramView({
     required this.program,
@@ -137,6 +141,7 @@ class ProgramView extends ConsumerWidget {
                 },
                 onDeleteFile: (file) => ref.read(deleteArtworkProvider(file: file)),
                 onCopyFile: (file, artType) => ref.read(copyArtworkProvider(file: file, artType: artType)),
+                onCreateFile: (bytesStream) => bytesStream.first.then((value) => print(value)),
               ),
           ],
         ),
@@ -145,12 +150,14 @@ class ProgramView extends ConsumerWidget {
   }
 }
 
-class SteamArtwork extends StatelessWidget {
+@visibleForTesting
+class SteamArtwork extends StatefulWidget {
   const SteamArtwork({
     required this.artType,
     required this.file,
     required this.onDeleteFile,
     required this.onCopyFile,
+    required this.onCreateFile,
     super.key,
   });
 
@@ -158,47 +165,108 @@ class SteamArtwork extends StatelessWidget {
   final File? file;
   final void Function(File) onDeleteFile;
   final void Function(File, SteamGridArtType) onCopyFile;
+  final void Function(Stream<Uint8List>) onCreateFile;
+
+  @override
+  State<SteamArtwork> createState() => _SteamArtworkState();
+}
+
+class _SteamArtworkState extends State<SteamArtwork> {
+  var _isDragging = false;
 
   @override
   Widget build(BuildContext context) {
-    return ContextMenuRegion(
-      onDismissed: () {},
-      onItemSelected: (item) {
-        if (item.title == context.l10n.homeProgramArtworkDelete) {
-          onDeleteFile(file!);
-        } else if (item.title == context.l10n.homeProgramArtworkSetBackgroundAsHero) {
-          onCopyFile(file!, SteamGridArtType.hero);
-        } else if (item.title == context.l10n.homeProgramArtworkSetHeroAsBackground) {
-          onCopyFile(file!, SteamGridArtType.background);
+    return DropRegion(
+      // TODO: consider supporting other formats
+      // formats: const [Formats.jpeg, Formats.png],
+      formats: Formats.standardFormats,
+      hitTestBehavior: HitTestBehavior.opaque,
+      onDropOver: (event) {
+        if (event.session.items.isEmpty || event.session.items.length > 1) {
+          return DropOperation.none;
+        }
+
+        final item = event.session.items.first;
+        if (item.canProvide(Formats.jpeg) || item.canProvide(Formats.png)) {
+          if (_isDragging == false) {
+            setState(() => _isDragging = true);
+          }
+          return DropOperation.copy;
+        }
+
+        return DropOperation.none;
+      },
+      onDropEnter: (event) {
+        // does not seem to be invoked??
+      },
+      onDropLeave: (event) {
+        setState(() => _isDragging = false);
+      },
+      onPerformDrop: (event) async {
+        if (event.session.items.length == 1) {
+          final item = event.session.items.first;
+          final reader = item.dataReader!;
+          if (reader.canProvide(Formats.jpeg)) {
+            reader.getFile(Formats.jpeg, (file) {
+              widget.onCreateFile(file.getStream());
+            }, onError: (error) {
+              log('Error reading value $error');
+            });
+          } else if (reader.canProvide(Formats.png)) {
+            reader.getFile(Formats.png, (file) {
+              widget.onCreateFile(file.getStream());
+            }, onError: (error) {
+              log('Error reading value $error');
+            });
+          }
         }
       },
-      menuItems: [
-        if (file != null)
-          MenuItem(
-            title: context.l10n.homeProgramArtworkDelete,
-          ),
-        if (file != null && artType == SteamGridArtType.background)
-          MenuItem(
-            title: context.l10n.homeProgramArtworkSetBackgroundAsHero,
-          ),
-        if (file != null && artType == SteamGridArtType.hero)
-          MenuItem(
-            title: context.l10n.homeProgramArtworkSetHeroAsBackground,
-          ),
-      ],
-      child: SizedBox(
-        width: artType.size.width * 0.25,
-        height: artType.size.height * 0.25,
-        child: file != null
-            ? Image.file(file!)
-            : ColoredBox(
-                color: context.colorScheme.tertiary,
-                child: Icon(
-                  Icons.broken_image,
-                  size: artType.size.width * 0.25 * 0.25,
-                  color: context.colorScheme.onTertiary,
-                ),
+      // when dragging, do not allow right-click
+      child: IgnorePointer(
+        ignoring: _isDragging,
+        child: ContextMenuRegion(
+          onDismissed: () {},
+          onItemSelected: (item) {
+            if (item.title == context.l10n.homeProgramArtworkDelete) {
+              widget.onDeleteFile(widget.file!);
+            } else if (item.title == context.l10n.homeProgramArtworkSetBackgroundAsHero) {
+              widget.onCopyFile(widget.file!, SteamGridArtType.hero);
+            } else if (item.title == context.l10n.homeProgramArtworkSetHeroAsBackground) {
+              widget.onCopyFile(widget.file!, SteamGridArtType.background);
+            }
+          },
+          menuItems: [
+            if (widget.file != null)
+              MenuItem(
+                title: context.l10n.homeProgramArtworkDelete,
               ),
+            if (widget.file != null && widget.artType == SteamGridArtType.background)
+              MenuItem(
+                title: context.l10n.homeProgramArtworkSetBackgroundAsHero,
+              ),
+            if (widget.file != null && widget.artType == SteamGridArtType.hero)
+              MenuItem(
+                title: context.l10n.homeProgramArtworkSetHeroAsBackground,
+              ),
+          ],
+          child: SizedBox(
+            width: widget.artType.size.width * 0.25,
+            height: widget.artType.size.height * 0.25,
+            child: Opacity(
+              opacity: _isDragging ? 0.75 : 1,
+              child: widget.file != null
+                  ? Image.file(widget.file!)
+                  : ColoredBox(
+                      color: context.colorScheme.tertiary,
+                      child: Icon(
+                        Icons.broken_image,
+                        size: widget.artType.size.width * 0.25 * 0.25,
+                        color: context.colorScheme.onTertiary,
+                      ),
+                    ),
+            ),
+          ),
+        ),
       ),
     );
   }

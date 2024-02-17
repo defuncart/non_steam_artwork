@@ -17,6 +17,8 @@ Extract the downloaded zip and run the application `non_steam_artwork/linux/non_
 - Only tested on SteamOS, has not been tested on other linux distros.
 - On Steam OS, system light/dark mode seems to default to light. Flutter/Steam OS issue.
 - When there are multiple Steam user accounts, the first is selected.
+- Only one file can dragged'n'dropped
+- Only jpeg and png files are allowed for drag'n'drop.
 
 ## Raising Issues and Contributing
 
