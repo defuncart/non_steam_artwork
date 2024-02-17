@@ -11,6 +11,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_state.g.dart';
 
+@Riverpod(keepAlive: true)
+FileManager _fileManager(_FileManagerRef ref) => const FileManager();
+
 @riverpod
 class FreeCache extends _$FreeCache {
   Iterable<File> _data = const Iterable<File>.empty();
@@ -30,7 +33,7 @@ class FreeCache extends _$FreeCache {
 
   FutureOr<void> cleanUp() async {
     state = const AsyncValue.loading();
-    await const FileManager().deleteAll(_data);
+    await ref.read(_fileManagerProvider).deleteAll(_data);
     state = await AsyncValue.guard(_determineBytesUnusedInCache);
   }
 
@@ -70,6 +73,7 @@ Future<void> copyArtwork(
   } else {
     filename = filename.replaceAll('_hero', '');
   }
+  await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: filename);
   final fullpath = p.join(dir, '$filename$fileExt');
 
   await file.copy(fullpath);

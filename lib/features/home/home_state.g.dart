@@ -6,6 +6,19 @@ part of 'home_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$fileManagerHash() => r'a2b3dcdc46e022a42a4b5841bd7daebc5a93f5ca';
+
+/// See also [_fileManager].
+@ProviderFor(_fileManager)
+final _fileManagerProvider = Provider<FileManager>.internal(
+  _fileManager,
+  name: r'_fileManagerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$fileManagerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _FileManagerRef = ProviderRef<FileManager>;
 String _$steamProgramsHash() => r'8609391030ac89b5bae56dc39975687624cc3074';
 
 /// See also [steamPrograms].
@@ -205,7 +218,7 @@ class _DeleteArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   File get file => (origin as DeleteArtworkProvider).file;
 }
 
-String _$copyArtworkHash() => r'7201284cf50dced35f87122206440e58ab030da0';
+String _$copyArtworkHash() => r'419207ce1686b63daddcc4496e01cf06c8e1c2ec';
 
 /// See also [copyArtwork].
 @ProviderFor(copyArtwork)
