@@ -141,7 +141,12 @@ class ProgramView extends ConsumerWidget {
                 },
                 onDeleteFile: (file) => ref.read(deleteArtworkProvider(file: file)),
                 onCopyFile: (file, artType) => ref.read(copyArtworkProvider(file: file, artType: artType)),
-                onCreateFile: (bytesStream) => bytesStream.first.then((value) => print(value)),
+                onCreateFile: (bytesStream, ext) => ref.read(createArtworkProvider(
+                  appId: program.appId,
+                  bytesStream: bytesStream,
+                  ext: ext,
+                  artType: artType,
+                )),
               ),
           ],
         ),
@@ -165,7 +170,7 @@ class SteamArtwork extends StatefulWidget {
   final File? file;
   final void Function(File) onDeleteFile;
   final void Function(File, SteamGridArtType) onCopyFile;
-  final void Function(Stream<Uint8List>) onCreateFile;
+  final void Function(Stream<Uint8List>, String) onCreateFile;
 
   @override
   State<SteamArtwork> createState() => _SteamArtworkState();
@@ -208,13 +213,13 @@ class _SteamArtworkState extends State<SteamArtwork> {
           final reader = item.dataReader!;
           if (reader.canProvide(Formats.jpeg)) {
             reader.getFile(Formats.jpeg, (file) {
-              widget.onCreateFile(file.getStream());
+              widget.onCreateFile(file.getStream(), '.jpg');
             }, onError: (error) {
               log('Error reading value $error');
             });
           } else if (reader.canProvide(Formats.png)) {
             reader.getFile(Formats.png, (file) {
-              widget.onCreateFile(file.getStream());
+              widget.onCreateFile(file.getStream(), '.png');
             }, onError: (error) {
               log('Error reading value $error');
             });

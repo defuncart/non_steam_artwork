@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:non_steam_artwork/core/steam/steam_cache.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/core/steam/steam_shortcuts.dart';
+import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:non_steam_artwork/src/rust/api/simple.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
@@ -128,6 +129,25 @@ class SteamManager {
     }
 
     throw const SteamShortcutsFileNotFoundException();
+  }
+
+  Future<(String, String)> generateArtworkPath({
+    required int appId,
+    required SteamGridArtType artType,
+  }) async {
+    final gridPath = _gridPath;
+
+    // TODO: error check folder exists
+
+    final filename = switch (artType) {
+      SteamGridArtType.icon => '${appId}_icon',
+      SteamGridArtType.cover => '${appId}p',
+      SteamGridArtType.background => appId.toString(),
+      SteamGridArtType.logo => '${appId}_logo',
+      SteamGridArtType.hero => '${appId}_hero',
+    };
+
+    return (gridPath, filename);
   }
 
   Future<void> deleteCache() async {

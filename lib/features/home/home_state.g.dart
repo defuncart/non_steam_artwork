@@ -218,7 +218,7 @@ class _DeleteArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   File get file => (origin as DeleteArtworkProvider).file;
 }
 
-String _$copyArtworkHash() => r'419207ce1686b63daddcc4496e01cf06c8e1c2ec';
+String _$copyArtworkHash() => r'9e7bc7d7315ee8be09fda854f93272d450df7111';
 
 /// See also [copyArtwork].
 @ProviderFor(copyArtwork)
@@ -403,7 +403,232 @@ class _CopyArtworkProviderElement extends AutoDisposeFutureProviderElement<void>
   SteamGridArtType get artType => (origin as CopyArtworkProvider).artType;
 }
 
-String _$freeCacheHash() => r'131f7eb1bd840f3593bee19e54e8a64104ba43da';
+String _$createArtworkHash() => r'9be3ee446e72a1ccfd52d0b87d092f4d0e73b57a';
+
+/// See also [createArtwork].
+@ProviderFor(createArtwork)
+const createArtworkProvider = CreateArtworkFamily();
+
+/// See also [createArtwork].
+class CreateArtworkFamily extends Family {
+  /// See also [createArtwork].
+  const CreateArtworkFamily();
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+
+  @override
+  String? get name => r'createArtworkProvider';
+
+  /// See also [createArtwork].
+  CreateArtworkProvider call({
+    required int appId,
+    required Stream<Uint8List> bytesStream,
+    required String ext,
+    required SteamGridArtType artType,
+  }) {
+    return CreateArtworkProvider(
+      appId: appId,
+      bytesStream: bytesStream,
+      ext: ext,
+      artType: artType,
+    );
+  }
+
+  @visibleForOverriding
+  @override
+  CreateArtworkProvider getProviderOverride(
+    covariant CreateArtworkProvider provider,
+  ) {
+    return call(
+      appId: provider.appId,
+      bytesStream: provider.bytesStream,
+      ext: provider.ext,
+      artType: provider.artType,
+    );
+  }
+
+  /// Enables overriding the behavior of this provider, no matter the parameters.
+  Override overrideWith(FutureOr<void> Function(CreateArtworkRef ref) create) {
+    return _$CreateArtworkFamilyOverride(this, create);
+  }
+}
+
+class _$CreateArtworkFamilyOverride implements FamilyOverride {
+  _$CreateArtworkFamilyOverride(this.overriddenFamily, this.create);
+
+  final FutureOr<void> Function(CreateArtworkRef ref) create;
+
+  @override
+  final CreateArtworkFamily overriddenFamily;
+
+  @override
+  CreateArtworkProvider getProviderOverride(
+    covariant CreateArtworkProvider provider,
+  ) {
+    return provider._copyWith(create);
+  }
+}
+
+/// See also [createArtwork].
+class CreateArtworkProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [createArtwork].
+  CreateArtworkProvider({
+    required int appId,
+    required Stream<Uint8List> bytesStream,
+    required String ext,
+    required SteamGridArtType artType,
+  }) : this._internal(
+          (ref) => createArtwork(
+            ref as CreateArtworkRef,
+            appId: appId,
+            bytesStream: bytesStream,
+            ext: ext,
+            artType: artType,
+          ),
+          from: createArtworkProvider,
+          name: r'createArtworkProvider',
+          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$createArtworkHash,
+          dependencies: CreateArtworkFamily._dependencies,
+          allTransitiveDependencies: CreateArtworkFamily._allTransitiveDependencies,
+          appId: appId,
+          bytesStream: bytesStream,
+          ext: ext,
+          artType: artType,
+        );
+
+  CreateArtworkProvider._internal(
+    super.create, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.appId,
+    required this.bytesStream,
+    required this.ext,
+    required this.artType,
+  }) : super.internal();
+
+  final int appId;
+  final Stream<Uint8List> bytesStream;
+  final String ext;
+  final SteamGridArtType artType;
+
+  @override
+  Override overrideWith(
+    FutureOr<void> Function(CreateArtworkRef ref) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: CreateArtworkProvider._internal(
+        (ref) => create(ref as CreateArtworkRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        appId: appId,
+        bytesStream: bytesStream,
+        ext: ext,
+        artType: artType,
+      ),
+    );
+  }
+
+  @override
+  ({
+    int appId,
+    Stream<Uint8List> bytesStream,
+    String ext,
+    SteamGridArtType artType,
+  }) get argument {
+    return (
+      appId: appId,
+      bytesStream: bytesStream,
+      ext: ext,
+      artType: artType,
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<void> createElement() {
+    return _CreateArtworkProviderElement(this);
+  }
+
+  CreateArtworkProvider _copyWith(
+    FutureOr<void> Function(CreateArtworkRef ref) create,
+  ) {
+    return CreateArtworkProvider._internal(
+      (ref) => create(ref as CreateArtworkRef),
+      name: name,
+      dependencies: dependencies,
+      allTransitiveDependencies: allTransitiveDependencies,
+      debugGetCreateSourceHash: debugGetCreateSourceHash,
+      from: from,
+      appId: appId,
+      bytesStream: bytesStream,
+      ext: ext,
+      artType: artType,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is CreateArtworkProvider &&
+        other.appId == appId &&
+        other.bytesStream == bytesStream &&
+        other.ext == ext &&
+        other.artType == artType;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, appId.hashCode);
+    hash = _SystemHash.combine(hash, bytesStream.hashCode);
+    hash = _SystemHash.combine(hash, ext.hashCode);
+    hash = _SystemHash.combine(hash, artType.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin CreateArtworkRef on AutoDisposeFutureProviderRef<void> {
+  /// The parameter `appId` of this provider.
+  int get appId;
+
+  /// The parameter `bytesStream` of this provider.
+  Stream<Uint8List> get bytesStream;
+
+  /// The parameter `ext` of this provider.
+  String get ext;
+
+  /// The parameter `artType` of this provider.
+  SteamGridArtType get artType;
+}
+
+class _CreateArtworkProviderElement extends AutoDisposeFutureProviderElement<void> with CreateArtworkRef {
+  _CreateArtworkProviderElement(super.provider);
+
+  @override
+  int get appId => (origin as CreateArtworkProvider).appId;
+  @override
+  Stream<Uint8List> get bytesStream => (origin as CreateArtworkProvider).bytesStream;
+  @override
+  String get ext => (origin as CreateArtworkProvider).ext;
+  @override
+  SteamGridArtType get artType => (origin as CreateArtworkProvider).artType;
+}
+
+String _$freeCacheHash() => r'06c1353a144a83282633149c1e6142e083a0561d';
 
 /// See also [FreeCache].
 @ProviderFor(FreeCache)

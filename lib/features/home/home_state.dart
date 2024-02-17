@@ -1,5 +1,6 @@
 import 'dart:developer' show log;
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:non_steam_artwork/core/extensions/file_extension.dart';
 import 'package:non_steam_artwork/core/steam/file_manager.dart';
@@ -77,5 +78,29 @@ Future<void> copyArtwork(
   final fullpath = p.join(dir, '$filename$fileExt');
 
   await file.copy(fullpath);
+  ref.invalidate(steamProgramsProvider);
+}
+
+@riverpod
+Future<void> createArtwork(
+  CreateArtworkRef ref, {
+  required int appId,
+  required Stream<Uint8List> bytesStream,
+  required String ext,
+  required SteamGridArtType artType,
+}) async {
+  final (dir, basename) = await ref.read(steamManagerProvider).generateArtworkPath(
+        appId: appId,
+        artType: artType,
+      );
+  final filepath = p.join(dir, '$basename$ext');
+  final file = File(filepath);
+  // if (!await file.exists()) {
+  //   await file.create();
+  // }
+
+  final bytes = await bytesStream.toList();
+  await file.writeAsBytes(bytes.first, mode: FileMode.writeOnly);
+
   ref.invalidate(steamProgramsProvider);
 }
