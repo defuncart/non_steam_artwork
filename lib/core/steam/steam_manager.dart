@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:non_steam_artwork/core/steam/steam_cache.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
@@ -81,7 +82,7 @@ class SteamManager {
 
   Future<Iterable<File>> _determineUnusedCache() async {
     final shortcutGameIds = _shortcutPrograms.map((e) => e.appId);
-    final unused = _cachedArtwork.where((artwork) => !shortcutGameIds.contains(artwork.id));
+    final unused = _cachedArtwork.where((element) => !shortcutGameIds.contains(element.id));
 
     return unused.fold(
         [],
@@ -101,18 +102,18 @@ class SteamManager {
     try {
       _shortcutPrograms = await getShortcuts();
 
-      final shortcutGameIds = _shortcutPrograms.map((e) => e.appId);
-      final used = _cachedArtwork.where((element) => shortcutGameIds.contains(element.id));
-
-      return used.map((item) => SteamProgram(
-            appId: item.id,
-            appName: _shortcutPrograms.firstWhere((element) => element.appId == item.id).appName,
-            icon: item.icon,
-            cover: item.cover,
-            background: item.background,
-            logo: item.logo,
-            hero: item.hero,
-          ));
+      return _shortcutPrograms.map((program) {
+        final cachedItem = _cachedArtwork.firstWhereOrNull((item) => item.id == program.appId);
+        return SteamProgram(
+          appId: program.appId,
+          appName: program.appName,
+          icon: cachedItem?.icon,
+          cover: cachedItem?.cover,
+          background: cachedItem?.background,
+          logo: cachedItem?.logo,
+          hero: cachedItem?.hero,
+        );
+      });
     } catch (_) {}
 
     return [];
