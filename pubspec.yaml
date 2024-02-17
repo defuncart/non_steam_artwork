@@ -27,6 +27,10 @@ dependencies:
   native_context_menu: ^0.2.2+5
   super_drag_and_drop: ^0.8.5
   super_clipboard: ^0.8.5
+  window_size:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding
+      path: plugins/window_size
 
 dev_dependencies:
   flutter_test:
