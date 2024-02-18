@@ -105,6 +105,14 @@ class SteamManager {
               element.hero,
             ]).whereType<File>();
   }
+
+  Future<void> deleteCache() async {
+    final gridPath = _gridPath;
+    if (await Directory(gridPath).exists()) {
+      await Directory(gridPath).delete(recursive: true);
+      await Directory(gridPath).create();
+    }
+  }
 }
 
 sealed class SteamException {}
