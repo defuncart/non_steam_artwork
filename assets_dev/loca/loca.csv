@@ -6,3 +6,5 @@ homeProgramArtworkPaste;Paste
 homeProgramArtworkDelete;Delete
 homeProgramArtworkSetBackgroundAsHero;Set as hero
 homeProgramArtworkSetHeroAsBackground;Set as background
+menuBarOptionsLabel;Options
+menuBarOptionsShowLicenses;Show Licenses

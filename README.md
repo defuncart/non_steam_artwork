@@ -24,6 +24,10 @@ Extract the downloaded zip and run the application `non_steam_artwork/linux/non_
 - Only jpeg and png files are allowed for drag'n'drop.
 - Only images can be pasted, urls are not supported.
 
+## Credits
+
+Thanks to [PhilipK/](https://github.com/PhilipK/) for [steam_shortcuts_util](steam_shortcuts_util) which is used to parse `shortcuts.vdf`.
+
 ## Raising Issues and Contributing
 
 Please report bugs and issues [here](https://github.com/defuncart/non_steam_artwork/issues).

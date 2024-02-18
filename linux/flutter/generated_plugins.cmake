@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   irondash_engine_context
+  menubar
   native_context_menu
   super_native_extensions
   window_size

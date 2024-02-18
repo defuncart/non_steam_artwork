@@ -1,9 +1,10 @@
 import 'dart:developer' show log;
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:menubar/menubar.dart';
 import 'package:native_context_menu/native_context_menu.dart';
 import 'package:non_steam_artwork/core/extensions/int_extension.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
@@ -11,11 +12,36 @@ import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
+import 'package:non_steam_artwork/features/licenses/licenses_screen.dart';
 import 'package:super_clipboard/super_clipboard.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(
+      () => setApplicationMenu([
+        NativeSubmenu(
+          label: context.l10n.menuBarOptionsLabel,
+          children: [
+            NativeMenuItem(
+              label: context.l10n.menuBarOptionsShowLicenses,
+              onSelected: () => LicensesScreen.show(context),
+            ),
+          ],
+        ),
+      ]),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
