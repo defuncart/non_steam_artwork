@@ -40,6 +40,7 @@ dependencies:
   clock:
   package_info_plus:
   device_info_plus:
+  desktop_multi_window: ^0.2.0
 
 dev_dependencies:
   flutter_test:
