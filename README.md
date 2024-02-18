@@ -10,7 +10,10 @@ Extract the downloaded zip and run the application `non_steam_artwork/linux/non_
 
 ## Features
 
-- Clean up cache images not used
+- Clean up cached artwork not used
+- Delete all cached artwork
+- Manually delete individual artwork images
+- Drag'n'drop/paste from clipboard artwork
 
 ## Expected Behavior & Known Issues
 
