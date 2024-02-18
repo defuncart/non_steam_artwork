@@ -93,11 +93,9 @@ Future<void> createArtwork(
         appId: appId,
         artType: artType,
       );
+  await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: basename);
   final filepath = p.join(dir, '$basename$ext');
   final file = File(filepath);
-  // if (!await file.exists()) {
-  //   await file.create();
-  // }
 
   final bytes = await bytesStream.toList();
   await file.writeAsBytes(bytes.first, mode: FileMode.writeOnly);
