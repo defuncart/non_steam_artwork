@@ -6,7 +6,7 @@ A linux tool to update artwork for non-steam programs.
 
 The latest release can be found [here](https://github.com/defuncart/non_steam_artwork/releases/latest).
 
-**NOTE** due to external libraries, the application size is currently quite large: 90MB zipped, over 300MB when extracted. Future releases may try to optimize this size.
+Extract the downloaded zip and run the application `non_steam_artwork/linux/non_steam_artwork` via Steam or third party program (i.e. Lutris). Flatpak releases may be considered once the tool becomes production ready.
 
 ## Features
 
