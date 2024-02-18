@@ -17,14 +17,14 @@ import 'package:super_clipboard/super_clipboard.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void initState() {
     super.initState();
@@ -32,7 +32,25 @@ class _HomeScreenState extends State<HomeScreen> {
     Future.microtask(
       () => setApplicationMenu([
         NativeSubmenu(
-          label: context.l10n.menuBarOptionsLabel,
+          label: context.l10n.menuBarFile,
+          children: [
+            NativeMenuItem(
+              label: context.l10n.menuBarFileQuit,
+              onSelected: () => exit(0),
+            ),
+          ],
+        ),
+        NativeSubmenu(
+          label: context.l10n.menuBarCache,
+          children: [
+            NativeMenuItem(
+              label: context.l10n.menuBarCacheDeleteAll,
+              onSelected: ref.read(freeCacheProvider.notifier).deleteAll,
+            ),
+          ],
+        ),
+        NativeSubmenu(
+          label: context.l10n.menuBarOptions,
           children: [
             NativeMenuItem(
               label: context.l10n.menuBarOptionsShowLicenses,
@@ -69,20 +87,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      floatingActionButton: DeleteAllCacheButton(),
-    );
-  }
-}
-
-@visibleForTesting
-class DeleteAllCacheButton extends ConsumerWidget {
-  const DeleteAllCacheButton({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return FloatingActionButton.small(
-      onPressed: ref.read(freeCacheProvider.notifier).deleteAll,
-      child: const Icon(Icons.delete_forever),
     );
   }
 }
