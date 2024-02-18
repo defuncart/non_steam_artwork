@@ -8,7 +8,7 @@ class SteamGridCache {
 
   final String path;
 
-  Future<List<SteamGridCacheProgram>> getCachePrograms() async {
+  Future<List<CacheProgramArtwork>> getCacheArtwork() async {
     final dir = Directory(path);
     if (await dir.exists()) {
       final contents = (await dir.list().toList()).whereType<File>().where((file) => file.isImage).toList();
@@ -25,7 +25,7 @@ class SteamGridCache {
       );
       mapped.removeWhere((key, value) => key.isEmpty);
 
-      final programs = <SteamGridCacheProgram>[];
+      final programs = <CacheProgramArtwork>[];
       for (final kvp in mapped.entries) {
         final icon = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('_icon'));
         final cover = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('p'));
@@ -35,7 +35,7 @@ class SteamGridCache {
         final logo = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('_logo'));
         final hero = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('_hero'));
         programs.add((
-          id: kvp.key,
+          id: int.parse(kvp.key),
           icon: icon,
           cover: cover,
           background: background,
@@ -50,8 +50,8 @@ class SteamGridCache {
   }
 }
 
-typedef SteamGridCacheProgram = ({
-  String id,
+typedef CacheProgramArtwork = ({
+  int id,
   File? icon,
   File? cover,
   File? background,

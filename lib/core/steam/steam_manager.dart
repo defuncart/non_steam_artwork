@@ -15,7 +15,7 @@ class SteamManager {
   });
 
   final SteamShortcuts steamShortcuts;
-  var _cachedArtwork = <SteamGridCacheProgram>[];
+  var _cachedArtwork = <CacheProgramArtwork>[];
   var _shortcutPrograms = <SteamShortcut>[];
 
   String? _userSteamDir;
@@ -86,13 +86,13 @@ class SteamManager {
   Future<void> _getCache() async {
     final gridPath = _gridPath;
     if (await Directory(gridPath).exists()) {
-      _cachedArtwork = await SteamGridCache(gridPath).getCachePrograms();
+      _cachedArtwork = await SteamGridCache(gridPath).getCacheArtwork();
     }
   }
 
   Future<Iterable<File>> _determineUnusedCache() async {
     final shortcutGameIds = _shortcutPrograms.map((e) => e.appId);
-    final unused = _cachedArtwork.where((element) => !shortcutGameIds.contains(int.parse(element.id)));
+    final unused = _cachedArtwork.where((artwork) => !shortcutGameIds.contains(artwork.id));
 
     return unused.fold(
         [],
