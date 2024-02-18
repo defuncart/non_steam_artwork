@@ -30,4 +30,10 @@ class FreeCache extends _$FreeCache {
     await const FileManager().deleteAll(_data);
     state = await AsyncValue.guard(_determineBytesUnusedInCache);
   }
+
+  FutureOr<void> deleteAll() async {
+    state = const AsyncValue.loading();
+    await ref.read(steamManagerProvider).deleteCache();
+    state = await AsyncValue.guard(_determineBytesUnusedInCache);
+  }
 }

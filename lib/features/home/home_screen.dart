@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:non_steam_artwork/core/extensions/int_extension.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
-import 'package:non_steam_artwork/core/steam/state.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -27,7 +26,7 @@ class DeleteAllCacheButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return FloatingActionButton.small(
-      onPressed: ref.read(steamManagerProvider).deleteCache,
+      onPressed: ref.read(freeCacheProvider.notifier).deleteAll,
       child: const Icon(Icons.delete_forever),
     );
   }
