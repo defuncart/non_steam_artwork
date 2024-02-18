@@ -15,6 +15,7 @@ import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:non_steam_artwork/features/licenses/licenses_screen.dart';
 import 'package:super_clipboard/super_clipboard.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,6 +37,17 @@ class _HomeScreenState extends State<HomeScreen> {
             NativeMenuItem(
               label: context.l10n.menuBarOptionsShowLicenses,
               onSelected: () => LicensesScreen.show(context),
+            ),
+            NativeMenuItem(
+              label: context.l10n.menuBarOptionsShowPrivacyPolicy,
+              // onSelected: () => launchUrl(
+              //   // Uri.https('https://github.com/defuncart/non_steam_artwork/blob/main/privacy_policy.md'),
+              //   Uri.https(
+              //     'https://github.com/defuncart/non_steam_artwork/blob/feature/show-games-artwork/privacy_policy.md',
+              //   ),
+              // ),
+              onSelected: () => launchUrlString(
+                  'https://github.com/defuncart/non_steam_artwork/blob/feature/show-games-artwork/privacy_policy.md'),
             ),
           ],
         ),

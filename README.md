@@ -2,18 +2,20 @@
 
 A linux tool to update artwork for non-steam programs.
 
-## Releases
-
-The latest release can be found [here](https://github.com/defuncart/non_steam_artwork/releases/latest).
-
-Extract the downloaded zip and run the application `non_steam_artwork/linux/non_steam_artwork` via Steam or third party program (i.e. Lutris). Flatpak releases may be considered once the tool becomes production ready.
-
 ## Features
 
 - Clean up cached artwork not used
 - Delete all cached artwork
 - Manually delete individual artwork images
 - Drag'n'drop/paste from clipboard artwork
+
+*Non-Steam Artwork* is not affiliated with Valve Corporation nor the Steam platform.
+
+## Releases
+
+The latest release can be found [here](https://github.com/defuncart/non_steam_artwork/releases/latest).
+
+Extract the downloaded zip and run the application `non_steam_artwork/linux/non_steam_artwork` via Steam or third party program (i.e. Lutris). Flatpak releases may be considered once the tool becomes production ready.
 
 ## Expected Behavior & Known Issues
 
