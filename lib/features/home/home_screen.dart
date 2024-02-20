@@ -44,6 +44,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           label: context.l10n.menuBarCache,
           children: [
             NativeMenuItem(
+              label: context.l10n.menuBarCacheOpen,
+              onSelected: ref.read(freeCacheProvider.notifier).open,
+            ),
+            NativeMenuItem(
               label: context.l10n.menuBarCacheDeleteAll,
               onSelected: ref.read(freeCacheProvider.notifier).deleteAll,
             ),

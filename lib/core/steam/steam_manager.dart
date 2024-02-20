@@ -44,6 +44,8 @@ class SteamManager {
     return path.join(_userSteamDir!, 'config', 'grid');
   }
 
+  String get gridPath => _gridPath;
+
   Future<String?> _getUserSteamDir() async {
     final userPath = switch (defaultTargetPlatform) {
       TargetPlatform.linux => '/home/deck/.steam/steam/userdata/',

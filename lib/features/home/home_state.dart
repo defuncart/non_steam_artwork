@@ -9,6 +9,7 @@ import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:path/path.dart' as p;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 part 'home_state.g.dart';
 
@@ -43,6 +44,18 @@ class FreeCache extends _$FreeCache {
     await ref.read(steamManagerProvider).deleteCache();
     ref.invalidate(steamProgramsProvider);
     state = await AsyncValue.guard(_determineBytesUnusedInCache);
+  }
+
+  void open() {
+    final gridPath = ref.read(steamManagerProvider).gridPath;
+    // TODO: Test if works on Arch
+    launchUrl(Uri.file(gridPath));
+
+    // Process.run(
+    //   'dolphin',
+    //   [gridPath],
+    //   workingDirectory: gridPath,
+    // );
   }
 }
 
