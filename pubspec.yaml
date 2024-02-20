@@ -24,6 +24,18 @@ dependencies:
   collection:
   flutter_riverpod: ^3.0.0-dev.3
   riverpod_annotation: ^3.0.0-dev.3
+  native_context_menu: ^0.2.2+5
+  super_drag_and_drop: ^0.8.5
+  super_clipboard: ^0.8.5
+  window_size:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding
+      path: plugins/window_size
+  menubar:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding
+      path: plugins/menubar
+  url_launcher:
 
 dev_dependencies:
   flutter_test:
