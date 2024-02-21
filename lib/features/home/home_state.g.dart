@@ -403,7 +403,7 @@ class _CopyArtworkProviderElement extends AutoDisposeFutureProviderElement<void>
   SteamGridArtType get artType => (origin as CopyArtworkProvider).artType;
 }
 
-String _$createArtworkHash() => r'9be3ee446e72a1ccfd52d0b87d092f4d0e73b57a';
+String _$createArtworkHash() => r'8beb93e936d23094dc194d5dfe2f0358ca5ead26';
 
 /// See also [createArtwork].
 @ProviderFor(createArtwork)
@@ -628,7 +628,7 @@ class _CreateArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   SteamGridArtType get artType => (origin as CreateArtworkProvider).artType;
 }
 
-String _$freeCacheHash() => r'06c1353a144a83282633149c1e6142e083a0561d';
+String _$freeCacheHash() => r'86956e442ef2f31dc29838afb365ccdab2a4d96d';
 
 /// See also [FreeCache].
 @ProviderFor(FreeCache)
