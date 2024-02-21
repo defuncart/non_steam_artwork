@@ -2,12 +2,14 @@ import 'dart:developer' show log;
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:clock/clock.dart';
 import 'package:non_steam_artwork/core/extensions/file_extension.dart';
 import 'package:non_steam_artwork/core/steam/file_manager.dart';
 import 'package:non_steam_artwork/core/steam/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -33,16 +35,32 @@ class FreeCache extends _$FreeCache {
   @override
   FutureOr<int> build() => _determineBytesUnusedInCache();
 
-  FutureOr<void> cleanUp() async {
+  Future<void> cleanUp() async {
     state = const AsyncValue.loading();
     await ref.read(_fileManagerProvider).deleteAll(_data);
     state = await AsyncValue.guard(_determineBytesUnusedInCache);
   }
 
-  FutureOr<void> deleteAll() async {
+  Future<void> deleteAll() async {
     state = const AsyncValue.loading();
     await ref.read(steamManagerProvider).deleteCache();
     ref.invalidate(steamProgramsProvider);
+    state = await AsyncValue.guard(_determineBytesUnusedInCache);
+  }
+
+  Future<void> backup() async {
+    state = const AsyncValue.loading();
+
+    final gridPath = ref.read(steamManagerProvider).gridPath;
+    final syncPath = p.join(
+      (await getApplicationDocumentsDirectory()).path,
+      'non_steam_artwork',
+      'grid_backup',
+      clock.now().toUtc().toString().replaceAll(':', '-'),
+    );
+
+    await ref.read(_fileManagerProvider).sync(gridPath, syncPath);
+
     state = await AsyncValue.guard(_determineBytesUnusedInCache);
   }
 

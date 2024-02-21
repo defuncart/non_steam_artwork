@@ -10,6 +10,7 @@ menuBarFile;File
 menuBarFileQuit;Quit
 menuBarCache;Cache
 menuBarCacheOpen;Open
+menuBarCacheBackup;Backup
 menuBarCacheDeleteAll;Delete All
 menuBarOptions;Options
 menuBarOptionsShowLicenses;Show Licenses

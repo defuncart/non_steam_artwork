@@ -170,7 +170,7 @@ packages:
     source: hosted
     version: "0.4.1"
   clock:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: clock
       sha256: cb6d7f03e1de671e34607e909a7213e31d7752be4fb66a86d29fe1eb14bfb5cf
@@ -454,7 +454,7 @@ packages:
     source: hosted
     version: "0.18.1"
   io:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: io
       sha256: "2ec25704aba361659e10e3e5f5d672068d332fc8ac516421d483a11e5cbd061e"
