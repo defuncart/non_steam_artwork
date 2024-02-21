@@ -12,6 +12,6 @@ menuBarCache;Cache
 menuBarCacheOpen;Open
 menuBarCacheBackup;Backup
 menuBarCacheDeleteAll;Delete All
-menuBarOptions;Options
-menuBarOptionsShowLicenses;Show Licenses
-menuBarOptionsShowPrivacyPolicy;Show Privacy Policy
+menuBarView;View
+menuBarViewShowLicenses;Licenses
+menuBarViewShowPrivacyPolicy;Privacy Policy

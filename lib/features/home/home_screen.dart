@@ -58,14 +58,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ],
         ),
         NativeSubmenu(
-          label: context.l10n.menuBarOptions,
+          label: context.l10n.menuBarView,
           children: [
             NativeMenuItem(
-              label: context.l10n.menuBarOptionsShowLicenses,
+              label: context.l10n.menuBarViewShowLicenses,
               onSelected: () => LicensesScreen.show(context),
             ),
             NativeMenuItem(
-              label: context.l10n.menuBarOptionsShowPrivacyPolicy,
+              label: context.l10n.menuBarViewShowPrivacyPolicy,
               // launchUrl Uri.https does not work on arch
               onSelected: () => launchUrlString(
                 'https://github.com/defuncart/non_steam_artwork/blob/feature/show-games-artwork/privacy_policy.md',
