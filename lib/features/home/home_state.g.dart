@@ -6,7 +6,7 @@ part of 'home_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fileManagerHash() => r'a2b3dcdc46e022a42a4b5841bd7daebc5a93f5ca';
+String _$fileManagerHash() => r'16054c52e313d2a2d8a8ed6b491b0a1b4361bac8';
 
 /// See also [_fileManager].
 @ProviderFor(_fileManager)
@@ -32,7 +32,7 @@ final steamProgramsProvider = AutoDisposeFutureProvider<Iterable<SteamProgram>>.
 );
 
 typedef SteamProgramsRef = AutoDisposeFutureProviderRef<Iterable<SteamProgram>>;
-String _$deleteArtworkHash() => r'8c0c486dfeb99f1201b04fd45186d60e84c6424a';
+String _$deleteArtworkHash() => r'd6680917a6dd88b69aed24a69072e30cd8b8d2f6';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -218,7 +218,7 @@ class _DeleteArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   File get file => (origin as DeleteArtworkProvider).file;
 }
 
-String _$copyArtworkHash() => r'9e7bc7d7315ee8be09fda854f93272d450df7111';
+String _$copyArtworkHash() => r'b855792ddaddfdf835edcecbf5008822c2079ba4';
 
 /// See also [copyArtwork].
 @ProviderFor(copyArtwork)
@@ -403,7 +403,7 @@ class _CopyArtworkProviderElement extends AutoDisposeFutureProviderElement<void>
   SteamGridArtType get artType => (origin as CopyArtworkProvider).artType;
 }
 
-String _$createArtworkHash() => r'8beb93e936d23094dc194d5dfe2f0358ca5ead26';
+String _$createArtworkHash() => r'10dde8001c06bc7422dd3816b6d487026704caa1';
 
 /// See also [createArtwork].
 @ProviderFor(createArtwork)
@@ -628,7 +628,7 @@ class _CreateArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   SteamGridArtType get artType => (origin as CreateArtworkProvider).artType;
 }
 
-String _$freeCacheHash() => r'86956e442ef2f31dc29838afb365ccdab2a4d96d';
+String _$freeCacheHash() => r'e36615b7fc2f8216d10c95c32dceab91fc91c891';
 
 /// See also [FreeCache].
 @ProviderFor(FreeCache)

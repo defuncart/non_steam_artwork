@@ -19,7 +19,8 @@ class LogsScreen extends ConsumerWidget {
             children: value
                 .map((log) => ListTile(
                       dense: true,
-                      title: Text(log),
+                      title: Text(log.message),
+                      subtitle: log.subtitle,
                     ))
                 .toList(),
           ),
@@ -33,4 +34,14 @@ class LogsScreen extends ConsumerWidget {
           builder: (context) => const LogsScreen(),
         ),
       );
+}
+
+extension on LogEvent {
+  Widget? get subtitle {
+    if (className == null || methodName == null || lineNumber == null) {
+      return null;
+    }
+
+    return Text('${className!}.${methodName!}(${lineNumber!})');
+  }
 }

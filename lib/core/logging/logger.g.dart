@@ -19,11 +19,11 @@ final loggerProvider = Provider<Logger>.internal(
 );
 
 typedef LoggerRef = ProviderRef<Logger>;
-String _$logsViewerHash() => r'0bb41b186e20f76f82da0dfeb3a2468352e5184c';
+String _$logsViewerHash() => r'74b91ad1a3dd5dee4fac487ade15712e5f5cd2bc';
 
 /// See also [logsViewer].
 @ProviderFor(logsViewer)
-final logsViewerProvider = StreamProvider<List<String>>.internal(
+final logsViewerProvider = StreamProvider<List<LogEvent>>.internal(
   logsViewer,
   name: r'logsViewerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$logsViewerHash,
@@ -31,6 +31,6 @@ final logsViewerProvider = StreamProvider<List<String>>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef LogsViewerRef = StreamProviderRef<List<String>>;
+typedef LogsViewerRef = StreamProviderRef<List<LogEvent>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
