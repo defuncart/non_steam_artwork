@@ -1,4 +1,4 @@
-import 'dart:developer' show log;
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -9,6 +9,7 @@ import 'package:native_context_menu/native_context_menu.dart';
 import 'package:non_steam_artwork/core/extensions/int_extension.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
+import 'package:non_steam_artwork/core/logging/logger.dart';
 import 'package:non_steam_artwork/core/logging/logs_screen.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
@@ -199,6 +200,7 @@ class ProgramView extends ConsumerWidget {
                   ext: ext,
                   artType: artType,
                 )),
+                onLog: ref.read(loggerProvider).log,
               ),
           ],
         ),
@@ -215,6 +217,7 @@ class SteamArtwork extends StatefulWidget {
     required this.onDeleteFile,
     required this.onCopyFile,
     required this.onCreateFile,
+    required this.onLog,
     super.key,
   });
 
@@ -223,6 +226,7 @@ class SteamArtwork extends StatefulWidget {
   final void Function(File) onDeleteFile;
   final void Function(File, SteamGridArtType) onCopyFile;
   final void Function(Stream<Uint8List>, String) onCreateFile;
+  final void Function(String) onLog;
 
   @override
   State<SteamArtwork> createState() => _SteamArtworkState();
@@ -267,13 +271,13 @@ class _SteamArtworkState extends State<SteamArtwork> {
             reader.getFile(Formats.jpeg, (file) {
               widget.onCreateFile(file.getStream(), '.jpg');
             }, onError: (error) {
-              log('Error reading value $error');
+              widget.onLog('Error reading value $error');
             });
           } else if (reader.canProvide(Formats.png)) {
             reader.getFile(Formats.png, (file) {
               widget.onCreateFile(file.getStream(), '.png');
             }, onError: (error) {
-              log('Error reading value $error');
+              widget.onLog('Error reading value $error');
             });
           }
         }
@@ -290,14 +294,16 @@ class _SteamArtworkState extends State<SteamArtwork> {
                   reader.getFile(Formats.jpeg, (file) {
                     widget.onCreateFile(file.getStream(), '.jpg');
                   }, onError: (error) {
-                    log('Error reading value $error');
+                    widget.onLog('Error reading value $error');
                   });
                 } else if (reader.canProvide(Formats.png)) {
                   reader.getFile(Formats.png, (file) {
                     widget.onCreateFile(file.getStream(), '.png');
                   }, onError: (error) {
-                    log('Error reading value $error');
+                    widget.onLog('Error reading value $error');
                   });
+                } else {
+                  widget.onLog('clipboard contents is not .jpg nor .png');
                 }
               });
               // TODO: show toast when clipboard content isn't valid

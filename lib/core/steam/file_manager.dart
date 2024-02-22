@@ -1,19 +1,22 @@
-import 'dart:developer' show log;
 import 'dart:io';
 
 import 'package:io/io.dart';
+import 'package:non_steam_artwork/core/logging/logger.dart';
 import 'package:path/path.dart' as p;
 
 class FileManager {
-  const FileManager();
+  const FileManager(this._logger);
+
+  final Logger _logger;
 
   Future<void> sync(String from, String to) async {
     if (!await dirExists(from)) {
-      log('$from does not exist');
+      _logger.log('$from does not exist');
       return;
     }
 
     if (await Directory(to).exists()) {
+      _logger.log('$to already exists, deleting');
       await Directory(to).delete(recursive: true);
     }
 
@@ -52,6 +55,7 @@ class FileManager {
           .where((element) => p.basenameWithoutExtension(element.path) == pattern);
       for (final result in results) {
         await result.delete();
+        _logger.log('deleted ${result.path}');
       }
     }
   }

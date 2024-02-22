@@ -1,9 +1,9 @@
-import 'dart:developer' show log;
 import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:clock/clock.dart';
 import 'package:non_steam_artwork/core/extensions/file_extension.dart';
+import 'package:non_steam_artwork/core/logging/logger.dart';
 import 'package:non_steam_artwork/core/steam/file_manager.dart';
 import 'package:non_steam_artwork/core/steam/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
@@ -16,7 +16,7 @@ import 'package:url_launcher/url_launcher.dart';
 part 'home_state.g.dart';
 
 @Riverpod(keepAlive: true)
-FileManager _fileManager(_FileManagerRef ref) => const FileManager();
+FileManager _fileManager(_FileManagerRef ref) => FileManager(ref.read(loggerProvider));
 
 @riverpod
 class FreeCache extends _$FreeCache {
@@ -27,7 +27,7 @@ class FreeCache extends _$FreeCache {
       _data = await ref.read(steamManagerProvider).determineUnusedCache();
       return _data.totalBytes;
     } catch (e) {
-      log(e.toString());
+      ref.log('_determineBytesUnusedInCache exception $e');
       return 0;
     }
   }
@@ -38,12 +38,14 @@ class FreeCache extends _$FreeCache {
   Future<void> cleanUp() async {
     state = const AsyncValue.loading();
     await ref.read(_fileManagerProvider).deleteAll(_data);
+    ref.log('cleaned up cache');
     state = await AsyncValue.guard(_determineBytesUnusedInCache);
   }
 
   Future<void> deleteAll() async {
     state = const AsyncValue.loading();
     await ref.read(steamManagerProvider).deleteCache();
+    ref.log('deleted cache');
     ref.invalidate(steamProgramsProvider);
     state = await AsyncValue.guard(_determineBytesUnusedInCache);
   }
@@ -59,7 +61,13 @@ class FreeCache extends _$FreeCache {
       clock.now().toUtc().toString().replaceAll(':', '-'),
     );
 
+    ref.log('grid backup from $gridPath to $syncPath');
+
+    final a = Stopwatch()..start();
     await ref.read(_fileManagerProvider).sync(gridPath, syncPath);
+    a.stop();
+
+    ref.log('backup completed, took ${a.elapsedMilliseconds}ms');
 
     state = await AsyncValue.guard(_determineBytesUnusedInCache);
   }
@@ -86,6 +94,7 @@ Future<void> deleteArtwork(
   required File file,
 }) async {
   await file.delete();
+  ref.log('deleted artwork ${file.path}');
   ref.invalidate(steamProgramsProvider);
 }
 
@@ -96,6 +105,8 @@ Future<void> copyArtwork(
   required SteamGridArtType artType,
 }) async {
   assert(artType == SteamGridArtType.hero || artType == SteamGridArtType.background);
+
+  ref.log('start copy ${file.path} as ${artType.name}');
 
   final dir = p.dirname(file.path);
   final fileExt = p.extension(file.path);
@@ -109,6 +120,7 @@ Future<void> copyArtwork(
   final fullpath = p.join(dir, '$filename$fileExt');
 
   await file.copy(fullpath);
+  ref.log('artwork copied to $fullpath');
   ref.invalidate(steamProgramsProvider);
 }
 
@@ -120,6 +132,7 @@ Future<void> createArtwork(
   required String ext,
   required SteamGridArtType artType,
 }) async {
+  ref.log('start create ${artType.name} for $appId with extension $ext');
   final (dir, basename) = await ref.read(steamManagerProvider).generateArtworkPath(
         appId: appId,
         artType: artType,
@@ -130,6 +143,7 @@ Future<void> createArtwork(
 
   final bytes = await bytesStream.toList();
   await file.writeAsBytes(bytes.first, mode: FileMode.writeOnly);
+  ref.log('artwork $filepath created');
 
   ref.invalidate(steamProgramsProvider);
 }
