@@ -628,18 +628,18 @@ class _CreateArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   SteamGridArtType get artType => (origin as CreateArtworkProvider).artType;
 }
 
-String _$freeCacheHash() => r'e36615b7fc2f8216d10c95c32dceab91fc91c891';
+String _$cacheControllerHash() => r'8aae0b61c531f4f8a67683dd0a4d02dbad60a384';
 
-/// See also [FreeCache].
-@ProviderFor(FreeCache)
-final freeCacheProvider = AutoDisposeAsyncNotifierProvider<FreeCache, int>.internal(
-  FreeCache.new,
-  name: r'freeCacheProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$freeCacheHash,
+/// See also [CacheController].
+@ProviderFor(CacheController)
+final cacheControllerProvider = AutoDisposeAsyncNotifierProvider<CacheController, int>.internal(
+  CacheController.new,
+  name: r'cacheControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$cacheControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$FreeCache = AutoDisposeAsyncNotifier<int>;
+typedef _$CacheController = AutoDisposeAsyncNotifier<int>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package

@@ -47,15 +47,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           children: [
             NativeMenuItem(
               label: context.l10n.menuBarCacheOpen,
-              onSelected: ref.read(freeCacheProvider.notifier).open,
+              onSelected: ref.read(cacheControllerProvider.notifier).open,
             ),
             NativeMenuItem(
               label: context.l10n.menuBarCacheBackup,
-              onSelected: ref.read(freeCacheProvider.notifier).backup,
+              onSelected: ref.read(cacheControllerProvider.notifier).backup,
             ),
             NativeMenuItem(
               label: context.l10n.menuBarCacheDeleteAll,
-              onSelected: ref.read(freeCacheProvider.notifier).deleteAll,
+              onSelected: ref.read(cacheControllerProvider.notifier).deleteAll,
             ),
           ],
         ),
@@ -107,7 +107,7 @@ class CleanUpCacheView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(freeCacheProvider);
+    final state = ref.watch(cacheControllerProvider);
 
     return switch (state) {
       AsyncData(:final value) => value == 0
@@ -124,7 +124,7 @@ class CleanUpCacheView extends ConsumerWidget {
                     ),
                     const SizedBox(height: 16),
                     TextButton.icon(
-                      onPressed: ref.read(freeCacheProvider.notifier).cleanUp,
+                      onPressed: ref.read(cacheControllerProvider.notifier).cleanUp,
                       icon: const Icon(Icons.delete_sweep_rounded),
                       label: Text(context.l10n.homeCleanUpCacheButton),
                     ),

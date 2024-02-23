@@ -19,7 +19,7 @@ part 'home_state.g.dart';
 FileManager _fileManager(_FileManagerRef ref) => FileManager(ref.read(loggerProvider));
 
 @riverpod
-class FreeCache extends _$FreeCache {
+class CacheController extends _$CacheController {
   Iterable<File> _data = const Iterable<File>.empty();
 
   Future<int> _determineBytesUnusedInCache() async {
