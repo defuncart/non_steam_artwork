@@ -628,7 +628,7 @@ class _CreateArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   SteamGridArtType get artType => (origin as CreateArtworkProvider).artType;
 }
 
-String _$cacheControllerHash() => r'8aae0b61c531f4f8a67683dd0a4d02dbad60a384';
+String _$cacheControllerHash() => r'd8f11b48c8863c5eae01166e56731b7b2cb3fa82';
 
 /// See also [CacheController].
 @ProviderFor(CacheController)

@@ -10,6 +10,7 @@ import 'package:non_steam_artwork/core/extensions/int_extension.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
+import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
@@ -56,6 +57,28 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             NativeMenuItem(
               label: context.l10n.menuBarCacheDeleteAll,
               onSelected: ref.read(cacheControllerProvider.notifier).deleteAll,
+            ),
+          ],
+        ),
+        NativeSubmenu(
+          label: context.l10n.menuBarOptions,
+          children: [
+            NativeSubmenu(
+              label: context.l10n.menuBarOptionsTheme,
+              children: [
+                NativeMenuItem(
+                  label: context.l10n.menuBarOptionsThemeSystem,
+                  onSelected: () => ref.read(themeModeControllerProvider.notifier).set(ThemeMode.system),
+                ),
+                NativeMenuItem(
+                  label: context.l10n.menuBarOptionsThemeLight,
+                  onSelected: () => ref.read(themeModeControllerProvider.notifier).set(ThemeMode.light),
+                ),
+                NativeMenuItem(
+                  label: context.l10n.menuBarOptionsThemeDark,
+                  onSelected: () => ref.read(themeModeControllerProvider.notifier).set(ThemeMode.dark),
+                ),
+              ],
             ),
           ],
         ),
