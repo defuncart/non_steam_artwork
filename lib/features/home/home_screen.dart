@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:feedback/feedback.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -104,6 +105,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               label: context.l10n.menuBarViewShowPrivacyPolicy,
               onSelected: () => PrivacyPolicyScreen.show(context),
             ),
+          ],
+        ),
+        NativeSubmenu(
+          label: 'Feedback',
+          children: [
+            NativeMenuItem(
+                label: 'Send',
+                onSelected: () {
+                  BetterFeedback.of(context).show((UserFeedback feedback) {
+                    // Do something with the feedback
+                  });
+                }),
           ],
         ),
       ]),

@@ -51,6 +51,7 @@ dependencies:
       ref: main
   cached_network_image:
   flutter_cache_manager:
+  feedback: ^3.0.0
 
 dev_dependencies:
   flutter_test:
