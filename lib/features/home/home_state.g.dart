@@ -6,7 +6,7 @@ part of 'home_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fileManagerHash() => r'a2b3dcdc46e022a42a4b5841bd7daebc5a93f5ca';
+String _$fileManagerHash() => r'16054c52e313d2a2d8a8ed6b491b0a1b4361bac8';
 
 /// See also [_fileManager].
 @ProviderFor(_fileManager)
@@ -32,7 +32,7 @@ final steamProgramsProvider = AutoDisposeFutureProvider<Iterable<SteamProgram>>.
 );
 
 typedef SteamProgramsRef = AutoDisposeFutureProviderRef<Iterable<SteamProgram>>;
-String _$deleteArtworkHash() => r'8c0c486dfeb99f1201b04fd45186d60e84c6424a';
+String _$deleteArtworkHash() => r'd6680917a6dd88b69aed24a69072e30cd8b8d2f6';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -218,7 +218,7 @@ class _DeleteArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   File get file => (origin as DeleteArtworkProvider).file;
 }
 
-String _$copyArtworkHash() => r'9e7bc7d7315ee8be09fda854f93272d450df7111';
+String _$copyArtworkHash() => r'b855792ddaddfdf835edcecbf5008822c2079ba4';
 
 /// See also [copyArtwork].
 @ProviderFor(copyArtwork)
@@ -403,7 +403,7 @@ class _CopyArtworkProviderElement extends AutoDisposeFutureProviderElement<void>
   SteamGridArtType get artType => (origin as CopyArtworkProvider).artType;
 }
 
-String _$createArtworkHash() => r'9be3ee446e72a1ccfd52d0b87d092f4d0e73b57a';
+String _$createArtworkHash() => r'10dde8001c06bc7422dd3816b6d487026704caa1';
 
 /// See also [createArtwork].
 @ProviderFor(createArtwork)
@@ -628,18 +628,18 @@ class _CreateArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   SteamGridArtType get artType => (origin as CreateArtworkProvider).artType;
 }
 
-String _$freeCacheHash() => r'06c1353a144a83282633149c1e6142e083a0561d';
+String _$cacheControllerHash() => r'8aae0b61c531f4f8a67683dd0a4d02dbad60a384';
 
-/// See also [FreeCache].
-@ProviderFor(FreeCache)
-final freeCacheProvider = AutoDisposeAsyncNotifierProvider<FreeCache, int>.internal(
-  FreeCache.new,
-  name: r'freeCacheProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$freeCacheHash,
+/// See also [CacheController].
+@ProviderFor(CacheController)
+final cacheControllerProvider = AutoDisposeAsyncNotifierProvider<CacheController, int>.internal(
+  CacheController.new,
+  name: r'cacheControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$cacheControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$FreeCache = AutoDisposeAsyncNotifier<int>;
+typedef _$CacheController = AutoDisposeAsyncNotifier<int>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package

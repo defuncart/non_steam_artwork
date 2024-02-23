@@ -1,4 +1,4 @@
-import 'dart:developer' show log;
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -9,6 +9,8 @@ import 'package:native_context_menu/native_context_menu.dart';
 import 'package:non_steam_artwork/core/extensions/int_extension.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
+import 'package:non_steam_artwork/core/logging/logger.dart';
+import 'package:non_steam_artwork/core/logging/logs_screen.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
@@ -43,29 +45,37 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         NativeSubmenu(
           label: context.l10n.menuBarCache,
           children: [
+            // NativeMenuItem(
+            //   label: context.l10n.menuBarCacheOpen,
+            //   onSelected: ref.read(cacheControllerProvider.notifier).open,
+            // ),
+            NativeMenuItem(
+              label: context.l10n.menuBarCacheBackup,
+              onSelected: ref.read(cacheControllerProvider.notifier).backup,
+            ),
             NativeMenuItem(
               label: context.l10n.menuBarCacheDeleteAll,
-              onSelected: ref.read(freeCacheProvider.notifier).deleteAll,
+              onSelected: ref.read(cacheControllerProvider.notifier).deleteAll,
             ),
           ],
         ),
         NativeSubmenu(
-          label: context.l10n.menuBarOptions,
+          label: context.l10n.menuBarView,
           children: [
             NativeMenuItem(
-              label: context.l10n.menuBarOptionsShowLicenses,
+              label: context.l10n.menuBarViewLogs,
+              onSelected: () => LogsScreen.show(context),
+            ),
+            NativeMenuItem(
+              label: context.l10n.menuBarViewShowLicenses,
               onSelected: () => LicensesScreen.show(context),
             ),
             NativeMenuItem(
-              label: context.l10n.menuBarOptionsShowPrivacyPolicy,
-              // onSelected: () => launchUrl(
-              //   // Uri.https('https://github.com/defuncart/non_steam_artwork/blob/main/privacy_policy.md'),
-              //   Uri.https(
-              //     'https://github.com/defuncart/non_steam_artwork/blob/feature/show-games-artwork/privacy_policy.md',
-              //   ),
-              // ),
+              label: context.l10n.menuBarViewShowPrivacyPolicy,
+              // launchUrl Uri.https does not work on arch
               onSelected: () => launchUrlString(
-                  'https://github.com/defuncart/non_steam_artwork/blob/feature/show-games-artwork/privacy_policy.md'),
+                'https://github.com/defuncart/non_steam_artwork/blob/main/privacy_policy.md',
+              ),
             ),
           ],
         ),
@@ -97,7 +107,7 @@ class CleanUpCacheView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(freeCacheProvider);
+    final state = ref.watch(cacheControllerProvider);
 
     return switch (state) {
       AsyncData(:final value) => value == 0
@@ -114,7 +124,7 @@ class CleanUpCacheView extends ConsumerWidget {
                     ),
                     const SizedBox(height: 16),
                     TextButton.icon(
-                      onPressed: ref.read(freeCacheProvider.notifier).cleanUp,
+                      onPressed: ref.read(cacheControllerProvider.notifier).cleanUp,
                       icon: const Icon(Icons.delete_sweep_rounded),
                       label: Text(context.l10n.homeCleanUpCacheButton),
                     ),
@@ -190,6 +200,7 @@ class ProgramView extends ConsumerWidget {
                   ext: ext,
                   artType: artType,
                 )),
+                onLog: ref.read(loggerProvider).log,
               ),
           ],
         ),
@@ -206,6 +217,7 @@ class SteamArtwork extends StatefulWidget {
     required this.onDeleteFile,
     required this.onCopyFile,
     required this.onCreateFile,
+    required this.onLog,
     super.key,
   });
 
@@ -214,6 +226,7 @@ class SteamArtwork extends StatefulWidget {
   final void Function(File) onDeleteFile;
   final void Function(File, SteamGridArtType) onCopyFile;
   final void Function(Stream<Uint8List>, String) onCreateFile;
+  final void Function(String) onLog;
 
   @override
   State<SteamArtwork> createState() => _SteamArtworkState();
@@ -258,13 +271,13 @@ class _SteamArtworkState extends State<SteamArtwork> {
             reader.getFile(Formats.jpeg, (file) {
               widget.onCreateFile(file.getStream(), '.jpg');
             }, onError: (error) {
-              log('Error reading value $error');
+              widget.onLog('Error reading value $error');
             });
           } else if (reader.canProvide(Formats.png)) {
             reader.getFile(Formats.png, (file) {
               widget.onCreateFile(file.getStream(), '.png');
             }, onError: (error) {
-              log('Error reading value $error');
+              widget.onLog('Error reading value $error');
             });
           }
         }
@@ -281,14 +294,16 @@ class _SteamArtworkState extends State<SteamArtwork> {
                   reader.getFile(Formats.jpeg, (file) {
                     widget.onCreateFile(file.getStream(), '.jpg');
                   }, onError: (error) {
-                    log('Error reading value $error');
+                    widget.onLog('Error reading value $error');
                   });
                 } else if (reader.canProvide(Formats.png)) {
                   reader.getFile(Formats.png, (file) {
                     widget.onCreateFile(file.getStream(), '.png');
                   }, onError: (error) {
-                    log('Error reading value $error');
+                    widget.onLog('Error reading value $error');
                   });
+                } else {
+                  widget.onLog('clipboard contents is not .jpg nor .png');
                 }
               });
               // TODO: show toast when clipboard content isn't valid

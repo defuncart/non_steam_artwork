@@ -7,7 +7,8 @@ A linux tool to update artwork for non-steam programs.
 - Clean up cached artwork not used
 - Delete all cached artwork
 - Manually delete individual artwork images
-- Drag'n'drop/paste from clipboard artwork
+- New artwork via drag'n'drop/paste from clipboard
+- Backup existing artwork to `Documents`
 
 *Non-Steam Artwork* is not affiliated with Valve Corporation nor the Steam platform.
 
