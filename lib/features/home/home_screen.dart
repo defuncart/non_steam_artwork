@@ -45,10 +45,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         NativeSubmenu(
           label: context.l10n.menuBarCache,
           children: [
-            NativeMenuItem(
-              label: context.l10n.menuBarCacheOpen,
-              onSelected: ref.read(cacheControllerProvider.notifier).open,
-            ),
+            // NativeMenuItem(
+            //   label: context.l10n.menuBarCacheOpen,
+            //   onSelected: ref.read(cacheControllerProvider.notifier).open,
+            // ),
             NativeMenuItem(
               label: context.l10n.menuBarCacheBackup,
               onSelected: ref.read(cacheControllerProvider.notifier).backup,
