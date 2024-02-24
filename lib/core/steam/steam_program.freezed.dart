@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SteamProgram {
   int get appId => throw _privateConstructorUsedError;
   String get appName => throw _privateConstructorUsedError;
+  SteamProgramType get programType => throw _privateConstructorUsedError;
   File? get icon => throw _privateConstructorUsedError;
   File? get cover => throw _privateConstructorUsedError;
   File? get background => throw _privateConstructorUsedError;
@@ -33,7 +34,15 @@ abstract class $SteamProgramCopyWith<$Res> {
   factory $SteamProgramCopyWith(SteamProgram value, $Res Function(SteamProgram) then) =
       _$SteamProgramCopyWithImpl<$Res, SteamProgram>;
   @useResult
-  $Res call({int appId, String appName, File? icon, File? cover, File? background, File? logo, File? hero});
+  $Res call(
+      {int appId,
+      String appName,
+      SteamProgramType programType,
+      File? icon,
+      File? cover,
+      File? background,
+      File? logo,
+      File? hero});
 }
 
 /// @nodoc
@@ -50,6 +59,7 @@ class _$SteamProgramCopyWithImpl<$Res, $Val extends SteamProgram> implements $St
   $Res call({
     Object? appId = null,
     Object? appName = null,
+    Object? programType = null,
     Object? icon = freezed,
     Object? cover = freezed,
     Object? background = freezed,
@@ -65,6 +75,10 @@ class _$SteamProgramCopyWithImpl<$Res, $Val extends SteamProgram> implements $St
           ? _value.appName
           : appName // ignore: cast_nullable_to_non_nullable
               as String,
+      programType: null == programType
+          ? _value.programType
+          : programType // ignore: cast_nullable_to_non_nullable
+              as SteamProgramType,
       icon: freezed == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -95,7 +109,15 @@ abstract class _$$SteamProgramImplCopyWith<$Res> implements $SteamProgramCopyWit
       __$$SteamProgramImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int appId, String appName, File? icon, File? cover, File? background, File? logo, File? hero});
+  $Res call(
+      {int appId,
+      String appName,
+      SteamProgramType programType,
+      File? icon,
+      File? cover,
+      File? background,
+      File? logo,
+      File? hero});
 }
 
 /// @nodoc
@@ -109,6 +131,7 @@ class __$$SteamProgramImplCopyWithImpl<$Res> extends _$SteamProgramCopyWithImpl<
   $Res call({
     Object? appId = null,
     Object? appName = null,
+    Object? programType = null,
     Object? icon = freezed,
     Object? cover = freezed,
     Object? background = freezed,
@@ -124,6 +147,10 @@ class __$$SteamProgramImplCopyWithImpl<$Res> extends _$SteamProgramCopyWithImpl<
           ? _value.appName
           : appName // ignore: cast_nullable_to_non_nullable
               as String,
+      programType: null == programType
+          ? _value.programType
+          : programType // ignore: cast_nullable_to_non_nullable
+              as SteamProgramType,
       icon: freezed == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -152,12 +179,21 @@ class __$$SteamProgramImplCopyWithImpl<$Res> extends _$SteamProgramCopyWithImpl<
 
 class _$SteamProgramImpl implements _SteamProgram {
   const _$SteamProgramImpl(
-      {required this.appId, required this.appName, this.icon, this.cover, this.background, this.logo, this.hero});
+      {required this.appId,
+      required this.appName,
+      required this.programType,
+      this.icon,
+      this.cover,
+      this.background,
+      this.logo,
+      this.hero});
 
   @override
   final int appId;
   @override
   final String appName;
+  @override
+  final SteamProgramType programType;
   @override
   final File? icon;
   @override
@@ -171,7 +207,7 @@ class _$SteamProgramImpl implements _SteamProgram {
 
   @override
   String toString() {
-    return 'SteamProgram(appId: $appId, appName: $appName, icon: $icon, cover: $cover, background: $background, logo: $logo, hero: $hero)';
+    return 'SteamProgram(appId: $appId, appName: $appName, programType: $programType, icon: $icon, cover: $cover, background: $background, logo: $logo, hero: $hero)';
   }
 
   @override
@@ -181,6 +217,7 @@ class _$SteamProgramImpl implements _SteamProgram {
             other is _$SteamProgramImpl &&
             (identical(other.appId, appId) || other.appId == appId) &&
             (identical(other.appName, appName) || other.appName == appName) &&
+            (identical(other.programType, programType) || other.programType == programType) &&
             (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.cover, cover) || other.cover == cover) &&
             (identical(other.background, background) || other.background == background) &&
@@ -189,7 +226,7 @@ class _$SteamProgramImpl implements _SteamProgram {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, appId, appName, icon, cover, background, logo, hero);
+  int get hashCode => Object.hash(runtimeType, appId, appName, programType, icon, cover, background, logo, hero);
 
   @JsonKey(ignore: true)
   @override
@@ -202,6 +239,7 @@ abstract class _SteamProgram implements SteamProgram {
   const factory _SteamProgram(
       {required final int appId,
       required final String appName,
+      required final SteamProgramType programType,
       final File? icon,
       final File? cover,
       final File? background,
@@ -212,6 +250,8 @@ abstract class _SteamProgram implements SteamProgram {
   int get appId;
   @override
   String get appName;
+  @override
+  SteamProgramType get programType;
   @override
   File? get icon;
   @override

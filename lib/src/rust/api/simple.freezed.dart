@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SteamShortcut {
   int get appId => throw _privateConstructorUsedError;
   String get appName => throw _privateConstructorUsedError;
+  String get target => throw _privateConstructorUsedError;
   String get launchOptions => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +30,7 @@ abstract class $SteamShortcutCopyWith<$Res> {
   factory $SteamShortcutCopyWith(SteamShortcut value, $Res Function(SteamShortcut) then) =
       _$SteamShortcutCopyWithImpl<$Res, SteamShortcut>;
   @useResult
-  $Res call({int appId, String appName, String launchOptions});
+  $Res call({int appId, String appName, String target, String launchOptions});
 }
 
 /// @nodoc
@@ -46,6 +47,7 @@ class _$SteamShortcutCopyWithImpl<$Res, $Val extends SteamShortcut> implements $
   $Res call({
     Object? appId = null,
     Object? appName = null,
+    Object? target = null,
     Object? launchOptions = null,
   }) {
     return _then(_value.copyWith(
@@ -56,6 +58,10 @@ class _$SteamShortcutCopyWithImpl<$Res, $Val extends SteamShortcut> implements $
       appName: null == appName
           ? _value.appName
           : appName // ignore: cast_nullable_to_non_nullable
+              as String,
+      target: null == target
+          ? _value.target
+          : target // ignore: cast_nullable_to_non_nullable
               as String,
       launchOptions: null == launchOptions
           ? _value.launchOptions
@@ -71,7 +77,7 @@ abstract class _$$SteamShortcutImplCopyWith<$Res> implements $SteamShortcutCopyW
       __$$SteamShortcutImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int appId, String appName, String launchOptions});
+  $Res call({int appId, String appName, String target, String launchOptions});
 }
 
 /// @nodoc
@@ -85,6 +91,7 @@ class __$$SteamShortcutImplCopyWithImpl<$Res> extends _$SteamShortcutCopyWithImp
   $Res call({
     Object? appId = null,
     Object? appName = null,
+    Object? target = null,
     Object? launchOptions = null,
   }) {
     return _then(_$SteamShortcutImpl(
@@ -95,6 +102,10 @@ class __$$SteamShortcutImplCopyWithImpl<$Res> extends _$SteamShortcutCopyWithImp
       appName: null == appName
           ? _value.appName
           : appName // ignore: cast_nullable_to_non_nullable
+              as String,
+      target: null == target
+          ? _value.target
+          : target // ignore: cast_nullable_to_non_nullable
               as String,
       launchOptions: null == launchOptions
           ? _value.launchOptions
@@ -107,18 +118,21 @@ class __$$SteamShortcutImplCopyWithImpl<$Res> extends _$SteamShortcutCopyWithImp
 /// @nodoc
 
 class _$SteamShortcutImpl implements _SteamShortcut {
-  const _$SteamShortcutImpl({required this.appId, required this.appName, required this.launchOptions});
+  const _$SteamShortcutImpl(
+      {required this.appId, required this.appName, required this.target, required this.launchOptions});
 
   @override
   final int appId;
   @override
   final String appName;
   @override
+  final String target;
+  @override
   final String launchOptions;
 
   @override
   String toString() {
-    return 'SteamShortcut(appId: $appId, appName: $appName, launchOptions: $launchOptions)';
+    return 'SteamShortcut(appId: $appId, appName: $appName, target: $target, launchOptions: $launchOptions)';
   }
 
   @override
@@ -128,11 +142,12 @@ class _$SteamShortcutImpl implements _SteamShortcut {
             other is _$SteamShortcutImpl &&
             (identical(other.appId, appId) || other.appId == appId) &&
             (identical(other.appName, appName) || other.appName == appName) &&
+            (identical(other.target, target) || other.target == target) &&
             (identical(other.launchOptions, launchOptions) || other.launchOptions == launchOptions));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, appId, appName, launchOptions);
+  int get hashCode => Object.hash(runtimeType, appId, appName, target, launchOptions);
 
   @JsonKey(ignore: true)
   @override
@@ -145,12 +160,15 @@ abstract class _SteamShortcut implements SteamShortcut {
   const factory _SteamShortcut(
       {required final int appId,
       required final String appName,
+      required final String target,
       required final String launchOptions}) = _$SteamShortcutImpl;
 
   @override
   int get appId;
   @override
   String get appName;
+  @override
+  String get target;
   @override
   String get launchOptions;
   @override
