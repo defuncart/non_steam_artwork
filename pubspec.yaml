@@ -14,6 +14,7 @@ dependencies:
     sdk: flutter 
   intl:
   flex_color_scheme: ^7.3.1
+  gap:
   flutter_rust_bridge: 2.0.0-dev.24
   rust_lib_non_steam_artwork:
     path: rust_builder
@@ -40,6 +41,8 @@ dependencies:
   clock:
   package_info_plus:
   device_info_plus:
+  markdown_widget: ^2.3.2+3
+  http:
 
 dev_dependencies:
   flutter_test:
