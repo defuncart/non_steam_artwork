@@ -15,9 +15,9 @@ import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:non_steam_artwork/features/support/licenses_screen.dart';
+import 'package:non_steam_artwork/features/support/privacy_policy_screen.dart';
 import 'package:super_clipboard/super_clipboard.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -72,10 +72,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ),
             NativeMenuItem(
               label: context.l10n.menuBarViewShowPrivacyPolicy,
-              // launchUrl Uri.https does not work on arch
-              onSelected: () => launchUrlString(
-                'https://github.com/defuncart/non_steam_artwork/blob/main/privacy_policy.md',
-              ),
+              onSelected: () => PrivacyPolicyScreen.show(context),
             ),
           ],
         ),
