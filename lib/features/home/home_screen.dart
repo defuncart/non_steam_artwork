@@ -108,6 +108,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const SearchProgramsTextField(),
         actions: const [
           FilterProgramChips(),
           SortProgramsButton(),
@@ -124,6 +125,34 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class SearchProgramsTextField extends ConsumerStatefulWidget {
+  const SearchProgramsTextField({super.key});
+
+  @override
+  ConsumerState<SearchProgramsTextField> createState() => _SearchProgramsTextFieldState();
+}
+
+class _SearchProgramsTextFieldState extends ConsumerState<SearchProgramsTextField> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = TextEditingController()
+      ..addListener(() {
+        ref.read(searchControllerProvider.notifier).updateSearch(_controller.text);
+      });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: _controller,
     );
   }
 }

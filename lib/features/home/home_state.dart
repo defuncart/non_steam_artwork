@@ -88,6 +88,18 @@ class CacheController extends _$CacheController {
   }
 }
 
+@Riverpod(keepAlive: true)
+class SearchController extends _$SearchController {
+  @override
+  String build() => '';
+
+  void updateSearch(String searchTerm) {
+    if (searchTerm != state) {
+      state = searchTerm;
+    }
+  }
+}
+
 @riverpod
 class SteamPrograms extends _$SteamPrograms {
   @override
@@ -96,12 +108,21 @@ class SteamPrograms extends _$SteamPrograms {
     final validTypes = types.entries.map((kvp) => kvp.value ? kvp.key : null).whereType<SteamProgramType>();
     var filteredPrograms = await ref.read(steamManagerProvider).getPrograms(validTypes);
 
+    final searchTerm = ref.watch(searchControllerProvider);
+    if (searchTerm.isNotEmpty) {
+      filteredPrograms = filteredPrograms.where((program) => program.appName.contains(searchTerm));
+    }
+
     final sortType = ref.watch(sortProgramTypeControllerProvider);
     if (sortType == SortProgramType.alphabetic) {
       filteredPrograms = filteredPrograms.sorted((a, b) => a.appName.toLowerCase().compareTo(b.appName.toLowerCase()));
     } else if (sortType == SortProgramType.programId) {
       filteredPrograms = filteredPrograms.sorted((a, b) => a.appId.compareTo(b.appId));
     }
+
+    ref.log(
+      'steamPrograms types ${validTypes.map((t) => t.name)}, searchTerm: ${searchTerm.isEmpty ? '[EMPTY]' : searchTerm}, sortType: ${sortType.name} | ${filteredPrograms.length} found',
+    );
 
     return filteredPrograms;
   }
