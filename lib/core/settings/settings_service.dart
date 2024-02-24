@@ -27,14 +27,11 @@ class SettingsService extends ISettingsService {
   }
 
   @override
-  ThemeMode get themeMode {
-    try {
-      final index = _box.get(_Keys.themeMode) as int;
-      return ThemeMode.values[index];
-    } catch (_) {
-      return _Defaults.themeMode;
-    }
-  }
+  ThemeMode get themeMode => _getEnumValue<ThemeMode>(
+        key: _Keys.themeMode,
+        values: ThemeMode.values,
+        defaultValue: _Defaults.themeMode,
+      );
 
   @override
   set themeMode(ThemeMode value) => _box.put(_Keys.themeMode, value.index);
@@ -49,17 +46,27 @@ class SettingsService extends ISettingsService {
   set filteredProgramTypes(FilteredProgramTypes value) => _box.put(_Keys.filteredProgramTypes, value);
 
   @override
-  SortProgramType get sortProgramType {
-    try {
-      final index = _box.get(_Keys.sortProgramType) as int;
-      return SortProgramType.values[index];
-    } catch (_) {
-      return _Defaults.sortProgramType;
-    }
-  }
+  SortProgramType get sortProgramType => _getEnumValue<SortProgramType>(
+        key: _Keys.sortProgramType,
+        values: SortProgramType.values,
+        defaultValue: _Defaults.sortProgramType,
+      );
 
   @override
   set sortProgramType(SortProgramType value) => _box.put(_Keys.sortProgramType, value.index);
+
+  T _getEnumValue<T extends Enum>({
+    required String key,
+    required List<T> values,
+    required T defaultValue,
+  }) {
+    try {
+      final index = _box.get(key) as int;
+      return values[index];
+    } catch (_) {
+      return defaultValue;
+    }
+  }
 }
 
 class _Keys {
