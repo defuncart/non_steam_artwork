@@ -17,3 +17,6 @@ menuBarViewLogs;Logs
 menuBarViewShowLicenses;Licenses
 menuBarViewShowPrivacyPolicy;Privacy Policy
 logsScreenTitle;Logs
+markdownScreenErrorTitle;An error has occured
+markdownScreenErrorDescription;Please ensure that there is an active internet connection
+markdownScreenErrorTryAgain;Try again
