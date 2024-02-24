@@ -98,7 +98,7 @@ class SteamManager {
             ]).whereType<File>();
   }
 
-  Future<Iterable<SteamProgram>> getPrograms() async {
+  Future<Iterable<SteamProgram>> getPrograms(Iterable<SteamProgramType> validTypes) async {
     await _getCache();
 
     try {
@@ -106,17 +106,22 @@ class SteamManager {
 
       return _shortcutPrograms.map((program) {
         final cachedItem = _cachedArtwork.firstWhereOrNull((item) => item.id == program.appId);
-        return SteamProgram(
-          appId: program.appId,
-          appName: program.appName,
-          programType: program.toType(),
-          icon: cachedItem?.icon,
-          cover: cachedItem?.cover,
-          background: cachedItem?.background,
-          logo: cachedItem?.logo,
-          hero: cachedItem?.hero,
-        );
-      });
+        final programType = program.toType();
+
+        if (validTypes.contains(programType)) {
+          return SteamProgram(
+            appId: program.appId,
+            appName: program.appName,
+            programType: programType,
+            icon: cachedItem?.icon,
+            cover: cachedItem?.cover,
+            background: cachedItem?.background,
+            logo: cachedItem?.logo,
+            hero: cachedItem?.hero,
+          );
+        }
+        return null;
+      }).whereType<SteamProgram>();
     } catch (_) {}
 
     return [];

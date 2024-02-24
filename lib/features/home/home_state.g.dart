@@ -19,19 +19,6 @@ final _fileManagerProvider = Provider<FileManager>.internal(
 );
 
 typedef _FileManagerRef = ProviderRef<FileManager>;
-String _$steamProgramsHash() => r'8609391030ac89b5bae56dc39975687624cc3074';
-
-/// See also [steamPrograms].
-@ProviderFor(steamPrograms)
-final steamProgramsProvider = AutoDisposeFutureProvider<Iterable<SteamProgram>>.internal(
-  steamPrograms,
-  name: r'steamProgramsProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$steamProgramsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef SteamProgramsRef = AutoDisposeFutureProviderRef<Iterable<SteamProgram>>;
 String _$deleteArtworkHash() => r'd6680917a6dd88b69aed24a69072e30cd8b8d2f6';
 
 /// Copied from Dart SDK
@@ -641,5 +628,18 @@ final cacheControllerProvider = AutoDisposeAsyncNotifierProvider<CacheController
 );
 
 typedef _$CacheController = AutoDisposeAsyncNotifier<int>;
+String _$steamProgramsHash() => r'1c829e06deee6f605900d616bd4fd15ebeda70ad';
+
+/// See also [SteamPrograms].
+@ProviderFor(SteamPrograms)
+final steamProgramsProvider = AutoDisposeAsyncNotifierProvider<SteamPrograms, Iterable<SteamProgram>>.internal(
+  SteamPrograms.new,
+  name: r'steamProgramsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$steamProgramsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SteamPrograms = AutoDisposeAsyncNotifier<Iterable<SteamProgram>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package

@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:clock/clock.dart';
 import 'package:non_steam_artwork/core/extensions/file_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
+import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/file_manager.dart';
 import 'package:non_steam_artwork/core/steam/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
@@ -86,7 +87,14 @@ class CacheController extends _$CacheController {
 }
 
 @riverpod
-Future<Iterable<SteamProgram>> steamPrograms(SteamProgramsRef ref) => ref.read(steamManagerProvider).getPrograms();
+class SteamPrograms extends _$SteamPrograms {
+  @override
+  FutureOr<Iterable<SteamProgram>> build() async {
+    final types = ref.watch(filteredProgramTypesControllerProvider);
+    final validTypes = types.entries.map((kvp) => kvp.value ? kvp.key : null).whereType<SteamProgramType>();
+    return ref.read(steamManagerProvider).getPrograms(validTypes);
+  }
+}
 
 @riverpod
 Future<void> deleteArtwork(

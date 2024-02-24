@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:non_steam_artwork/core/settings/filtered_program_types.dart';
 import 'package:non_steam_artwork/core/settings/settings_service.dart';
+import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'state.g.dart';
@@ -17,5 +19,23 @@ class ThemeModeController extends _$ThemeModeController {
       ref.read(settingsServiceProvider).themeMode = value;
       state = value;
     }
+  }
+}
+
+@riverpod
+class FilteredProgramTypesController extends _$FilteredProgramTypesController {
+  late FilteredProgramTypes _state;
+  Map<SteamProgramType, bool> _mapState() {
+    _state = ref.read(settingsServiceProvider).filteredProgramTypes;
+    return _state.internalMap;
+  }
+
+  @override
+  Map<SteamProgramType, bool> build() => _mapState();
+
+  void toggle(SteamProgramType type) {
+    _state.toggleTypeValue(type);
+    ref.read(settingsServiceProvider).filteredProgramTypes = _state;
+    state = _mapState();
   }
 }

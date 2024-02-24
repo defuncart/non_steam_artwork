@@ -105,8 +105,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return Scaffold(
+      appBar: AppBar(
+        actions: const [
+          FilterProgramChips(),
+        ],
+      ),
+      body: const Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -117,6 +122,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+@visibleForTesting
+class FilterProgramChips extends ConsumerWidget {
+  const FilterProgramChips({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(filteredProgramTypesControllerProvider);
+
+    return Wrap(
+      children: [
+        for (final type in SteamProgramType.values)
+          FilterChip(
+            label: Text(type.name),
+            selected: state[type]!,
+            onSelected: (_) => ref.read(filteredProgramTypesControllerProvider.notifier).toggle(type),
+          ),
+      ],
     );
   }
 }
