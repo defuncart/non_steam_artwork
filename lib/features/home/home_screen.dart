@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:feedback/feedback.dart';
+import 'package:feedback_github/feedback_github.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,12 +17,14 @@ import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/download_artwork.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
+import 'package:non_steam_artwork/features/support/feedback_pat.dart';
 import 'package:non_steam_artwork/features/support/licenses_screen.dart';
 import 'package:non_steam_artwork/features/support/logs_screen.dart';
 import 'package:non_steam_artwork/features/support/privacy_policy_screen.dart';
 import 'package:non_steam_artwork/features/support/steamgriddb_dialog.dart';
 import 'package:super_clipboard/super_clipboard.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
+import 'package:uuid/uuid.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -112,10 +114,29 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           children: [
             NativeMenuItem(
                 label: 'Send',
-                onSelected: () {
-                  BetterFeedback.of(context).show((UserFeedback feedback) {
-                    // Do something with the feedback
-                  });
+                onSelected: () async {
+                  // BetterFeedback.of(context).show((UserFeedback feedback) {
+                  //   // Do something with the feedback
+                  // });
+                  final logs = (await ref.read(logsViewerProvider.future)).map((e) => e.message).join('\n');
+
+                  BetterFeedback.of(context).showAndUploadToGitHub(
+                    username: 'defuncart',
+                    repository: 'create_issues',
+                    authToken: feedbackPAT,
+                    labels: ['feedback'],
+                    assignees: ['defuncart'],
+                    customMarkdown: '''
+<details>
+<summary>Logs</summary>
+
+```
+$logs
+```
+</details>
+''',
+                    imageId: Uuid().v4(),
+                  );
                 }),
           ],
         ),

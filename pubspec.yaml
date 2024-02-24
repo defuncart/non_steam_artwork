@@ -51,7 +51,16 @@ dependencies:
       ref: main
   cached_network_image:
   flutter_cache_manager:
-  feedback: ^3.0.0
+  feedback:
+    git: 
+      url: https://github.com/defuncart/fork_feedback/
+      path: feedback
+      ref: feature/option-selectable-modes
+  feedback_github:
+    git: 
+      url: https://github.com/defuncart/feedback_github
+      ref: main
+  uuid:
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +72,13 @@ dev_dependencies:
   riverpod_generator: ^3.0.0-dev.11
   riverpod_lint: ^3.0.0-dev.4
   custom_lint:
+
+dependency_overrides:
+  feedback:
+    git: 
+      url: https://github.com/defuncart/fork_feedback/
+      path: feedback
+      ref: feature/option-selectable-modes
 
 flutter:
   uses-material-design: true

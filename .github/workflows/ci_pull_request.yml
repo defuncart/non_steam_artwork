@@ -12,6 +12,8 @@ jobs:
         with:
           flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
           channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
+      - name: Generate feedback_pat.dart
+        run: echo "const feedbackPAT = '';" > lib/features/support/feedback_pat.dart
       - name: Generate loca
         run: sh bin/loca_generate.sh true
       - name: Install packages

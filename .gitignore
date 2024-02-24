@@ -54,3 +54,6 @@ assets_dev/l10n/
 # frb
 logs/
 rust_builder/macos/
+
+# secrets
+lib/features/support/feedback_pat.dart

@@ -324,10 +324,20 @@ packages:
   feedback:
     dependency: "direct main"
     description:
-      name: feedback
-      sha256: "3cb138a56a3f3914dd38471479c351ce6df377abb29c5ebe4042be5481fee271"
-      url: "https://pub.dev"
-    source: hosted
+      path: feedback
+      ref: "feature/option-selectable-modes"
+      resolved-ref: df234c77cc4ce3437d86e08254dbab3f2c80bfa9
+      url: "https://github.com/defuncart/fork_feedback/"
+    source: git
+    version: "3.0.1"
+  feedback_github:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "066dc5df260f4237efa0819ff9d25e272053ba38"
+      url: "https://github.com/defuncart/feedback_github"
+    source: git
     version: "3.0.0"
   ffi:
     dependency: transitive
@@ -1140,7 +1150,7 @@ packages:
     source: hosted
     version: "3.1.1"
   uuid:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: uuid
       sha256: cd210a09f7c18cbe5a02511718e0334de6559871052c90a90c0cca46a4aa81c8
