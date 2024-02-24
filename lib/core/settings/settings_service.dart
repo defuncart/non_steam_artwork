@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:non_steam_artwork/core/settings/filtered_program_types.dart';
+import 'package:non_steam_artwork/core/settings/sort_program_type.dart';
 
 abstract class ISettingsService {
   ThemeMode get themeMode;
@@ -8,6 +9,9 @@ abstract class ISettingsService {
 
   FilteredProgramTypes get filteredProgramTypes;
   set filteredProgramTypes(FilteredProgramTypes value);
+
+  SortProgramType get sortProgramType;
+  set sortProgramType(SortProgramType value);
 }
 
 class SettingsService extends ISettingsService {
@@ -43,6 +47,19 @@ class SettingsService extends ISettingsService {
 
   @override
   set filteredProgramTypes(FilteredProgramTypes value) => _box.put(_Keys.filteredProgramTypes, value);
+
+  @override
+  SortProgramType get sortProgramType {
+    try {
+      final index = _box.get(_Keys.sortProgramType) as int;
+      return SortProgramType.values[index];
+    } catch (_) {
+      return _Defaults.sortProgramType;
+    }
+  }
+
+  @override
+  set sortProgramType(SortProgramType value) => _box.put(_Keys.sortProgramType, value.index);
 }
 
 class _Keys {
@@ -50,6 +67,7 @@ class _Keys {
 
   static const themeMode = 'themeMode';
   static const filteredProgramTypes = 'filteredProgramTypes';
+  static const sortProgramType = 'sortProgramType';
 }
 
 class _Defaults {
@@ -57,4 +75,5 @@ class _Defaults {
 
   static const themeMode = ThemeMode.system;
   static final filteredProgramTypes = FilteredProgramTypes();
+  static const sortProgramType = SortProgramType.dateAdded;
 }

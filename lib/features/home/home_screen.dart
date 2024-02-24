@@ -10,6 +10,7 @@ import 'package:non_steam_artwork/core/extensions/int_extension.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
+import 'package:non_steam_artwork/core/settings/sort_program_type.dart';
 import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
@@ -109,6 +110,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       appBar: AppBar(
         actions: const [
           FilterProgramChips(),
+          SortProgramsButton(),
         ],
       ),
       body: const Center(
@@ -145,6 +147,48 @@ class FilterProgramChips extends ConsumerWidget {
       ],
     );
   }
+}
+
+class SortProgramsButton extends ConsumerWidget {
+  const SortProgramsButton({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(sortProgramTypeControllerProvider);
+
+    return DropdownMenu<SortProgramType>(
+      initialSelection: state,
+      leadingIcon: const Icon(Icons.sort),
+      label: const Text('Sort'),
+      onSelected: (value) {
+        if (value != null) {
+          ref.read(sortProgramTypeControllerProvider.notifier).set(value);
+        }
+      },
+      dropdownMenuEntries: SortProgramType.values
+          .map((sortType) => DropdownMenuEntry<SortProgramType>(
+                value: sortType,
+                leadingIcon: Icon(sortType.icon),
+                label: sortType.label,
+                enabled: true,
+              ))
+          .toList(),
+    );
+  }
+}
+
+extension on SortProgramType {
+  IconData get icon => switch (this) {
+        SortProgramType.dateAdded => Icons.date_range,
+        SortProgramType.alphabetic => Icons.abc,
+        SortProgramType.programId => Icons.onetwothree,
+      };
+
+  String get label => switch (this) {
+        SortProgramType.dateAdded => 'Date',
+        SortProgramType.alphabetic => 'Name',
+        SortProgramType.programId => 'Id',
+      };
 }
 
 @visibleForTesting

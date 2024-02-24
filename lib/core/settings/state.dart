@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:non_steam_artwork/core/settings/filtered_program_types.dart';
 import 'package:non_steam_artwork/core/settings/settings_service.dart';
+import 'package:non_steam_artwork/core/settings/sort_program_type.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -37,5 +38,18 @@ class FilteredProgramTypesController extends _$FilteredProgramTypesController {
     _state.toggleTypeValue(type);
     ref.read(settingsServiceProvider).filteredProgramTypes = _state;
     state = _mapState();
+  }
+}
+
+@riverpod
+class SortProgramTypeController extends _$SortProgramTypeController {
+  @override
+  SortProgramType build() => ref.read(settingsServiceProvider).sortProgramType;
+
+  void set(SortProgramType type) {
+    if (state != type) {
+      ref.read(settingsServiceProvider).sortProgramType = type;
+      state = type;
+    }
   }
 }

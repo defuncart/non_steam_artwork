@@ -628,7 +628,7 @@ final cacheControllerProvider = AutoDisposeAsyncNotifierProvider<CacheController
 );
 
 typedef _$CacheController = AutoDisposeAsyncNotifier<int>;
-String _$steamProgramsHash() => r'1c829e06deee6f605900d616bd4fd15ebeda70ad';
+String _$steamProgramsHash() => r'650effd632bbc3b04e32c42d59212a7542163376';
 
 /// See also [SteamPrograms].
 @ProviderFor(SteamPrograms)
