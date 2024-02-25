@@ -390,6 +390,231 @@ class _CopyArtworkProviderElement extends AutoDisposeFutureProviderElement<void>
   SteamGridArtType get artType => (origin as CopyArtworkProvider).artType;
 }
 
+String _$createArtworkFileHash() => r'ca2c57db31e1538d5e6c40961ca9509991b30862';
+
+/// See also [createArtworkFile].
+@ProviderFor(createArtworkFile)
+const createArtworkFileProvider = CreateArtworkFileFamily();
+
+/// See also [createArtworkFile].
+class CreateArtworkFileFamily extends Family {
+  /// See also [createArtworkFile].
+  const CreateArtworkFileFamily();
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+
+  @override
+  String? get name => r'createArtworkFileProvider';
+
+  /// See also [createArtworkFile].
+  CreateArtworkFileProvider call({
+    required int appId,
+    required File file,
+    required String ext,
+    required SteamGridArtType artType,
+  }) {
+    return CreateArtworkFileProvider(
+      appId: appId,
+      file: file,
+      ext: ext,
+      artType: artType,
+    );
+  }
+
+  @visibleForOverriding
+  @override
+  CreateArtworkFileProvider getProviderOverride(
+    covariant CreateArtworkFileProvider provider,
+  ) {
+    return call(
+      appId: provider.appId,
+      file: provider.file,
+      ext: provider.ext,
+      artType: provider.artType,
+    );
+  }
+
+  /// Enables overriding the behavior of this provider, no matter the parameters.
+  Override overrideWith(FutureOr<void> Function(CreateArtworkFileRef ref) create) {
+    return _$CreateArtworkFileFamilyOverride(this, create);
+  }
+}
+
+class _$CreateArtworkFileFamilyOverride implements FamilyOverride {
+  _$CreateArtworkFileFamilyOverride(this.overriddenFamily, this.create);
+
+  final FutureOr<void> Function(CreateArtworkFileRef ref) create;
+
+  @override
+  final CreateArtworkFileFamily overriddenFamily;
+
+  @override
+  CreateArtworkFileProvider getProviderOverride(
+    covariant CreateArtworkFileProvider provider,
+  ) {
+    return provider._copyWith(create);
+  }
+}
+
+/// See also [createArtworkFile].
+class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [createArtworkFile].
+  CreateArtworkFileProvider({
+    required int appId,
+    required File file,
+    required String ext,
+    required SteamGridArtType artType,
+  }) : this._internal(
+          (ref) => createArtworkFile(
+            ref as CreateArtworkFileRef,
+            appId: appId,
+            file: file,
+            ext: ext,
+            artType: artType,
+          ),
+          from: createArtworkFileProvider,
+          name: r'createArtworkFileProvider',
+          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$createArtworkFileHash,
+          dependencies: CreateArtworkFileFamily._dependencies,
+          allTransitiveDependencies: CreateArtworkFileFamily._allTransitiveDependencies,
+          appId: appId,
+          file: file,
+          ext: ext,
+          artType: artType,
+        );
+
+  CreateArtworkFileProvider._internal(
+    super.create, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.appId,
+    required this.file,
+    required this.ext,
+    required this.artType,
+  }) : super.internal();
+
+  final int appId;
+  final File file;
+  final String ext;
+  final SteamGridArtType artType;
+
+  @override
+  Override overrideWith(
+    FutureOr<void> Function(CreateArtworkFileRef ref) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: CreateArtworkFileProvider._internal(
+        (ref) => create(ref as CreateArtworkFileRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        appId: appId,
+        file: file,
+        ext: ext,
+        artType: artType,
+      ),
+    );
+  }
+
+  @override
+  ({
+    int appId,
+    File file,
+    String ext,
+    SteamGridArtType artType,
+  }) get argument {
+    return (
+      appId: appId,
+      file: file,
+      ext: ext,
+      artType: artType,
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<void> createElement() {
+    return _CreateArtworkFileProviderElement(this);
+  }
+
+  CreateArtworkFileProvider _copyWith(
+    FutureOr<void> Function(CreateArtworkFileRef ref) create,
+  ) {
+    return CreateArtworkFileProvider._internal(
+      (ref) => create(ref as CreateArtworkFileRef),
+      name: name,
+      dependencies: dependencies,
+      allTransitiveDependencies: allTransitiveDependencies,
+      debugGetCreateSourceHash: debugGetCreateSourceHash,
+      from: from,
+      appId: appId,
+      file: file,
+      ext: ext,
+      artType: artType,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is CreateArtworkFileProvider &&
+        other.appId == appId &&
+        other.file == file &&
+        other.ext == ext &&
+        other.artType == artType;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, appId.hashCode);
+    hash = _SystemHash.combine(hash, file.hashCode);
+    hash = _SystemHash.combine(hash, ext.hashCode);
+    hash = _SystemHash.combine(hash, artType.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin CreateArtworkFileRef on AutoDisposeFutureProviderRef<void> {
+  /// The parameter `appId` of this provider.
+  int get appId;
+
+  /// The parameter `file` of this provider.
+  File get file;
+
+  /// The parameter `ext` of this provider.
+  String get ext;
+
+  /// The parameter `artType` of this provider.
+  SteamGridArtType get artType;
+}
+
+class _CreateArtworkFileProviderElement extends AutoDisposeFutureProviderElement<void> with CreateArtworkFileRef {
+  _CreateArtworkFileProviderElement(super.provider);
+
+  @override
+  int get appId => (origin as CreateArtworkFileProvider).appId;
+  @override
+  File get file => (origin as CreateArtworkFileProvider).file;
+  @override
+  String get ext => (origin as CreateArtworkFileProvider).ext;
+  @override
+  SteamGridArtType get artType => (origin as CreateArtworkFileProvider).artType;
+}
+
 String _$createArtworkHash() => r'10dde8001c06bc7422dd3816b6d487026704caa1';
 
 /// See also [createArtwork].
@@ -613,6 +838,171 @@ class _CreateArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   String get ext => (origin as CreateArtworkProvider).ext;
   @override
   SteamGridArtType get artType => (origin as CreateArtworkProvider).artType;
+}
+
+String _$gameHeroesHash() => r'e96720f78fb633f44bc5e157804658d43fedbd18';
+
+/// See also [gameHeroes].
+@ProviderFor(gameHeroes)
+const gameHeroesProvider = GameHeroesFamily();
+
+/// See also [gameHeroes].
+class GameHeroesFamily extends Family {
+  /// See also [gameHeroes].
+  const GameHeroesFamily();
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+
+  @override
+  String? get name => r'gameHeroesProvider';
+
+  /// See also [gameHeroes].
+  GameHeroesProvider call({
+    required String gameId,
+  }) {
+    return GameHeroesProvider(
+      gameId: gameId,
+    );
+  }
+
+  @visibleForOverriding
+  @override
+  GameHeroesProvider getProviderOverride(
+    covariant GameHeroesProvider provider,
+  ) {
+    return call(
+      gameId: provider.gameId,
+    );
+  }
+
+  /// Enables overriding the behavior of this provider, no matter the parameters.
+  Override overrideWith(FutureOr<Iterable<String>> Function(GameHeroesRef ref) create) {
+    return _$GameHeroesFamilyOverride(this, create);
+  }
+}
+
+class _$GameHeroesFamilyOverride implements FamilyOverride {
+  _$GameHeroesFamilyOverride(this.overriddenFamily, this.create);
+
+  final FutureOr<Iterable<String>> Function(GameHeroesRef ref) create;
+
+  @override
+  final GameHeroesFamily overriddenFamily;
+
+  @override
+  GameHeroesProvider getProviderOverride(
+    covariant GameHeroesProvider provider,
+  ) {
+    return provider._copyWith(create);
+  }
+}
+
+/// See also [gameHeroes].
+class GameHeroesProvider extends AutoDisposeFutureProvider<Iterable<String>> {
+  /// See also [gameHeroes].
+  GameHeroesProvider({
+    required String gameId,
+  }) : this._internal(
+          (ref) => gameHeroes(
+            ref as GameHeroesRef,
+            gameId: gameId,
+          ),
+          from: gameHeroesProvider,
+          name: r'gameHeroesProvider',
+          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$gameHeroesHash,
+          dependencies: GameHeroesFamily._dependencies,
+          allTransitiveDependencies: GameHeroesFamily._allTransitiveDependencies,
+          gameId: gameId,
+        );
+
+  GameHeroesProvider._internal(
+    super.create, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.gameId,
+  }) : super.internal();
+
+  final String gameId;
+
+  @override
+  Override overrideWith(
+    FutureOr<Iterable<String>> Function(GameHeroesRef ref) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GameHeroesProvider._internal(
+        (ref) => create(ref as GameHeroesRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        gameId: gameId,
+      ),
+    );
+  }
+
+  @override
+  ({
+    String gameId,
+  }) get argument {
+    return (gameId: gameId,);
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Iterable<String>> createElement() {
+    return _GameHeroesProviderElement(this);
+  }
+
+  GameHeroesProvider _copyWith(
+    FutureOr<Iterable<String>> Function(GameHeroesRef ref) create,
+  ) {
+    return GameHeroesProvider._internal(
+      (ref) => create(ref as GameHeroesRef),
+      name: name,
+      dependencies: dependencies,
+      allTransitiveDependencies: allTransitiveDependencies,
+      debugGetCreateSourceHash: debugGetCreateSourceHash,
+      from: from,
+      gameId: gameId,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GameHeroesProvider && other.gameId == gameId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, gameId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GameHeroesRef on AutoDisposeFutureProviderRef<Iterable<String>> {
+  /// The parameter `gameId` of this provider.
+  String get gameId;
+}
+
+class _GameHeroesProviderElement extends AutoDisposeFutureProviderElement<Iterable<String>> with GameHeroesRef {
+  _GameHeroesProviderElement(super.provider);
+
+  @override
+  String get gameId => (origin as GameHeroesProvider).gameId;
 }
 
 String _$cacheControllerHash() => r'd8f11b48c8863c5eae01166e56731b7b2cb3fa82';

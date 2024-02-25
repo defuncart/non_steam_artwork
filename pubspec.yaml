@@ -45,6 +45,12 @@ dependencies:
   http:
   hive: ^4.0.0-dev.2
   isar_flutter_libs: ^4.0.0-dev.13
+  steamgriddb:
+    git:
+      url: https://github.com/defuncart/steamgriddb
+      ref: main
+  cached_network_image:
+  flutter_cache_manager:
 
 dev_dependencies:
   flutter_test:

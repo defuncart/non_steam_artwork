@@ -13,6 +13,7 @@ import 'package:non_steam_artwork/core/logging/logger.dart';
 import 'package:non_steam_artwork/core/settings/sort_program_type.dart';
 import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
+import 'package:non_steam_artwork/features/home/download_artwork.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:non_steam_artwork/features/support/licenses_screen.dart';
@@ -325,6 +326,13 @@ class ProgramView extends ConsumerWidget {
                   artType: artType,
                 )),
                 onLog: ref.read(loggerProvider).log,
+                onDownload: () {
+                  DownloadArtwork.show(
+                    context,
+                    program: program,
+                    artType: artType,
+                  );
+                },
               ),
           ],
         ),
@@ -342,6 +350,7 @@ class SteamArtwork extends StatefulWidget {
     required this.onCopyFile,
     required this.onCreateFile,
     required this.onLog,
+    required this.onDownload,
     super.key,
   });
 
@@ -351,6 +360,7 @@ class SteamArtwork extends StatefulWidget {
   final void Function(File, SteamGridArtType) onCopyFile;
   final void Function(Stream<Uint8List>, String) onCreateFile;
   final void Function(String) onLog;
+  final VoidCallback onDownload;
 
   @override
   State<SteamArtwork> createState() => _SteamArtworkState();
@@ -412,7 +422,9 @@ class _SteamArtworkState extends State<SteamArtwork> {
         child: ContextMenuRegion(
           onDismissed: () {},
           onItemSelected: (item) {
-            if (item.title == context.l10n.homeProgramArtworkPaste) {
+            if (item.title == 'Search on SteamGridDB') {
+              widget.onDownload();
+            } else if (item.title == context.l10n.homeProgramArtworkPaste) {
               SystemClipboard.instance?.read().then((reader) {
                 if (reader.canProvide(Formats.jpeg)) {
                   reader.getFile(Formats.jpeg, (file) {
@@ -440,6 +452,9 @@ class _SteamArtworkState extends State<SteamArtwork> {
             }
           },
           menuItems: [
+            MenuItem(
+              title: 'Search on SteamGridDB',
+            ),
             MenuItem(
               title: context.l10n.homeProgramArtworkPaste,
             ),

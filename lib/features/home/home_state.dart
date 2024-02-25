@@ -10,6 +10,7 @@ import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/file_manager.dart';
 import 'package:non_steam_artwork/core/steam/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
+import 'package:non_steam_artwork/core/steamgriddb/state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -165,6 +166,28 @@ Future<void> copyArtwork(
 }
 
 @riverpod
+Future<void> createArtworkFile(
+  CreateArtworkFileRef ref, {
+  required int appId,
+  required File file,
+  required String ext,
+  required SteamGridArtType artType,
+}) async {
+  ref.log('start create ${artType.name} for $appId with extension $ext');
+  final (dir, basename) = await ref.read(steamManagerProvider).generateArtworkPath(
+        appId: appId,
+        artType: artType,
+      );
+  await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: basename);
+  final filepath = p.join(dir, '$basename$ext');
+
+  await file.copy(filepath);
+  ref.log('artwork $filepath created');
+
+  ref.invalidate(steamProgramsProvider);
+}
+
+@riverpod
 Future<void> createArtwork(
   CreateArtworkRef ref, {
   required int appId,
@@ -186,4 +209,13 @@ Future<void> createArtwork(
   ref.log('artwork $filepath created');
 
   ref.invalidate(steamProgramsProvider);
+}
+
+@riverpod
+Future<Iterable<String>> gameHeroes(
+  GameHeroesRef ref, {
+  required String gameId,
+}) async {
+  final result = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
+  return result.map((grid) => grid.url);
 }

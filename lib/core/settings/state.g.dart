@@ -60,7 +60,7 @@ final sortProgramTypeControllerProvider =
 );
 
 typedef _$SortProgramTypeController = AutoDisposeNotifier<SortProgramType>;
-String _$steamGridDBApiKeyControllerHash() => r'1ad2cb6ea69b86755477d145304d16b1914276f9';
+String _$steamGridDBApiKeyControllerHash() => r'b5a955a9364dc7e42ad83fbe56b1dc4c66544890';
 
 /// See also [SteamGridDBApiKeyController].
 @ProviderFor(SteamGridDBApiKeyController)
