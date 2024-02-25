@@ -15,6 +15,7 @@ import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:steamgriddb/steamgriddb.dart';
 
 part 'home_state.g.dart';
 
@@ -212,10 +213,24 @@ Future<void> createArtwork(
 }
 
 @riverpod
-Future<Iterable<String>> gameHeroes(
-  GameHeroesRef ref, {
+Future<Iterable<String>> gameArtwork(
+  GameArtworkRef ref, {
   required String gameId,
+  required SteamGridArtType artType,
 }) async {
-  final result = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
+  final List<Grid> result;
+  switch (artType) {
+    case SteamGridArtType.background:
+      result = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
+    case SteamGridArtType.hero:
+      result = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
+    case SteamGridArtType.cover:
+      result = await ref.read(steamGridDBClientProvider).getCoversForGame(gameId);
+    case SteamGridArtType.icon:
+      result = await ref.read(steamGridDBClientProvider).getIconsForGame(gameId);
+    case SteamGridArtType.logo:
+      result = await ref.read(steamGridDBClientProvider).getLogosForGame(gameId);
+  }
+
   return result.map((grid) => grid.url);
 }
