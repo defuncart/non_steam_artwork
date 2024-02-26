@@ -22,7 +22,8 @@ class DownloadArtwork extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(gameArtworkProvider(gameId: '36605', artType: artType));
+    final provider = gameArtworkDownloadProvider(searchTerm: program.appName, artType: artType);
+    final state = ref.watch(provider);
 
     return switch (state) {
       AsyncData(:final value) => ArtworkSelector(
@@ -49,7 +50,7 @@ class DownloadArtwork extends ConsumerWidget {
             children: [
               Text(error.toString()),
               TextButton(
-                onPressed: () => ref.invalidate(gameArtworkProvider(gameId: '36605', artType: artType)),
+                onPressed: () => ref.invalidate(provider),
                 child: Text(
                   context.l10n.markdownScreenErrorTryAgain,
                 ),

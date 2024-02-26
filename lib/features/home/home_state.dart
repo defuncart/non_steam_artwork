@@ -213,24 +213,37 @@ Future<void> createArtwork(
 }
 
 @riverpod
-Future<Iterable<String>> gameArtwork(
-  GameArtworkRef ref, {
-  required String gameId,
+Future<Iterable<String>> gameArtworkDownload(
+  GameArtworkDownloadRef ref, {
+  required String searchTerm,
   required SteamGridArtType artType,
 }) async {
-  final List<Grid> result;
+  ref.log('gameArtworkDownload for $searchTerm');
+  final gameResults = await ref.read(steamGridDBClientProvider).getGamesBySearchTerm(searchTerm);
+  ref.log('${gameResults.length} result(s) found');
+  ref.log(gameResults.map((e) => e.name).toList().toString());
+  if (gameResults.isEmpty) {
+    throw Exception('No games found');
+  }
+  final gameId = gameResults.first.id.toString();
+
+  final List<Grid> artworkResults;
   switch (artType) {
     case SteamGridArtType.background:
-      result = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
+      artworkResults = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
     case SteamGridArtType.hero:
-      result = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
+      artworkResults = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
     case SteamGridArtType.cover:
-      result = await ref.read(steamGridDBClientProvider).getCoversForGame(gameId);
+      artworkResults = await ref.read(steamGridDBClientProvider).getCoversForGame(gameId);
     case SteamGridArtType.icon:
-      result = await ref.read(steamGridDBClientProvider).getIconsForGame(gameId);
+      artworkResults = await ref.read(steamGridDBClientProvider).getIconsForGame(gameId);
     case SteamGridArtType.logo:
-      result = await ref.read(steamGridDBClientProvider).getLogosForGame(gameId);
+      artworkResults = await ref.read(steamGridDBClientProvider).getLogosForGame(gameId);
   }
 
-  return result.map((grid) => grid.url);
+  if (artworkResults.isEmpty) {
+    throw Exception('No artwork found');
+  }
+
+  return artworkResults.map((grid) => grid.url);
 }
