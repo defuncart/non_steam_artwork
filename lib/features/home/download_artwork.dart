@@ -25,40 +25,54 @@ class DownloadArtwork extends ConsumerWidget {
     final provider = gameArtworkDownloadProvider(searchTerm: program.appName, artType: artType);
     final state = ref.watch(provider);
 
-    return switch (state) {
-      AsyncData(:final value) => ArtworkSelector(
-          urls: value.toList(),
-          onSelect: (file) {
-            ref.read(
-              createArtworkFileProvider(
-                appId: program.appId,
-                file: file,
-                ext: '.png',
-                artType: artType,
-              ),
-            );
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        IconButton(
+          padding: EdgeInsets.zero,
+          iconSize: kMinInteractiveDimension,
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(Icons.close),
+        ),
+        Expanded(
+          child: switch (state) {
+            AsyncData(:final value) => ArtworkSelector(
+                urls: value.toList(),
+                onSelect: (file) {
+                  ref.read(
+                    createArtworkFileProvider(
+                      appId: program.appId,
+                      file: file,
+                      ext: '.png',
+                      artType: artType,
+                    ),
+                  );
 
-            Navigator.of(context).pop();
-          },
-        ),
-      AsyncLoading() => const Center(
-          child: CircularProgressIndicator(),
-        ),
-      AsyncError(:final error) => Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(error.toString()),
-              TextButton(
-                onPressed: () => ref.invalidate(provider),
-                child: Text(
-                  context.l10n.markdownScreenErrorTryAgain,
+                  Navigator.of(context).pop();
+                },
+              ),
+            AsyncLoading() => const Center(
+                child: CircularProgressIndicator(),
+              ),
+            AsyncError(:final error) => Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(error.toString()),
+                    TextButton(
+                      onPressed: () => ref.invalidate(provider),
+                      child: Text(
+                        context.l10n.markdownScreenErrorTryAgain,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+          },
         ),
-    };
+      ],
+    );
   }
 
   static void show(
@@ -105,82 +119,71 @@ class _ArtworkSelectorState extends State<ArtworkSelector> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) => SizedBox.fromSize(
-        size: Size(constraints.maxWidth, constraints.maxHeight),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            IconButton(
-              padding: EdgeInsets.zero,
-              iconSize: kMinInteractiveDimension,
-              onPressed: () => Navigator.of(context).pop(),
-              icon: const Icon(Icons.close),
-            ),
-            const Gap(16),
-            Expanded(
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  CachedNetworkImage(
-                    cacheManager: _cacheManager,
-                    imageUrl: _currentImage,
-                    imageBuilder: (context, imageProvider) => Image(
-                      image: imageProvider,
-                    ),
-                    progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-                      child: CircularProgressIndicator(
-                        value: downloadProgress.progress,
-                      ),
-                    ),
-                    fadeInDuration: Duration.zero,
-                    fadeOutDuration: Duration.zero,
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        const Gap(16),
+        Expanded(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              CachedNetworkImage(
+                cacheManager: _cacheManager,
+                imageUrl: _currentImage,
+                imageBuilder: (context, imageProvider) => Image(
+                  image: imageProvider,
+                ),
+                progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+                  child: CircularProgressIndicator(
+                    value: downloadProgress.progress,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        iconSize: kMinInteractiveDimension,
-                        splashColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onPressed: _index > 0 ? () => setState(() => _index--) : null,
-                        icon: const Icon(Icons.arrow_left),
-                      ),
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        iconSize: kMinInteractiveDimension,
-                        splashColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onPressed: _index < _totalImages - 1 ? () => setState(() => _index++) : null,
-                        icon: const Icon(Icons.arrow_right),
-                      ),
-                    ],
+                ),
+                fadeInDuration: Duration.zero,
+                fadeOutDuration: Duration.zero,
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    iconSize: kMinInteractiveDimension,
+                    splashColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onPressed: _index > 0 ? () => setState(() => _index--) : null,
+                    icon: const Icon(Icons.arrow_left),
+                  ),
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    iconSize: kMinInteractiveDimension,
+                    splashColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onPressed: _index < _totalImages - 1 ? () => setState(() => _index++) : null,
+                    icon: const Icon(Icons.arrow_right),
                   ),
                 ],
               ),
-            ),
-            const Gap(16),
-            Center(
-              child: IconButton(
-                padding: EdgeInsets.zero,
-                iconSize: kMinInteractiveDimension,
-                onPressed: () async {
-                  final fileInfo = await _cacheManager.getFileFromMemory(_currentImage);
-                  if (fileInfo != null) {
-                    widget.onSelect(fileInfo.file);
-                  }
-                },
-                icon: const Icon(Icons.check),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
+        const Gap(16),
+        Center(
+          child: IconButton(
+            padding: EdgeInsets.zero,
+            iconSize: kMinInteractiveDimension,
+            onPressed: () async {
+              final fileInfo = await _cacheManager.getFileFromMemory(_currentImage);
+              if (fileInfo != null) {
+                widget.onSelect(fileInfo.file);
+              }
+            },
+            icon: const Icon(Icons.check),
+          ),
+        ),
+      ],
     );
   }
 }
