@@ -219,13 +219,22 @@ Future<Iterable<String>> gameArtworkDownload(
   required SteamGridArtType artType,
 }) async {
   ref.log('gameArtworkDownload for $searchTerm');
-  final gameResults = await ref.read(steamGridDBClientProvider).getGamesBySearchTerm(searchTerm);
-  ref.log('${gameResults.length} result(s) found');
-  ref.log(gameResults.map((e) => e.name).toList().toString());
-  if (gameResults.isEmpty) {
-    throw Exception('No games found');
+
+  String gameId;
+  final cachedGameId = ref.read(steamGridIdCacheProvider).getIdForSearchTerm(searchTerm);
+  if (cachedGameId != null) {
+    gameId = cachedGameId;
+    ref.log('gameId $gameId retrieved from cache');
+  } else {
+    final gameResults = await ref.read(steamGridDBClientProvider).getGamesBySearchTerm(searchTerm);
+    ref.log('${gameResults.length} result(s) found');
+    ref.log(gameResults.map((e) => e.name).toList().toString());
+    if (gameResults.isEmpty) {
+      throw Exception('No games found');
+    }
+    gameId = gameResults.first.id.toString();
+    ref.log('gameId $gameId retrieved from api');
   }
-  final gameId = gameResults.first.id.toString();
 
   final List<Grid> artworkResults;
   switch (artType) {

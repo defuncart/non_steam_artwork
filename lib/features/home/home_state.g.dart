@@ -840,7 +840,7 @@ class _CreateArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   SteamGridArtType get artType => (origin as CreateArtworkProvider).artType;
 }
 
-String _$gameArtworkDownloadHash() => r'25d8fc24c21d82ad6515afaa6eef40d2abccfcff';
+String _$gameArtworkDownloadHash() => r'63f1f0136bde611528bf18f818d22c22e73213e2';
 
 /// See also [gameArtworkDownload].
 @ProviderFor(gameArtworkDownload)
