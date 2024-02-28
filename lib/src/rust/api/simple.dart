@@ -18,6 +18,7 @@ class SteamShortcut with _$SteamShortcut {
   const factory SteamShortcut({
     required int appId,
     required String appName,
+    required String target,
     required String launchOptions,
   }) = _SteamShortcut;
 }

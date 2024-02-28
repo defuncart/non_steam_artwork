@@ -149,11 +149,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   SteamShortcut dco_decode_steam_shortcut(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
-    if (arr.length != 3) throw Exception('unexpected arr length: expect 3 but see ${arr.length}');
+    if (arr.length != 4) throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
     return SteamShortcut(
       appId: dco_decode_u_32(arr[0]),
       appName: dco_decode_String(arr[1]),
-      launchOptions: dco_decode_String(arr[2]),
+      target: dco_decode_String(arr[2]),
+      launchOptions: dco_decode_String(arr[3]),
     );
   }
 
@@ -213,8 +214,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var var_appId = sse_decode_u_32(deserializer);
     var var_appName = sse_decode_String(deserializer);
+    var var_target = sse_decode_String(deserializer);
     var var_launchOptions = sse_decode_String(deserializer);
-    return SteamShortcut(appId: var_appId, appName: var_appName, launchOptions: var_launchOptions);
+    return SteamShortcut(appId: var_appId, appName: var_appName, target: var_target, launchOptions: var_launchOptions);
   }
 
   @protected
@@ -279,6 +281,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_u_32(self.appId, serializer);
     sse_encode_String(self.appName, serializer);
+    sse_encode_String(self.target, serializer);
     sse_encode_String(self.launchOptions, serializer);
   }
 

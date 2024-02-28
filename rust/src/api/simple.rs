@@ -14,6 +14,7 @@ pub async fn parse(path: String) -> anyhow::Result<Vec<SteamShortcut>> {
                 .map(|x| SteamShortcut {
                     app_id: x.app_id,
                     app_name: String::from(x.app_name),
+                    target: String::from(x.exe),
                     launch_options: String::from(x.launch_options),
                 })
                 .collect());
@@ -28,5 +29,6 @@ pub async fn parse(path: String) -> anyhow::Result<Vec<SteamShortcut>> {
 pub struct SteamShortcut {
     pub app_id: u32,
     pub app_name: String,
+    pub target: String,
     pub launch_options: String,
 }

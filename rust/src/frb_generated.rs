@@ -150,10 +150,12 @@ impl SseDecode for crate::api::simple::SteamShortcut {
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut var_appId = <u32>::sse_decode(deserializer);
         let mut var_appName = <String>::sse_decode(deserializer);
+        let mut var_target = <String>::sse_decode(deserializer);
         let mut var_launchOptions = <String>::sse_decode(deserializer);
         return crate::api::simple::SteamShortcut {
             app_id: var_appId,
             app_name: var_appName,
+            target: var_target,
             launch_options: var_launchOptions,
         };
     }
@@ -227,6 +229,7 @@ impl flutter_rust_bridge::IntoDart for crate::api::simple::SteamShortcut {
         [
             self.app_id.into_into_dart().into_dart(),
             self.app_name.into_into_dart().into_dart(),
+            self.target.into_into_dart().into_dart(),
             self.launch_options.into_into_dart().into_dart(),
         ]
         .into_dart()
@@ -283,6 +286,7 @@ impl SseEncode for crate::api::simple::SteamShortcut {
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         <u32>::sse_encode(self.app_id, serializer);
         <String>::sse_encode(self.app_name, serializer);
+        <String>::sse_encode(self.target, serializer);
         <String>::sse_encode(self.launch_options, serializer);
     }
 }

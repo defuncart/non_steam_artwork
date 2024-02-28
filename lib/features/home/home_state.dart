@@ -2,8 +2,11 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:clock/clock.dart';
+import 'package:collection/collection.dart';
 import 'package:non_steam_artwork/core/extensions/file_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
+import 'package:non_steam_artwork/core/settings/sort_program_type.dart';
+import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/file_manager.dart';
 import 'package:non_steam_artwork/core/steam/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
@@ -85,8 +88,45 @@ class CacheController extends _$CacheController {
   }
 }
 
+@Riverpod(keepAlive: true)
+class SearchController extends _$SearchController {
+  @override
+  String build() => '';
+
+  void updateSearch(String searchTerm) {
+    if (searchTerm != state) {
+      state = searchTerm;
+    }
+  }
+}
+
 @riverpod
-Future<Iterable<SteamProgram>> steamPrograms(SteamProgramsRef ref) => ref.read(steamManagerProvider).getPrograms();
+class SteamPrograms extends _$SteamPrograms {
+  @override
+  FutureOr<Iterable<SteamProgram>> build() async {
+    final types = ref.watch(filteredProgramTypesControllerProvider);
+    final validTypes = types.entries.map((kvp) => kvp.value ? kvp.key : null).whereType<SteamProgramType>();
+    var filteredPrograms = await ref.read(steamManagerProvider).getPrograms(validTypes);
+
+    final searchTerm = ref.watch(searchControllerProvider);
+    if (searchTerm.isNotEmpty) {
+      filteredPrograms = filteredPrograms.where((program) => program.appName.contains(searchTerm));
+    }
+
+    final sortType = ref.watch(sortProgramTypeControllerProvider);
+    if (sortType == SortProgramType.alphabetic) {
+      filteredPrograms = filteredPrograms.sorted((a, b) => a.appName.toLowerCase().compareTo(b.appName.toLowerCase()));
+    } else if (sortType == SortProgramType.programId) {
+      filteredPrograms = filteredPrograms.sorted((a, b) => a.appId.compareTo(b.appId));
+    }
+
+    ref.log(
+      'steamPrograms types ${validTypes.map((t) => t.name)}, searchTerm: ${searchTerm.isEmpty ? '[EMPTY]' : searchTerm}, sortType: ${sortType.name} | ${filteredPrograms.length} found',
+    );
+
+    return filteredPrograms;
+  }
+}
 
 @riverpod
 Future<void> deleteArtwork(

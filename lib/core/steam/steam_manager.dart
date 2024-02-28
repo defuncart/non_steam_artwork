@@ -98,7 +98,7 @@ class SteamManager {
             ]).whereType<File>();
   }
 
-  Future<Iterable<SteamProgram>> getPrograms() async {
+  Future<Iterable<SteamProgram>> getPrograms(Iterable<SteamProgramType> validTypes) async {
     await _getCache();
 
     try {
@@ -106,16 +106,22 @@ class SteamManager {
 
       return _shortcutPrograms.map((program) {
         final cachedItem = _cachedArtwork.firstWhereOrNull((item) => item.id == program.appId);
-        return SteamProgram(
-          appId: program.appId,
-          appName: program.appName,
-          icon: cachedItem?.icon,
-          cover: cachedItem?.cover,
-          background: cachedItem?.background,
-          logo: cachedItem?.logo,
-          hero: cachedItem?.hero,
-        );
-      });
+        final programType = program.toType();
+
+        if (validTypes.contains(programType)) {
+          return SteamProgram(
+            appId: program.appId,
+            appName: program.appName,
+            programType: programType,
+            icon: cachedItem?.icon,
+            cover: cachedItem?.cover,
+            background: cachedItem?.background,
+            logo: cachedItem?.logo,
+            hero: cachedItem?.hero,
+          );
+        }
+        return null;
+      }).whereType<SteamProgram>();
     } catch (_) {}
 
     return [];
@@ -174,4 +180,40 @@ final class SteamShortcutsFileNotFoundException implements SteamException {
 
 final class SteamShortcutsFileCannotBeParsedException implements SteamException {
   const SteamShortcutsFileCannotBeParsedException();
+}
+
+extension on SteamShortcut {
+  static const emulators = [
+    'org.libretro.RetroArch',
+    'org.duckstation.DuckStation',
+    'net.rpcs3.RPCS3',
+  ];
+
+  SteamProgramType toType() {
+    if (launchOptions.contains('net.lutris.Lutris')) {
+      return SteamProgramType.lutris;
+    } else if (launchOptions.contains('com.heroicgameslauncher')) {
+      return SteamProgramType.heroic;
+    } else if (launchOptions.contains('Emulation/roms')) {
+      return SteamProgramType.roms;
+    } else if (target.contains('Emulation/roms')) {
+      return SteamProgramType.roms;
+    } else if (target.containsIn(emulators)) {
+      return SteamProgramType.roms;
+    }
+
+    return SteamProgramType.other;
+  }
+}
+
+extension on String {
+  bool containsIn(Iterable<String> values) {
+    for (final value in values) {
+      if (contains(value)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 }

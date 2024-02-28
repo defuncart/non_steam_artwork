@@ -19,19 +19,6 @@ final _fileManagerProvider = Provider<FileManager>.internal(
 );
 
 typedef _FileManagerRef = ProviderRef<FileManager>;
-String _$steamProgramsHash() => r'8609391030ac89b5bae56dc39975687624cc3074';
-
-/// See also [steamPrograms].
-@ProviderFor(steamPrograms)
-final steamProgramsProvider = AutoDisposeFutureProvider<Iterable<SteamProgram>>.internal(
-  steamPrograms,
-  name: r'steamProgramsProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$steamProgramsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef SteamProgramsRef = AutoDisposeFutureProviderRef<Iterable<SteamProgram>>;
 String _$deleteArtworkHash() => r'd6680917a6dd88b69aed24a69072e30cd8b8d2f6';
 
 /// Copied from Dart SDK
@@ -628,7 +615,7 @@ class _CreateArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   SteamGridArtType get artType => (origin as CreateArtworkProvider).artType;
 }
 
-String _$cacheControllerHash() => r'8aae0b61c531f4f8a67683dd0a4d02dbad60a384';
+String _$cacheControllerHash() => r'd8f11b48c8863c5eae01166e56731b7b2cb3fa82';
 
 /// See also [CacheController].
 @ProviderFor(CacheController)
@@ -641,5 +628,31 @@ final cacheControllerProvider = AutoDisposeAsyncNotifierProvider<CacheController
 );
 
 typedef _$CacheController = AutoDisposeAsyncNotifier<int>;
+String _$searchControllerHash() => r'50b1109e650c8c6eb324ed8539ff3548ec6c96b4';
+
+/// See also [SearchController].
+@ProviderFor(SearchController)
+final searchControllerProvider = NotifierProvider<SearchController, String>.internal(
+  SearchController.new,
+  name: r'searchControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$searchControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SearchController = Notifier<String>;
+String _$steamProgramsHash() => r'd916c04701879d2f06575fe4bfd8cf8e6877f951';
+
+/// See also [SteamPrograms].
+@ProviderFor(SteamPrograms)
+final steamProgramsProvider = AutoDisposeAsyncNotifierProvider<SteamPrograms, Iterable<SteamProgram>>.internal(
+  SteamPrograms.new,
+  name: r'steamProgramsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$steamProgramsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SteamPrograms = AutoDisposeAsyncNotifier<Iterable<SteamProgram>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package

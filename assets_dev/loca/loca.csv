@@ -12,6 +12,11 @@ menuBarCache;Cache
 menuBarCacheOpen;Open
 menuBarCacheBackup;Backup
 menuBarCacheDeleteAll;Delete All
+menuBarOptions;Options
+menuBarOptionsTheme;Theme
+menuBarOptionsThemeSystem;System
+menuBarOptionsThemeLight;Light
+menuBarOptionsThemeDark;Dark
 menuBarView;View
 menuBarViewLogs;Logs
 menuBarViewShowLicenses;Licenses
