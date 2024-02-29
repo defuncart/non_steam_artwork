@@ -12,6 +12,9 @@ abstract class ISettingsService {
 
   SortProgramType get sortProgramType;
   set sortProgramType(SortProgramType value);
+
+  String? get steamGridDBApiKey;
+  set steamGridDBApiKey(String? value);
 }
 
 class SettingsService extends ISettingsService {
@@ -55,6 +58,12 @@ class SettingsService extends ISettingsService {
   @override
   set sortProgramType(SortProgramType value) => _box.put(_Keys.sortProgramType, value.index);
 
+  @override
+  String? get steamGridDBApiKey => _box.get(_Keys.steamGridDBApiKey);
+
+  @override
+  set steamGridDBApiKey(String? value) => _box.put(_Keys.steamGridDBApiKey, value);
+
   T _getEnumValue<T extends Enum>({
     required String key,
     required List<T> values,
@@ -75,6 +84,7 @@ class _Keys {
   static const themeMode = 'themeMode';
   static const filteredProgramTypes = 'filteredProgramTypes';
   static const sortProgramType = 'sortProgramType';
+  static const steamGridDBApiKey = 'steamGridDBApiKey';
 }
 
 class _Defaults {

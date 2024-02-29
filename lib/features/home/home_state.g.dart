@@ -628,7 +628,7 @@ final cacheControllerProvider = AutoDisposeAsyncNotifierProvider<CacheController
 );
 
 typedef _$CacheController = AutoDisposeAsyncNotifier<int>;
-String _$searchControllerHash() => r'50b1109e650c8c6eb324ed8539ff3548ec6c96b4';
+String _$searchControllerHash() => r'7efb716fb420b888117b1599b12b86aff5179cb6';
 
 /// See also [SearchController].
 @ProviderFor(SearchController)
@@ -641,7 +641,7 @@ final searchControllerProvider = NotifierProvider<SearchController, String>.inte
 );
 
 typedef _$SearchController = Notifier<String>;
-String _$steamProgramsHash() => r'd916c04701879d2f06575fe4bfd8cf8e6877f951';
+String _$steamProgramsHash() => r'3de5e83c647e0e4415b01c87bd7b0b6061fc023f';
 
 /// See also [SteamPrograms].
 @ProviderFor(SteamPrograms)

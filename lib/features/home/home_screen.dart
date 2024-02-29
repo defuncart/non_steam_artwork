@@ -18,6 +18,7 @@ import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:non_steam_artwork/features/support/licenses_screen.dart';
 import 'package:non_steam_artwork/features/support/logs_screen.dart';
 import 'package:non_steam_artwork/features/support/privacy_policy_screen.dart';
+import 'package:non_steam_artwork/features/support/steamgriddb_dialog.dart';
 import 'package:super_clipboard/super_clipboard.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
@@ -64,6 +65,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         NativeSubmenu(
           label: context.l10n.menuBarOptions,
           children: [
+            NativeMenuItem(
+              label: context.l10n.menuBarOptionsApiKey,
+              onSelected: () => SteamGridDBDialog.show(context),
+            ),
             NativeSubmenu(
               label: context.l10n.menuBarOptionsTheme,
               children: [

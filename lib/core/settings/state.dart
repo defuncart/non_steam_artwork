@@ -53,3 +53,16 @@ class SortProgramTypeController extends _$SortProgramTypeController {
     }
   }
 }
+
+@riverpod
+class SteamGridDBApiKeyController extends _$SteamGridDBApiKeyController {
+  @override
+  String? build() => ref.read(settingsServiceProvider).steamGridDBApiKey;
+
+  void set(String? value) {
+    if (state != value) {
+      ref.read(settingsServiceProvider).steamGridDBApiKey = value;
+      state = value;
+    }
+  }
+}

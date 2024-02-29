@@ -13,6 +13,7 @@ menuBarCacheOpen;Open
 menuBarCacheBackup;Backup
 menuBarCacheDeleteAll;Delete All
 menuBarOptions;Options
+menuBarOptionsApiKey;SteamGridDB Api Key
 menuBarOptionsTheme;Theme
 menuBarOptionsThemeSystem;System
 menuBarOptionsThemeLight;Light
@@ -26,3 +27,5 @@ markdownScreenErrorDescription;Please ensure that there is an active internet co
 markdownScreenErrorTryAgain;Try again
 logsScreenTitle;Logs
 privacyPolicyScreenTitle;Privacy Policy
+steamGridDBDialogTitle;API key
+steamGridDBDialogDescription;An api key from [SteamGridDB](https://www.steamgriddb.com/) is required in order to download artwork.
