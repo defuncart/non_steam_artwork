@@ -38,7 +38,7 @@ class DownloadArtwork extends ConsumerWidget {
         Expanded(
           child: switch (state) {
             AsyncData(:final value) => ArtworkSelector(
-                urls: value.toList(),
+                downloadableArtworks: value,
                 onSelect: (file) {
                   ref.read(
                     createArtworkFileProvider(
@@ -98,12 +98,12 @@ class DownloadArtwork extends ConsumerWidget {
 
 class ArtworkSelector extends StatefulWidget {
   const ArtworkSelector({
-    required this.urls,
+    required this.downloadableArtworks,
     required this.onSelect,
     super.key,
   });
 
-  final List<String> urls;
+  final Iterable<DownloadableArtwork> downloadableArtworks;
   final void Function(File) onSelect;
 
   @override
@@ -114,8 +114,8 @@ class _ArtworkSelectorState extends State<ArtworkSelector> {
   var _index = 0;
   final _cacheManager = DefaultCacheManager();
 
-  int get _totalImages => widget.urls.length;
-  String get _currentImage => widget.urls[_index];
+  int get _total => widget.downloadableArtworks.length;
+  DownloadableArtwork get _current => widget.downloadableArtworks.toList()[_index];
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +130,7 @@ class _ArtworkSelectorState extends State<ArtworkSelector> {
             children: [
               CachedNetworkImage(
                 cacheManager: _cacheManager,
-                imageUrl: _currentImage,
+                imageUrl: _current.thumbnail,
                 imageBuilder: (context, imageProvider) => Image(
                   image: imageProvider,
                 ),
@@ -161,7 +161,7 @@ class _ArtworkSelectorState extends State<ArtworkSelector> {
                     splashColor: Colors.transparent,
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
-                    onPressed: _index < _totalImages - 1 ? () => setState(() => _index++) : null,
+                    onPressed: _index < _total - 1 ? () => setState(() => _index++) : null,
                     icon: const Icon(Icons.arrow_right),
                   ),
                 ],
@@ -175,10 +175,8 @@ class _ArtworkSelectorState extends State<ArtworkSelector> {
             padding: EdgeInsets.zero,
             iconSize: kMinInteractiveDimension,
             onPressed: () async {
-              final fileInfo = await _cacheManager.getFileFromMemory(_currentImage);
-              if (fileInfo != null) {
-                widget.onSelect(fileInfo.file);
-              }
+              final file = await _cacheManager.getSingleFile(_current.url);
+              widget.onSelect(file);
             },
             icon: const Icon(Icons.check),
           ),

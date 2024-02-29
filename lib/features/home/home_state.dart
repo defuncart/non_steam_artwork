@@ -213,7 +213,7 @@ Future<void> createArtwork(
 }
 
 @riverpod
-Future<Iterable<String>> gameArtworkDownload(
+Future<Iterable<DownloadableArtwork>> gameArtworkDownload(
   GameArtworkDownloadRef ref, {
   required String searchTerm,
   required SteamGridArtType artType,
@@ -254,5 +254,10 @@ Future<Iterable<String>> gameArtworkDownload(
     throw Exception('No artwork found');
   }
 
-  return artworkResults.map((grid) => grid.url);
+  return artworkResults.map((artwork) => (url: artwork.url, thumbnail: artwork.thumb));
 }
+
+typedef DownloadableArtwork = ({
+  String url,
+  String thumbnail,
+});

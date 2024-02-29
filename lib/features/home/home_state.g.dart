@@ -840,7 +840,7 @@ class _CreateArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   SteamGridArtType get artType => (origin as CreateArtworkProvider).artType;
 }
 
-String _$gameArtworkDownloadHash() => r'63f1f0136bde611528bf18f818d22c22e73213e2';
+String _$gameArtworkDownloadHash() => r'1189195b99b530d809e4cdf8cb6498a6f78cbfee';
 
 /// See also [gameArtworkDownload].
 @ProviderFor(gameArtworkDownload)
@@ -887,7 +887,7 @@ class GameArtworkDownloadFamily extends Family {
   }
 
   /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(FutureOr<Iterable<String>> Function(GameArtworkDownloadRef ref) create) {
+  Override overrideWith(FutureOr<Iterable<DownloadableArtwork>> Function(GameArtworkDownloadRef ref) create) {
     return _$GameArtworkDownloadFamilyOverride(this, create);
   }
 }
@@ -895,7 +895,7 @@ class GameArtworkDownloadFamily extends Family {
 class _$GameArtworkDownloadFamilyOverride implements FamilyOverride {
   _$GameArtworkDownloadFamilyOverride(this.overriddenFamily, this.create);
 
-  final FutureOr<Iterable<String>> Function(GameArtworkDownloadRef ref) create;
+  final FutureOr<Iterable<DownloadableArtwork>> Function(GameArtworkDownloadRef ref) create;
 
   @override
   final GameArtworkDownloadFamily overriddenFamily;
@@ -909,7 +909,7 @@ class _$GameArtworkDownloadFamilyOverride implements FamilyOverride {
 }
 
 /// See also [gameArtworkDownload].
-class GameArtworkDownloadProvider extends AutoDisposeFutureProvider<Iterable<String>> {
+class GameArtworkDownloadProvider extends AutoDisposeFutureProvider<Iterable<DownloadableArtwork>> {
   /// See also [gameArtworkDownload].
   GameArtworkDownloadProvider({
     required String searchTerm,
@@ -945,7 +945,7 @@ class GameArtworkDownloadProvider extends AutoDisposeFutureProvider<Iterable<Str
 
   @override
   Override overrideWith(
-    FutureOr<Iterable<String>> Function(GameArtworkDownloadRef ref) create,
+    FutureOr<Iterable<DownloadableArtwork>> Function(GameArtworkDownloadRef ref) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -974,12 +974,12 @@ class GameArtworkDownloadProvider extends AutoDisposeFutureProvider<Iterable<Str
   }
 
   @override
-  AutoDisposeFutureProviderElement<Iterable<String>> createElement() {
+  AutoDisposeFutureProviderElement<Iterable<DownloadableArtwork>> createElement() {
     return _GameArtworkDownloadProviderElement(this);
   }
 
   GameArtworkDownloadProvider _copyWith(
-    FutureOr<Iterable<String>> Function(GameArtworkDownloadRef ref) create,
+    FutureOr<Iterable<DownloadableArtwork>> Function(GameArtworkDownloadRef ref) create,
   ) {
     return GameArtworkDownloadProvider._internal(
       (ref) => create(ref as GameArtworkDownloadRef),
@@ -1008,7 +1008,7 @@ class GameArtworkDownloadProvider extends AutoDisposeFutureProvider<Iterable<Str
   }
 }
 
-mixin GameArtworkDownloadRef on AutoDisposeFutureProviderRef<Iterable<String>> {
+mixin GameArtworkDownloadRef on AutoDisposeFutureProviderRef<Iterable<DownloadableArtwork>> {
   /// The parameter `searchTerm` of this provider.
   String get searchTerm;
 
@@ -1016,7 +1016,7 @@ mixin GameArtworkDownloadRef on AutoDisposeFutureProviderRef<Iterable<String>> {
   SteamGridArtType get artType;
 }
 
-class _GameArtworkDownloadProviderElement extends AutoDisposeFutureProviderElement<Iterable<String>>
+class _GameArtworkDownloadProviderElement extends AutoDisposeFutureProviderElement<Iterable<DownloadableArtwork>>
     with GameArtworkDownloadRef {
   _GameArtworkDownloadProviderElement(super.provider);
 
