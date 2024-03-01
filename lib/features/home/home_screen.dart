@@ -326,6 +326,7 @@ class ProgramView extends ConsumerWidget {
                   artType: artType,
                 )),
                 onLog: ref.read(loggerProvider).log,
+                canDownloadArtwork: ref.watch(steamGridDBApiKeyControllerProvider) != null,
                 onDownload: () {
                   DownloadArtwork.show(
                     context,
@@ -350,6 +351,7 @@ class SteamArtwork extends StatefulWidget {
     required this.onCopyFile,
     required this.onCreateFile,
     required this.onLog,
+    required this.canDownloadArtwork,
     required this.onDownload,
     super.key,
   });
@@ -360,6 +362,7 @@ class SteamArtwork extends StatefulWidget {
   final void Function(File, SteamGridArtType) onCopyFile;
   final void Function(Stream<Uint8List>, String) onCreateFile;
   final void Function(String) onLog;
+  final bool canDownloadArtwork;
   final VoidCallback onDownload;
 
   @override
@@ -452,9 +455,10 @@ class _SteamArtworkState extends State<SteamArtwork> {
             }
           },
           menuItems: [
-            MenuItem(
-              title: 'Search on SteamGridDB',
-            ),
+            if (widget.canDownloadArtwork)
+              MenuItem(
+                title: context.l10n.homeProgramSearchSteamGridDB,
+              ),
             MenuItem(
               title: context.l10n.homeProgramArtworkPaste,
             ),

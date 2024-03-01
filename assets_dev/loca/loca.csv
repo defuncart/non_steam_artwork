@@ -2,6 +2,7 @@ keys;en
 homeCleanUpCacheDescription;There is unused art in your cache. You can free up {value}.
 homeCleanUpCacheButton;Clean up
 homeProgramsEmpty;No programs have been added to steam launcher.
+homeProgramSearchSteamGridDB;Search on SteamGridDB
 homeProgramArtworkPaste;Paste
 homeProgramArtworkDelete;Delete
 homeProgramArtworkSetBackgroundAsHero;Set as hero
