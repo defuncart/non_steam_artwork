@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:menubar/menubar.dart';
 import 'package:native_context_menu/native_context_menu.dart';
-import 'package:non_steam_artwork/core/extensions/int_extension.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
@@ -15,6 +14,7 @@ import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/download_artwork.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
+import 'package:non_steam_artwork/features/home/home_tips_panel.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:non_steam_artwork/features/support/licenses_screen.dart';
 import 'package:non_steam_artwork/features/support/logs_screen.dart';
@@ -124,7 +124,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            CleanUpCacheView(),
+            HomeTipsPanel(),
             Expanded(
               child: ProgramsView(),
             ),
@@ -224,42 +224,6 @@ extension on SortProgramType {
         SortProgramType.alphabetic => 'Name',
         SortProgramType.programId => 'Id',
       };
-}
-
-@visibleForTesting
-class CleanUpCacheView extends ConsumerWidget {
-  const CleanUpCacheView({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(cacheControllerProvider);
-
-    return switch (state) {
-      AsyncData(:final value) => value == 0
-          ? const SizedBox.shrink()
-          : Card(
-              color: context.colorScheme.secondaryContainer,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      context.l10n.homeCleanUpCacheDescription(value.displaySize),
-                    ),
-                    const SizedBox(height: 16),
-                    TextButton.icon(
-                      onPressed: ref.read(cacheControllerProvider.notifier).cleanUp,
-                      icon: const Icon(Icons.delete_sweep_rounded),
-                      label: Text(context.l10n.homeCleanUpCacheButton),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-      _ => const SizedBox.shrink(),
-    };
-  }
 }
 
 @visibleForTesting
