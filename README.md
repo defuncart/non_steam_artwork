@@ -8,6 +8,7 @@ A linux tool to update artwork for non-steam programs.
 - Delete all cached artwork
 - Manually delete individual artwork images
 - New artwork via drag'n'drop/paste from clipboard
+- With a SteamGridDB api key, artwork can be downloaded
 - Backup existing artwork to `Documents`
 
 *Non-Steam Artwork* is not affiliated with Valve Corporation nor the Steam platform.
@@ -26,6 +27,7 @@ Extract the downloaded zip and run the application `non_steam_artwork/linux/non_
 - Only one file can dragged'n'dropped.
 - Only jpeg and png files are allowed for drag'n'drop.
 - Only images can be pasted, urls are not supported.
+- Launcher icons can not be updated
 
 ## Credits
 

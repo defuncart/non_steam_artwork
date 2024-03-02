@@ -13,11 +13,13 @@ import 'package:non_steam_artwork/core/logging/logger.dart';
 import 'package:non_steam_artwork/core/settings/sort_program_type.dart';
 import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
+import 'package:non_steam_artwork/features/home/download_artwork.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:non_steam_artwork/features/support/licenses_screen.dart';
 import 'package:non_steam_artwork/features/support/logs_screen.dart';
 import 'package:non_steam_artwork/features/support/privacy_policy_screen.dart';
+import 'package:non_steam_artwork/features/support/steamgriddb_dialog.dart';
 import 'package:super_clipboard/super_clipboard.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
@@ -64,6 +66,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         NativeSubmenu(
           label: context.l10n.menuBarOptions,
           children: [
+            NativeMenuItem(
+              label: context.l10n.menuBarOptionsApiKey,
+              onSelected: () => SteamGridDBDialog.show(context),
+            ),
             NativeSubmenu(
               label: context.l10n.menuBarOptionsTheme,
               children: [
@@ -301,7 +307,13 @@ class ProgramView extends ConsumerWidget {
           spacing: 4,
           runSpacing: 4,
           children: [
-            for (final artType in SteamGridArtType.values)
+            for (final artType in [
+              // currently icon is not supported
+              SteamGridArtType.cover,
+              SteamGridArtType.background,
+              SteamGridArtType.logo,
+              SteamGridArtType.hero,
+            ])
               SteamArtwork(
                 artType: artType,
                 file: switch (artType) {
@@ -320,6 +332,14 @@ class ProgramView extends ConsumerWidget {
                   artType: artType,
                 )),
                 onLog: ref.read(loggerProvider).log,
+                canDownloadArtwork: ref.watch(steamGridDBApiKeyControllerProvider) != null,
+                onDownload: () {
+                  DownloadArtwork.show(
+                    context,
+                    program: program,
+                    artType: artType,
+                  );
+                },
               ),
           ],
         ),
@@ -337,6 +357,8 @@ class SteamArtwork extends StatefulWidget {
     required this.onCopyFile,
     required this.onCreateFile,
     required this.onLog,
+    required this.canDownloadArtwork,
+    required this.onDownload,
     super.key,
   });
 
@@ -346,6 +368,8 @@ class SteamArtwork extends StatefulWidget {
   final void Function(File, SteamGridArtType) onCopyFile;
   final void Function(Stream<Uint8List>, String) onCreateFile;
   final void Function(String) onLog;
+  final bool canDownloadArtwork;
+  final VoidCallback onDownload;
 
   @override
   State<SteamArtwork> createState() => _SteamArtworkState();
@@ -407,7 +431,9 @@ class _SteamArtworkState extends State<SteamArtwork> {
         child: ContextMenuRegion(
           onDismissed: () {},
           onItemSelected: (item) {
-            if (item.title == context.l10n.homeProgramArtworkPaste) {
+            if (item.title == 'Search on SteamGridDB') {
+              widget.onDownload();
+            } else if (item.title == context.l10n.homeProgramArtworkPaste) {
               SystemClipboard.instance?.read().then((reader) {
                 if (reader.canProvide(Formats.jpeg)) {
                   reader.getFile(Formats.jpeg, (file) {
@@ -435,6 +461,10 @@ class _SteamArtworkState extends State<SteamArtwork> {
             }
           },
           menuItems: [
+            if (widget.canDownloadArtwork)
+              MenuItem(
+                title: context.l10n.homeProgramSearchSteamGridDB,
+              ),
             MenuItem(
               title: context.l10n.homeProgramArtworkPaste,
             ),

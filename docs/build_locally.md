@@ -39,3 +39,5 @@ Steam artwork consists of five images:
 | hero       | Horizontal banner when last played | `{gameid}_hero` | 1290x620 |
 
 Artwork in `/grid/` can be easily modified, replaced and deleted without affecting the shortcut database. A reboot, however, of the steam launcher is required to see resulting changes.
+
+`icon`, however, is a special case, and the path is coded into `shortcuts.vdf`. Currently icons can not be modified.

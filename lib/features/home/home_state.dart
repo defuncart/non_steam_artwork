@@ -10,10 +10,12 @@ import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/file_manager.dart';
 import 'package:non_steam_artwork/core/steam/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
+import 'package:non_steam_artwork/core/steamgriddb/state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:steamgriddb/steamgriddb.dart';
 
 part 'home_state.g.dart';
 
@@ -165,6 +167,28 @@ Future<void> copyArtwork(
 }
 
 @riverpod
+Future<void> createArtworkFile(
+  CreateArtworkFileRef ref, {
+  required int appId,
+  required File file,
+  required String ext,
+  required SteamGridArtType artType,
+}) async {
+  ref.log('start create ${artType.name} for $appId with extension $ext');
+  final (dir, basename) = await ref.read(steamManagerProvider).generateArtworkPath(
+        appId: appId,
+        artType: artType,
+      );
+  await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: basename);
+  final filepath = p.join(dir, '$basename$ext');
+
+  await file.copy(filepath);
+  ref.log('artwork $filepath created');
+
+  ref.invalidate(steamProgramsProvider);
+}
+
+@riverpod
 Future<void> createArtwork(
   CreateArtworkRef ref, {
   required int appId,
@@ -187,3 +211,53 @@ Future<void> createArtwork(
 
   ref.invalidate(steamProgramsProvider);
 }
+
+@riverpod
+Future<Iterable<DownloadableArtwork>> gameArtworkDownload(
+  GameArtworkDownloadRef ref, {
+  required String searchTerm,
+  required SteamGridArtType artType,
+}) async {
+  ref.log('gameArtworkDownload for $searchTerm');
+
+  String gameId;
+  final cachedGameId = ref.read(steamGridIdCacheProvider).getIdForSearchTerm(searchTerm);
+  if (cachedGameId != null) {
+    gameId = cachedGameId;
+    ref.log('gameId $gameId retrieved from cache');
+  } else {
+    final gameResults = await ref.read(steamGridDBClientProvider).getGamesBySearchTerm(searchTerm);
+    ref.log('${gameResults.length} result(s) found');
+    ref.log(gameResults.map((e) => e.name).toList().toString());
+    if (gameResults.isEmpty) {
+      throw Exception('No games found');
+    }
+    gameId = gameResults.first.id.toString();
+    ref.log('gameId $gameId retrieved from api');
+  }
+
+  final List<Grid> artworkResults;
+  switch (artType) {
+    case SteamGridArtType.background:
+      artworkResults = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
+    case SteamGridArtType.hero:
+      artworkResults = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
+    case SteamGridArtType.cover:
+      artworkResults = await ref.read(steamGridDBClientProvider).getCoversForGame(gameId);
+    case SteamGridArtType.icon:
+      artworkResults = await ref.read(steamGridDBClientProvider).getIconsForGame(gameId);
+    case SteamGridArtType.logo:
+      artworkResults = await ref.read(steamGridDBClientProvider).getLogosForGame(gameId);
+  }
+
+  if (artworkResults.isEmpty) {
+    throw Exception('No artwork found');
+  }
+
+  return artworkResults.map((artwork) => (url: artwork.url, thumbnail: artwork.thumb));
+}
+
+typedef DownloadableArtwork = ({
+  String url,
+  String thumbnail,
+});

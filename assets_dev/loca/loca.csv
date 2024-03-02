@@ -2,6 +2,7 @@ keys;en
 homeCleanUpCacheDescription;There is unused art in your cache. You can free up {value}.
 homeCleanUpCacheButton;Clean up
 homeProgramsEmpty;No programs have been added to steam launcher.
+homeProgramSearchSteamGridDB;Search on SteamGridDB
 homeProgramArtworkPaste;Paste
 homeProgramArtworkDelete;Delete
 homeProgramArtworkSetBackgroundAsHero;Set as hero
@@ -13,6 +14,7 @@ menuBarCacheOpen;Open
 menuBarCacheBackup;Backup
 menuBarCacheDeleteAll;Delete All
 menuBarOptions;Options
+menuBarOptionsApiKey;SteamGridDB Api Key
 menuBarOptionsTheme;Theme
 menuBarOptionsThemeSystem;System
 menuBarOptionsThemeLight;Light
@@ -26,3 +28,5 @@ markdownScreenErrorDescription;Please ensure that there is an active internet co
 markdownScreenErrorTryAgain;Try again
 logsScreenTitle;Logs
 privacyPolicyScreenTitle;Privacy Policy
+steamGridDBDialogTitle;API key
+steamGridDBDialogDescription;An api key from [SteamGridDB](https://www.steamgriddb.com/) is required in order to download artwork.
