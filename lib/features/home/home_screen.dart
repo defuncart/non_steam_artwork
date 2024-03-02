@@ -307,7 +307,13 @@ class ProgramView extends ConsumerWidget {
           spacing: 4,
           runSpacing: 4,
           children: [
-            for (final artType in SteamGridArtType.values)
+            for (final artType in [
+              // currently icon is not supported
+              SteamGridArtType.cover,
+              SteamGridArtType.background,
+              SteamGridArtType.logo,
+              SteamGridArtType.hero,
+            ])
               SteamArtwork(
                 artType: artType,
                 file: switch (artType) {

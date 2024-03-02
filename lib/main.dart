@@ -20,6 +20,6 @@ Future<void> main() async {
   Hive.defaultDirectory = defaultDirectory;
   log('Hive.defaultDirectory: ${Hive.defaultDirectory}');
 
-  setWindowMinSize(const Size(1060, 580));
+  setWindowMinSize(const Size(970, 580));
   runApp(const ProviderScope(child: MyApp()));
 }
