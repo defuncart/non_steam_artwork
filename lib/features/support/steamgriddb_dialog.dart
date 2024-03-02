@@ -22,6 +22,7 @@ class SteamGridDBDialog extends ConsumerStatefulWidget {
 class _SteamGridDBDialogState extends ConsumerState<SteamGridDBDialog> {
   late final TextEditingController _controller;
   late final FocusNode _focusNode;
+  late final bool _canDelete;
   var _canSubmit = false;
 
   @override
@@ -29,6 +30,7 @@ class _SteamGridDBDialogState extends ConsumerState<SteamGridDBDialog> {
     super.initState();
 
     final apiKey = ref.read(steamGridDBApiKeyControllerProvider);
+    _canDelete = apiKey != null;
     _controller = TextEditingController()
       ..text = apiKey ?? ''
       ..addListener(() {
@@ -82,6 +84,22 @@ class _SteamGridDBDialogState extends ConsumerState<SteamGridDBDialog> {
         ],
       ),
       actions: [
+        TextButton(
+          onPressed: _canDelete
+              ? () {
+                  ref.read(steamGridDBApiKeyControllerProvider.notifier).set(null);
+                  Navigator.of(context).pop();
+                }
+              : null,
+          child: Text(
+            MaterialLocalizations.of(context).deleteButtonTooltip,
+            style: _canDelete
+                ? TextStyle(
+                    color: context.colorScheme.error,
+                  )
+                : null,
+          ),
+        ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
           child: Text(MaterialLocalizations.of(context).closeButtonLabel),
