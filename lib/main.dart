@@ -1,4 +1,3 @@
-import 'dart:developer' show log;
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -18,7 +17,6 @@ Future<void> main() async {
     await Directory(defaultDirectory).create(recursive: true);
   }
   Hive.defaultDirectory = defaultDirectory;
-  log('Hive.defaultDirectory: ${Hive.defaultDirectory}');
 
   setWindowMinSize(const Size(970, 580));
   runApp(const ProviderScope(child: MyApp()));
