@@ -97,6 +97,10 @@ class SortProgramsButton extends ConsumerWidget {
       initialSelection: state,
       leadingIcon: const Icon(Icons.sort),
       // label: Text(context.l10n.homeAppBarSortLabel),
+      trailingIcon: GestureDetector(
+        onTap: ref.read(sortingAscendingControllerProvider.notifier).toggle,
+        child: Icon(ref.watch(sortingAscendingControllerProvider) ? Icons.arrow_downward : Icons.arrow_upward),
+      ),
       onSelected: (value) {
         if (value != null) {
           ref.read(sortProgramTypeControllerProvider.notifier).set(value);

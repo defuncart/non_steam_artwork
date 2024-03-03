@@ -131,8 +131,13 @@ class SteamPrograms extends _$SteamPrograms {
       filteredPrograms = filteredPrograms.sorted((a, b) => a.appId.compareTo(b.appId));
     }
 
+    final isAscending = ref.watch(sortingAscendingControllerProvider);
+    if (!isAscending) {
+      filteredPrograms = filteredPrograms.toList().reversed;
+    }
+
     ref.log(
-      'steamPrograms types ${validTypes.map((t) => t.name)}, searchTerm: ${searchTerm.isEmpty ? '[EMPTY]' : searchTerm}, sortType: ${sortType.name} | ${filteredPrograms.length} found',
+      'steamPrograms types ${validTypes.map((t) => t.name)}, searchTerm: ${searchTerm.isEmpty ? '[EMPTY]' : searchTerm}, sortType: ${sortType.name}, isAscending: $isAscending | ${filteredPrograms.length} found',
     );
 
     return filteredPrograms;

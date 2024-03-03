@@ -1026,7 +1026,7 @@ class _GameArtworkDownloadProviderElement extends AutoDisposeFutureProviderEleme
   SteamGridArtType get artType => (origin as GameArtworkDownloadProvider).artType;
 }
 
-String _$steamFolderExistsControllerHash() => r'57b9ef82577b8c76019e953d09938e28bbc4e60d';
+String _$steamFolderExistsControllerHash() => r'00ef2fb8acab6278a869af79a8d8e30f651a38ca';
 
 /// See also [SteamFolderExistsController].
 @ProviderFor(SteamFolderExistsController)

@@ -60,6 +60,19 @@ final sortProgramTypeControllerProvider =
 );
 
 typedef _$SortProgramTypeController = AutoDisposeNotifier<SortProgramType>;
+String _$sortingAscendingControllerHash() => r'f75956f5962b3d46fb782c534c107482006906fb';
+
+/// See also [SortingAscendingController].
+@ProviderFor(SortingAscendingController)
+final sortingAscendingControllerProvider = AutoDisposeNotifierProvider<SortingAscendingController, bool>.internal(
+  SortingAscendingController.new,
+  name: r'sortingAscendingControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$sortingAscendingControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SortingAscendingController = AutoDisposeNotifier<bool>;
 String _$steamGridDBApiKeyControllerHash() => r'b5a955a9364dc7e42ad83fbe56b1dc4c66544890';
 
 /// See also [SteamGridDBApiKeyController].

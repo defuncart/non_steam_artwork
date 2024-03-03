@@ -13,6 +13,9 @@ abstract class ISettingsService {
   SortProgramType get sortProgramType;
   set sortProgramType(SortProgramType value);
 
+  bool get isSortingAscending;
+  set isSortingAscending(bool value);
+
   String? get steamGridDBApiKey;
   set steamGridDBApiKey(String? value);
 }
@@ -59,6 +62,15 @@ class SettingsService extends ISettingsService {
   set sortProgramType(SortProgramType value) => _box.put(_Keys.sortProgramType, value.index);
 
   @override
+  bool get isSortingAscending => _box.get(
+        _Keys.isSortingAscending,
+        defaultValue: _Defaults.isSortingAscending,
+      );
+
+  @override
+  set isSortingAscending(bool value) => _box.put(_Keys.isSortingAscending, value);
+
+  @override
   String? get steamGridDBApiKey => _box.get(_Keys.steamGridDBApiKey);
 
   @override
@@ -85,6 +97,7 @@ class _Keys {
   static const filteredProgramTypes = 'filteredProgramTypes';
   static const sortProgramType = 'sortProgramType';
   static const steamGridDBApiKey = 'steamGridDBApiKey';
+  static const isSortingAscending = 'isSortingAscending';
 }
 
 class _Defaults {
@@ -93,4 +106,5 @@ class _Defaults {
   static const themeMode = ThemeMode.system;
   static final filteredProgramTypes = FilteredProgramTypes();
   static const sortProgramType = SortProgramType.dateAdded;
+  static const isSortingAscending = true;
 }
