@@ -184,7 +184,13 @@ class ProgramsView extends ConsumerWidget {
 
     return switch (state) {
       AsyncData(:final value) => value.isEmpty
-          ? Text(context.l10n.homeProgramsEmpty)
+          ? Center(
+              child: Text(
+                ref.read(searchControllerProvider).isNotEmpty
+                    ? context.l10n.homeSearchEmpty
+                    : context.l10n.homeProgramsEmpty,
+              ),
+            )
           : ListView.separated(
               shrinkWrap: true,
               padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),

@@ -10,6 +10,7 @@ homeTipsCleanUpCacheDescription;There is unused art in your cache. You can free 
 homeTipsCleanUpCacheButton;Clean up
 homeTipsAddApiKeyDescription;An SteamGridDB api key is required in order to automatically download artwork.
 homeTipsAddApiKeyButton;Add key
+homeSearchEmpty;No results founds.
 homeProgramsEmpty;No programs have been added to steam launcher.
 homeProgramSearchSteamGridDB;Search on SteamGridDB
 homeProgramArtworkPaste;Paste
