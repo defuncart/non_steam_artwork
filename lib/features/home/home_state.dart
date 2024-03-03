@@ -31,7 +31,7 @@ class SteamFolderExistsController extends _$SteamFolderExistsController {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class CacheController extends _$CacheController {
   Iterable<File> _data = const Iterable<File>.empty();
 
