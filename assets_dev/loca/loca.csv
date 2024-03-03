@@ -17,6 +17,7 @@ homeProgramsEmpty;No programs have been added to steam launcher.
 homeProgramSearchSteamGridDB;Search on SteamGridDB
 homeProgramArtworkPaste;Paste
 homeProgramArtworkDelete;Delete
+homeProgramArtworkCreateEmptyLogo;Create empty logo
 homeProgramArtworkSetBackgroundAsHero;Set as hero
 homeProgramArtworkSetHeroAsBackground;Set as background
 menuBarFile;File

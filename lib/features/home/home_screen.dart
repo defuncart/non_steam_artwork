@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -393,6 +394,9 @@ class _SteamArtworkState extends State<SteamArtwork> {
               // TODO: show toast when clipboard content isn't valid
             } else if (item.title == context.l10n.homeProgramArtworkDelete) {
               widget.onDeleteFile(widget.file!);
+            } else if (item.title == context.l10n.homeProgramArtworkCreateEmptyLogo) {
+              final bytes = const Base64Codec().decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+              widget.onCreateFile(Stream.value(bytes), '.jpg');
             } else if (item.title == context.l10n.homeProgramArtworkSetBackgroundAsHero) {
               widget.onCopyFile(widget.file!, SteamGridArtType.hero);
             } else if (item.title == context.l10n.homeProgramArtworkSetHeroAsBackground) {
@@ -410,6 +414,10 @@ class _SteamArtworkState extends State<SteamArtwork> {
             if (widget.file != null)
               MenuItem(
                 title: context.l10n.homeProgramArtworkDelete,
+              ),
+            if (widget.artType == SteamGridArtType.logo)
+              MenuItem(
+                title: context.l10n.homeProgramArtworkCreateEmptyLogo,
               ),
             if (widget.file != null && widget.artType == SteamGridArtType.background)
               MenuItem(
