@@ -23,6 +23,15 @@ part 'home_state.g.dart';
 FileManager _fileManager(_FileManagerRef ref) => FileManager(ref.read(loggerProvider));
 
 @riverpod
+class SteamFolderExistsController extends _$SteamFolderExistsController {
+  @override
+  FutureOr<bool> build() async {
+    await ref.read(steamManagerProvider).getShortcuts();
+    return true;
+  }
+}
+
+@riverpod
 class CacheController extends _$CacheController {
   Iterable<File> _data = const Iterable<File>.empty();
 

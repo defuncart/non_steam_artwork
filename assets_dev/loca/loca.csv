@@ -4,6 +4,8 @@ homeAppBarSortLabel;Sort
 homeAppBarSortDateAdded;Date
 homeAppBarSortAlphabetic;Name
 homeAppBarSortProgramId;Id
+homeErrorLabel1;An error has occured: {error}.
+homeErrorLabel2;Please view logs and report this issue.
 homeTipsCleanUpCacheDescription;There is unused art in your cache. You can free up {value}.
 homeTipsCleanUpCacheButton;Clean up
 homeTipsAddApiKeyDescription;An SteamGridDB api key is required in order to automatically download artwork.

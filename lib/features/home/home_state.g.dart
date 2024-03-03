@@ -1026,6 +1026,20 @@ class _GameArtworkDownloadProviderElement extends AutoDisposeFutureProviderEleme
   SteamGridArtType get artType => (origin as GameArtworkDownloadProvider).artType;
 }
 
+String _$steamFolderExistsControllerHash() => r'57b9ef82577b8c76019e953d09938e28bbc4e60d';
+
+/// See also [SteamFolderExistsController].
+@ProviderFor(SteamFolderExistsController)
+final steamFolderExistsControllerProvider =
+    AutoDisposeAsyncNotifierProvider<SteamFolderExistsController, bool>.internal(
+  SteamFolderExistsController.new,
+  name: r'steamFolderExistsControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$steamFolderExistsControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SteamFolderExistsController = AutoDisposeAsyncNotifier<bool>;
 String _$cacheControllerHash() => r'd8f11b48c8863c5eae01166e56731b7b2cb3fa82';
 
 /// See also [CacheController].

@@ -115,6 +115,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(steamFolderExistsControllerProvider);
+    return switch (state) {
+      AsyncLoading() => const SizedBox.shrink(),
+      AsyncData() => const HomeScreenContent(),
+      AsyncError(:final error) => HomeScreenSteamError(
+          error: error,
+        ),
+    };
+  }
+}
+
+@visibleForTesting
+class HomeScreenContent extends StatelessWidget {
+  const HomeScreenContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return const Scaffold(
       appBar: HomeAppBar(),
       body: Center(
@@ -125,6 +142,31 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             Expanded(
               child: ProgramsView(),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+@visibleForTesting
+class HomeScreenSteamError extends StatelessWidget {
+  const HomeScreenSteamError({
+    required this.error,
+    super.key,
+  });
+
+  final Object error;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(context.l10n.homeErrorLabel1(error)),
+            Text(context.l10n.homeErrorLabel2),
           ],
         ),
       ),
