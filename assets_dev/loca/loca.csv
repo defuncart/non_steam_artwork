@@ -44,5 +44,6 @@ generalErrorTryAgain;Try again
 generalOk;Ok
 logsScreenTitle;Logs
 privacyPolicyScreenTitle;Privacy Policy
+manualScreenTitle;Manual
 steamGridDBDialogTitle;API key
 steamGridDBDialogDescription;An api key from [SteamGridDB](https://www.steamgriddb.com/) is required in order to automatically download artwork.
