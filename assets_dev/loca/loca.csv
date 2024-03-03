@@ -6,9 +6,11 @@ homeAppBarSortAlphabetic;Name
 homeAppBarSortProgramId;Id
 homeErrorLabel1;An error has occured: {error}.
 homeErrorLabel2;Please view logs and report this issue.
+homeTipsBackupCacheDescription;No cache back found. A backup is recommended before editing artwork.
+homeTipsBackupCacheButton;Backup
 homeTipsCleanUpCacheDescription;There is unused art in your cache. You can free up {value}.
 homeTipsCleanUpCacheButton;Clean up
-homeTipsAddApiKeyDescription;An SteamGridDB api key is required in order to automatically download artwork.
+homeTipsAddApiKeyDescription;A SteamGridDB api key is required in order to automatically download artwork.
 homeTipsAddApiKeyButton;Add key
 homeSearchEmpty;No results founds.
 homeProgramsEmpty;No programs have been added to steam launcher.

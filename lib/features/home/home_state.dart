@@ -99,6 +99,22 @@ class CacheController extends _$CacheController {
   }
 }
 
+@riverpod
+Future<bool> cacheBackupExistsController(CacheBackupExistsControllerRef ref) async {
+  final syncPath = p.join(
+    (await getApplicationDocumentsDirectory()).path,
+    'non_steam_artwork',
+    'grid_backup',
+  );
+  final dir = Directory(syncPath);
+  if (!await dir.exists()) {
+    return false;
+  }
+
+  final contents = (await dir.list().toList()).whereType<Directory>();
+  return contents.isNotEmpty;
+}
+
 @Riverpod(keepAlive: true)
 class SearchController extends _$SearchController {
   @override

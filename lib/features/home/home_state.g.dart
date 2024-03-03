@@ -19,6 +19,19 @@ final _fileManagerProvider = Provider<FileManager>.internal(
 );
 
 typedef _FileManagerRef = ProviderRef<FileManager>;
+String _$cacheBackupExistsControllerHash() => r'c3389998a4f1f5b303791e501efcb634c45e1e18';
+
+/// See also [cacheBackupExistsController].
+@ProviderFor(cacheBackupExistsController)
+final cacheBackupExistsControllerProvider = AutoDisposeFutureProvider<bool>.internal(
+  cacheBackupExistsController,
+  name: r'cacheBackupExistsControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$cacheBackupExistsControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CacheBackupExistsControllerRef = AutoDisposeFutureProviderRef<bool>;
 String _$deleteArtworkHash() => r'd6680917a6dd88b69aed24a69072e30cd8b8d2f6';
 
 /// Copied from Dart SDK

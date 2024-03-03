@@ -16,6 +16,9 @@ class HomeTipsPanel extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Flexible(
+          child: BackupUpCacheView(),
+        ),
+        Flexible(
           child: CleanUpCacheView(),
         ),
         Flexible(
@@ -23,6 +26,33 @@ class HomeTipsPanel extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+@visibleForTesting
+class BackupUpCacheView extends ConsumerWidget {
+  const BackupUpCacheView({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(cacheBackupExistsControllerProvider);
+
+    return switch (state) {
+      AsyncData(:final value) => value
+          ? const SizedBox.shrink()
+          : TipCard(
+              backgroundColor: context.colorScheme.primaryContainer,
+              foregroundColor: context.colorScheme.onPrimaryContainer,
+              title: context.l10n.homeTipsBackupCacheDescription,
+              buttonIcon: Icons.backup,
+              buttonLabel: context.l10n.homeTipsBackupCacheButton,
+              onButtonPressed: () async {
+                await ref.read(cacheControllerProvider.notifier).backup();
+                ref.invalidate(cacheBackupExistsControllerProvider);
+              },
+            ),
+      _ => const SizedBox.shrink(),
+    };
   }
 }
 
