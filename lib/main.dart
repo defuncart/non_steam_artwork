@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
+import 'package:non_steam_artwork/core/configs/window_config.dart';
 import 'package:non_steam_artwork/core/ui/my_app.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -18,6 +19,6 @@ Future<void> main() async {
   }
   Hive.defaultDirectory = defaultDirectory;
 
-  setWindowMinSize(const Size(970, 580));
+  setWindowMinSize(minWindowSize);
   runApp(const ProviderScope(child: MyApp()));
 }

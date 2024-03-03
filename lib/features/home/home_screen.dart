@@ -4,8 +4,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:menubar/menubar.dart';
 import 'package:native_context_menu/native_context_menu.dart';
+import 'package:non_steam_artwork/core/configs/window_config.dart';
+import 'package:non_steam_artwork/core/extensions/iterable_widget_extension.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
@@ -140,11 +143,18 @@ class ProgramsView extends ConsumerWidget {
     return switch (state) {
       AsyncData(:final value) => value.isEmpty
           ? Text(context.l10n.homeProgramsEmpty)
-          : ListView.builder(
+          : ListView.separated(
               shrinkWrap: true,
+              padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
               itemCount: value.length,
               itemBuilder: (context, index) => ProgramView(
                 program: value.toList()[index],
+              ),
+              separatorBuilder: (context, index) => Center(
+                child: SizedBox(
+                  width: minWindowSize.width * 0.75,
+                  child: const Divider(),
+                ),
               ),
             ),
       _ => const SizedBox.shrink(),
@@ -163,54 +173,63 @@ class ProgramView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          program.appName,
-        ),
-        Wrap(
-          spacing: 4,
-          runSpacing: 4,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final widthFactor = constraints.maxWidth / (minWindowSize.width - 16);
+
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            for (final artType in [
-              // currently icon is not supported
-              SteamGridArtType.cover,
-              SteamGridArtType.background,
-              SteamGridArtType.logo,
-              SteamGridArtType.hero,
-            ])
-              SteamArtwork(
-                artType: artType,
-                file: switch (artType) {
-                  SteamGridArtType.icon => program.icon,
-                  SteamGridArtType.cover => program.cover,
-                  SteamGridArtType.background => program.background,
-                  SteamGridArtType.logo => program.logo,
-                  SteamGridArtType.hero => program.hero,
-                },
-                onDeleteFile: (file) => ref.read(deleteArtworkProvider(file: file)),
-                onCopyFile: (file, artType) => ref.read(copyArtworkProvider(file: file, artType: artType)),
-                onCreateFile: (bytesStream, ext) => ref.read(createArtworkProvider(
-                  appId: program.appId,
-                  bytesStream: bytesStream,
-                  ext: ext,
-                  artType: artType,
-                )),
-                onLog: ref.read(loggerProvider).log,
-                canDownloadArtwork: ref.watch(steamGridDBApiKeyControllerProvider) != null,
-                onDownload: () {
-                  DownloadArtwork.show(
-                    context,
-                    program: program,
+            const Gap(4),
+            Text(
+              program.appName,
+              style: context.textTheme.headlineSmall,
+            ),
+            const Gap(8),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                for (final artType in [
+                  // currently icon is not supported
+                  SteamGridArtType.cover,
+                  SteamGridArtType.background,
+                  SteamGridArtType.logo,
+                  SteamGridArtType.hero,
+                ])
+                  SteamArtwork(
                     artType: artType,
-                  );
-                },
-              ),
+                    file: switch (artType) {
+                      SteamGridArtType.icon => program.icon,
+                      SteamGridArtType.cover => program.cover,
+                      SteamGridArtType.background => program.background,
+                      SteamGridArtType.logo => program.logo,
+                      SteamGridArtType.hero => program.hero,
+                    },
+                    width: artType.size.width * 0.25 * widthFactor,
+                    height: artType.size.height * 0.25 * widthFactor,
+                    onDeleteFile: (file) => ref.read(deleteArtworkProvider(file: file)),
+                    onCopyFile: (file, artType) => ref.read(copyArtworkProvider(file: file, artType: artType)),
+                    onCreateFile: (bytesStream, ext) => ref.read(createArtworkProvider(
+                      appId: program.appId,
+                      bytesStream: bytesStream,
+                      ext: ext,
+                      artType: artType,
+                    )),
+                    onLog: ref.read(loggerProvider).log,
+                    canDownloadArtwork: ref.watch(steamGridDBApiKeyControllerProvider) != null,
+                    onDownload: () => DownloadArtwork.show(
+                      context,
+                      program: program,
+                      artType: artType,
+                    ),
+                  ),
+              ].intersperse(Gap(12 * widthFactor)),
+            ),
+            const Gap(8),
           ],
-        ),
-      ],
+        );
+      },
     );
   }
 }
@@ -220,6 +239,8 @@ class SteamArtwork extends StatefulWidget {
   const SteamArtwork({
     required this.artType,
     required this.file,
+    required this.width,
+    required this.height,
     required this.onDeleteFile,
     required this.onCopyFile,
     required this.onCreateFile,
@@ -230,7 +251,10 @@ class SteamArtwork extends StatefulWidget {
   });
 
   final SteamGridArtType artType;
+
   final File? file;
+  final double width;
+  final double height;
   final void Function(File) onDeleteFile;
   final void Function(File, SteamGridArtType) onCopyFile;
   final void Function(Stream<Uint8List>, String) onCreateFile;
@@ -349,8 +373,8 @@ class _SteamArtworkState extends State<SteamArtwork> {
               ),
           ],
           child: SizedBox(
-            width: widget.artType.size.width * 0.25,
-            height: widget.artType.size.height * 0.25,
+            width: widget.width,
+            height: widget.height,
             child: Opacity(
               opacity: _isDragging ? 0.75 : 1,
               child: widget.file != null
@@ -359,7 +383,7 @@ class _SteamArtworkState extends State<SteamArtwork> {
                       color: context.colorScheme.tertiary,
                       child: Icon(
                         Icons.broken_image,
-                        size: widget.artType.size.width * 0.25 * 0.25,
+                        size: widget.width * 0.25,
                         color: context.colorScheme.onTertiary,
                       ),
                     ),
