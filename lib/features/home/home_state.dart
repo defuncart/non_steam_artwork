@@ -121,7 +121,9 @@ class SteamPrograms extends _$SteamPrograms {
 
     final searchTerm = ref.watch(searchControllerProvider);
     if (searchTerm.isNotEmpty) {
-      filteredPrograms = filteredPrograms.where((program) => program.appName.contains(searchTerm));
+      filteredPrograms = filteredPrograms.where(
+        (program) => program.appName.toLowerCase().contains(searchTerm.toLowerCase()),
+      );
     }
 
     final sortType = ref.watch(sortProgramTypeControllerProvider);
