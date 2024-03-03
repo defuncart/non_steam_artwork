@@ -1,4 +1,9 @@
 keys;en
+homeAppBarSearchHintLabel;Search...
+homeAppBarSortLabel;Sort
+homeAppBarSortDateAdded;Date
+homeAppBarSortAlphabetic;Name
+homeAppBarSortProgramId;Id
 homeTipsCleanUpCacheDescription;There is unused art in your cache. You can free up {value}.
 homeTipsCleanUpCacheButton;Clean up
 homeTipsAddApiKeyDescription;An SteamGridDB api key is required in order to automatically download artwork.

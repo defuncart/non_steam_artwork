@@ -9,10 +9,10 @@ import 'package:native_context_menu/native_context_menu.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
-import 'package:non_steam_artwork/core/settings/sort_program_type.dart';
 import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/download_artwork.dart';
+import 'package:non_steam_artwork/features/home/home_app_bar.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/home_tips_panel.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
@@ -112,15 +112,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const SearchProgramsTextField(),
-        actions: const [
-          FilterProgramChips(),
-          SortProgramsButton(),
-        ],
-      ),
-      body: const Center(
+    return const Scaffold(
+      appBar: HomeAppBar(),
+      body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -133,97 +127,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
     );
   }
-}
-
-class SearchProgramsTextField extends ConsumerStatefulWidget {
-  const SearchProgramsTextField({super.key});
-
-  @override
-  ConsumerState<SearchProgramsTextField> createState() => _SearchProgramsTextFieldState();
-}
-
-class _SearchProgramsTextFieldState extends ConsumerState<SearchProgramsTextField> {
-  late final TextEditingController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = TextEditingController()
-      ..addListener(() {
-        ref.read(searchControllerProvider.notifier).updateSearch(_controller.text);
-      });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: _controller,
-    );
-  }
-}
-
-@visibleForTesting
-class FilterProgramChips extends ConsumerWidget {
-  const FilterProgramChips({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(filteredProgramTypesControllerProvider);
-
-    return Wrap(
-      children: [
-        for (final type in SteamProgramType.values)
-          FilterChip(
-            label: Text(type.name),
-            selected: state[type]!,
-            onSelected: (_) => ref.read(filteredProgramTypesControllerProvider.notifier).toggle(type),
-          ),
-      ],
-    );
-  }
-}
-
-class SortProgramsButton extends ConsumerWidget {
-  const SortProgramsButton({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(sortProgramTypeControllerProvider);
-
-    return DropdownMenu<SortProgramType>(
-      initialSelection: state,
-      leadingIcon: const Icon(Icons.sort),
-      label: const Text('Sort'),
-      onSelected: (value) {
-        if (value != null) {
-          ref.read(sortProgramTypeControllerProvider.notifier).set(value);
-        }
-      },
-      dropdownMenuEntries: SortProgramType.values
-          .map((sortType) => DropdownMenuEntry<SortProgramType>(
-                value: sortType,
-                leadingIcon: Icon(sortType.icon),
-                label: sortType.label,
-                enabled: true,
-              ))
-          .toList(),
-    );
-  }
-}
-
-extension on SortProgramType {
-  IconData get icon => switch (this) {
-        SortProgramType.dateAdded => Icons.date_range,
-        SortProgramType.alphabetic => Icons.abc,
-        SortProgramType.programId => Icons.onetwothree,
-      };
-
-  String get label => switch (this) {
-        SortProgramType.dateAdded => 'Date',
-        SortProgramType.alphabetic => 'Name',
-        SortProgramType.programId => 'Id',
-      };
 }
 
 @visibleForTesting
