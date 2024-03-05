@@ -1,5 +1,5 @@
 name: non_steam_artwork
-description: "A linux tool to update artwork for non-steam programs."
+description: A linux tool to update artwork for non-Steam programs.
 publish_to: 'none'
 version: 0.0.1+1
 
