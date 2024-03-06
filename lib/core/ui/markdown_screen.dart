@@ -47,7 +47,7 @@ class _MarkdownScreenState extends ConsumerState<MarkdownScreen> {
 
               return Center(
                 child: Text(
-                  context.l10n.markdownScreenErrorTitle,
+                  context.l10n.generalErrorTitle,
                   style: context.textTheme.bodyLarge,
                 ),
               );
@@ -61,15 +61,15 @@ class _MarkdownScreenState extends ConsumerState<MarkdownScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      context.l10n.markdownScreenErrorTitle,
+                      context.l10n.generalErrorTitle,
                       style: context.textTheme.bodyLarge,
                     ),
                     Text(
-                      context.l10n.markdownScreenErrorDescription,
+                      context.l10n.generalErrorNoInternetDescription,
                     ),
                     TextButton(
                       onPressed: () => setState(() {}),
-                      child: Text(context.l10n.markdownScreenErrorTryAgain),
+                      child: Text(context.l10n.generalErrorTryAgain),
                     ),
                   ].intersperse(const Gap(4)),
                 ),

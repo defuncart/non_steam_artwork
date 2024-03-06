@@ -64,7 +64,7 @@ class DownloadArtwork extends ConsumerWidget {
                       TextButton(
                         onPressed: () => ref.invalidate(provider),
                         child: Text(
-                          context.l10n.markdownScreenErrorTryAgain,
+                          context.l10n.generalErrorTryAgain,
                         ),
                       ),
                     ],
@@ -124,8 +124,29 @@ class _ArtworkSelectorState extends State<ArtworkSelector> {
                 .map(
                   (artwork) => GestureDetector(
                     onTap: () async {
-                      final file = await _cacheManager.getSingleFile(artwork.url);
-                      widget.onSelect(file);
+                      try {
+                        final file = await _cacheManager.getSingleFile(artwork.url);
+                        widget.onSelect(file);
+                      } catch (e) {
+                        // ignore: use_build_context_synchronously
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text(
+                              context.l10n.generalErrorTitle,
+                            ),
+                            content: Text(
+                              context.l10n.generalErrorNoInternetDescription,
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: Navigator.of(context).pop,
+                                child: Text(context.l10n.generalOk),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
                     },
                     child: HoverableWidget(
                       child: SizedBox.fromSize(
