@@ -21,7 +21,7 @@ class DownloadArtwork extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final provider = gameArtworkDownloadProvider(searchTerm: program.appName, artType: artType);
+    final provider = downloadableArtworkControllerProvider(initialSearchTerm: program.appName, artType: artType);
     final state = ref.watch(provider);
 
     return Scaffold(
