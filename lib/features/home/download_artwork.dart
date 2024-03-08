@@ -25,7 +25,17 @@ class DownloadArtwork extends ConsumerWidget {
     final state = ref.watch(provider);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: switch (state) {
+          AsyncData() => TextField(
+              decoration: InputDecoration(
+                hintText: program.appName,
+              ),
+              onSubmitted: (value) => ref.read(provider.notifier).updateSearchTerm(value),
+            ),
+          _ => null,
+        },
+      ),
       body: switch (state) {
         AsyncData(:final value) => ArtworkSelector(
             artType: artType,

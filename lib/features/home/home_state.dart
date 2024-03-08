@@ -299,4 +299,12 @@ class DownloadableArtworkController extends _$DownloadableArtworkController {
 
     return artworkResults.map((artwork) => (url: artwork.url, thumbnail: artwork.thumb));
   }
+
+  Future<void> updateSearchTerm(String searchTerm) async {
+    if (searchTerm.isNotEmpty && _searchTerm != searchTerm) {
+      _searchTerm = searchTerm;
+      state = const AsyncValue.loading();
+      state = await AsyncValue.guard(_getArtworks);
+    }
+  }
 }
