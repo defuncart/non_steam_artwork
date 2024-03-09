@@ -263,21 +263,14 @@ class DownloadableArtworkController extends _$DownloadableArtworkController {
   }
 
   Future<Iterable<DownloadableArtwork>> _getArtworks() async {
-    String gameId;
-    final cachedGameId = ref.read(steamGridIdCacheProvider).getIdForSearchTerm(_searchTerm);
-    if (cachedGameId != null) {
-      gameId = cachedGameId;
-      ref.log('gameId $gameId retrieved from cache');
-    } else {
-      final gameResults = await ref.read(steamGridDBClientProvider).getGamesBySearchTerm(_searchTerm);
-      ref.log('${gameResults.length} result(s) found');
-      ref.log(gameResults.map((e) => e.name).toList().toString());
-      if (gameResults.isEmpty) {
-        throw Exception('No games found');
-      }
-      gameId = gameResults.first.id.toString();
-      ref.log('gameId $gameId retrieved from api');
+    final gameResults = await ref.read(steamGridDBClientProvider).getGamesBySearchTerm(_searchTerm);
+    ref.log('${gameResults.length} result(s) found');
+    ref.log(gameResults.map((e) => e.name).toList().toString());
+    if (gameResults.isEmpty) {
+      throw Exception('No games found');
     }
+    final gameId = gameResults.first.id.toString();
+    ref.log('gameId $gameId retrieved from api');
 
     final List<Grid> artworkResults;
     switch (artType) {

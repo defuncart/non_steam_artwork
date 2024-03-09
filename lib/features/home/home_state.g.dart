@@ -906,7 +906,7 @@ final steamProgramsProvider = AutoDisposeAsyncNotifierProvider<SteamPrograms, It
 );
 
 typedef _$SteamPrograms = AutoDisposeAsyncNotifier<Iterable<SteamProgram>>;
-String _$downloadableArtworkControllerHash() => r'12d016eef3d6d13964e49ed85f80e6f4d678d7b5';
+String _$downloadableArtworkControllerHash() => r'6a435746ad2a5aa121b7d4a72cf8cd19ef3ae010';
 
 abstract class _$DownloadableArtworkController
     extends BuildlessAutoDisposeAsyncNotifier<Iterable<DownloadableArtwork>> {
