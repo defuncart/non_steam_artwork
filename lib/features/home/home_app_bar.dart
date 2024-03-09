@@ -101,6 +101,7 @@ class SortProgramsButton extends ConsumerWidget {
         onTap: ref.read(sortingAscendingControllerProvider.notifier).toggle,
         child: Icon(ref.watch(sortingAscendingControllerProvider) ? Icons.arrow_downward : Icons.arrow_upward),
       ),
+      requestFocusOnTap: false,
       onSelected: (value) {
         if (value != null) {
           ref.read(sortProgramTypeControllerProvider.notifier).set(value);

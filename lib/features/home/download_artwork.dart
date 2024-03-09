@@ -37,45 +37,56 @@ class DownloadArtwork extends ConsumerWidget {
         },
         actions: [
           switch (state) {
-            AsyncData(:final value) => Padding(
-                // 16 right, 2 vertically to better align
-                padding: const EdgeInsets.only(right: 16, top: 2, bottom: 2),
-                child: DropdownMenu(
-                  dropdownMenuEntries: value.programResults
-                      .map((e) => DropdownMenuEntry(
-                            value: e.id,
-                            label: e.name,
-                          ))
-                      .toList(),
-                  initialSelection: value.selectedProgram,
-                  onSelected: (id) {
-                    if (id != null) {
-                      ref.read(provider.notifier).updateSelectedProgram(id);
-                    }
-                  },
-                ),
-              ),
+            AsyncData(:final value) => value.programResults.isNotEmpty
+                ? Padding(
+                    // 16 right, 2 vertically to better align
+                    padding: const EdgeInsets.only(right: 16, top: 2, bottom: 2),
+                    child: DropdownMenu(
+                      dropdownMenuEntries: value.programResults
+                          .map((e) => DropdownMenuEntry(
+                                value: e.id,
+                                label: e.name,
+                              ))
+                          .toList(),
+                      initialSelection: value.selectedProgram,
+                      requestFocusOnTap: false,
+                      onSelected: (id) {
+                        if (id != null) {
+                          ref.read(provider.notifier).updateSelectedProgram(id);
+                        }
+                      },
+                    ),
+                  )
+                : const SizedBox.shrink(),
             _ => const SizedBox.shrink(),
           },
         ],
       ),
       body: switch (state) {
-        AsyncData(:final value) => ArtworkSelector(
-            artType: artType,
-            downloadableArtworks: value.downloadableArtworks,
-            onSelect: (file) {
-              ref.read(
-                createArtworkFileProvider(
-                  appId: program.appId,
-                  file: file,
-                  ext: '.png',
-                  artType: artType,
-                ),
-              );
+        AsyncData(:final value) => value.programResults.isEmpty
+            ? Center(
+                child: Text(context.l10n.homeProgramsEmpty),
+              )
+            : value.downloadableArtworks.isEmpty
+                ? Center(
+                    child: Text(context.l10n.homeArtworkEmpty),
+                  )
+                : ArtworkSelector(
+                    artType: artType,
+                    downloadableArtworks: value.downloadableArtworks,
+                    onSelect: (file) {
+                      ref.read(
+                        createArtworkFileProvider(
+                          appId: program.appId,
+                          file: file,
+                          ext: '.png',
+                          artType: artType,
+                        ),
+                      );
 
-              Navigator.of(context).pop();
-            },
-          ),
+                      Navigator.of(context).pop();
+                    },
+                  ),
         AsyncLoading() => const Center(
             child: CircularProgressIndicator(),
           ),
