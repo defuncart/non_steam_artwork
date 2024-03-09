@@ -23,6 +23,15 @@ part 'home_state.g.dart';
 FileManager _fileManager(_FileManagerRef ref) => FileManager(ref.read(loggerProvider));
 
 @riverpod
+class SteamFolderExistsController extends _$SteamFolderExistsController {
+  @override
+  FutureOr<bool> build() async {
+    await ref.read(steamManagerProvider).getShortcuts();
+    return true;
+  }
+}
+
+@Riverpod(keepAlive: true)
 class CacheController extends _$CacheController {
   Iterable<File> _data = const Iterable<File>.empty();
 
@@ -90,6 +99,22 @@ class CacheController extends _$CacheController {
   }
 }
 
+@riverpod
+Future<bool> cacheBackupExistsController(CacheBackupExistsControllerRef ref) async {
+  final syncPath = p.join(
+    (await getApplicationDocumentsDirectory()).path,
+    'non_steam_artwork',
+    'grid_backup',
+  );
+  final dir = Directory(syncPath);
+  if (!await dir.exists()) {
+    return false;
+  }
+
+  final contents = (await dir.list().toList()).whereType<Directory>();
+  return contents.isNotEmpty;
+}
+
 @Riverpod(keepAlive: true)
 class SearchController extends _$SearchController {
   @override
@@ -112,7 +137,9 @@ class SteamPrograms extends _$SteamPrograms {
 
     final searchTerm = ref.watch(searchControllerProvider);
     if (searchTerm.isNotEmpty) {
-      filteredPrograms = filteredPrograms.where((program) => program.appName.contains(searchTerm));
+      filteredPrograms = filteredPrograms.where(
+        (program) => program.appName.toLowerCase().contains(searchTerm.toLowerCase()),
+      );
     }
 
     final sortType = ref.watch(sortProgramTypeControllerProvider);
@@ -122,8 +149,13 @@ class SteamPrograms extends _$SteamPrograms {
       filteredPrograms = filteredPrograms.sorted((a, b) => a.appId.compareTo(b.appId));
     }
 
+    final isAscending = ref.watch(sortingAscendingControllerProvider);
+    if (!isAscending) {
+      filteredPrograms = filteredPrograms.toList().reversed;
+    }
+
     ref.log(
-      'steamPrograms types ${validTypes.map((t) => t.name)}, searchTerm: ${searchTerm.isEmpty ? '[EMPTY]' : searchTerm}, sortType: ${sortType.name} | ${filteredPrograms.length} found',
+      'steamPrograms types ${validTypes.map((t) => t.name)}, searchTerm: ${searchTerm.isEmpty ? '[EMPTY]' : searchTerm}, sortType: ${sortType.name}, isAscending: $isAscending | ${filteredPrograms.length} found',
     );
 
     return filteredPrograms;

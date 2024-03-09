@@ -19,6 +19,19 @@ final _fileManagerProvider = Provider<FileManager>.internal(
 );
 
 typedef _FileManagerRef = ProviderRef<FileManager>;
+String _$cacheBackupExistsControllerHash() => r'c3389998a4f1f5b303791e501efcb634c45e1e18';
+
+/// See also [cacheBackupExistsController].
+@ProviderFor(cacheBackupExistsController)
+final cacheBackupExistsControllerProvider = AutoDisposeFutureProvider<bool>.internal(
+  cacheBackupExistsController,
+  name: r'cacheBackupExistsControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$cacheBackupExistsControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CacheBackupExistsControllerRef = AutoDisposeFutureProviderRef<bool>;
 String _$deleteArtworkHash() => r'd6680917a6dd88b69aed24a69072e30cd8b8d2f6';
 
 /// Copied from Dart SDK
@@ -1026,11 +1039,25 @@ class _GameArtworkDownloadProviderElement extends AutoDisposeFutureProviderEleme
   SteamGridArtType get artType => (origin as GameArtworkDownloadProvider).artType;
 }
 
-String _$cacheControllerHash() => r'd8f11b48c8863c5eae01166e56731b7b2cb3fa82';
+String _$steamFolderExistsControllerHash() => r'00ef2fb8acab6278a869af79a8d8e30f651a38ca';
+
+/// See also [SteamFolderExistsController].
+@ProviderFor(SteamFolderExistsController)
+final steamFolderExistsControllerProvider =
+    AutoDisposeAsyncNotifierProvider<SteamFolderExistsController, bool>.internal(
+  SteamFolderExistsController.new,
+  name: r'steamFolderExistsControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$steamFolderExistsControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SteamFolderExistsController = AutoDisposeAsyncNotifier<bool>;
+String _$cacheControllerHash() => r'f2c77ef7969f1ca19a70927e3e55159deff8ef79';
 
 /// See also [CacheController].
 @ProviderFor(CacheController)
-final cacheControllerProvider = AutoDisposeAsyncNotifierProvider<CacheController, int>.internal(
+final cacheControllerProvider = AsyncNotifierProvider<CacheController, int>.internal(
   CacheController.new,
   name: r'cacheControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$cacheControllerHash,
@@ -1038,7 +1065,7 @@ final cacheControllerProvider = AutoDisposeAsyncNotifierProvider<CacheController
   allTransitiveDependencies: null,
 );
 
-typedef _$CacheController = AutoDisposeAsyncNotifier<int>;
+typedef _$CacheController = AsyncNotifier<int>;
 String _$searchControllerHash() => r'7efb716fb420b888117b1599b12b86aff5179cb6';
 
 /// See also [SearchController].
@@ -1052,7 +1079,7 @@ final searchControllerProvider = NotifierProvider<SearchController, String>.inte
 );
 
 typedef _$SearchController = Notifier<String>;
-String _$steamProgramsHash() => r'3de5e83c647e0e4415b01c87bd7b0b6061fc023f';
+String _$steamProgramsHash() => r'd2a2ee28b262202ddce3b11b8d8ba807b08e79d8';
 
 /// See also [SteamPrograms].
 @ProviderFor(SteamPrograms)

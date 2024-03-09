@@ -21,7 +21,7 @@ jobs:
         with:
           name: ${{ github.ref_name }}
           draft: false
-          prerelease: true # change to false once production ready
+          prerelease: ${{ contains(github.ref_name, 'dev') }}
           generate_release_notes: false
   build_linux:
     name: Build + Upload Linux

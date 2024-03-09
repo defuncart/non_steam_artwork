@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
+import 'package:non_steam_artwork/core/logging/logger.dart';
 import 'package:non_steam_artwork/core/steam/steam_cache.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/core/steam/steam_shortcuts.dart';
@@ -15,12 +16,14 @@ export 'package:non_steam_artwork/src/rust/api/simple.dart' show SteamShortcut;
 class SteamManager {
   SteamManager({
     this.steamShortcuts = const SteamShortcuts(),
+    required this.logger,
   });
 
   final SteamShortcuts steamShortcuts;
+  final Logger logger;
+
   var _cachedArtwork = <CacheProgramArtwork>[];
   var _shortcutPrograms = <SteamShortcut>[];
-
   String? _userSteamDir;
 
   Future<void> init() async {
@@ -56,9 +59,17 @@ class SteamManager {
     if (await userDir.exists()) {
       final subDirs = (await userDir.list().toList()).whereType<Directory>();
       if (subDirs.isNotEmpty) {
+        if (subDirs.length > 1) {
+          logger.log('Found multiple users: ${subDirs.map((e) => path.basename(e.path))}, selecting first user.');
+        }
+
         // in case there are multiple users, first is chosen
         return subDirs.first.path;
+      } else {
+        logger.log('No users found at ${userDir.path}.');
       }
+    } else {
+      logger.log('Directory ${userDir.path} does not exist.');
     }
 
     return null;

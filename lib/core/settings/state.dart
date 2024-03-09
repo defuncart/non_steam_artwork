@@ -55,6 +55,17 @@ class SortProgramTypeController extends _$SortProgramTypeController {
 }
 
 @riverpod
+class SortingAscendingController extends _$SortingAscendingController {
+  @override
+  bool build() => ref.read(settingsServiceProvider).isSortingAscending;
+
+  void toggle() {
+    state = !state;
+    ref.read(settingsServiceProvider).isSortingAscending = state;
+  }
+}
+
+@riverpod
 class SteamGridDBApiKeyController extends _$SteamGridDBApiKeyController {
   @override
   String? build() => ref.read(settingsServiceProvider).steamGridDBApiKey;
