@@ -195,6 +195,7 @@ Future<void> copyArtwork(
 
   await file.copy(fullpath);
   ref.log('artwork copied to $fullpath');
+
   ref.invalidate(steamProgramsProvider);
 }
 

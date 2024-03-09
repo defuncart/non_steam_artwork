@@ -21,6 +21,7 @@ homeProgramArtworkDelete;Delete
 homeProgramArtworkCreateEmptyLogo;Create empty logo
 homeProgramArtworkSetBackgroundAsHero;Set as hero
 homeProgramArtworkSetHeroAsBackground;Set as background
+homeProgramPasteError;Clipboard contents is not JPEG/PNG
 menuBarFile;File
 menuBarFileQuit;Quit
 menuBarCache;Cache
