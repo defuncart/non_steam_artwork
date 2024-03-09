@@ -25,55 +25,42 @@ class DownloadArtwork extends ConsumerWidget {
     final state = ref.watch(provider);
 
     return Scaffold(
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          IconButton(
-            padding: EdgeInsets.zero,
-            iconSize: kMinInteractiveDimension,
-            onPressed: () => Navigator.of(context).pop(),
-            icon: const Icon(Icons.close),
-          ),
-          Expanded(
-            child: switch (state) {
-              AsyncData(:final value) => ArtworkSelector(
+      appBar: AppBar(),
+      body: switch (state) {
+        AsyncData(:final value) => ArtworkSelector(
+            artType: artType,
+            downloadableArtworks: value,
+            onSelect: (file) {
+              ref.read(
+                createArtworkFileProvider(
+                  appId: program.appId,
+                  file: file,
+                  ext: '.png',
                   artType: artType,
-                  downloadableArtworks: value,
-                  onSelect: (file) {
-                    ref.read(
-                      createArtworkFileProvider(
-                        appId: program.appId,
-                        file: file,
-                        ext: '.png',
-                        artType: artType,
-                      ),
-                    );
+                ),
+              );
 
-                    Navigator.of(context).pop();
-                  },
-                ),
-              AsyncLoading() => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              AsyncError(:final error) => Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(error.toString()),
-                      TextButton(
-                        onPressed: () => ref.invalidate(provider),
-                        child: Text(
-                          context.l10n.generalErrorTryAgain,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              Navigator.of(context).pop();
             },
           ),
-        ],
-      ),
+        AsyncLoading() => const Center(
+            child: CircularProgressIndicator(),
+          ),
+        AsyncError(:final error) => Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(error.toString()),
+                TextButton(
+                  onPressed: () => ref.invalidate(provider),
+                  child: Text(
+                    context.l10n.generalErrorTryAgain,
+                  ),
+                ),
+              ],
+            ),
+          ),
+      },
     );
   }
 
