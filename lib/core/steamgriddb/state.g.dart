@@ -6,7 +6,7 @@ part of 'state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$steamGridDBClientHash() => r'5c3431b76eebaf3485489f1d2bab3bf33b2c94ee';
+String _$steamGridDBClientHash() => r'e0f8a7f837482dfd31e39cf36535f3732fa7c223';
 
 /// See also [steamGridDBClient].
 @ProviderFor(steamGridDBClient)

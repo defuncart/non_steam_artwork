@@ -906,14 +906,13 @@ final steamProgramsProvider = AutoDisposeAsyncNotifierProvider<SteamPrograms, It
 );
 
 typedef _$SteamPrograms = AutoDisposeAsyncNotifier<Iterable<SteamProgram>>;
-String _$downloadableArtworkControllerHash() => r'6a435746ad2a5aa121b7d4a72cf8cd19ef3ae010';
+String _$downloadableArtworkControllerHash() => r'b476a7f8e7cbf3c50a2b5601312178e8f43f96a0';
 
-abstract class _$DownloadableArtworkController
-    extends BuildlessAutoDisposeAsyncNotifier<Iterable<DownloadableArtwork>> {
+abstract class _$DownloadableArtworkController extends BuildlessAutoDisposeAsyncNotifier<DownloadableArtworkState> {
   late final String initialSearchTerm;
   late final SteamGridArtType artType;
 
-  FutureOr<Iterable<DownloadableArtwork>> build({
+  FutureOr<DownloadableArtworkState> build({
     required String initialSearchTerm,
     required SteamGridArtType artType,
   });
@@ -987,7 +986,7 @@ class _$DownloadableArtworkControllerFamilyOverride implements FamilyOverride {
 
 /// See also [DownloadableArtworkController].
 class DownloadableArtworkControllerProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<DownloadableArtworkController, Iterable<DownloadableArtwork>> {
+    extends AutoDisposeAsyncNotifierProviderImpl<DownloadableArtworkController, DownloadableArtworkState> {
   /// See also [DownloadableArtworkController].
   DownloadableArtworkControllerProvider({
     required String initialSearchTerm,
@@ -1021,7 +1020,7 @@ class DownloadableArtworkControllerProvider
   final SteamGridArtType artType;
 
   @override
-  FutureOr<Iterable<DownloadableArtwork>> runNotifierBuild(
+  FutureOr<DownloadableArtworkState> runNotifierBuild(
     covariant DownloadableArtworkController notifier,
   ) {
     return notifier.build(
@@ -1061,8 +1060,7 @@ class DownloadableArtworkControllerProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<DownloadableArtworkController, Iterable<DownloadableArtwork>>
-      createElement() {
+  AutoDisposeAsyncNotifierProviderElement<DownloadableArtworkController, DownloadableArtworkState> createElement() {
     return _DownloadableArtworkControllerProviderElement(this);
   }
 
@@ -1100,7 +1098,7 @@ class DownloadableArtworkControllerProvider
   }
 }
 
-mixin DownloadableArtworkControllerRef on AutoDisposeAsyncNotifierProviderRef<Iterable<DownloadableArtwork>> {
+mixin DownloadableArtworkControllerRef on AutoDisposeAsyncNotifierProviderRef<DownloadableArtworkState> {
   /// The parameter `initialSearchTerm` of this provider.
   String get initialSearchTerm;
 
@@ -1109,7 +1107,7 @@ mixin DownloadableArtworkControllerRef on AutoDisposeAsyncNotifierProviderRef<It
 }
 
 class _DownloadableArtworkControllerProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<DownloadableArtworkController, Iterable<DownloadableArtwork>>
+    extends AutoDisposeAsyncNotifierProviderElement<DownloadableArtworkController, DownloadableArtworkState>
     with DownloadableArtworkControllerRef {
   _DownloadableArtworkControllerProviderElement(super.provider);
 

@@ -27,19 +27,42 @@ class DownloadArtwork extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: switch (state) {
-          AsyncData() => TextField(
+          AsyncData(:final value) => TextField(
               decoration: InputDecoration(
-                hintText: program.appName,
+                hintText: value.searchTerm,
               ),
               onSubmitted: (value) => ref.read(provider.notifier).updateSearchTerm(value),
             ),
           _ => null,
         },
+        actions: [
+          switch (state) {
+            AsyncData(:final value) => Padding(
+                // 16 right, 2 vertically to better align
+                padding: const EdgeInsets.only(right: 16, top: 2, bottom: 2),
+                child: DropdownMenu(
+                  dropdownMenuEntries: value.programResults
+                      .map((e) => DropdownMenuEntry(
+                            value: e.id,
+                            label: e.name,
+                          ))
+                      .toList(),
+                  initialSelection: value.selectedProgram,
+                  onSelected: (id) {
+                    if (id != null) {
+                      ref.read(provider.notifier).updateSelectedProgram(id);
+                    }
+                  },
+                ),
+              ),
+            _ => const SizedBox.shrink(),
+          },
+        ],
       ),
       body: switch (state) {
         AsyncData(:final value) => ArtworkSelector(
             artType: artType,
-            downloadableArtworks: value,
+            downloadableArtworks: value.downloadableArtworks,
             onSelect: (file) {
               ref.read(
                 createArtworkFileProvider(
@@ -89,6 +112,7 @@ class DownloadArtwork extends ConsumerWidget {
       );
 }
 
+@visibleForTesting
 class ArtworkSelector extends StatefulWidget {
   const ArtworkSelector({
     required this.artType,
@@ -175,6 +199,7 @@ class _ArtworkSelectorState extends State<ArtworkSelector> {
   }
 }
 
+@visibleForTesting
 class HoverableWidget extends StatefulWidget {
   const HoverableWidget({
     required this.child,
