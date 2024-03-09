@@ -30,6 +30,9 @@ Extract the downloaded zip and run the application `non_steam_artwork/non_steam_
 - Only one file can dragged'n'dropped.
 - Only jpeg and png files are allowed for drag'n'drop.
 - Only images can be pasted, urls are not supported.
+- Image size is not optimized, same as source.
+- Steam shortcuts (i.e. name) cannot be modified.
+- Keyboard shortcuts are not optimized, TAB, CTRL+C etc. should work out of the box.
 
 ## Raising Issues and Contributing
 
