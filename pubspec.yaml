@@ -51,8 +51,6 @@ dependencies:
       ref: main
   cached_network_image:
   flutter_cache_manager:
-  dio:
-  dio_cache_interceptor: ^3.5.0
 
 dev_dependencies:
   flutter_test:
