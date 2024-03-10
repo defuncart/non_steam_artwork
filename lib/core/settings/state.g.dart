@@ -32,6 +32,19 @@ final themeModeControllerProvider = NotifierProvider<ThemeModeController, ThemeM
 );
 
 typedef _$ThemeModeController = Notifier<ThemeMode>;
+String _$hasSeenOnboardingControllerHash() => r'1d87a3dc1c5c8e00d3879b5b78a24cd264df06ba';
+
+/// See also [HasSeenOnboardingController].
+@ProviderFor(HasSeenOnboardingController)
+final hasSeenOnboardingControllerProvider = AutoDisposeNotifierProvider<HasSeenOnboardingController, bool>.internal(
+  HasSeenOnboardingController.new,
+  name: r'hasSeenOnboardingControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$hasSeenOnboardingControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$HasSeenOnboardingController = AutoDisposeNotifier<bool>;
 String _$filteredProgramTypesControllerHash() => r'75d56c062b66d32bce0028f4090a5b4b0f32df4c';
 
 /// See also [FilteredProgramTypesController].

@@ -6,6 +6,8 @@ homeAppBarSortAlphabetic;Name
 homeAppBarSortProgramId;Id
 homeErrorLabel1;An error has occured: {error}.
 homeErrorLabel2;Please view logs and report this issue.
+homeTipsOnboardingManualDescription;Manual has not been viewed. Please consult the manual before first usage.
+homeTipsOnboardingManualCacheButton;View
 homeTipsBackupCacheDescription;No cache back found. A backup is recommended before editing artwork.
 homeTipsBackupCacheButton;Backup
 homeTipsCleanUpCacheDescription;There is unused art in your cache. You can free up {value}.

@@ -24,6 +24,17 @@ class ThemeModeController extends _$ThemeModeController {
 }
 
 @riverpod
+class HasSeenOnboardingController extends _$HasSeenOnboardingController {
+  @override
+  bool build() => ref.read(settingsServiceProvider).hasSeenOnboarding;
+
+  void toggle() {
+    state = !state;
+    ref.read(settingsServiceProvider).hasSeenOnboarding = state;
+  }
+}
+
+@riverpod
 class FilteredProgramTypesController extends _$FilteredProgramTypesController {
   late FilteredProgramTypes _state;
   Map<SteamProgramType, bool> _mapState() {
