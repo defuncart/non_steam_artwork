@@ -68,3 +68,13 @@ The following options are specified for specific artwork types:
 | hero       | Set as background | Copies hero image for background. Useful when both hero and background should be identical.                     |
 
 After artwork has been updated, Steam needs to be re-started in order for changes to be visible.
+
+### Search on SteamGridDB
+
+When 'Search on SteamGridDB' option is chosen, the program's name is initially used as a search term. Depending on this user defined name, the correct artwork may not be found. Consider the program 'Firefox' which uses the colloquial name (instead of official 'Mozilla Firefox'). By default, SteamGridDB lists 'Firefox Reality' as the best first suggestion.
+
+![](https://raw.githubusercontent.com/defuncart/non_steam_artwork/feature/add-manual/docs/images/03.png)
+
+Artwork for 'Mozilla Firefox' can be loaded by either selecting the program from the dropdown menu, or manually updating the search term.
+
+Note that as SteamGridDB is community-based, not all games nor artworks are available.
