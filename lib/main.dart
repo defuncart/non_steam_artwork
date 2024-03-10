@@ -12,7 +12,7 @@ import 'package:window_size/window_size.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final dir = await getApplicationDocumentsDirectory();
+  final dir = await getApplicationSupportDirectory();
   final defaultDirectory = p.join(dir.path, 'non_steam_artwork');
   if (!await Directory(defaultDirectory).exists()) {
     await Directory(defaultDirectory).create(recursive: true);
