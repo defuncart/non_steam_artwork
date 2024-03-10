@@ -26,7 +26,7 @@ Extract the downloaded zip and run the application `non_steam_artwork/non_steam_
 
 ## Expected Behavior & Known Issues
 
-- Only tested on SteamOS, has not been tested on other linux distros.
+- Only tested on SteamOS, not expected to work on other linux distros.
 - On Steam OS, system light/dark mode seems to default to light. Flutter/Steam OS issue.
 - When there are multiple Steam user accounts, the first is selected.
 - Launcher icons can not be updated.
@@ -35,6 +35,7 @@ Extract the downloaded zip and run the application `non_steam_artwork/non_steam_
 - Only images can be pasted, urls are not supported.
 - Image size is not optimized, same as source.
 - Steam shortcuts (i.e. name) cannot be modified.
+- SteamGridDB: neither animated, nsfw, humor nor epilepsy are supported. 
 - Keyboard shortcuts are not optimized, TAB, CTRL+C etc. should work out of the box.
 
 ## Raising Issues and Contributing
