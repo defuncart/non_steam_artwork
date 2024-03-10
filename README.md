@@ -1,25 +1,28 @@
 # non_steam_artwork
 
-A linux tool to update artwork for non-Steam programs.
+A linux tool to update artwork for non-Steam programs. *Non-Steam Artwork* is not affiliated with Valve Corporation nor the Steam platform.
 
 ## Features
 
-- Clean up cached artwork not used
-- Delete all cached artwork
+- Display artwork of non-Steam programs in a grid
+- Add new artwork via drag'n'drop/paste from clipboard
+- Artwork can be downloaded directly from SteamGridDB
 - Manually delete individual artwork images
-- New artwork via drag'n'drop/paste from clipboard
-- With a SteamGridDB api key, artwork can be downloaded
-- Backup existing artwork to `Documents`
+- Backup existing artwork cache to `Documents`
+- Clean up unused cached artwork
+- Delete all cached artwork
 
 Please see [manual](docs/manual.md) for a guide on getting started.
 
-*Non-Steam Artwork* is not affiliated with Valve Corporation nor the Steam platform.
+## Motivation
+
+When adding non-Steam games from third-party programs (i.e. Lutris), the artwork is often pixelated. The goal of *Non-Steam Artwork* is to allow the quick & easy updating of artwork for all non-Steam programs. Community tools such as [SGDBoop](https://www.steamgriddb.com/boop), [EMU Deck](https://www.emudeck.com/) or [BoilR](https://github.com/PhilipK/BoilR) may be more applicable, depending on your use case.
 
 ## Releases
 
 The latest release can be found [here](https://github.com/defuncart/non_steam_artwork/releases/latest).
 
-Extract the downloaded zip and run the application `non_steam_artwork/non_steam_artwork` via Steam or third party program (i.e. Lutris). Flatpak releases may be considered once the tool becomes production ready.
+Extract the downloaded zip and run the application `non_steam_artwork/non_steam_artwork` via Steam or third-party program (i.e. Lutris). Flatpak releases may be considered once the tool becomes production ready.
 
 ## Expected Behavior & Known Issues
 
