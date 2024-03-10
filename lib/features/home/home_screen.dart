@@ -247,6 +247,7 @@ class ProgramView extends ConsumerWidget {
                   SteamGridArtType.hero,
                 ])
                   SteamArtwork(
+                    // key: UniqueKey(),
                     artType: artType,
                     file: switch (artType) {
                       SteamGridArtType.icon => program.icon,
@@ -388,10 +389,13 @@ class _SteamArtworkState extends State<SteamArtwork> {
                     widget.onLog('Error reading value $error');
                   });
                 } else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(context.l10n.homeProgramPasteError),
+                    duration: const Duration(seconds: 2),
+                  ));
                   widget.onLog('clipboard contents is not .jpg nor .png');
                 }
               });
-              // TODO: show toast when clipboard content isn't valid
             } else if (item.title == context.l10n.homeProgramArtworkDelete) {
               widget.onDeleteFile(widget.file!);
             } else if (item.title == context.l10n.homeProgramArtworkCreateEmptyLogo) {

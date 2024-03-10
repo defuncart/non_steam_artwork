@@ -195,6 +195,7 @@ Future<void> copyArtwork(
 
   await file.copy(fullpath);
   ref.log('artwork copied to $fullpath');
+
   ref.invalidate(steamProgramsProvider);
 }
 
@@ -244,52 +245,116 @@ Future<void> createArtwork(
   ref.invalidate(steamProgramsProvider);
 }
 
-@riverpod
-Future<Iterable<DownloadableArtwork>> gameArtworkDownload(
-  GameArtworkDownloadRef ref, {
-  required String searchTerm,
-  required SteamGridArtType artType,
-}) async {
-  ref.log('gameArtworkDownload for $searchTerm');
-
-  String gameId;
-  final cachedGameId = ref.read(steamGridIdCacheProvider).getIdForSearchTerm(searchTerm);
-  if (cachedGameId != null) {
-    gameId = cachedGameId;
-    ref.log('gameId $gameId retrieved from cache');
-  } else {
-    final gameResults = await ref.read(steamGridDBClientProvider).getGamesBySearchTerm(searchTerm);
-    ref.log('${gameResults.length} result(s) found');
-    ref.log(gameResults.map((e) => e.name).toList().toString());
-    if (gameResults.isEmpty) {
-      throw Exception('No games found');
-    }
-    gameId = gameResults.first.id.toString();
-    ref.log('gameId $gameId retrieved from api');
-  }
-
-  final List<Grid> artworkResults;
-  switch (artType) {
-    case SteamGridArtType.background:
-      artworkResults = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
-    case SteamGridArtType.hero:
-      artworkResults = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
-    case SteamGridArtType.cover:
-      artworkResults = await ref.read(steamGridDBClientProvider).getCoversForGame(gameId);
-    case SteamGridArtType.icon:
-      artworkResults = await ref.read(steamGridDBClientProvider).getIconsForGame(gameId);
-    case SteamGridArtType.logo:
-      artworkResults = await ref.read(steamGridDBClientProvider).getLogosForGame(gameId);
-  }
-
-  if (artworkResults.isEmpty) {
-    throw Exception('No artwork found');
-  }
-
-  return artworkResults.map((artwork) => (url: artwork.url, thumbnail: artwork.thumb));
-}
-
 typedef DownloadableArtwork = ({
   String url,
   String thumbnail,
 });
+
+typedef DownloadableArtworkState = ({
+  String searchTerm,
+  Iterable<ProgramSearchResult> programResults,
+  int? selectedProgram,
+  Iterable<DownloadableArtwork> downloadableArtworks,
+});
+
+typedef ProgramSearchResult = ({
+  int id,
+  String name,
+});
+
+@riverpod
+class DownloadableArtworkController extends _$DownloadableArtworkController {
+  var _searchTerm = '';
+  Iterable<ProgramSearchResult> _programResults = <ProgramSearchResult>[];
+  int? _selectedProgram;
+  Iterable<DownloadableArtwork> _downloadableArtworks = <DownloadableArtwork>[];
+
+  @override
+  Future<DownloadableArtworkState> build({
+    required String initialSearchTerm,
+    required SteamGridArtType artType,
+  }) {
+    _searchTerm = initialSearchTerm;
+    return _getProgramsForSearchTerm();
+  }
+
+  Future<DownloadableArtworkState> _getProgramsForSearchTerm() async {
+    ref.log('getting programs for $_searchTerm');
+
+    _selectedProgram = null;
+    _programResults = [];
+    _downloadableArtworks = [];
+
+    final gameResults = await ref.read(steamGridDBClientProvider).getGamesBySearchTerm(_searchTerm);
+    ref.log('${gameResults.length} result(s) found');
+    ref.log(gameResults.map((e) => e.name).toList().toString());
+    _programResults = gameResults.map((e) => (id: e.id, name: e.name));
+
+    if (_programResults.isNotEmpty) {
+      _selectedProgram = gameResults.first.id;
+      await _getArtworkForSelectedProgram();
+    }
+    // else {
+    //   throw Exception('No artwork found');
+    // }
+
+    // if (artworkResults.isEmpty) {
+    //   throw Exception('No artwork found');
+    // }
+
+    return (
+      searchTerm: _searchTerm,
+      programResults: _programResults,
+      selectedProgram: _selectedProgram,
+      downloadableArtworks: _downloadableArtworks,
+    );
+  }
+
+  Future<void> _getArtworkForSelectedProgram() async {
+    assert(_selectedProgram != null);
+
+    final gameId = _selectedProgram!.toString();
+    ref.log('getting artwork for $_selectedProgram');
+
+    final List<Grid> artworkResults;
+    switch (artType) {
+      case SteamGridArtType.background:
+        artworkResults = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
+      case SteamGridArtType.hero:
+        artworkResults = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
+      case SteamGridArtType.cover:
+        artworkResults = await ref.read(steamGridDBClientProvider).getCoversForGame(gameId);
+      case SteamGridArtType.icon:
+        artworkResults = await ref.read(steamGridDBClientProvider).getIconsForGame(gameId);
+      case SteamGridArtType.logo:
+        artworkResults = await ref.read(steamGridDBClientProvider).getLogosForGame(gameId);
+    }
+    _downloadableArtworks = artworkResults.map((artwork) => (url: artwork.url, thumbnail: artwork.thumb));
+  }
+
+  Future<void> updateSearchTerm(String searchTerm) async {
+    if (searchTerm.isNotEmpty && _searchTerm != searchTerm) {
+      _searchTerm = searchTerm;
+      state = const AsyncValue.loading();
+      state = await AsyncValue.guard(_getProgramsForSearchTerm);
+    }
+  }
+
+  Future<void> updateSelectedProgram(int selectedProgram) async {
+    if (_selectedProgram != selectedProgram && _programResults.map((e) => e.id).contains(selectedProgram)) {
+      _selectedProgram = selectedProgram;
+      state = const AsyncValue.loading();
+
+      state = await AsyncValue.guard(() async {
+        await _getArtworkForSelectedProgram();
+
+        return (
+          searchTerm: _searchTerm,
+          programResults: _programResults,
+          selectedProgram: _selectedProgram,
+          downloadableArtworks: _downloadableArtworks,
+        );
+      });
+    }
+  }
+}

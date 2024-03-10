@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
-import 'package:non_steam_artwork/core/ui/markdown_screen.dart';
+import 'package:non_steam_artwork/core/ui/common/markdown_screen.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
   const PrivacyPolicyScreen({super.key});

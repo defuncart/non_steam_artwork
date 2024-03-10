@@ -13,13 +13,15 @@ homeTipsCleanUpCacheButton;Clean up
 homeTipsAddApiKeyDescription;A SteamGridDB api key is required in order to automatically download artwork.
 homeTipsAddApiKeyButton;Add key
 homeSearchEmpty;No results founds.
-homeProgramsEmpty;No programs have been added to steam launcher.
+homeProgramsEmpty;No programs found.
+homeArtworkEmpty;No artwork found.
 homeProgramSearchSteamGridDB;Search on SteamGridDB
 homeProgramArtworkPaste;Paste
 homeProgramArtworkDelete;Delete
 homeProgramArtworkCreateEmptyLogo;Create empty logo
 homeProgramArtworkSetBackgroundAsHero;Set as hero
 homeProgramArtworkSetHeroAsBackground;Set as background
+homeProgramPasteError;Clipboard contents is not JPEG/PNG
 menuBarFile;File
 menuBarFileQuit;Quit
 menuBarCache;Cache
