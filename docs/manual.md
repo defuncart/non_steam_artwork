@@ -16,13 +16,13 @@ Each program in the Steam library has five visual elements that can be customize
 
 \* icons are currently not supported.
 
-![](https://raw.githubusercontent.com/defuncart/non_steam_artwork/feature/add-manual/docs/images/01.png)
+![](https://raw.githubusercontent.com/defuncart/non_steam_artwork/main/docs/images/01.png)
 
 ## Getting Started
 
 In Desktop mode, download the [latest release](https://github.com/defuncart/non_steam_artwork/releases/latest), extract the downloaded zip and run the application `non_steam_artwork/non_steam_artwork` via Steam or third party program (i.e. Lutris).
 
-![](https://raw.githubusercontent.com/defuncart/non_steam_artwork/feature/add-manual/docs/images/02.png)
+![](https://raw.githubusercontent.com/defuncart/non_steam_artwork/main/docs/images/02.png)
 
 A couple of helpful tips are displayed when relevant:
 
@@ -73,7 +73,7 @@ After artwork has been updated, Steam needs to be re-started in order for change
 
 When 'Search on SteamGridDB' option is chosen, the program's name is initially used as a search term. Depending on this user defined name, the correct artwork may not be found. Consider the program 'Firefox' which uses the colloquial name (instead of official 'Mozilla Firefox'). By default, SteamGridDB lists 'Firefox Reality' as the best first suggestion.
 
-![](https://raw.githubusercontent.com/defuncart/non_steam_artwork/feature/add-manual/docs/images/03.png)
+![](https://raw.githubusercontent.com/defuncart/non_steam_artwork/main/docs/images/03.png)
 
 Artwork for 'Mozilla Firefox' can be loaded by either selecting the program from the dropdown menu, or manually updating the search term.
 
