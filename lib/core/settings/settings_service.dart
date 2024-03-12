@@ -7,6 +7,9 @@ abstract class ISettingsService {
   ThemeMode get themeMode;
   set themeMode(ThemeMode value);
 
+  bool get hasSeenOnboarding;
+  set hasSeenOnboarding(bool value);
+
   FilteredProgramTypes get filteredProgramTypes;
   set filteredProgramTypes(FilteredProgramTypes value);
 
@@ -41,6 +44,15 @@ class SettingsService extends ISettingsService {
 
   @override
   set themeMode(ThemeMode value) => _box.put(_Keys.themeMode, value.index);
+
+  @override
+  bool get hasSeenOnboarding => _box.get(
+        _Keys.hasSeenOnboarding,
+        defaultValue: _Defaults.hasSeenOnboarding,
+      );
+
+  @override
+  set hasSeenOnboarding(bool value) => _box.put(_Keys.hasSeenOnboarding, value);
 
   @override
   FilteredProgramTypes get filteredProgramTypes => _box.get(
@@ -94,6 +106,7 @@ class _Keys {
   _Keys._();
 
   static const themeMode = 'themeMode';
+  static const hasSeenOnboarding = 'hasSeenOnboarding';
   static const filteredProgramTypes = 'filteredProgramTypes';
   static const sortProgramType = 'sortProgramType';
   static const steamGridDBApiKey = 'steamGridDBApiKey';
@@ -104,6 +117,7 @@ class _Defaults {
   _Defaults._();
 
   static const themeMode = ThemeMode.system;
+  static const hasSeenOnboarding = false;
   static final filteredProgramTypes = FilteredProgramTypes();
   static const sortProgramType = SortProgramType.dateAdded;
   static const isSortingAscending = true;

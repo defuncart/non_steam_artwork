@@ -6,11 +6,13 @@ homeAppBarSortAlphabetic;Name
 homeAppBarSortProgramId;Id
 homeErrorLabel1;An error has occured: {error}.
 homeErrorLabel2;Please view logs and report this issue.
+homeTipsOnboardingManualDescription;Manual has not been viewed. Please consult the manual before first usage.
+homeTipsOnboardingManualCacheButton;View
 homeTipsBackupCacheDescription;No cache back found. A backup is recommended before editing artwork.
 homeTipsBackupCacheButton;Backup
 homeTipsCleanUpCacheDescription;There is unused art in your cache. You can free up {value}.
 homeTipsCleanUpCacheButton;Clean up
-homeTipsAddApiKeyDescription;A SteamGridDB api key is required in order to automatically download artwork.
+homeTipsAddApiKeyDescription;A SteamGridDB api key is required in order to download artwork.
 homeTipsAddApiKeyButton;Add key
 homeSearchEmpty;No results founds.
 homeProgramsEmpty;No programs found.
@@ -44,5 +46,6 @@ generalErrorTryAgain;Try again
 generalOk;Ok
 logsScreenTitle;Logs
 privacyPolicyScreenTitle;Privacy Policy
+manualScreenTitle;Manual
 steamGridDBDialogTitle;API key
-steamGridDBDialogDescription;An api key from [SteamGridDB](https://www.steamgriddb.com/) is required in order to automatically download artwork.
+steamGridDBDialogDescription;An api key from [SteamGridDB](https://www.steamgriddb.com/) is required in order to download artwork.

@@ -22,6 +22,7 @@ import 'package:non_steam_artwork/features/home/home_tips_panel.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:non_steam_artwork/features/support/licenses_screen.dart';
 import 'package:non_steam_artwork/features/support/logs_screen.dart';
+import 'package:non_steam_artwork/features/support/manual_screen.dart';
 import 'package:non_steam_artwork/features/support/privacy_policy_screen.dart';
 import 'package:non_steam_artwork/features/support/steamgriddb_dialog.dart';
 import 'package:super_clipboard/super_clipboard.dart';
@@ -96,6 +97,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         NativeSubmenu(
           label: context.l10n.menuBarView,
           children: [
+            NativeMenuItem(
+              label: 'Manual',
+              onSelected: () => ManualScreen.show(context),
+            ),
             NativeMenuItem(
               label: context.l10n.menuBarViewLogs,
               onSelected: () => LogsScreen.show(context),

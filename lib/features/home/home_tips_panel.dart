@@ -5,6 +5,7 @@ import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
+import 'package:non_steam_artwork/features/support/manual_screen.dart';
 import 'package:non_steam_artwork/features/support/steamgriddb_dialog.dart';
 
 class HomeTipsPanel extends StatelessWidget {
@@ -16,6 +17,9 @@ class HomeTipsPanel extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Flexible(
+          child: OnboardingManualView(),
+        ),
+        Flexible(
           child: BackupUpCacheView(),
         ),
         Flexible(
@@ -26,6 +30,30 @@ class HomeTipsPanel extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+@visibleForTesting
+class OnboardingManualView extends ConsumerWidget {
+  const OnboardingManualView({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(hasSeenOnboardingControllerProvider);
+
+    return state
+        ? const SizedBox.shrink()
+        : TipCard(
+            backgroundColor: context.colorScheme.tertiaryContainer,
+            foregroundColor: context.colorScheme.onTertiaryContainer,
+            title: context.l10n.homeTipsOnboardingManualDescription,
+            buttonIcon: Icons.menu_book,
+            buttonLabel: context.l10n.homeTipsOnboardingManualCacheButton,
+            onButtonPressed: () {
+              ref.read(hasSeenOnboardingControllerProvider.notifier).toggle();
+              ManualScreen.show(context);
+            },
+          );
   }
 }
 
