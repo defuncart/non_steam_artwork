@@ -1,6 +1,6 @@
 # Manual
 
-*Non-Steam Artwork* is a linux tool to update artwork for non-Steam programs. This document can be refered 
+*Non-Steam Artwork* is a linux tool to update artwork for non-Steam programs. This tool is not affiliated with Valve Corporation, nor the Steam platform.
 
 ## Supported Artwork
 
