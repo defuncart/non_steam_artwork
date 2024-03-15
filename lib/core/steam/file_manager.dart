@@ -45,18 +45,21 @@ class FileManager {
     }
   }
 
-  Future<void> deleteInWithBasename({
+  Future<bool> deleteInWithBasename({
     required String dirPath,
     required String pattern,
   }) async {
+    var hasDeletedFile = false;
     if (await Directory(dirPath).exists()) {
       final results = (await Directory(dirPath).list().toList())
           .whereType<File>()
           .where((element) => p.basenameWithoutExtension(element.path) == pattern);
       for (final result in results) {
         await result.delete();
+        hasDeletedFile = true;
         _logger.log('deleted ${result.path}');
       }
     }
+    return hasDeletedFile;
   }
 }

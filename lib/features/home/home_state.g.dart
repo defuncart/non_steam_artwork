@@ -218,7 +218,7 @@ class _DeleteArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   File get file => (origin as DeleteArtworkProvider).file;
 }
 
-String _$copyArtworkHash() => r'b855792ddaddfdf835edcecbf5008822c2079ba4';
+String _$copyArtworkHash() => r'049b3b43ccbda3c32a6d09c662c0ca4245bcebbb';
 
 /// See also [copyArtwork].
 @ProviderFor(copyArtwork)
@@ -403,7 +403,7 @@ class _CopyArtworkProviderElement extends AutoDisposeFutureProviderElement<void>
   SteamGridArtType get artType => (origin as CopyArtworkProvider).artType;
 }
 
-String _$createArtworkFileHash() => r'ca2c57db31e1538d5e6c40961ca9509991b30862';
+String _$createArtworkFileHash() => r'd5114b17144083e9e2494bcad054ef88878ef5a0';
 
 /// See also [createArtworkFile].
 @ProviderFor(createArtworkFile)
@@ -628,7 +628,7 @@ class _CreateArtworkFileProviderElement extends AutoDisposeFutureProviderElement
   SteamGridArtType get artType => (origin as CreateArtworkFileProvider).artType;
 }
 
-String _$createArtworkHash() => r'10dde8001c06bc7422dd3816b6d487026704caa1';
+String _$createArtworkHash() => r'4dc1aa8badace29b7a59f8dca2d5101182568e0a';
 
 /// See also [createArtwork].
 @ProviderFor(createArtwork)
@@ -906,6 +906,196 @@ final steamProgramsProvider = AutoDisposeAsyncNotifierProvider<SteamPrograms, It
 );
 
 typedef _$SteamPrograms = AutoDisposeAsyncNotifier<Iterable<SteamProgram>>;
+String _$replacedFilesControllerHash() => r'3d143a1ffb4e69b0c28e664ef8ed106ac05a2121';
+
+/// See also [_ReplacedFilesController].
+@ProviderFor(_ReplacedFilesController)
+final _replacedFilesControllerProvider = NotifierProvider<_ReplacedFilesController, Set<String>>.internal(
+  _ReplacedFilesController.new,
+  name: r'_replacedFilesControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$replacedFilesControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$ReplacedFilesController = Notifier<Set<String>>;
+String _$wasFileReplacedControllerHash() => r'69297efee1b523fd9c6bd670bc8a6df416aaaf94';
+
+abstract class _$WasFileReplacedController extends BuildlessAutoDisposeNotifier<bool> {
+  late final String path;
+
+  bool build(
+    String path,
+  );
+}
+
+/// See also [WasFileReplacedController].
+@ProviderFor(WasFileReplacedController)
+const wasFileReplacedControllerProvider = WasFileReplacedControllerFamily();
+
+/// See also [WasFileReplacedController].
+class WasFileReplacedControllerFamily extends Family {
+  /// See also [WasFileReplacedController].
+  const WasFileReplacedControllerFamily();
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+
+  @override
+  String? get name => r'wasFileReplacedControllerProvider';
+
+  /// See also [WasFileReplacedController].
+  WasFileReplacedControllerProvider call(
+    String path,
+  ) {
+    return WasFileReplacedControllerProvider(
+      path,
+    );
+  }
+
+  @visibleForOverriding
+  @override
+  WasFileReplacedControllerProvider getProviderOverride(
+    covariant WasFileReplacedControllerProvider provider,
+  ) {
+    return call(
+      provider.path,
+    );
+  }
+
+  /// Enables overriding the behavior of this provider, no matter the parameters.
+  Override overrideWith(WasFileReplacedController Function() create) {
+    return _$WasFileReplacedControllerFamilyOverride(this, create);
+  }
+}
+
+class _$WasFileReplacedControllerFamilyOverride implements FamilyOverride {
+  _$WasFileReplacedControllerFamilyOverride(this.overriddenFamily, this.create);
+
+  final WasFileReplacedController Function() create;
+
+  @override
+  final WasFileReplacedControllerFamily overriddenFamily;
+
+  @override
+  WasFileReplacedControllerProvider getProviderOverride(
+    covariant WasFileReplacedControllerProvider provider,
+  ) {
+    return provider._copyWith(create);
+  }
+}
+
+/// See also [WasFileReplacedController].
+class WasFileReplacedControllerProvider extends AutoDisposeNotifierProviderImpl<WasFileReplacedController, bool> {
+  /// See also [WasFileReplacedController].
+  WasFileReplacedControllerProvider(
+    String path,
+  ) : this._internal(
+          () => WasFileReplacedController()..path = path,
+          from: wasFileReplacedControllerProvider,
+          name: r'wasFileReplacedControllerProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product') ? null : _$wasFileReplacedControllerHash,
+          dependencies: WasFileReplacedControllerFamily._dependencies,
+          allTransitiveDependencies: WasFileReplacedControllerFamily._allTransitiveDependencies,
+          path: path,
+        );
+
+  WasFileReplacedControllerProvider._internal(
+    super.create, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.path,
+  }) : super.internal();
+
+  final String path;
+
+  @override
+  bool runNotifierBuild(
+    covariant WasFileReplacedController notifier,
+  ) {
+    return notifier.build(
+      path,
+    );
+  }
+
+  @override
+  Override overrideWith(WasFileReplacedController Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: WasFileReplacedControllerProvider._internal(
+        () => create()..path = path,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        path: path,
+      ),
+    );
+  }
+
+  @override
+  (String,) get argument {
+    return (path,);
+  }
+
+  @override
+  AutoDisposeNotifierProviderElement<WasFileReplacedController, bool> createElement() {
+    return _WasFileReplacedControllerProviderElement(this);
+  }
+
+  WasFileReplacedControllerProvider _copyWith(
+    WasFileReplacedController Function() create,
+  ) {
+    return WasFileReplacedControllerProvider._internal(
+      () => create()..path = path,
+      name: name,
+      dependencies: dependencies,
+      allTransitiveDependencies: allTransitiveDependencies,
+      debugGetCreateSourceHash: debugGetCreateSourceHash,
+      from: from,
+      path: path,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is WasFileReplacedControllerProvider && other.path == path;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, path.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin WasFileReplacedControllerRef on AutoDisposeNotifierProviderRef<bool> {
+  /// The parameter `path` of this provider.
+  String get path;
+}
+
+class _WasFileReplacedControllerProviderElement
+    extends AutoDisposeNotifierProviderElement<WasFileReplacedController, bool> with WasFileReplacedControllerRef {
+  _WasFileReplacedControllerProviderElement(super.provider);
+
+  @override
+  String get path => (origin as WasFileReplacedControllerProvider).path;
+}
+
 String _$downloadableArtworkControllerHash() => r'b476a7f8e7cbf3c50a2b5601312178e8f43f96a0';
 
 abstract class _$DownloadableArtworkController extends BuildlessAutoDisposeAsyncNotifier<DownloadableArtworkState> {

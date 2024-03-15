@@ -443,7 +443,7 @@ class _SteamArtworkState extends State<SteamArtwork> {
             child: Opacity(
               opacity: _isDragging ? 0.75 : 1,
               child: widget.file != null
-                  ? Image.file(widget.file!)
+                  ? ArtworkImage(widget.file!)
                   : ColoredBox(
                       color: context.colorScheme.tertiary,
                       child: Icon(
@@ -457,5 +457,34 @@ class _SteamArtworkState extends State<SteamArtwork> {
         ),
       ),
     );
+  }
+}
+
+// When a.png already exists on disk and is replaced, Image.file does not represent
+// new contents. As a hack, a list of replaced files are kept in memory and when a
+// replaced image should be rendered, Image.memory is used instead
+@visibleForTesting
+class ArtworkImage extends ConsumerWidget {
+  const ArtworkImage(
+    this.file, {
+    super.key,
+  });
+
+  final File file;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final provider = wasFileReplacedControllerProvider(file.path);
+    final wasUpdated = ref.watch(provider);
+    if (wasUpdated) {
+      // to cover case of rendering after file replaced/deleted, use cache
+      try {
+        return Image.memory(file.readAsBytesSync());
+      } catch (e) {
+        return const SizedBox.shrink();
+      }
+    }
+
+    return Image.file(file);
   }
 }

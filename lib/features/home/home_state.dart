@@ -190,8 +190,12 @@ Future<void> copyArtwork(
   } else {
     filename = filename.replaceAll('_hero', '');
   }
-  await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: filename);
+
   final fullpath = p.join(dir, '$filename$fileExt');
+  final hasDeletedFile = await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: filename);
+  if (hasDeletedFile) {
+    ref.read(_replacedFilesControllerProvider.notifier).add(fullpath);
+  }
 
   await file.copy(fullpath);
   ref.log('artwork copied to $fullpath');
@@ -212,8 +216,11 @@ Future<void> createArtworkFile(
         appId: appId,
         artType: artType,
       );
-  await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: basename);
   final filepath = p.join(dir, '$basename$ext');
+  final hasDeletedFile = await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: basename);
+  if (hasDeletedFile) {
+    ref.read(_replacedFilesControllerProvider.notifier).add(filepath);
+  }
 
   await file.copy(filepath);
   ref.log('artwork $filepath created');
@@ -234,15 +241,38 @@ Future<void> createArtwork(
         appId: appId,
         artType: artType,
       );
-  await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: basename);
   final filepath = p.join(dir, '$basename$ext');
   final file = File(filepath);
+  final hasDeletedFile = await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: basename);
+  if (hasDeletedFile) {
+    ref.read(_replacedFilesControllerProvider.notifier).add(filepath);
+  }
 
   final bytes = await bytesStream.toList();
   await file.writeAsBytes(bytes.first, mode: FileMode.writeOnly);
   ref.log('artwork $filepath created');
 
   ref.invalidate(steamProgramsProvider);
+}
+
+@Riverpod(keepAlive: true)
+class _ReplacedFilesController extends _$ReplacedFilesController {
+  @override
+  Set<String> build() => {};
+
+  void add(String path) {
+    final newState = Set<String>.from(state);
+    newState.add(path);
+    if (newState != state) {
+      state = newState;
+    }
+  }
+}
+
+@riverpod
+class WasFileReplacedController extends _$WasFileReplacedController {
+  @override
+  bool build(String path) => ref.watch(_replacedFilesControllerProvider).contains(path);
 }
 
 typedef DownloadableArtwork = ({
