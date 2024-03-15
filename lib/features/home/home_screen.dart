@@ -477,13 +477,12 @@ class ArtworkImage extends ConsumerWidget {
     final provider = wasFileReplacedControllerProvider(file.path);
     final wasUpdated = ref.watch(provider);
     if (wasUpdated) {
-      print('${file.path} was updated');
-
-      // Future.microtask(
-      //   () => ref.read(updatedFilesControllerProvider.notifier).remove(file.path),
-      // );
-      // ref.read(provider.notifier).reset(file.path);
-      return Image.memory(file.readAsBytesSync());
+      // to cover case of rendering after file replaced/deleted, use cache
+      try {
+        return Image.memory(file.readAsBytesSync());
+      } catch (e) {
+        return const SizedBox.shrink();
+      }
     }
 
     return Image.file(file);

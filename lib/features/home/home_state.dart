@@ -255,7 +255,7 @@ Future<void> createArtwork(
   ref.invalidate(steamProgramsProvider);
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class _ReplacedFilesController extends _$ReplacedFilesController {
   @override
   List<String> build() => [];
