@@ -258,18 +258,14 @@ Future<void> createArtwork(
 @Riverpod(keepAlive: true)
 class _ReplacedFilesController extends _$ReplacedFilesController {
   @override
-  List<String> build() => [];
+  Set<String> build() => {};
 
   void add(String path) {
-    final newState = List<String>.from(state);
+    final newState = Set<String>.from(state);
     newState.add(path);
-    state = newState;
-  }
-
-  void remove(String path) {
-    final newState = List<String>.from(state);
-    newState.remove(path);
-    state = newState;
+    if (newState != state) {
+      state = newState;
+    }
   }
 }
 

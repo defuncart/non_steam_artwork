@@ -906,11 +906,11 @@ final steamProgramsProvider = AutoDisposeAsyncNotifierProvider<SteamPrograms, It
 );
 
 typedef _$SteamPrograms = AutoDisposeAsyncNotifier<Iterable<SteamProgram>>;
-String _$replacedFilesControllerHash() => r'e720d81b6c761c215385798bfbc93696cc515ada';
+String _$replacedFilesControllerHash() => r'3d143a1ffb4e69b0c28e664ef8ed106ac05a2121';
 
 /// See also [_ReplacedFilesController].
 @ProviderFor(_ReplacedFilesController)
-final _replacedFilesControllerProvider = NotifierProvider<_ReplacedFilesController, List<String>>.internal(
+final _replacedFilesControllerProvider = NotifierProvider<_ReplacedFilesController, Set<String>>.internal(
   _ReplacedFilesController.new,
   name: r'_replacedFilesControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$replacedFilesControllerHash,
@@ -918,7 +918,7 @@ final _replacedFilesControllerProvider = NotifierProvider<_ReplacedFilesControll
   allTransitiveDependencies: null,
 );
 
-typedef _$ReplacedFilesController = Notifier<List<String>>;
+typedef _$ReplacedFilesController = Notifier<Set<String>>;
 String _$wasFileReplacedControllerHash() => r'69297efee1b523fd9c6bd670bc8a6df416aaaf94';
 
 abstract class _$WasFileReplacedController extends BuildlessAutoDisposeNotifier<bool> {
