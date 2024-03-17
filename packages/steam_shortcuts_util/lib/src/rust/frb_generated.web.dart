@@ -64,7 +64,8 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
 
   @protected
-  List<SteamShortcut> sse_decode_list_steam_shortcut(SseDeserializer deserializer);
+  List<SteamShortcut> sse_decode_list_steam_shortcut(
+      SseDeserializer deserializer);
 
   @protected
   SteamShortcut sse_decode_steam_shortcut(SseDeserializer deserializer);
@@ -82,7 +83,8 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   int sse_decode_i_32(SseDeserializer deserializer);
 
   @protected
-  void sse_encode_AnyhowException(AnyhowException self, SseSerializer serializer);
+  void sse_encode_AnyhowException(
+      AnyhowException self, SseSerializer serializer);
 
   @protected
   void sse_encode_String(String self, SseSerializer serializer);
@@ -94,10 +96,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_list_String(List<String> self, SseSerializer serializer);
 
   @protected
-  void sse_encode_list_prim_u_8_strict(Uint8List self, SseSerializer serializer);
+  void sse_encode_list_prim_u_8_strict(
+      Uint8List self, SseSerializer serializer);
 
   @protected
-  void sse_encode_list_steam_shortcut(List<SteamShortcut> self, SseSerializer serializer);
+  void sse_encode_list_steam_shortcut(
+      List<SteamShortcut> self, SseSerializer serializer);
 
   @protected
   void sse_encode_steam_shortcut(SteamShortcut self, SseSerializer serializer);
