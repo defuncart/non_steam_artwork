@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
+import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/features/viewer/viewer_state.dart';
 import 'package:steam_shortcuts_util/steam_shortcuts_util.dart';
@@ -59,6 +63,7 @@ class _ShortcutsViewerScreenContentState extends ConsumerState<ShortcutsViewerSc
     }
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
           child: ListView.builder(
@@ -94,6 +99,89 @@ class ShortcutDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(shortcut.toString());
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: 64,
+              height: 64,
+              child: shortcut.icon.isNotEmpty
+                  ? Image.file(File(shortcut.icon))
+                  : ColoredBox(
+                      color: context.colorScheme.tertiary,
+                      child: Icon(
+                        Icons.broken_image,
+                        size: 64 * 0.25,
+                        color: context.colorScheme.onTertiary,
+                      ),
+                    ),
+            ),
+            const Gap(16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    shortcut.appName,
+                    style: context.textTheme.headlineMedium,
+                  ),
+                  Text(
+                    shortcut.appId.toString(),
+                    style: context.textTheme.headlineSmall,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        const Gap(16),
+        TextField(
+          readOnly: true,
+          controller: TextEditingController()..text = shortcut.target,
+          decoration: const InputDecoration(
+            label: Text('Target'),
+          ),
+        ),
+        const Gap(4),
+        TextField(
+          readOnly: true,
+          controller: TextEditingController()..text = shortcut.startDir,
+          decoration: const InputDecoration(
+            label: Text('Start in'),
+          ),
+        ),
+        const Gap(4),
+        TextField(
+          readOnly: true,
+          controller: TextEditingController()..text = shortcut.launchOptions,
+          decoration: const InputDecoration(
+            label: Text('Launch options'),
+          ),
+        ),
+        const Gap(16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text('Hidden'),
+            Switch(
+              value: shortcut.isHidden,
+              onChanged: null,
+            ),
+          ],
+        ),
+        const Gap(16),
+        const Text('Tags'),
+        const Gap(4),
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: shortcut.tags.map((e) => Text(e)).toList(),
+        ),
+      ],
+    );
   }
 }
