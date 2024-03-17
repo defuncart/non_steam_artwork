@@ -119,6 +119,25 @@ impl SseDecode for String {
     }
 }
 
+impl SseDecode for bool {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_u8().unwrap() != 0
+    }
+}
+
+impl SseDecode for Vec<String> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = vec![];
+        for idx_ in 0..len_ {
+            ans_.push(<String>::sse_decode(deserializer));
+        }
+        return ans_;
+    }
+}
+
 impl SseDecode for Vec<u8> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -152,11 +171,19 @@ impl SseDecode for crate::api::simple::SteamShortcut {
         let mut var_appName = <String>::sse_decode(deserializer);
         let mut var_target = <String>::sse_decode(deserializer);
         let mut var_launchOptions = <String>::sse_decode(deserializer);
+        let mut var_startDir = <String>::sse_decode(deserializer);
+        let mut var_icon = <String>::sse_decode(deserializer);
+        let mut var_isHidden = <bool>::sse_decode(deserializer);
+        let mut var_tags = <Vec<String>>::sse_decode(deserializer);
         return crate::api::simple::SteamShortcut {
             app_id: var_appId,
             app_name: var_appName,
             target: var_target,
             launch_options: var_launchOptions,
+            start_dir: var_startDir,
+            icon: var_icon,
+            is_hidden: var_isHidden,
+            tags: var_tags,
         };
     }
 }
@@ -184,13 +211,6 @@ impl SseDecode for i32 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         deserializer.cursor.read_i32::<NativeEndian>().unwrap()
-    }
-}
-
-impl SseDecode for bool {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        deserializer.cursor.read_u8().unwrap() != 0
     }
 }
 
@@ -231,6 +251,10 @@ impl flutter_rust_bridge::IntoDart for crate::api::simple::SteamShortcut {
             self.app_name.into_into_dart().into_dart(),
             self.target.into_into_dart().into_dart(),
             self.launch_options.into_into_dart().into_dart(),
+            self.start_dir.into_into_dart().into_dart(),
+            self.icon.into_into_dart().into_dart(),
+            self.is_hidden.into_into_dart().into_dart(),
+            self.tags.into_into_dart().into_dart(),
         ]
         .into_dart()
     }
@@ -261,6 +285,23 @@ impl SseEncode for String {
     }
 }
 
+impl SseEncode for bool {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_u8(self as _).unwrap();
+    }
+}
+
+impl SseEncode for Vec<String> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <String>::sse_encode(item, serializer);
+        }
+    }
+}
+
 impl SseEncode for Vec<u8> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -288,6 +329,10 @@ impl SseEncode for crate::api::simple::SteamShortcut {
         <String>::sse_encode(self.app_name, serializer);
         <String>::sse_encode(self.target, serializer);
         <String>::sse_encode(self.launch_options, serializer);
+        <String>::sse_encode(self.start_dir, serializer);
+        <String>::sse_encode(self.icon, serializer);
+        <bool>::sse_encode(self.is_hidden, serializer);
+        <Vec<String>>::sse_encode(self.tags, serializer);
     }
 }
 
@@ -314,13 +359,6 @@ impl SseEncode for i32 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         serializer.cursor.write_i32::<NativeEndian>(self).unwrap();
-    }
-}
-
-impl SseEncode for bool {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        serializer.cursor.write_u8(self as _).unwrap();
     }
 }
 

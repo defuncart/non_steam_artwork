@@ -16,6 +16,10 @@ pub async fn parse(path: String) -> anyhow::Result<Vec<SteamShortcut>> {
                     app_name: String::from(x.app_name),
                     target: String::from(x.exe),
                     launch_options: String::from(x.launch_options),
+                    start_dir: String::from(x.start_dir),
+                    icon: String::from(x.icon),
+                    is_hidden: x.is_hidden,
+                    tags: x.tags.into_iter().map(|v| String::from(v)).collect(),
                 })
                 .collect());
         }
@@ -31,4 +35,8 @@ pub struct SteamShortcut {
     pub app_name: String,
     pub target: String,
     pub launch_options: String,
+    pub start_dir: String,
+    pub icon: String,
+    pub is_hidden: bool,
+    pub tags: Vec<String>,
 }
