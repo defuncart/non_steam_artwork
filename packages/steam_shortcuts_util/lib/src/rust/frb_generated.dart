@@ -54,7 +54,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.0.0-dev.35';
 
   @override
-  int get rustContentHash => 1977074999;
+  int get rustContentHash => 1946801753;
 
   static const kDefaultExternalLibraryLoaderConfig = ExternalLibraryLoaderConfig(
     stem: 'rust_lib_steam_shortcuts_util',
@@ -64,6 +64,8 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
 }
 
 abstract class RustLibApi extends BaseApi {
+  Future<Uint8List> crateApiSimpleGenerateBytes({required List<SteamShortcut> shortcuts, dynamic hint});
+
   Future<void> crateApiSimpleInitApp({dynamic hint});
 
   Future<List<SteamShortcut>> crateApiSimpleParse({required String path, dynamic hint});
@@ -76,6 +78,30 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     required super.generalizedFrbRustBinding,
     required super.portManager,
   });
+
+  @override
+  Future<Uint8List> crateApiSimpleGenerateBytes({required List<SteamShortcut> shortcuts, dynamic hint}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_list_steam_shortcut(shortcuts, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 3, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_list_prim_u_8_strict,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiSimpleGenerateBytesConstMeta,
+      argValues: [shortcuts],
+      apiImpl: this,
+      hint: hint,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiSimpleGenerateBytesConstMeta => const TaskConstMeta(
+        debugName: "generate_bytes",
+        argNames: ["shortcuts"],
+      );
 
   @override
   Future<void> crateApiSimpleInitApp({dynamic hint}) {
@@ -164,17 +190,25 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   SteamShortcut dco_decode_steam_shortcut(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
-    if (arr.length != 9) throw Exception('unexpected arr length: expect 9 but see ${arr.length}');
+    if (arr.length != 17) throw Exception('unexpected arr length: expect 17 but see ${arr.length}');
     return SteamShortcut(
-      appId: dco_decode_u_32(arr[0]),
-      appName: dco_decode_String(arr[1]),
-      target: dco_decode_String(arr[2]),
-      launchOptions: dco_decode_String(arr[3]),
-      startDir: dco_decode_String(arr[4]),
-      icon: dco_decode_String(arr[5]),
-      isHidden: dco_decode_bool(arr[6]),
-      tags: dco_decode_list_String(arr[7]),
-      lastPlayTime: dco_decode_u_32(arr[8]),
+      order: dco_decode_String(arr[0]),
+      appId: dco_decode_u_32(arr[1]),
+      appName: dco_decode_String(arr[2]),
+      target: dco_decode_String(arr[3]),
+      launchOptions: dco_decode_String(arr[4]),
+      startDir: dco_decode_String(arr[5]),
+      icon: dco_decode_String(arr[6]),
+      shortcutPath: dco_decode_String(arr[7]),
+      isHidden: dco_decode_bool(arr[8]),
+      allowDesktopConfig: dco_decode_bool(arr[9]),
+      allowOverlay: dco_decode_bool(arr[10]),
+      openVr: dco_decode_u_32(arr[11]),
+      devKit: dco_decode_u_32(arr[12]),
+      devKitGameId: dco_decode_String(arr[13]),
+      devKitOverriteAppId: dco_decode_u_32(arr[14]),
+      lastPlayTime: dco_decode_u_32(arr[15]),
+      tags: dco_decode_list_String(arr[16]),
     );
   }
 
@@ -250,25 +284,41 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   @protected
   SteamShortcut sse_decode_steam_shortcut(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_order = sse_decode_String(deserializer);
     var var_appId = sse_decode_u_32(deserializer);
     var var_appName = sse_decode_String(deserializer);
     var var_target = sse_decode_String(deserializer);
     var var_launchOptions = sse_decode_String(deserializer);
     var var_startDir = sse_decode_String(deserializer);
     var var_icon = sse_decode_String(deserializer);
+    var var_shortcutPath = sse_decode_String(deserializer);
     var var_isHidden = sse_decode_bool(deserializer);
-    var var_tags = sse_decode_list_String(deserializer);
+    var var_allowDesktopConfig = sse_decode_bool(deserializer);
+    var var_allowOverlay = sse_decode_bool(deserializer);
+    var var_openVr = sse_decode_u_32(deserializer);
+    var var_devKit = sse_decode_u_32(deserializer);
+    var var_devKitGameId = sse_decode_String(deserializer);
+    var var_devKitOverriteAppId = sse_decode_u_32(deserializer);
     var var_lastPlayTime = sse_decode_u_32(deserializer);
+    var var_tags = sse_decode_list_String(deserializer);
     return SteamShortcut(
+        order: var_order,
         appId: var_appId,
         appName: var_appName,
         target: var_target,
         launchOptions: var_launchOptions,
         startDir: var_startDir,
         icon: var_icon,
+        shortcutPath: var_shortcutPath,
         isHidden: var_isHidden,
-        tags: var_tags,
-        lastPlayTime: var_lastPlayTime);
+        allowDesktopConfig: var_allowDesktopConfig,
+        allowOverlay: var_allowOverlay,
+        openVr: var_openVr,
+        devKit: var_devKit,
+        devKitGameId: var_devKitGameId,
+        devKitOverriteAppId: var_devKitOverriteAppId,
+        lastPlayTime: var_lastPlayTime,
+        tags: var_tags);
   }
 
   @protected
@@ -340,15 +390,23 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   @protected
   void sse_encode_steam_shortcut(SteamShortcut self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_String(self.order, serializer);
     sse_encode_u_32(self.appId, serializer);
     sse_encode_String(self.appName, serializer);
     sse_encode_String(self.target, serializer);
     sse_encode_String(self.launchOptions, serializer);
     sse_encode_String(self.startDir, serializer);
     sse_encode_String(self.icon, serializer);
+    sse_encode_String(self.shortcutPath, serializer);
     sse_encode_bool(self.isHidden, serializer);
-    sse_encode_list_String(self.tags, serializer);
+    sse_encode_bool(self.allowDesktopConfig, serializer);
+    sse_encode_bool(self.allowOverlay, serializer);
+    sse_encode_u_32(self.openVr, serializer);
+    sse_encode_u_32(self.devKit, serializer);
+    sse_encode_String(self.devKitGameId, serializer);
+    sse_encode_u_32(self.devKitOverriteAppId, serializer);
     sse_encode_u_32(self.lastPlayTime, serializer);
+    sse_encode_list_String(self.tags, serializer);
   }
 
   @protected

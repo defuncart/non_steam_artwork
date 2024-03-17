@@ -32,7 +32,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.0.0-dev.35";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1977074999;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1946801753;
 
 // Section: executor
 
@@ -40,6 +40,42 @@ flutter_rust_bridge::frb_generated_default_handler!();
 
 // Section: wire_funcs
 
+fn wire__crate__api__simple__generate_bytes_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "generate_bytes",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_shortcuts =
+                <Vec<crate::api::simple::SteamShortcut>>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse(
+                    (move || async move {
+                        Result::<_, ()>::Ok(crate::api::simple::generate_bytes(api_shortcuts).await)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
 fn wire__crate__api__simple__init_app_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
@@ -170,25 +206,41 @@ impl SseDecode for Vec<crate::api::simple::SteamShortcut> {
 impl SseDecode for crate::api::simple::SteamShortcut {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_order = <String>::sse_decode(deserializer);
         let mut var_appId = <u32>::sse_decode(deserializer);
         let mut var_appName = <String>::sse_decode(deserializer);
         let mut var_target = <String>::sse_decode(deserializer);
         let mut var_launchOptions = <String>::sse_decode(deserializer);
         let mut var_startDir = <String>::sse_decode(deserializer);
         let mut var_icon = <String>::sse_decode(deserializer);
+        let mut var_shortcutPath = <String>::sse_decode(deserializer);
         let mut var_isHidden = <bool>::sse_decode(deserializer);
-        let mut var_tags = <Vec<String>>::sse_decode(deserializer);
+        let mut var_allowDesktopConfig = <bool>::sse_decode(deserializer);
+        let mut var_allowOverlay = <bool>::sse_decode(deserializer);
+        let mut var_openVr = <u32>::sse_decode(deserializer);
+        let mut var_devKit = <u32>::sse_decode(deserializer);
+        let mut var_devKitGameId = <String>::sse_decode(deserializer);
+        let mut var_devKitOverriteAppId = <u32>::sse_decode(deserializer);
         let mut var_lastPlayTime = <u32>::sse_decode(deserializer);
+        let mut var_tags = <Vec<String>>::sse_decode(deserializer);
         return crate::api::simple::SteamShortcut {
+            order: var_order,
             app_id: var_appId,
             app_name: var_appName,
             target: var_target,
             launch_options: var_launchOptions,
             start_dir: var_startDir,
             icon: var_icon,
+            shortcut_path: var_shortcutPath,
             is_hidden: var_isHidden,
-            tags: var_tags,
+            allow_desktop_config: var_allowDesktopConfig,
+            allow_overlay: var_allowOverlay,
+            open_vr: var_openVr,
+            dev_kit: var_devKit,
+            dev_kit_game_id: var_devKitGameId,
+            dev_kit_overrite_app_id: var_devKitOverriteAppId,
             last_play_time: var_lastPlayTime,
+            tags: var_tags,
         };
     }
 }
@@ -228,6 +280,7 @@ fn pde_ffi_dispatcher_primary_impl(
 ) {
     // Codec=Pde (Serialization + dispatch), see doc to use other codecs
     match func_id {
+        3 => wire__crate__api__simple__generate_bytes_impl(port, ptr, rust_vec_len, data_len),
         1 => wire__crate__api__simple__init_app_impl(port, ptr, rust_vec_len, data_len),
         2 => wire__crate__api__simple__parse_impl(port, ptr, rust_vec_len, data_len),
         _ => unreachable!(),
@@ -252,15 +305,23 @@ fn pde_ffi_dispatcher_sync_impl(
 impl flutter_rust_bridge::IntoDart for crate::api::simple::SteamShortcut {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [
+            self.order.into_into_dart().into_dart(),
             self.app_id.into_into_dart().into_dart(),
             self.app_name.into_into_dart().into_dart(),
             self.target.into_into_dart().into_dart(),
             self.launch_options.into_into_dart().into_dart(),
             self.start_dir.into_into_dart().into_dart(),
             self.icon.into_into_dart().into_dart(),
+            self.shortcut_path.into_into_dart().into_dart(),
             self.is_hidden.into_into_dart().into_dart(),
-            self.tags.into_into_dart().into_dart(),
+            self.allow_desktop_config.into_into_dart().into_dart(),
+            self.allow_overlay.into_into_dart().into_dart(),
+            self.open_vr.into_into_dart().into_dart(),
+            self.dev_kit.into_into_dart().into_dart(),
+            self.dev_kit_game_id.into_into_dart().into_dart(),
+            self.dev_kit_overrite_app_id.into_into_dart().into_dart(),
             self.last_play_time.into_into_dart().into_dart(),
+            self.tags.into_into_dart().into_dart(),
         ]
         .into_dart()
     }
@@ -331,15 +392,23 @@ impl SseEncode for Vec<crate::api::simple::SteamShortcut> {
 impl SseEncode for crate::api::simple::SteamShortcut {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.order, serializer);
         <u32>::sse_encode(self.app_id, serializer);
         <String>::sse_encode(self.app_name, serializer);
         <String>::sse_encode(self.target, serializer);
         <String>::sse_encode(self.launch_options, serializer);
         <String>::sse_encode(self.start_dir, serializer);
         <String>::sse_encode(self.icon, serializer);
+        <String>::sse_encode(self.shortcut_path, serializer);
         <bool>::sse_encode(self.is_hidden, serializer);
-        <Vec<String>>::sse_encode(self.tags, serializer);
+        <bool>::sse_encode(self.allow_desktop_config, serializer);
+        <bool>::sse_encode(self.allow_overlay, serializer);
+        <u32>::sse_encode(self.open_vr, serializer);
+        <u32>::sse_encode(self.dev_kit, serializer);
+        <String>::sse_encode(self.dev_kit_game_id, serializer);
+        <u32>::sse_encode(self.dev_kit_overrite_app_id, serializer);
         <u32>::sse_encode(self.last_play_time, serializer);
+        <Vec<String>>::sse_encode(self.tags, serializer);
     }
 }
 

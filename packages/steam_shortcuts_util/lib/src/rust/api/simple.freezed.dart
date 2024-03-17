@@ -16,15 +16,23 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SteamShortcut {
+  String get order => throw _privateConstructorUsedError;
   int get appId => throw _privateConstructorUsedError;
   String get appName => throw _privateConstructorUsedError;
   String get target => throw _privateConstructorUsedError;
   String get launchOptions => throw _privateConstructorUsedError;
   String get startDir => throw _privateConstructorUsedError;
   String get icon => throw _privateConstructorUsedError;
+  String get shortcutPath => throw _privateConstructorUsedError;
   bool get isHidden => throw _privateConstructorUsedError;
-  List<String> get tags => throw _privateConstructorUsedError;
+  bool get allowDesktopConfig => throw _privateConstructorUsedError;
+  bool get allowOverlay => throw _privateConstructorUsedError;
+  int get openVr => throw _privateConstructorUsedError;
+  int get devKit => throw _privateConstructorUsedError;
+  String get devKitGameId => throw _privateConstructorUsedError;
+  int get devKitOverriteAppId => throw _privateConstructorUsedError;
   int get lastPlayTime => throw _privateConstructorUsedError;
+  List<String> get tags => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SteamShortcutCopyWith<SteamShortcut> get copyWith => throw _privateConstructorUsedError;
@@ -36,15 +44,23 @@ abstract class $SteamShortcutCopyWith<$Res> {
       _$SteamShortcutCopyWithImpl<$Res, SteamShortcut>;
   @useResult
   $Res call(
-      {int appId,
+      {String order,
+      int appId,
       String appName,
       String target,
       String launchOptions,
       String startDir,
       String icon,
+      String shortcutPath,
       bool isHidden,
-      List<String> tags,
-      int lastPlayTime});
+      bool allowDesktopConfig,
+      bool allowOverlay,
+      int openVr,
+      int devKit,
+      String devKitGameId,
+      int devKitOverriteAppId,
+      int lastPlayTime,
+      List<String> tags});
 }
 
 /// @nodoc
@@ -59,17 +75,29 @@ class _$SteamShortcutCopyWithImpl<$Res, $Val extends SteamShortcut> implements $
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? order = null,
     Object? appId = null,
     Object? appName = null,
     Object? target = null,
     Object? launchOptions = null,
     Object? startDir = null,
     Object? icon = null,
+    Object? shortcutPath = null,
     Object? isHidden = null,
-    Object? tags = null,
+    Object? allowDesktopConfig = null,
+    Object? allowOverlay = null,
+    Object? openVr = null,
+    Object? devKit = null,
+    Object? devKitGameId = null,
+    Object? devKitOverriteAppId = null,
     Object? lastPlayTime = null,
+    Object? tags = null,
   }) {
     return _then(_value.copyWith(
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as String,
       appId: null == appId
           ? _value.appId
           : appId // ignore: cast_nullable_to_non_nullable
@@ -94,18 +122,46 @@ class _$SteamShortcutCopyWithImpl<$Res, $Val extends SteamShortcut> implements $
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
               as String,
+      shortcutPath: null == shortcutPath
+          ? _value.shortcutPath
+          : shortcutPath // ignore: cast_nullable_to_non_nullable
+              as String,
       isHidden: null == isHidden
           ? _value.isHidden
           : isHidden // ignore: cast_nullable_to_non_nullable
               as bool,
-      tags: null == tags
-          ? _value.tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      allowDesktopConfig: null == allowDesktopConfig
+          ? _value.allowDesktopConfig
+          : allowDesktopConfig // ignore: cast_nullable_to_non_nullable
+              as bool,
+      allowOverlay: null == allowOverlay
+          ? _value.allowOverlay
+          : allowOverlay // ignore: cast_nullable_to_non_nullable
+              as bool,
+      openVr: null == openVr
+          ? _value.openVr
+          : openVr // ignore: cast_nullable_to_non_nullable
+              as int,
+      devKit: null == devKit
+          ? _value.devKit
+          : devKit // ignore: cast_nullable_to_non_nullable
+              as int,
+      devKitGameId: null == devKitGameId
+          ? _value.devKitGameId
+          : devKitGameId // ignore: cast_nullable_to_non_nullable
+              as String,
+      devKitOverriteAppId: null == devKitOverriteAppId
+          ? _value.devKitOverriteAppId
+          : devKitOverriteAppId // ignore: cast_nullable_to_non_nullable
+              as int,
       lastPlayTime: null == lastPlayTime
           ? _value.lastPlayTime
           : lastPlayTime // ignore: cast_nullable_to_non_nullable
               as int,
+      tags: null == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -117,15 +173,23 @@ abstract class _$$SteamShortcutImplCopyWith<$Res> implements $SteamShortcutCopyW
   @override
   @useResult
   $Res call(
-      {int appId,
+      {String order,
+      int appId,
       String appName,
       String target,
       String launchOptions,
       String startDir,
       String icon,
+      String shortcutPath,
       bool isHidden,
-      List<String> tags,
-      int lastPlayTime});
+      bool allowDesktopConfig,
+      bool allowOverlay,
+      int openVr,
+      int devKit,
+      String devKitGameId,
+      int devKitOverriteAppId,
+      int lastPlayTime,
+      List<String> tags});
 }
 
 /// @nodoc
@@ -137,17 +201,29 @@ class __$$SteamShortcutImplCopyWithImpl<$Res> extends _$SteamShortcutCopyWithImp
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? order = null,
     Object? appId = null,
     Object? appName = null,
     Object? target = null,
     Object? launchOptions = null,
     Object? startDir = null,
     Object? icon = null,
+    Object? shortcutPath = null,
     Object? isHidden = null,
-    Object? tags = null,
+    Object? allowDesktopConfig = null,
+    Object? allowOverlay = null,
+    Object? openVr = null,
+    Object? devKit = null,
+    Object? devKitGameId = null,
+    Object? devKitOverriteAppId = null,
     Object? lastPlayTime = null,
+    Object? tags = null,
   }) {
     return _then(_$SteamShortcutImpl(
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as String,
       appId: null == appId
           ? _value.appId
           : appId // ignore: cast_nullable_to_non_nullable
@@ -172,18 +248,46 @@ class __$$SteamShortcutImplCopyWithImpl<$Res> extends _$SteamShortcutCopyWithImp
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
               as String,
+      shortcutPath: null == shortcutPath
+          ? _value.shortcutPath
+          : shortcutPath // ignore: cast_nullable_to_non_nullable
+              as String,
       isHidden: null == isHidden
           ? _value.isHidden
           : isHidden // ignore: cast_nullable_to_non_nullable
               as bool,
-      tags: null == tags
-          ? _value._tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      allowDesktopConfig: null == allowDesktopConfig
+          ? _value.allowDesktopConfig
+          : allowDesktopConfig // ignore: cast_nullable_to_non_nullable
+              as bool,
+      allowOverlay: null == allowOverlay
+          ? _value.allowOverlay
+          : allowOverlay // ignore: cast_nullable_to_non_nullable
+              as bool,
+      openVr: null == openVr
+          ? _value.openVr
+          : openVr // ignore: cast_nullable_to_non_nullable
+              as int,
+      devKit: null == devKit
+          ? _value.devKit
+          : devKit // ignore: cast_nullable_to_non_nullable
+              as int,
+      devKitGameId: null == devKitGameId
+          ? _value.devKitGameId
+          : devKitGameId // ignore: cast_nullable_to_non_nullable
+              as String,
+      devKitOverriteAppId: null == devKitOverriteAppId
+          ? _value.devKitOverriteAppId
+          : devKitOverriteAppId // ignore: cast_nullable_to_non_nullable
+              as int,
       lastPlayTime: null == lastPlayTime
           ? _value.lastPlayTime
           : lastPlayTime // ignore: cast_nullable_to_non_nullable
               as int,
+      tags: null == tags
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -192,17 +296,27 @@ class __$$SteamShortcutImplCopyWithImpl<$Res> extends _$SteamShortcutCopyWithImp
 
 class _$SteamShortcutImpl implements _SteamShortcut {
   const _$SteamShortcutImpl(
-      {required this.appId,
+      {required this.order,
+      required this.appId,
       required this.appName,
       required this.target,
       required this.launchOptions,
       required this.startDir,
       required this.icon,
+      required this.shortcutPath,
       required this.isHidden,
-      required final List<String> tags,
-      required this.lastPlayTime})
+      required this.allowDesktopConfig,
+      required this.allowOverlay,
+      required this.openVr,
+      required this.devKit,
+      required this.devKitGameId,
+      required this.devKitOverriteAppId,
+      required this.lastPlayTime,
+      required final List<String> tags})
       : _tags = tags;
 
+  @override
+  final String order;
   @override
   final int appId;
   @override
@@ -216,7 +330,23 @@ class _$SteamShortcutImpl implements _SteamShortcut {
   @override
   final String icon;
   @override
+  final String shortcutPath;
+  @override
   final bool isHidden;
+  @override
+  final bool allowDesktopConfig;
+  @override
+  final bool allowOverlay;
+  @override
+  final int openVr;
+  @override
+  final int devKit;
+  @override
+  final String devKitGameId;
+  @override
+  final int devKitOverriteAppId;
+  @override
+  final int lastPlayTime;
   final List<String> _tags;
   @override
   List<String> get tags {
@@ -226,11 +356,8 @@ class _$SteamShortcutImpl implements _SteamShortcut {
   }
 
   @override
-  final int lastPlayTime;
-
-  @override
   String toString() {
-    return 'SteamShortcut(appId: $appId, appName: $appName, target: $target, launchOptions: $launchOptions, startDir: $startDir, icon: $icon, isHidden: $isHidden, tags: $tags, lastPlayTime: $lastPlayTime)';
+    return 'SteamShortcut(order: $order, appId: $appId, appName: $appName, target: $target, launchOptions: $launchOptions, startDir: $startDir, icon: $icon, shortcutPath: $shortcutPath, isHidden: $isHidden, allowDesktopConfig: $allowDesktopConfig, allowOverlay: $allowOverlay, openVr: $openVr, devKit: $devKit, devKitGameId: $devKitGameId, devKitOverriteAppId: $devKitOverriteAppId, lastPlayTime: $lastPlayTime, tags: $tags)';
   }
 
   @override
@@ -238,20 +365,47 @@ class _$SteamShortcutImpl implements _SteamShortcut {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SteamShortcutImpl &&
+            (identical(other.order, order) || other.order == order) &&
             (identical(other.appId, appId) || other.appId == appId) &&
             (identical(other.appName, appName) || other.appName == appName) &&
             (identical(other.target, target) || other.target == target) &&
             (identical(other.launchOptions, launchOptions) || other.launchOptions == launchOptions) &&
             (identical(other.startDir, startDir) || other.startDir == startDir) &&
             (identical(other.icon, icon) || other.icon == icon) &&
+            (identical(other.shortcutPath, shortcutPath) || other.shortcutPath == shortcutPath) &&
             (identical(other.isHidden, isHidden) || other.isHidden == isHidden) &&
-            const DeepCollectionEquality().equals(other._tags, _tags) &&
-            (identical(other.lastPlayTime, lastPlayTime) || other.lastPlayTime == lastPlayTime));
+            (identical(other.allowDesktopConfig, allowDesktopConfig) ||
+                other.allowDesktopConfig == allowDesktopConfig) &&
+            (identical(other.allowOverlay, allowOverlay) || other.allowOverlay == allowOverlay) &&
+            (identical(other.openVr, openVr) || other.openVr == openVr) &&
+            (identical(other.devKit, devKit) || other.devKit == devKit) &&
+            (identical(other.devKitGameId, devKitGameId) || other.devKitGameId == devKitGameId) &&
+            (identical(other.devKitOverriteAppId, devKitOverriteAppId) ||
+                other.devKitOverriteAppId == devKitOverriteAppId) &&
+            (identical(other.lastPlayTime, lastPlayTime) || other.lastPlayTime == lastPlayTime) &&
+            const DeepCollectionEquality().equals(other._tags, _tags));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, appId, appName, target, launchOptions, startDir, icon, isHidden,
-      const DeepCollectionEquality().hash(_tags), lastPlayTime);
+  int get hashCode => Object.hash(
+      runtimeType,
+      order,
+      appId,
+      appName,
+      target,
+      launchOptions,
+      startDir,
+      icon,
+      shortcutPath,
+      isHidden,
+      allowDesktopConfig,
+      allowOverlay,
+      openVr,
+      devKit,
+      devKitGameId,
+      devKitOverriteAppId,
+      lastPlayTime,
+      const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
   @override
@@ -262,16 +416,26 @@ class _$SteamShortcutImpl implements _SteamShortcut {
 
 abstract class _SteamShortcut implements SteamShortcut {
   const factory _SteamShortcut(
-      {required final int appId,
+      {required final String order,
+      required final int appId,
       required final String appName,
       required final String target,
       required final String launchOptions,
       required final String startDir,
       required final String icon,
+      required final String shortcutPath,
       required final bool isHidden,
-      required final List<String> tags,
-      required final int lastPlayTime}) = _$SteamShortcutImpl;
+      required final bool allowDesktopConfig,
+      required final bool allowOverlay,
+      required final int openVr,
+      required final int devKit,
+      required final String devKitGameId,
+      required final int devKitOverriteAppId,
+      required final int lastPlayTime,
+      required final List<String> tags}) = _$SteamShortcutImpl;
 
+  @override
+  String get order;
   @override
   int get appId;
   @override
@@ -285,11 +449,25 @@ abstract class _SteamShortcut implements SteamShortcut {
   @override
   String get icon;
   @override
+  String get shortcutPath;
+  @override
   bool get isHidden;
   @override
-  List<String> get tags;
+  bool get allowDesktopConfig;
+  @override
+  bool get allowOverlay;
+  @override
+  int get openVr;
+  @override
+  int get devKit;
+  @override
+  String get devKitGameId;
+  @override
+  int get devKitOverriteAppId;
   @override
   int get lastPlayTime;
+  @override
+  List<String> get tags;
   @override
   @JsonKey(ignore: true)
   _$$SteamShortcutImplCopyWith<_$SteamShortcutImpl> get copyWith => throw _privateConstructorUsedError;

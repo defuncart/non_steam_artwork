@@ -12,4 +12,9 @@ class SteamShortcutsUtil {
     // Usually located at $SteamDirectory/userdata/$SteamUserId/config/shortcuts.vdf
     return parse(path: path);
   }
+
+  // Future<void> updateShortcuts(String path) async {
+  //   // Usually located at $SteamDirectory/userdata/$SteamUserId/config/shortcuts.vdf
+  //   return parse(path: path);
+  // }
 }

@@ -12,18 +12,29 @@ part 'simple.freezed.dart';
 Future<List<SteamShortcut>> parse({required String path, dynamic hint}) =>
     RustLib.instance.api.crateApiSimpleParse(path: path, hint: hint);
 
+Future<Uint8List> generateBytes({required List<SteamShortcut> shortcuts, dynamic hint}) =>
+    RustLib.instance.api.crateApiSimpleGenerateBytes(shortcuts: shortcuts, hint: hint);
+
 @freezed
 @meta.immutable
 class SteamShortcut with _$SteamShortcut {
   const factory SteamShortcut({
+    required String order,
     required int appId,
     required String appName,
     required String target,
     required String launchOptions,
     required String startDir,
     required String icon,
+    required String shortcutPath,
     required bool isHidden,
-    required List<String> tags,
+    required bool allowDesktopConfig,
+    required bool allowOverlay,
+    required int openVr,
+    required int devKit,
+    required String devKitGameId,
+    required int devKitOverriteAppId,
     required int lastPlayTime,
+    required List<String> tags,
   }) = _SteamShortcut;
 }
