@@ -109,7 +109,10 @@ class ShortcutDetails extends StatelessWidget {
               width: 64,
               height: 64,
               child: shortcut.icon.isNotEmpty
-                  ? Image.file(File(shortcut.icon))
+                  ? Tooltip(
+                      message: shortcut.icon,
+                      child: Image.file(File(shortcut.icon)),
+                    )
                   : ColoredBox(
                       color: context.colorScheme.tertiary,
                       child: Icon(
