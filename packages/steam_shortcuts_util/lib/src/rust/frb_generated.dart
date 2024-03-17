@@ -54,7 +54,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.0.0-dev.24';
 
   static const kDefaultExternalLibraryLoaderConfig = ExternalLibraryLoaderConfig(
-    stem: 'rust_lib_non_steam_artwork',
+    stem: 'rust_lib_steam_shortcuts_util',
     ioDirectory: 'rust/target/release/',
     webPrefix: 'pkg/',
   );

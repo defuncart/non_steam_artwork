@@ -1,0 +1,26 @@
+name: steam_shortcuts_util
+description: A utility to help manage your Steam shortcuts
+publish_to: 'none'
+version: 0.0.1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+  flutter: '>=3.16.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_rust_bridge: 2.0.0-dev.24
+  rust_lib_steam_shortcuts_util:
+    path: rust_builder
+  freezed_annotation:
+  meta:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+  freezed:
+  build_runner:
+
+flutter:
