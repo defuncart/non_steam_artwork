@@ -25,6 +25,7 @@ import 'package:non_steam_artwork/features/support/logs_screen.dart';
 import 'package:non_steam_artwork/features/support/manual_screen.dart';
 import 'package:non_steam_artwork/features/support/privacy_policy_screen.dart';
 import 'package:non_steam_artwork/features/support/steamgriddb_dialog.dart';
+import 'package:non_steam_artwork/features/viewer/shortcuts_viewer_screen.dart';
 import 'package:super_clipboard/super_clipboard.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
@@ -98,8 +99,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           label: context.l10n.menuBarView,
           children: [
             NativeMenuItem(
-              label: 'Manual',
+              label: context.l10n.menuBarViewManual,
               onSelected: () => ManualScreen.show(context),
+            ),
+            NativeMenuItem(
+              label: context.l10n.menuBarViewShortcutsViewer,
+              onSelected: () => ShortcutsViewerScreen.show(context),
             ),
             NativeMenuItem(
               label: context.l10n.menuBarViewLogs,
