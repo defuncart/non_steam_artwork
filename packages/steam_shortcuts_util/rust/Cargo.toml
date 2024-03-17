@@ -1,5 +1,5 @@
 [package]
-name = "rust_lib_non_steam_artwork"
+name = "rust_lib_steam_shortcuts_util"
 version = "0.1.0"
 edition = "2021"
 

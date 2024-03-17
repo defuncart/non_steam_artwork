@@ -54,7 +54,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.0.0-dev.24';
 
   static const kDefaultExternalLibraryLoaderConfig = ExternalLibraryLoaderConfig(
-    stem: 'rust_lib_non_steam_artwork',
+    stem: 'rust_lib_steam_shortcuts_util',
     ioDirectory: 'rust/target/release/',
     webPrefix: 'pkg/',
   );
@@ -134,6 +134,18 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  bool dco_decode_bool(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as bool;
+  }
+
+  @protected
+  List<String> dco_decode_list_String(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return (raw as List<dynamic>).map(dco_decode_String).toList();
+  }
+
+  @protected
   Uint8List dco_decode_list_prim_u_8_strict(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as Uint8List;
@@ -149,12 +161,16 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   SteamShortcut dco_decode_steam_shortcut(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
-    if (arr.length != 4) throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
+    if (arr.length != 8) throw Exception('unexpected arr length: expect 8 but see ${arr.length}');
     return SteamShortcut(
       appId: dco_decode_u_32(arr[0]),
       appName: dco_decode_String(arr[1]),
       target: dco_decode_String(arr[2]),
       launchOptions: dco_decode_String(arr[3]),
+      startDir: dco_decode_String(arr[4]),
+      icon: dco_decode_String(arr[5]),
+      isHidden: dco_decode_bool(arr[6]),
+      tags: dco_decode_list_String(arr[7]),
     );
   }
 
@@ -191,6 +207,24 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  bool sse_decode_bool(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getUint8() != 0;
+  }
+
+  @protected
+  List<String> sse_decode_list_String(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var len_ = sse_decode_i_32(deserializer);
+    var ans_ = <String>[];
+    for (var idx_ = 0; idx_ < len_; ++idx_) {
+      ans_.add(sse_decode_String(deserializer));
+    }
+    return ans_;
+  }
+
+  @protected
   Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var len_ = sse_decode_i_32(deserializer);
@@ -216,7 +250,19 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     var var_appName = sse_decode_String(deserializer);
     var var_target = sse_decode_String(deserializer);
     var var_launchOptions = sse_decode_String(deserializer);
-    return SteamShortcut(appId: var_appId, appName: var_appName, target: var_target, launchOptions: var_launchOptions);
+    var var_startDir = sse_decode_String(deserializer);
+    var var_icon = sse_decode_String(deserializer);
+    var var_isHidden = sse_decode_bool(deserializer);
+    var var_tags = sse_decode_list_String(deserializer);
+    return SteamShortcut(
+        appId: var_appId,
+        appName: var_appName,
+        target: var_target,
+        launchOptions: var_launchOptions,
+        startDir: var_startDir,
+        icon: var_icon,
+        isHidden: var_isHidden,
+        tags: var_tags);
   }
 
   @protected
@@ -243,12 +289,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  bool sse_decode_bool(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getUint8() != 0;
-  }
-
-  @protected
   void sse_encode_AnyhowException(AnyhowException self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     throw UnimplementedError('Unreachable ((');
@@ -258,6 +298,21 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void sse_encode_String(String self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_list_prim_u_8_strict(utf8.encoder.convert(self), serializer);
+  }
+
+  @protected
+  void sse_encode_bool(bool self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putUint8(self ? 1 : 0);
+  }
+
+  @protected
+  void sse_encode_list_String(List<String> self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.length, serializer);
+    for (final item in self) {
+      sse_encode_String(item, serializer);
+    }
   }
 
   @protected
@@ -283,6 +338,10 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     sse_encode_String(self.appName, serializer);
     sse_encode_String(self.target, serializer);
     sse_encode_String(self.launchOptions, serializer);
+    sse_encode_String(self.startDir, serializer);
+    sse_encode_String(self.icon, serializer);
+    sse_encode_bool(self.isHidden, serializer);
+    sse_encode_list_String(self.tags, serializer);
   }
 
   @protected
@@ -306,11 +365,5 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void sse_encode_i_32(int self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putInt32(self);
-  }
-
-  @protected
-  void sse_encode_bool(bool self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putUint8(self ? 1 : 0);
   }
 }

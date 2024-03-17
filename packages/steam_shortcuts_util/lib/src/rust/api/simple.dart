@@ -20,5 +20,9 @@ class SteamShortcut with _$SteamShortcut {
     required String appName,
     required String target,
     required String launchOptions,
+    required String startDir,
+    required String icon,
+    required bool isHidden,
+    required List<String> tags,
   }) = _SteamShortcut;
 }

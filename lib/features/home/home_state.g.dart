@@ -906,7 +906,7 @@ final steamProgramsProvider = AutoDisposeAsyncNotifierProvider<SteamPrograms, It
 );
 
 typedef _$SteamPrograms = AutoDisposeAsyncNotifier<Iterable<SteamProgram>>;
-String _$replacedFilesControllerHash() => r'3d143a1ffb4e69b0c28e664ef8ed106ac05a2121';
+String _$replacedFilesControllerHash() => r'f701387fd3dca548fecaf909c453be847d29a0ec';
 
 /// See also [_ReplacedFilesController].
 @ProviderFor(_ReplacedFilesController)

@@ -37,6 +37,8 @@ menuBarOptionsThemeSystem;System
 menuBarOptionsThemeLight;Light
 menuBarOptionsThemeDark;Dark
 menuBarView;View
+menuBarViewManual;Manual
+menuBarViewShortcutsViewer;Shortcuts Viewer
 menuBarViewLogs;Logs
 menuBarViewShowLicenses;Licenses
 menuBarViewShowPrivacyPolicy;Privacy Policy
@@ -49,3 +51,4 @@ privacyPolicyScreenTitle;Privacy Policy
 manualScreenTitle;Manual
 steamGridDBDialogTitle;API key
 steamGridDBDialogDescription;An api key from [SteamGridDB](https://www.steamgriddb.com/) is required in order to download artwork.
+shortcutsScreenTitle;Shortcuts

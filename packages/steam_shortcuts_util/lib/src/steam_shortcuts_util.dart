@@ -1,8 +1,8 @@
-import 'package:non_steam_artwork/src/rust/api/simple.dart';
-import 'package:non_steam_artwork/src/rust/frb_generated.dart';
+import 'rust/api/simple.dart';
+import 'rust/frb_generated.dart';
 
-class SteamShortcuts {
-  const SteamShortcuts();
+class SteamShortcutsUtil {
+  const SteamShortcutsUtil();
 
   Future<void> init() async {
     await RustLib.init();

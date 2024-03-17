@@ -13,7 +13,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
-  rust_lib_non_steam_artwork
+  rust_lib_steam_shortcuts_util
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

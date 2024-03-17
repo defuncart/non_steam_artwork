@@ -5,21 +5,18 @@ import 'package:flutter/foundation.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
 import 'package:non_steam_artwork/core/steam/steam_cache.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
-import 'package:non_steam_artwork/core/steam/steam_shortcuts.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
-import 'package:non_steam_artwork/src/rust/api/simple.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
-
-export 'package:non_steam_artwork/src/rust/api/simple.dart' show SteamShortcut;
+import 'package:steam_shortcuts_util/steam_shortcuts_util.dart';
 
 class SteamManager {
   SteamManager({
-    this.steamShortcuts = const SteamShortcuts(),
+    this.steamShortcuts = const SteamShortcutsUtil(),
     required this.logger,
   });
 
-  final SteamShortcuts steamShortcuts;
+  final SteamShortcutsUtil steamShortcuts;
   final Logger logger;
 
   var _cachedArtwork = <CacheProgramArtwork>[];

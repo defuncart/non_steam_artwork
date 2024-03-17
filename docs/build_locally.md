@@ -16,13 +16,11 @@ Before compilation, run the script `sh bin/loca_generate.sh` to generate localiz
 
 ## macOS
 
-The tool is developed on macOS, however not supported on macOS. To build on macOS, locally generate a macOS project via `fvm flutter create . --platforms=macos`, install pods via `cd macos && pod install` and run by selecting macOS as a target. For testing purposes, the Steam directory is hardcoded to `Downloads/_steam`.
+The tool is developed on macOS, however it is not supported on macOS. To build on macOS, locally generate a macOS project via `fvm flutter create . --platforms=macos`, install pods via `cd macos && pod install` and run by selecting macOS as a target. For testing purposes, the Steam directory is hardcoded to `Downloads/_steam`.
 
 ## Rust
 
-[steam_shortcuts_util](steam_shortcuts_util) is used to parse `shortcuts.vdf`. This is a Rust library which [flutter_rust_bridge](https://cjycode.com/flutter_rust_bridge/) generates bindings for so it can be called from dart code. Technically Rust is not required as these bindings are under source control, however if [rust/src/api/simple.rs](rust/src/api/simple.rs) is edited, these bindings can be re-generated via `flutter_rust_bridge_codegen generate --watch`.
-
-Additionally, [super_drag_and_drop](https://pub.dev/packages/super_drag_and_drop) and [super_clipboard](https://pub.dev/packages/super_clipboard) use Rust internally. Although these plugins will automatically download precompiled binaries for linux, by installing Rust locally, the code will instead be compiled from source.
+[super_drag_and_drop](https://pub.dev/packages/super_drag_and_drop) and [super_clipboard](https://pub.dev/packages/super_clipboard) use Rust internally. Although these plugins will automatically download precompiled binaries for linux, by installing Rust locally, the code will instead be compiled from source.
 
 ## How it works
 

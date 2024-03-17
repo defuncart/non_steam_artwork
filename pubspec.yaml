@@ -15,9 +15,8 @@ dependencies:
   intl:
   flex_color_scheme: ^7.3.1
   gap:
-  flutter_rust_bridge: 2.0.0-dev.24
-  rust_lib_non_steam_artwork:
-    path: rust_builder
+  steam_shortcuts_util:
+    path: packages/steam_shortcuts_util/
   freezed_annotation:
   meta:
   path:
