@@ -42,11 +42,11 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# FVM
-.fvm/flutter_sdk
-
 # local assets
 assets_dev/l10n/
 
 # debug platforms
 /macos/
+
+# FVM Version Cache
+.fvm/
