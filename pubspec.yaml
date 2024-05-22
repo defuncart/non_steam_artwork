@@ -4,8 +4,8 @@ publish_to: 'none'
 version: 0.0.1+1
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
-  flutter: '>=3.19.0 <4.0.0'
+  sdk: '>=3.4.0 <4.0.0'
+  flutter: '>=3.22.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -25,8 +25,8 @@ dependencies:
   flutter_riverpod: ^3.0.0-dev.3
   riverpod_annotation: ^3.0.0-dev.3
   native_context_menu: ^0.2.2+5
-  super_drag_and_drop: ^0.8.9
-  super_clipboard: ^0.8.9
+  super_drag_and_drop: ^0.8.15
+  super_clipboard: ^0.8.15
   window_size:
     git:
       url: https://github.com/google/flutter-desktop-embedding
@@ -43,7 +43,7 @@ dependencies:
   markdown_widget: ^2.3.2+6
   http:
   hive: ^4.0.0-dev.2
-  isar_flutter_libs: ^4.0.0-dev.13
+  isar_flutter_libs: ^4.0.0-dev.14
   steamgriddb:
     git:
       url: https://github.com/defuncart/steamgriddb
@@ -54,7 +54,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.1
+  flutter_lints: ^4.0.0
   arb_generator:
   freezed:
   build_runner:
