@@ -122,14 +122,16 @@ class SortProgramsButton extends ConsumerWidget {
 
 extension on SortProgramType {
   IconData get icon => switch (this) {
-        SortProgramType.dateAdded => Icons.date_range,
+        SortProgramType.dateAdded => Icons.edit_calendar,
         SortProgramType.alphabetic => Icons.abc,
         SortProgramType.programId => Icons.onetwothree,
+        SortProgramType.lastPlayed => Icons.history,
       };
 
   String getLabel(BuildContext context) => switch (this) {
         SortProgramType.dateAdded => context.l10n.homeAppBarSortDateAdded,
         SortProgramType.alphabetic => context.l10n.homeAppBarSortAlphabetic,
         SortProgramType.programId => context.l10n.homeAppBarSortProgramId,
+        SortProgramType.lastPlayed => context.l10n.homeAppBarSortLastPlayed,
       };
 }

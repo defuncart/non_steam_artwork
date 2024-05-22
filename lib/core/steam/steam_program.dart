@@ -19,6 +19,7 @@ class SteamProgram with _$SteamProgram {
     required int appId,
     required String appName,
     required SteamProgramType programType,
+    required DateTime lastPlayed,
     File? icon,
     File? cover,
     File? background,

@@ -178,6 +178,7 @@ impl SseDecode for crate::api::simple::SteamShortcut {
         let mut var_icon = <String>::sse_decode(deserializer);
         let mut var_isHidden = <bool>::sse_decode(deserializer);
         let mut var_tags = <Vec<String>>::sse_decode(deserializer);
+        let mut var_lastPlayTime = <u32>::sse_decode(deserializer);
         return crate::api::simple::SteamShortcut {
             app_id: var_appId,
             app_name: var_appName,
@@ -187,6 +188,7 @@ impl SseDecode for crate::api::simple::SteamShortcut {
             icon: var_icon,
             is_hidden: var_isHidden,
             tags: var_tags,
+            last_play_time: var_lastPlayTime,
         };
     }
 }
@@ -258,6 +260,7 @@ impl flutter_rust_bridge::IntoDart for crate::api::simple::SteamShortcut {
             self.icon.into_into_dart().into_dart(),
             self.is_hidden.into_into_dart().into_dart(),
             self.tags.into_into_dart().into_dart(),
+            self.last_play_time.into_into_dart().into_dart(),
         ]
         .into_dart()
     }
@@ -336,6 +339,7 @@ impl SseEncode for crate::api::simple::SteamShortcut {
         <String>::sse_encode(self.icon, serializer);
         <bool>::sse_encode(self.is_hidden, serializer);
         <Vec<String>>::sse_encode(self.tags, serializer);
+        <u32>::sse_encode(self.last_play_time, serializer);
     }
 }
 

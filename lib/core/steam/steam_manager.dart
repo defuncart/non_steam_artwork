@@ -121,6 +121,7 @@ class SteamManager {
             appId: program.appId,
             appName: program.appName,
             programType: programType,
+            lastPlayed: DateTime.fromMillisecondsSinceEpoch(program.lastPlayTime * 1000),
             icon: cachedItem?.icon,
             cover: cachedItem?.cover,
             background: cachedItem?.background,

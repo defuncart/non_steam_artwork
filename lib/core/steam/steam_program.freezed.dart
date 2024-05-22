@@ -19,6 +19,7 @@ mixin _$SteamProgram {
   int get appId => throw _privateConstructorUsedError;
   String get appName => throw _privateConstructorUsedError;
   SteamProgramType get programType => throw _privateConstructorUsedError;
+  DateTime get lastPlayed => throw _privateConstructorUsedError;
   File? get icon => throw _privateConstructorUsedError;
   File? get cover => throw _privateConstructorUsedError;
   File? get background => throw _privateConstructorUsedError;
@@ -38,6 +39,7 @@ abstract class $SteamProgramCopyWith<$Res> {
       {int appId,
       String appName,
       SteamProgramType programType,
+      DateTime lastPlayed,
       File? icon,
       File? cover,
       File? background,
@@ -60,6 +62,7 @@ class _$SteamProgramCopyWithImpl<$Res, $Val extends SteamProgram> implements $St
     Object? appId = null,
     Object? appName = null,
     Object? programType = null,
+    Object? lastPlayed = null,
     Object? icon = freezed,
     Object? cover = freezed,
     Object? background = freezed,
@@ -79,6 +82,10 @@ class _$SteamProgramCopyWithImpl<$Res, $Val extends SteamProgram> implements $St
           ? _value.programType
           : programType // ignore: cast_nullable_to_non_nullable
               as SteamProgramType,
+      lastPlayed: null == lastPlayed
+          ? _value.lastPlayed
+          : lastPlayed // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       icon: freezed == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -113,6 +120,7 @@ abstract class _$$SteamProgramImplCopyWith<$Res> implements $SteamProgramCopyWit
       {int appId,
       String appName,
       SteamProgramType programType,
+      DateTime lastPlayed,
       File? icon,
       File? cover,
       File? background,
@@ -132,6 +140,7 @@ class __$$SteamProgramImplCopyWithImpl<$Res> extends _$SteamProgramCopyWithImpl<
     Object? appId = null,
     Object? appName = null,
     Object? programType = null,
+    Object? lastPlayed = null,
     Object? icon = freezed,
     Object? cover = freezed,
     Object? background = freezed,
@@ -151,6 +160,10 @@ class __$$SteamProgramImplCopyWithImpl<$Res> extends _$SteamProgramCopyWithImpl<
           ? _value.programType
           : programType // ignore: cast_nullable_to_non_nullable
               as SteamProgramType,
+      lastPlayed: null == lastPlayed
+          ? _value.lastPlayed
+          : lastPlayed // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       icon: freezed == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -182,6 +195,7 @@ class _$SteamProgramImpl implements _SteamProgram {
       {required this.appId,
       required this.appName,
       required this.programType,
+      required this.lastPlayed,
       this.icon,
       this.cover,
       this.background,
@@ -195,6 +209,8 @@ class _$SteamProgramImpl implements _SteamProgram {
   @override
   final SteamProgramType programType;
   @override
+  final DateTime lastPlayed;
+  @override
   final File? icon;
   @override
   final File? cover;
@@ -207,7 +223,7 @@ class _$SteamProgramImpl implements _SteamProgram {
 
   @override
   String toString() {
-    return 'SteamProgram(appId: $appId, appName: $appName, programType: $programType, icon: $icon, cover: $cover, background: $background, logo: $logo, hero: $hero)';
+    return 'SteamProgram(appId: $appId, appName: $appName, programType: $programType, lastPlayed: $lastPlayed, icon: $icon, cover: $cover, background: $background, logo: $logo, hero: $hero)';
   }
 
   @override
@@ -218,6 +234,7 @@ class _$SteamProgramImpl implements _SteamProgram {
             (identical(other.appId, appId) || other.appId == appId) &&
             (identical(other.appName, appName) || other.appName == appName) &&
             (identical(other.programType, programType) || other.programType == programType) &&
+            (identical(other.lastPlayed, lastPlayed) || other.lastPlayed == lastPlayed) &&
             (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.cover, cover) || other.cover == cover) &&
             (identical(other.background, background) || other.background == background) &&
@@ -226,7 +243,8 @@ class _$SteamProgramImpl implements _SteamProgram {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, appId, appName, programType, icon, cover, background, logo, hero);
+  int get hashCode =>
+      Object.hash(runtimeType, appId, appName, programType, lastPlayed, icon, cover, background, logo, hero);
 
   @JsonKey(ignore: true)
   @override
@@ -240,6 +258,7 @@ abstract class _SteamProgram implements SteamProgram {
       {required final int appId,
       required final String appName,
       required final SteamProgramType programType,
+      required final DateTime lastPlayed,
       final File? icon,
       final File? cover,
       final File? background,
@@ -252,6 +271,8 @@ abstract class _SteamProgram implements SteamProgram {
   String get appName;
   @override
   SteamProgramType get programType;
+  @override
+  DateTime get lastPlayed;
   @override
   File? get icon;
   @override
