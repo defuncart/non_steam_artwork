@@ -1,9 +1,10 @@
 keys;en
 homeAppBarSearchHintLabel;Search...
 homeAppBarSortLabel;Sort
-homeAppBarSortDateAdded;Date
+homeAppBarSortDateAdded;Added
 homeAppBarSortAlphabetic;Name
 homeAppBarSortProgramId;Id
+homeAppBarSortLastPlayed;Played
 homeErrorLabel1;An error has occured: {error}.
 homeErrorLabel2;Please view logs and report this issue.
 homeTipsOnboardingManualDescription;Manual has not been viewed. Please consult the manual before first usage.

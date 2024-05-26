@@ -147,6 +147,8 @@ class SteamPrograms extends _$SteamPrograms {
       filteredPrograms = filteredPrograms.sorted((a, b) => a.appName.toLowerCase().compareTo(b.appName.toLowerCase()));
     } else if (sortType == SortProgramType.programId) {
       filteredPrograms = filteredPrograms.sorted((a, b) => a.appId.compareTo(b.appId));
+    } else if (sortType == SortProgramType.lastPlayed) {
+      filteredPrograms = filteredPrograms.sorted((a, b) => a.lastPlayed.compareTo(b.lastPlayed));
     }
 
     final isAscending = ref.watch(sortingAscendingControllerProvider);

@@ -24,5 +24,6 @@ class SteamShortcut with _$SteamShortcut {
     required String icon,
     required bool isHidden,
     required List<String> tags,
+    required int lastPlayTime,
   }) = _SteamShortcut;
 }

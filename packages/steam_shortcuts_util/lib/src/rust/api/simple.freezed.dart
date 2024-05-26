@@ -24,6 +24,7 @@ mixin _$SteamShortcut {
   String get icon => throw _privateConstructorUsedError;
   bool get isHidden => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
+  int get lastPlayTime => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SteamShortcutCopyWith<SteamShortcut> get copyWith => throw _privateConstructorUsedError;
@@ -42,7 +43,8 @@ abstract class $SteamShortcutCopyWith<$Res> {
       String startDir,
       String icon,
       bool isHidden,
-      List<String> tags});
+      List<String> tags,
+      int lastPlayTime});
 }
 
 /// @nodoc
@@ -65,6 +67,7 @@ class _$SteamShortcutCopyWithImpl<$Res, $Val extends SteamShortcut> implements $
     Object? icon = null,
     Object? isHidden = null,
     Object? tags = null,
+    Object? lastPlayTime = null,
   }) {
     return _then(_value.copyWith(
       appId: null == appId
@@ -99,6 +102,10 @@ class _$SteamShortcutCopyWithImpl<$Res, $Val extends SteamShortcut> implements $
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      lastPlayTime: null == lastPlayTime
+          ? _value.lastPlayTime
+          : lastPlayTime // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -117,7 +124,8 @@ abstract class _$$SteamShortcutImplCopyWith<$Res> implements $SteamShortcutCopyW
       String startDir,
       String icon,
       bool isHidden,
-      List<String> tags});
+      List<String> tags,
+      int lastPlayTime});
 }
 
 /// @nodoc
@@ -137,6 +145,7 @@ class __$$SteamShortcutImplCopyWithImpl<$Res> extends _$SteamShortcutCopyWithImp
     Object? icon = null,
     Object? isHidden = null,
     Object? tags = null,
+    Object? lastPlayTime = null,
   }) {
     return _then(_$SteamShortcutImpl(
       appId: null == appId
@@ -171,6 +180,10 @@ class __$$SteamShortcutImplCopyWithImpl<$Res> extends _$SteamShortcutCopyWithImp
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      lastPlayTime: null == lastPlayTime
+          ? _value.lastPlayTime
+          : lastPlayTime // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -186,7 +199,8 @@ class _$SteamShortcutImpl implements _SteamShortcut {
       required this.startDir,
       required this.icon,
       required this.isHidden,
-      required final List<String> tags})
+      required final List<String> tags,
+      required this.lastPlayTime})
       : _tags = tags;
 
   @override
@@ -212,8 +226,11 @@ class _$SteamShortcutImpl implements _SteamShortcut {
   }
 
   @override
+  final int lastPlayTime;
+
+  @override
   String toString() {
-    return 'SteamShortcut(appId: $appId, appName: $appName, target: $target, launchOptions: $launchOptions, startDir: $startDir, icon: $icon, isHidden: $isHidden, tags: $tags)';
+    return 'SteamShortcut(appId: $appId, appName: $appName, target: $target, launchOptions: $launchOptions, startDir: $startDir, icon: $icon, isHidden: $isHidden, tags: $tags, lastPlayTime: $lastPlayTime)';
   }
 
   @override
@@ -228,12 +245,13 @@ class _$SteamShortcutImpl implements _SteamShortcut {
             (identical(other.startDir, startDir) || other.startDir == startDir) &&
             (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.isHidden, isHidden) || other.isHidden == isHidden) &&
-            const DeepCollectionEquality().equals(other._tags, _tags));
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.lastPlayTime, lastPlayTime) || other.lastPlayTime == lastPlayTime));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, appId, appName, target, launchOptions, startDir, icon, isHidden,
-      const DeepCollectionEquality().hash(_tags));
+      const DeepCollectionEquality().hash(_tags), lastPlayTime);
 
   @JsonKey(ignore: true)
   @override
@@ -251,7 +269,8 @@ abstract class _SteamShortcut implements SteamShortcut {
       required final String startDir,
       required final String icon,
       required final bool isHidden,
-      required final List<String> tags}) = _$SteamShortcutImpl;
+      required final List<String> tags,
+      required final int lastPlayTime}) = _$SteamShortcutImpl;
 
   @override
   int get appId;
@@ -269,6 +288,8 @@ abstract class _SteamShortcut implements SteamShortcut {
   bool get isHidden;
   @override
   List<String> get tags;
+  @override
+  int get lastPlayTime;
   @override
   @JsonKey(ignore: true)
   _$$SteamShortcutImplCopyWith<_$SteamShortcutImpl> get copyWith => throw _privateConstructorUsedError;

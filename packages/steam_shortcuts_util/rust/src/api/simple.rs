@@ -20,6 +20,7 @@ pub async fn parse(path: String) -> anyhow::Result<Vec<SteamShortcut>> {
                     icon: String::from(x.icon),
                     is_hidden: x.is_hidden,
                     tags: x.tags.into_iter().map(|v| String::from(v)).collect(),
+                    last_play_time: x.last_play_time,
                 })
                 .collect());
         }
@@ -39,4 +40,5 @@ pub struct SteamShortcut {
     pub icon: String,
     pub is_hidden: bool,
     pub tags: Vec<String>,
+    pub last_play_time: u32,
 }

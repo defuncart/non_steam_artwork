@@ -164,7 +164,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   SteamShortcut dco_decode_steam_shortcut(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
-    if (arr.length != 8) throw Exception('unexpected arr length: expect 8 but see ${arr.length}');
+    if (arr.length != 9) throw Exception('unexpected arr length: expect 9 but see ${arr.length}');
     return SteamShortcut(
       appId: dco_decode_u_32(arr[0]),
       appName: dco_decode_String(arr[1]),
@@ -174,6 +174,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       icon: dco_decode_String(arr[5]),
       isHidden: dco_decode_bool(arr[6]),
       tags: dco_decode_list_String(arr[7]),
+      lastPlayTime: dco_decode_u_32(arr[8]),
     );
   }
 
@@ -257,6 +258,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     var var_icon = sse_decode_String(deserializer);
     var var_isHidden = sse_decode_bool(deserializer);
     var var_tags = sse_decode_list_String(deserializer);
+    var var_lastPlayTime = sse_decode_u_32(deserializer);
     return SteamShortcut(
         appId: var_appId,
         appName: var_appName,
@@ -265,7 +267,8 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         startDir: var_startDir,
         icon: var_icon,
         isHidden: var_isHidden,
-        tags: var_tags);
+        tags: var_tags,
+        lastPlayTime: var_lastPlayTime);
   }
 
   @protected
@@ -345,6 +348,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     sse_encode_String(self.icon, serializer);
     sse_encode_bool(self.isHidden, serializer);
     sse_encode_list_String(self.tags, serializer);
+    sse_encode_u_32(self.lastPlayTime, serializer);
   }
 
   @protected
