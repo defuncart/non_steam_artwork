@@ -21,6 +21,9 @@ abstract class ISettingsService {
 
   String? get steamGridDBApiKey;
   set steamGridDBApiKey(String? value);
+
+  bool get resizeLargeImages;
+  set resizeLargeImages(bool value);
 }
 
 class SettingsService extends ISettingsService {
@@ -88,6 +91,15 @@ class SettingsService extends ISettingsService {
   @override
   set steamGridDBApiKey(String? value) => _box.put(_Keys.steamGridDBApiKey, value);
 
+  @override
+  bool get resizeLargeImages => _box.get(
+        _Keys.resizeLargeImages,
+        defaultValue: _Defaults.resizeLargeImages,
+      );
+
+  @override
+  set resizeLargeImages(bool value) => _box.put(_Keys.resizeLargeImages, value);
+
   T _getEnumValue<T extends Enum>({
     required String key,
     required List<T> values,
@@ -111,6 +123,7 @@ class _Keys {
   static const sortProgramType = 'sortProgramType';
   static const steamGridDBApiKey = 'steamGridDBApiKey';
   static const isSortingAscending = 'isSortingAscending';
+  static const resizeLargeImages = 'resizeLargeImages';
 }
 
 class _Defaults {
@@ -121,4 +134,5 @@ class _Defaults {
   static final filteredProgramTypes = FilteredProgramTypes();
   static const sortProgramType = SortProgramType.dateAdded;
   static const isSortingAscending = true;
+  static const resizeLargeImages = true;
 }

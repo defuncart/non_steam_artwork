@@ -93,6 +93,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
               ],
             ),
+            NativeSubmenu(
+              label: context.l10n.menuBarOptionsResize,
+              children: [
+                NativeMenuItem(
+                  label: context.l10n.menuBarOptionsResizeYes,
+                  onSelected: () => ref.read(resizeLargeImagesControllerProvider.notifier).set(true),
+                ),
+                NativeMenuItem(
+                  label: context.l10n.menuBarOptionsResizeNo,
+                  onSelected: () => ref.read(resizeLargeImagesControllerProvider.notifier).set(false),
+                ),
+              ],
+            ),
           ],
         ),
         NativeSubmenu(

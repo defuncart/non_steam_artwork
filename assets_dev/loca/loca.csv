@@ -37,6 +37,9 @@ menuBarOptionsTheme;Theme
 menuBarOptionsThemeSystem;System
 menuBarOptionsThemeLight;Light
 menuBarOptionsThemeDark;Dark
+menuBarOptionsResize;Resize large images
+menuBarOptionsResizeYes;Yes
+menuBarOptionsResizeNo;No
 menuBarView;View
 menuBarViewManual;Manual
 menuBarViewShortcutsViewer;Shortcuts Viewer

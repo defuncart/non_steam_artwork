@@ -88,3 +88,16 @@ class SteamGridDBApiKeyController extends _$SteamGridDBApiKeyController {
     }
   }
 }
+
+@riverpod
+class ResizeLargeImagesController extends _$ResizeLargeImagesController {
+  @override
+  bool build() => ref.read(settingsServiceProvider).resizeLargeImages;
+
+  void set(bool value) {
+    if (state != value) {
+      ref.read(settingsServiceProvider).resizeLargeImages = value;
+      state = value;
+    }
+  }
+}
