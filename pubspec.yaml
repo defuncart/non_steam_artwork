@@ -50,6 +50,7 @@ dependencies:
       ref: main
   cached_network_image:
   flutter_cache_manager:
+  image:
 
 dev_dependencies:
   flutter_test:

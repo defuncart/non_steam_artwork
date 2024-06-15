@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:clock/clock.dart';
 import 'package:collection/collection.dart';
+import 'package:image/image.dart' as img;
 import 'package:non_steam_artwork/core/extensions/file_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
 import 'package:non_steam_artwork/core/settings/sort_program_type.dart';
@@ -227,7 +228,16 @@ Future<void> createArtworkFile(
     ref.read(_replacedFilesControllerProvider.notifier).add(filepath);
   }
 
-  await file.copy(filepath);
+  if (ref.read(resizeLargeImagesControllerProvider) && await file.isLarge) {
+    ref.log('file is large, resizing');
+    final resizedImage = img.copyResize(
+      img.decodeImage(await file.readAsBytes())!,
+      width: artType.size.width.toInt(), // maintain aspect ratio
+    );
+    ext == '.jpg' ? await img.encodeJpgFile(filepath, resizedImage) : await img.encodePngFile(filepath, resizedImage);
+  } else {
+    await file.copy(filepath);
+  }
   ref.log('artwork $filepath created');
 
   ref.invalidate(steamProgramsProvider);
@@ -391,5 +401,13 @@ class DownloadableArtworkController extends _$DownloadableArtworkController {
         );
       });
     }
+  }
+}
+
+extension on File {
+  // returns true when file size is larger than 1MB
+  Future<bool> get isLarge async {
+    final len = await length();
+    return len > 1 * 1000 * 1000;
   }
 }
