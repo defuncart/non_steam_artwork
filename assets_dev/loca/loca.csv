@@ -9,10 +9,10 @@ homeErrorLabel1;An error has occured: {error}.
 homeErrorLabel2;Please view logs and report this issue.
 homeTipsOnboardingManualDescription;Manual has not been viewed. Please consult the manual before first usage.
 homeTipsOnboardingManualCacheButton;View
-homeTipsBackupCacheDescription;No cache back found. A backup is recommended before editing artwork.
-homeTipsBackupCacheButton;Backup
-homeTipsCleanUpCacheDescription;There is unused art in your cache. You can free up {value}.
-homeTipsCleanUpCacheButton;Clean up
+homeTipsArtworkBackupDescription;No artwork backup found. A backup is recommended before editing existing files.
+homeTipsArtworkBackupButton;Backup
+homeTipsArtworkCleanUpDescription;There are unused artwork files. You can free up {value}.
+homeTipsArtworkCleanUpButton;Clean up
 homeTipsAddApiKeyDescription;A SteamGridDB api key is required in order to download artwork.
 homeTipsAddApiKeyButton;Add key
 homeSearchEmpty;No results founds.
@@ -27,10 +27,10 @@ homeProgramArtworkSetHeroAsBackground;Set as background
 homeProgramPasteError;Clipboard contents is not JPEG/PNG
 menuBarFile;File
 menuBarFileQuit;Quit
-menuBarCache;Cache
-menuBarCacheOpen;Open
-menuBarCacheBackup;Backup
-menuBarCacheDeleteAll;Delete All
+menuBarArtwork;Artwork
+menuBarArtworkOpen;Open
+menuBarArtworkBackup;Backup
+menuBarArtworkDeleteAll;Delete All
 menuBarOptions;Options
 menuBarOptionsApiKey;SteamGridDB Api Key
 menuBarOptionsTheme;Theme

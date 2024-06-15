@@ -53,18 +53,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ],
         ),
         NativeSubmenu(
-          label: context.l10n.menuBarCache,
+          label: context.l10n.menuBarArtwork,
           children: [
             // NativeMenuItem(
-            //   label: context.l10n.menuBarCacheOpen,
+            //   label: context.l10n.menuBarArtworkOpen,
             //   onSelected: ref.read(cacheControllerProvider.notifier).open,
             // ),
             NativeMenuItem(
-              label: context.l10n.menuBarCacheBackup,
+              label: context.l10n.menuBarArtworkBackup,
               onSelected: ref.read(cacheControllerProvider.notifier).backup,
             ),
             NativeMenuItem(
-              label: context.l10n.menuBarCacheDeleteAll,
+              label: context.l10n.menuBarArtworkDeleteAll,
               onSelected: ref.read(cacheControllerProvider.notifier).deleteAll,
             ),
           ],

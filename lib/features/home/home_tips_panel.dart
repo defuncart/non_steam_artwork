@@ -20,10 +20,10 @@ class HomeTipsPanel extends StatelessWidget {
           child: OnboardingManualView(),
         ),
         Flexible(
-          child: BackupUpCacheView(),
+          child: ArtworkBackupUpView(),
         ),
         Flexible(
-          child: CleanUpCacheView(),
+          child: ArtworkCleanUpView(),
         ),
         Flexible(
           child: AddApiKeyView(),
@@ -58,8 +58,8 @@ class OnboardingManualView extends ConsumerWidget {
 }
 
 @visibleForTesting
-class BackupUpCacheView extends ConsumerWidget {
-  const BackupUpCacheView({super.key});
+class ArtworkBackupUpView extends ConsumerWidget {
+  const ArtworkBackupUpView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -71,9 +71,9 @@ class BackupUpCacheView extends ConsumerWidget {
           : TipCard(
               backgroundColor: context.colorScheme.primaryContainer,
               foregroundColor: context.colorScheme.onPrimaryContainer,
-              title: context.l10n.homeTipsBackupCacheDescription,
+              title: context.l10n.homeTipsArtworkBackupDescription,
               buttonIcon: Icons.backup,
-              buttonLabel: context.l10n.homeTipsBackupCacheButton,
+              buttonLabel: context.l10n.homeTipsArtworkBackupButton,
               onButtonPressed: () async {
                 await ref.read(cacheControllerProvider.notifier).backup();
                 ref.invalidate(cacheBackupExistsControllerProvider);
@@ -85,8 +85,8 @@ class BackupUpCacheView extends ConsumerWidget {
 }
 
 @visibleForTesting
-class CleanUpCacheView extends ConsumerWidget {
-  const CleanUpCacheView({super.key});
+class ArtworkCleanUpView extends ConsumerWidget {
+  const ArtworkCleanUpView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -98,9 +98,9 @@ class CleanUpCacheView extends ConsumerWidget {
           : TipCard(
               backgroundColor: context.colorScheme.secondaryContainer,
               foregroundColor: context.colorScheme.onSecondaryContainer,
-              title: context.l10n.homeTipsCleanUpCacheDescription(value.displaySize),
+              title: context.l10n.homeTipsArtworkCleanUpDescription(value.displaySize),
               buttonIcon: Icons.delete_sweep_rounded,
-              buttonLabel: context.l10n.homeTipsCleanUpCacheButton,
+              buttonLabel: context.l10n.homeTipsArtworkCleanUpButton,
               onButtonPressed: ref.read(cacheControllerProvider.notifier).cleanUp,
             ),
       _ => const SizedBox.shrink(),
