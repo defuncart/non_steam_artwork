@@ -210,9 +210,12 @@ Future<void> createArtworkFile(
   CreateArtworkFileRef ref, {
   required int appId,
   required File file,
-  required String ext,
   required SteamGridArtType artType,
 }) async {
+  var ext = p.extension(file.path).toLowerCase();
+  if (!['.jpg', '.png'].contains(ext)) {
+    ext = '.png';
+  }
   ref.log('start create ${artType.name} for $appId with extension $ext');
   final (dir, basename) = await ref.read(steamManagerProvider).generateArtworkPath(
         appId: appId,

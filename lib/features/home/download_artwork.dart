@@ -81,7 +81,6 @@ class DownloadArtwork extends ConsumerWidget {
                         createArtworkFileProvider(
                           appId: program.appId,
                           file: file,
-                          ext: '.png',
                           artType: artType,
                         ),
                       );

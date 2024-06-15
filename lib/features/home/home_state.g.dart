@@ -403,7 +403,7 @@ class _CopyArtworkProviderElement extends AutoDisposeFutureProviderElement<void>
   SteamGridArtType get artType => (origin as CopyArtworkProvider).artType;
 }
 
-String _$createArtworkFileHash() => r'd5114b17144083e9e2494bcad054ef88878ef5a0';
+String _$createArtworkFileHash() => r'bc678b69e5823bf3feca760cc7b432820a02ab12';
 
 /// See also [createArtworkFile].
 @ProviderFor(createArtworkFile)
@@ -431,13 +431,11 @@ class CreateArtworkFileFamily extends Family {
   CreateArtworkFileProvider call({
     required int appId,
     required File file,
-    required String ext,
     required SteamGridArtType artType,
   }) {
     return CreateArtworkFileProvider(
       appId: appId,
       file: file,
-      ext: ext,
       artType: artType,
     );
   }
@@ -450,7 +448,6 @@ class CreateArtworkFileFamily extends Family {
     return call(
       appId: provider.appId,
       file: provider.file,
-      ext: provider.ext,
       artType: provider.artType,
     );
   }
@@ -483,14 +480,12 @@ class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
   CreateArtworkFileProvider({
     required int appId,
     required File file,
-    required String ext,
     required SteamGridArtType artType,
   }) : this._internal(
           (ref) => createArtworkFile(
             ref as CreateArtworkFileRef,
             appId: appId,
             file: file,
-            ext: ext,
             artType: artType,
           ),
           from: createArtworkFileProvider,
@@ -500,7 +495,6 @@ class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
           allTransitiveDependencies: CreateArtworkFileFamily._allTransitiveDependencies,
           appId: appId,
           file: file,
-          ext: ext,
           artType: artType,
         );
 
@@ -513,13 +507,11 @@ class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
     required super.from,
     required this.appId,
     required this.file,
-    required this.ext,
     required this.artType,
   }) : super.internal();
 
   final int appId;
   final File file;
-  final String ext;
   final SteamGridArtType artType;
 
   @override
@@ -537,7 +529,6 @@ class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
         debugGetCreateSourceHash: null,
         appId: appId,
         file: file,
-        ext: ext,
         artType: artType,
       ),
     );
@@ -547,13 +538,11 @@ class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
   ({
     int appId,
     File file,
-    String ext,
     SteamGridArtType artType,
   }) get argument {
     return (
       appId: appId,
       file: file,
-      ext: ext,
       artType: artType,
     );
   }
@@ -575,18 +564,13 @@ class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
       from: from,
       appId: appId,
       file: file,
-      ext: ext,
       artType: artType,
     );
   }
 
   @override
   bool operator ==(Object other) {
-    return other is CreateArtworkFileProvider &&
-        other.appId == appId &&
-        other.file == file &&
-        other.ext == ext &&
-        other.artType == artType;
+    return other is CreateArtworkFileProvider && other.appId == appId && other.file == file && other.artType == artType;
   }
 
   @override
@@ -594,7 +578,6 @@ class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, appId.hashCode);
     hash = _SystemHash.combine(hash, file.hashCode);
-    hash = _SystemHash.combine(hash, ext.hashCode);
     hash = _SystemHash.combine(hash, artType.hashCode);
 
     return _SystemHash.finish(hash);
@@ -608,9 +591,6 @@ mixin CreateArtworkFileRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `file` of this provider.
   File get file;
 
-  /// The parameter `ext` of this provider.
-  String get ext;
-
   /// The parameter `artType` of this provider.
   SteamGridArtType get artType;
 }
@@ -622,8 +602,6 @@ class _CreateArtworkFileProviderElement extends AutoDisposeFutureProviderElement
   int get appId => (origin as CreateArtworkFileProvider).appId;
   @override
   File get file => (origin as CreateArtworkFileProvider).file;
-  @override
-  String get ext => (origin as CreateArtworkFileProvider).ext;
   @override
   SteamGridArtType get artType => (origin as CreateArtworkFileProvider).artType;
 }
@@ -893,7 +871,7 @@ final searchControllerProvider = NotifierProvider<SearchController, String>.inte
 );
 
 typedef _$SearchController = Notifier<String>;
-String _$steamProgramsHash() => r'd2a2ee28b262202ddce3b11b8d8ba807b08e79d8';
+String _$steamProgramsHash() => r'f9b8d1cbbcbdb1cd2e8369d2e774beb1d26feb32';
 
 /// See also [SteamPrograms].
 @ProviderFor(SteamPrograms)
