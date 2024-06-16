@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:menubar/menubar.dart';
@@ -105,6 +106,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   onSelected: () => ref.read(resizeLargeImagesControllerProvider.notifier).set(false),
                 ),
               ],
+            ),
+            NativeMenuItem(
+              label: context.l10n.menuBarOptionsTempDelete,
+              onSelected: () => DefaultCacheManager().emptyCache(),
             ),
           ],
         ),
