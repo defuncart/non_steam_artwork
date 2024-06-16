@@ -228,11 +228,12 @@ Future<void> createArtworkFile(
     ref.read(_replacedFilesControllerProvider.notifier).add(filepath);
   }
 
-  if (ref.read(resizeLargeImagesControllerProvider) && await file.isLarge) {
-    ref.log('file is large, resizing');
+  if (ref.read(resizeLargeImagesControllerProvider)) {
+    ref.log('resizing image');
     final resizedImage = img.copyResize(
       img.decodeImage(await file.readAsBytes())!,
       width: artType.size.width.toInt(), // maintain aspect ratio
+      maintainAspect: true,
     );
     ext == '.jpg' ? await img.encodeJpgFile(filepath, resizedImage) : await img.encodePngFile(filepath, resizedImage);
   } else {
@@ -401,13 +402,5 @@ class DownloadableArtworkController extends _$DownloadableArtworkController {
         );
       });
     }
-  }
-}
-
-extension on File {
-  // returns true when file size is larger than 1MB
-  Future<bool> get isLarge async {
-    final len = await length();
-    return len > 1 * 1000 * 1000;
   }
 }
