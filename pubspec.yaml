@@ -4,8 +4,8 @@ publish_to: 'none'
 version: 0.0.1+1
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
-  flutter: '>=3.22.0 <4.0.0'
+  sdk: '>=3.5.0 <4.0.0'
+  flutter: '>=3.24.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -25,8 +25,8 @@ dependencies:
   flutter_riverpod: ^3.0.0-dev.3
   riverpod_annotation: ^3.0.0-dev.3
   native_context_menu: ^0.2.2+5
-  super_drag_and_drop: ^0.8.15
-  super_clipboard: ^0.8.15
+  super_drag_and_drop: ^0.8.20
+  super_clipboard: ^0.8.20
   window_size:
     git:
       url: https://github.com/google/flutter-desktop-embedding
