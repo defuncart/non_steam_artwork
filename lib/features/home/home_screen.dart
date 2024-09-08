@@ -44,50 +44,62 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     Future.microtask(
       () => setApplicationMenu([
         NativeSubmenu(
+          // ignore: use_build_context_synchronously
           label: context.l10n.menuBarFile,
           children: [
             NativeMenuItem(
+              // ignore: use_build_context_synchronously
               label: context.l10n.menuBarFileQuit,
               onSelected: () => exit(0),
             ),
           ],
         ),
         NativeSubmenu(
+          // ignore: use_build_context_synchronously
           label: context.l10n.menuBarCache,
           children: [
             // NativeMenuItem(
+            //   // ignore: use_build_context_synchronously
             //   label: context.l10n.menuBarCacheOpen,
             //   onSelected: ref.read(cacheControllerProvider.notifier).open,
             // ),
             NativeMenuItem(
+              // ignore: use_build_context_synchronously
               label: context.l10n.menuBarCacheBackup,
               onSelected: ref.read(cacheControllerProvider.notifier).backup,
             ),
             NativeMenuItem(
+              // ignore: use_build_context_synchronously
               label: context.l10n.menuBarCacheDeleteAll,
               onSelected: ref.read(cacheControllerProvider.notifier).deleteAll,
             ),
           ],
         ),
         NativeSubmenu(
+          // ignore: use_build_context_synchronously
           label: context.l10n.menuBarOptions,
           children: [
             NativeMenuItem(
+              // ignore: use_build_context_synchronously
               label: context.l10n.menuBarOptionsApiKey,
               onSelected: () => SteamGridDBDialog.show(context),
             ),
             NativeSubmenu(
+              // ignore: use_build_context_synchronously
               label: context.l10n.menuBarOptionsTheme,
               children: [
                 NativeMenuItem(
+                  // ignore: use_build_context_synchronously
                   label: context.l10n.menuBarOptionsThemeSystem,
                   onSelected: () => ref.read(themeModeControllerProvider.notifier).set(ThemeMode.system),
                 ),
                 NativeMenuItem(
+                  // ignore: use_build_context_synchronously
                   label: context.l10n.menuBarOptionsThemeLight,
                   onSelected: () => ref.read(themeModeControllerProvider.notifier).set(ThemeMode.light),
                 ),
                 NativeMenuItem(
+                  // ignore: use_build_context_synchronously
                   label: context.l10n.menuBarOptionsThemeDark,
                   onSelected: () => ref.read(themeModeControllerProvider.notifier).set(ThemeMode.dark),
                 ),
@@ -96,25 +108,31 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ],
         ),
         NativeSubmenu(
+          // ignore: use_build_context_synchronously
           label: context.l10n.menuBarView,
           children: [
             NativeMenuItem(
+              // ignore: use_build_context_synchronously
               label: context.l10n.menuBarViewManual,
               onSelected: () => ManualScreen.show(context),
             ),
             NativeMenuItem(
+              // ignore: use_build_context_synchronously
               label: context.l10n.menuBarViewShortcutsViewer,
               onSelected: () => ShortcutsViewerScreen.show(context),
             ),
             NativeMenuItem(
+              // ignore: use_build_context_synchronously
               label: context.l10n.menuBarViewLogs,
               onSelected: () => LogsScreen.show(context),
             ),
             NativeMenuItem(
+              // ignore: use_build_context_synchronously
               label: context.l10n.menuBarViewShowLicenses,
               onSelected: () => LicensesScreen.show(context),
             ),
             NativeMenuItem(
+              // ignore: use_build_context_synchronously
               label: context.l10n.menuBarViewShowPrivacyPolicy,
               onSelected: () => PrivacyPolicyScreen.show(context),
             ),
@@ -385,6 +403,9 @@ class _SteamArtworkState extends State<SteamArtwork> {
             if (item.title == 'Search on SteamGridDB') {
               widget.onDownload();
             } else if (item.title == context.l10n.homeProgramArtworkPaste) {
+              final scaffoldMessenger = ScaffoldMessenger.of(context);
+              final l10n = context.l10n;
+
               SystemClipboard.instance?.read().then((reader) {
                 if (reader.canProvide(Formats.jpeg)) {
                   reader.getFile(Formats.jpeg, (file) {
@@ -399,8 +420,8 @@ class _SteamArtworkState extends State<SteamArtwork> {
                     widget.onLog('Error reading value $error');
                   });
                 } else {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text(context.l10n.homeProgramPasteError),
+                  scaffoldMessenger.showSnackBar(SnackBar(
+                    content: Text(l10n.homeProgramPasteError),
                     duration: const Duration(seconds: 2),
                   ));
                   widget.onLog('clipboard contents is not .jpg nor .png');
