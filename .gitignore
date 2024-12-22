@@ -46,6 +46,7 @@ app.*.map.json
 
 # local assets
 assets_dev/l10n/
+assets_dev/app_icons/
 
 # generated assets
 lib/core/l10n/generated
