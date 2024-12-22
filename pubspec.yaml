@@ -60,6 +60,9 @@ dev_dependencies:
   riverpod_generator:
   riverpod_lint:
   custom_lint:
+  app_store_screenshots:
+    git: 
+      url: https://github.com/defuncart/app_store_screenshots
 
 dependency_overrides:
   super_drag_and_drop:
