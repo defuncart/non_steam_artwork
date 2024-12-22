@@ -18,6 +18,8 @@ final _fileManagerProvider = Provider<FileManager>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef _FileManagerRef = ProviderRef<FileManager>;
 String _$cacheBackupExistsControllerHash() => r'96a66906b9d16812efb9ae9b0620145cf59320ae';
 
@@ -31,6 +33,8 @@ final cacheBackupExistsControllerProvider = AutoDisposeFutureProvider<bool>.inte
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef CacheBackupExistsControllerRef = AutoDisposeFutureProviderRef<bool>;
 String _$deleteArtworkHash() => r'd6680917a6dd88b69aed24a69072e30cd8b8d2f6';
 
@@ -60,22 +64,9 @@ class _SystemHash {
 const deleteArtworkProvider = DeleteArtworkFamily();
 
 /// See also [deleteArtwork].
-class DeleteArtworkFamily extends Family {
+class DeleteArtworkFamily extends Family<AsyncValue<void>> {
   /// See also [deleteArtwork].
   const DeleteArtworkFamily();
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'deleteArtworkProvider';
 
   /// See also [deleteArtwork].
   DeleteArtworkProvider call({
@@ -86,7 +77,6 @@ class DeleteArtworkFamily extends Family {
     );
   }
 
-  @visibleForOverriding
   @override
   DeleteArtworkProvider getProviderOverride(
     covariant DeleteArtworkProvider provider,
@@ -96,26 +86,18 @@ class DeleteArtworkFamily extends Family {
     );
   }
 
-  /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(FutureOr<void> Function(DeleteArtworkRef ref) create) {
-    return _$DeleteArtworkFamilyOverride(this, create);
-  }
-}
-
-class _$DeleteArtworkFamilyOverride implements FamilyOverride {
-  _$DeleteArtworkFamilyOverride(this.overriddenFamily, this.create);
-
-  final FutureOr<void> Function(DeleteArtworkRef ref) create;
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
   @override
-  final DeleteArtworkFamily overriddenFamily;
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  DeleteArtworkProvider getProviderOverride(
-    covariant DeleteArtworkProvider provider,
-  ) {
-    return provider._copyWith(create);
-  }
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+
+  @override
+  String? get name => r'deleteArtworkProvider';
 }
 
 /// See also [deleteArtwork].
@@ -137,7 +119,7 @@ class DeleteArtworkProvider extends AutoDisposeFutureProvider<void> {
         );
 
   DeleteArtworkProvider._internal(
-    super.create, {
+    super._createNotifier, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
@@ -150,7 +132,7 @@ class DeleteArtworkProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   Override overrideWith(
-    FutureOr<void> Function(DeleteArtworkRef ref) create,
+    FutureOr<void> Function(DeleteArtworkRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -167,29 +149,8 @@ class DeleteArtworkProvider extends AutoDisposeFutureProvider<void> {
   }
 
   @override
-  ({
-    File file,
-  }) get argument {
-    return (file: file,);
-  }
-
-  @override
   AutoDisposeFutureProviderElement<void> createElement() {
     return _DeleteArtworkProviderElement(this);
-  }
-
-  DeleteArtworkProvider _copyWith(
-    FutureOr<void> Function(DeleteArtworkRef ref) create,
-  ) {
-    return DeleteArtworkProvider._internal(
-      (ref) => create(ref as DeleteArtworkRef),
-      name: name,
-      dependencies: dependencies,
-      allTransitiveDependencies: allTransitiveDependencies,
-      debugGetCreateSourceHash: debugGetCreateSourceHash,
-      from: from,
-      file: file,
-    );
   }
 
   @override
@@ -206,6 +167,8 @@ class DeleteArtworkProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin DeleteArtworkRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `file` of this provider.
   File get file;
@@ -225,22 +188,9 @@ String _$copyArtworkHash() => r'049b3b43ccbda3c32a6d09c662c0ca4245bcebbb';
 const copyArtworkProvider = CopyArtworkFamily();
 
 /// See also [copyArtwork].
-class CopyArtworkFamily extends Family {
+class CopyArtworkFamily extends Family<AsyncValue<void>> {
   /// See also [copyArtwork].
   const CopyArtworkFamily();
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'copyArtworkProvider';
 
   /// See also [copyArtwork].
   CopyArtworkProvider call({
@@ -253,7 +203,6 @@ class CopyArtworkFamily extends Family {
     );
   }
 
-  @visibleForOverriding
   @override
   CopyArtworkProvider getProviderOverride(
     covariant CopyArtworkProvider provider,
@@ -264,26 +213,18 @@ class CopyArtworkFamily extends Family {
     );
   }
 
-  /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(FutureOr<void> Function(CopyArtworkRef ref) create) {
-    return _$CopyArtworkFamilyOverride(this, create);
-  }
-}
-
-class _$CopyArtworkFamilyOverride implements FamilyOverride {
-  _$CopyArtworkFamilyOverride(this.overriddenFamily, this.create);
-
-  final FutureOr<void> Function(CopyArtworkRef ref) create;
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
   @override
-  final CopyArtworkFamily overriddenFamily;
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  CopyArtworkProvider getProviderOverride(
-    covariant CopyArtworkProvider provider,
-  ) {
-    return provider._copyWith(create);
-  }
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+
+  @override
+  String? get name => r'copyArtworkProvider';
 }
 
 /// See also [copyArtwork].
@@ -308,7 +249,7 @@ class CopyArtworkProvider extends AutoDisposeFutureProvider<void> {
         );
 
   CopyArtworkProvider._internal(
-    super.create, {
+    super._createNotifier, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
@@ -323,7 +264,7 @@ class CopyArtworkProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   Override overrideWith(
-    FutureOr<void> Function(CopyArtworkRef ref) create,
+    FutureOr<void> Function(CopyArtworkRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -341,34 +282,8 @@ class CopyArtworkProvider extends AutoDisposeFutureProvider<void> {
   }
 
   @override
-  ({
-    File file,
-    SteamGridArtType artType,
-  }) get argument {
-    return (
-      file: file,
-      artType: artType,
-    );
-  }
-
-  @override
   AutoDisposeFutureProviderElement<void> createElement() {
     return _CopyArtworkProviderElement(this);
-  }
-
-  CopyArtworkProvider _copyWith(
-    FutureOr<void> Function(CopyArtworkRef ref) create,
-  ) {
-    return CopyArtworkProvider._internal(
-      (ref) => create(ref as CopyArtworkRef),
-      name: name,
-      dependencies: dependencies,
-      allTransitiveDependencies: allTransitiveDependencies,
-      debugGetCreateSourceHash: debugGetCreateSourceHash,
-      from: from,
-      file: file,
-      artType: artType,
-    );
   }
 
   @override
@@ -386,6 +301,8 @@ class CopyArtworkProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin CopyArtworkRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `file` of this provider.
   File get file;
@@ -410,22 +327,9 @@ String _$createArtworkFileHash() => r'd5114b17144083e9e2494bcad054ef88878ef5a0';
 const createArtworkFileProvider = CreateArtworkFileFamily();
 
 /// See also [createArtworkFile].
-class CreateArtworkFileFamily extends Family {
+class CreateArtworkFileFamily extends Family<AsyncValue<void>> {
   /// See also [createArtworkFile].
   const CreateArtworkFileFamily();
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'createArtworkFileProvider';
 
   /// See also [createArtworkFile].
   CreateArtworkFileProvider call({
@@ -442,7 +346,6 @@ class CreateArtworkFileFamily extends Family {
     );
   }
 
-  @visibleForOverriding
   @override
   CreateArtworkFileProvider getProviderOverride(
     covariant CreateArtworkFileProvider provider,
@@ -455,26 +358,18 @@ class CreateArtworkFileFamily extends Family {
     );
   }
 
-  /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(FutureOr<void> Function(CreateArtworkFileRef ref) create) {
-    return _$CreateArtworkFileFamilyOverride(this, create);
-  }
-}
-
-class _$CreateArtworkFileFamilyOverride implements FamilyOverride {
-  _$CreateArtworkFileFamilyOverride(this.overriddenFamily, this.create);
-
-  final FutureOr<void> Function(CreateArtworkFileRef ref) create;
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
   @override
-  final CreateArtworkFileFamily overriddenFamily;
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  CreateArtworkFileProvider getProviderOverride(
-    covariant CreateArtworkFileProvider provider,
-  ) {
-    return provider._copyWith(create);
-  }
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+
+  @override
+  String? get name => r'createArtworkFileProvider';
 }
 
 /// See also [createArtworkFile].
@@ -505,7 +400,7 @@ class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
         );
 
   CreateArtworkFileProvider._internal(
-    super.create, {
+    super._createNotifier, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
@@ -524,7 +419,7 @@ class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   Override overrideWith(
-    FutureOr<void> Function(CreateArtworkFileRef ref) create,
+    FutureOr<void> Function(CreateArtworkFileRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -544,40 +439,8 @@ class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
   }
 
   @override
-  ({
-    int appId,
-    File file,
-    String ext,
-    SteamGridArtType artType,
-  }) get argument {
-    return (
-      appId: appId,
-      file: file,
-      ext: ext,
-      artType: artType,
-    );
-  }
-
-  @override
   AutoDisposeFutureProviderElement<void> createElement() {
     return _CreateArtworkFileProviderElement(this);
-  }
-
-  CreateArtworkFileProvider _copyWith(
-    FutureOr<void> Function(CreateArtworkFileRef ref) create,
-  ) {
-    return CreateArtworkFileProvider._internal(
-      (ref) => create(ref as CreateArtworkFileRef),
-      name: name,
-      dependencies: dependencies,
-      allTransitiveDependencies: allTransitiveDependencies,
-      debugGetCreateSourceHash: debugGetCreateSourceHash,
-      from: from,
-      appId: appId,
-      file: file,
-      ext: ext,
-      artType: artType,
-    );
   }
 
   @override
@@ -601,6 +464,8 @@ class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin CreateArtworkFileRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `appId` of this provider.
   int get appId;
@@ -635,22 +500,9 @@ String _$createArtworkHash() => r'4dc1aa8badace29b7a59f8dca2d5101182568e0a';
 const createArtworkProvider = CreateArtworkFamily();
 
 /// See also [createArtwork].
-class CreateArtworkFamily extends Family {
+class CreateArtworkFamily extends Family<AsyncValue<void>> {
   /// See also [createArtwork].
   const CreateArtworkFamily();
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'createArtworkProvider';
 
   /// See also [createArtwork].
   CreateArtworkProvider call({
@@ -667,7 +519,6 @@ class CreateArtworkFamily extends Family {
     );
   }
 
-  @visibleForOverriding
   @override
   CreateArtworkProvider getProviderOverride(
     covariant CreateArtworkProvider provider,
@@ -680,26 +531,18 @@ class CreateArtworkFamily extends Family {
     );
   }
 
-  /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(FutureOr<void> Function(CreateArtworkRef ref) create) {
-    return _$CreateArtworkFamilyOverride(this, create);
-  }
-}
-
-class _$CreateArtworkFamilyOverride implements FamilyOverride {
-  _$CreateArtworkFamilyOverride(this.overriddenFamily, this.create);
-
-  final FutureOr<void> Function(CreateArtworkRef ref) create;
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
   @override
-  final CreateArtworkFamily overriddenFamily;
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  CreateArtworkProvider getProviderOverride(
-    covariant CreateArtworkProvider provider,
-  ) {
-    return provider._copyWith(create);
-  }
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+
+  @override
+  String? get name => r'createArtworkProvider';
 }
 
 /// See also [createArtwork].
@@ -730,7 +573,7 @@ class CreateArtworkProvider extends AutoDisposeFutureProvider<void> {
         );
 
   CreateArtworkProvider._internal(
-    super.create, {
+    super._createNotifier, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
@@ -749,7 +592,7 @@ class CreateArtworkProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   Override overrideWith(
-    FutureOr<void> Function(CreateArtworkRef ref) create,
+    FutureOr<void> Function(CreateArtworkRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -769,40 +612,8 @@ class CreateArtworkProvider extends AutoDisposeFutureProvider<void> {
   }
 
   @override
-  ({
-    int appId,
-    Stream<Uint8List> bytesStream,
-    String ext,
-    SteamGridArtType artType,
-  }) get argument {
-    return (
-      appId: appId,
-      bytesStream: bytesStream,
-      ext: ext,
-      artType: artType,
-    );
-  }
-
-  @override
   AutoDisposeFutureProviderElement<void> createElement() {
     return _CreateArtworkProviderElement(this);
-  }
-
-  CreateArtworkProvider _copyWith(
-    FutureOr<void> Function(CreateArtworkRef ref) create,
-  ) {
-    return CreateArtworkProvider._internal(
-      (ref) => create(ref as CreateArtworkRef),
-      name: name,
-      dependencies: dependencies,
-      allTransitiveDependencies: allTransitiveDependencies,
-      debugGetCreateSourceHash: debugGetCreateSourceHash,
-      from: from,
-      appId: appId,
-      bytesStream: bytesStream,
-      ext: ext,
-      artType: artType,
-    );
   }
 
   @override
@@ -826,6 +637,8 @@ class CreateArtworkProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin CreateArtworkRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `appId` of this provider.
   int get appId;
@@ -893,7 +706,7 @@ final searchControllerProvider = NotifierProvider<SearchController, String>.inte
 );
 
 typedef _$SearchController = Notifier<String>;
-String _$steamProgramsHash() => r'd2a2ee28b262202ddce3b11b8d8ba807b08e79d8';
+String _$steamProgramsHash() => r'f9b8d1cbbcbdb1cd2e8369d2e774beb1d26feb32';
 
 /// See also [SteamPrograms].
 @ProviderFor(SteamPrograms)
@@ -934,22 +747,9 @@ abstract class _$WasFileReplacedController extends BuildlessAutoDisposeNotifier<
 const wasFileReplacedControllerProvider = WasFileReplacedControllerFamily();
 
 /// See also [WasFileReplacedController].
-class WasFileReplacedControllerFamily extends Family {
+class WasFileReplacedControllerFamily extends Family<bool> {
   /// See also [WasFileReplacedController].
   const WasFileReplacedControllerFamily();
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'wasFileReplacedControllerProvider';
 
   /// See also [WasFileReplacedController].
   WasFileReplacedControllerProvider call(
@@ -960,7 +760,6 @@ class WasFileReplacedControllerFamily extends Family {
     );
   }
 
-  @visibleForOverriding
   @override
   WasFileReplacedControllerProvider getProviderOverride(
     covariant WasFileReplacedControllerProvider provider,
@@ -970,26 +769,18 @@ class WasFileReplacedControllerFamily extends Family {
     );
   }
 
-  /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(WasFileReplacedController Function() create) {
-    return _$WasFileReplacedControllerFamilyOverride(this, create);
-  }
-}
-
-class _$WasFileReplacedControllerFamilyOverride implements FamilyOverride {
-  _$WasFileReplacedControllerFamilyOverride(this.overriddenFamily, this.create);
-
-  final WasFileReplacedController Function() create;
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
   @override
-  final WasFileReplacedControllerFamily overriddenFamily;
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  WasFileReplacedControllerProvider getProviderOverride(
-    covariant WasFileReplacedControllerProvider provider,
-  ) {
-    return provider._copyWith(create);
-  }
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+
+  @override
+  String? get name => r'wasFileReplacedControllerProvider';
 }
 
 /// See also [WasFileReplacedController].
@@ -1009,7 +800,7 @@ class WasFileReplacedControllerProvider extends AutoDisposeNotifierProviderImpl<
         );
 
   WasFileReplacedControllerProvider._internal(
-    super.create, {
+    super._createNotifier, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
@@ -1046,27 +837,8 @@ class WasFileReplacedControllerProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  (String,) get argument {
-    return (path,);
-  }
-
-  @override
   AutoDisposeNotifierProviderElement<WasFileReplacedController, bool> createElement() {
     return _WasFileReplacedControllerProviderElement(this);
-  }
-
-  WasFileReplacedControllerProvider _copyWith(
-    WasFileReplacedController Function() create,
-  ) {
-    return WasFileReplacedControllerProvider._internal(
-      () => create()..path = path,
-      name: name,
-      dependencies: dependencies,
-      allTransitiveDependencies: allTransitiveDependencies,
-      debugGetCreateSourceHash: debugGetCreateSourceHash,
-      from: from,
-      path: path,
-    );
   }
 
   @override
@@ -1083,6 +855,8 @@ class WasFileReplacedControllerProvider extends AutoDisposeNotifierProviderImpl<
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin WasFileReplacedControllerRef on AutoDisposeNotifierProviderRef<bool> {
   /// The parameter `path` of this provider.
   String get path;
@@ -1113,22 +887,9 @@ abstract class _$DownloadableArtworkController extends BuildlessAutoDisposeAsync
 const downloadableArtworkControllerProvider = DownloadableArtworkControllerFamily();
 
 /// See also [DownloadableArtworkController].
-class DownloadableArtworkControllerFamily extends Family {
+class DownloadableArtworkControllerFamily extends Family<AsyncValue<DownloadableArtworkState>> {
   /// See also [DownloadableArtworkController].
   const DownloadableArtworkControllerFamily();
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'downloadableArtworkControllerProvider';
 
   /// See also [DownloadableArtworkController].
   DownloadableArtworkControllerProvider call({
@@ -1141,7 +902,6 @@ class DownloadableArtworkControllerFamily extends Family {
     );
   }
 
-  @visibleForOverriding
   @override
   DownloadableArtworkControllerProvider getProviderOverride(
     covariant DownloadableArtworkControllerProvider provider,
@@ -1152,26 +912,18 @@ class DownloadableArtworkControllerFamily extends Family {
     );
   }
 
-  /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(DownloadableArtworkController Function() create) {
-    return _$DownloadableArtworkControllerFamilyOverride(this, create);
-  }
-}
-
-class _$DownloadableArtworkControllerFamilyOverride implements FamilyOverride {
-  _$DownloadableArtworkControllerFamilyOverride(this.overriddenFamily, this.create);
-
-  final DownloadableArtworkController Function() create;
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
   @override
-  final DownloadableArtworkControllerFamily overriddenFamily;
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  DownloadableArtworkControllerProvider getProviderOverride(
-    covariant DownloadableArtworkControllerProvider provider,
-  ) {
-    return provider._copyWith(create);
-  }
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+
+  @override
+  String? get name => r'downloadableArtworkControllerProvider';
 }
 
 /// See also [DownloadableArtworkController].
@@ -1196,7 +948,7 @@ class DownloadableArtworkControllerProvider
         );
 
   DownloadableArtworkControllerProvider._internal(
-    super.create, {
+    super._createNotifier, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
@@ -1239,36 +991,8 @@ class DownloadableArtworkControllerProvider
   }
 
   @override
-  ({
-    String initialSearchTerm,
-    SteamGridArtType artType,
-  }) get argument {
-    return (
-      initialSearchTerm: initialSearchTerm,
-      artType: artType,
-    );
-  }
-
-  @override
   AutoDisposeAsyncNotifierProviderElement<DownloadableArtworkController, DownloadableArtworkState> createElement() {
     return _DownloadableArtworkControllerProviderElement(this);
-  }
-
-  DownloadableArtworkControllerProvider _copyWith(
-    DownloadableArtworkController Function() create,
-  ) {
-    return DownloadableArtworkControllerProvider._internal(
-      () => create()
-        ..initialSearchTerm = initialSearchTerm
-        ..artType = artType,
-      name: name,
-      dependencies: dependencies,
-      allTransitiveDependencies: allTransitiveDependencies,
-      debugGetCreateSourceHash: debugGetCreateSourceHash,
-      from: from,
-      initialSearchTerm: initialSearchTerm,
-      artType: artType,
-    );
   }
 
   @override
@@ -1288,6 +1012,8 @@ class DownloadableArtworkControllerProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin DownloadableArtworkControllerRef on AutoDisposeAsyncNotifierProviderRef<DownloadableArtworkState> {
   /// The parameter `initialSearchTerm` of this provider.
   String get initialSearchTerm;
@@ -1307,4 +1033,4 @@ class _DownloadableArtworkControllerProviderElement
   SteamGridArtType get artType => (origin as DownloadableArtworkControllerProvider).artType;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
