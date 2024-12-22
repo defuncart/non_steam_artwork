@@ -151,6 +151,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       AsyncError(:final error) => HomeScreenSteamError(
           error: error,
         ),
+      // TODO: Remove after upgrade to riverpod v3
+      _ => const SizedBox.shrink(),
     };
   }
 }

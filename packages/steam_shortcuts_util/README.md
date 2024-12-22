@@ -6,4 +6,4 @@ This library uses [flutter_rust_bridge](https://cjycode.com/flutter_rust_bridge/
 
 When [rust/src/api/simple.rs](rust/src/api/simple.rs) is edited, these bindings can be re-generated via `flutter_rust_bridge_codegen generate --watch`.
 
-To update to a later version of `flutter_rust_bridge`, use `cargo install 'flutter_rust_bridge_codegen@^2.0.0-dev.0'`.
+To update to a later version of `flutter_rust_bridge`, use `cargo install flutter_rust_bridge_codegen`.
