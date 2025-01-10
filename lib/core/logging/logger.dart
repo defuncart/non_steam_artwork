@@ -78,10 +78,10 @@ typedef LogEvent = ({
 });
 
 @Riverpod(keepAlive: true)
-Logger logger(LoggerRef ref) => Logger._();
+Logger logger(Ref ref) => Logger._();
 
 @Riverpod(keepAlive: true)
-Stream<List<LogEvent>> logsViewer(LogsViewerRef ref) => ref.watch(loggerProvider).logsStream;
+Stream<List<LogEvent>> logsViewer(Ref ref) => ref.watch(loggerProvider).logsStream;
 
 extension RefExtension on Ref {
   void log(String event) => read(loggerProvider).log(event);

@@ -106,6 +106,8 @@ class DownloadArtwork extends ConsumerWidget {
               ],
             ),
           ),
+        // TODO: Remove after upgrade to riverpod v3
+        _ => const SizedBox.shrink(),
       },
     );
   }

@@ -26,7 +26,9 @@ mixin _$SteamProgram {
   File? get logo => throw _privateConstructorUsedError;
   File? get hero => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SteamProgram
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SteamProgramCopyWith<SteamProgram> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -56,6 +58,8 @@ class _$SteamProgramCopyWithImpl<$Res, $Val extends SteamProgram> implements $St
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SteamProgram
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,6 +138,8 @@ class __$$SteamProgramImplCopyWithImpl<$Res> extends _$SteamProgramCopyWithImpl<
   __$$SteamProgramImplCopyWithImpl(_$SteamProgramImpl _value, $Res Function(_$SteamProgramImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SteamProgram
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -246,7 +252,9 @@ class _$SteamProgramImpl implements _SteamProgram {
   int get hashCode =>
       Object.hash(runtimeType, appId, appName, programType, lastPlayed, icon, cover, background, logo, hero);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SteamProgram
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SteamProgramImplCopyWith<_$SteamProgramImpl> get copyWith =>
@@ -283,7 +291,10 @@ abstract class _SteamProgram implements SteamProgram {
   File? get logo;
   @override
   File? get hero;
+
+  /// Create a copy of SteamProgram
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SteamProgramImplCopyWith<_$SteamProgramImpl> get copyWith => throw _privateConstructorUsedError;
 }

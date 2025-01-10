@@ -26,7 +26,9 @@ mixin _$SteamShortcut {
   List<String> get tags => throw _privateConstructorUsedError;
   int get lastPlayTime => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SteamShortcut
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SteamShortcutCopyWith<SteamShortcut> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -56,6 +58,8 @@ class _$SteamShortcutCopyWithImpl<$Res, $Val extends SteamShortcut> implements $
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SteamShortcut
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,6 +138,8 @@ class __$$SteamShortcutImplCopyWithImpl<$Res> extends _$SteamShortcutCopyWithImp
   __$$SteamShortcutImplCopyWithImpl(_$SteamShortcutImpl _value, $Res Function(_$SteamShortcutImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SteamShortcut
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -253,7 +259,9 @@ class _$SteamShortcutImpl implements _SteamShortcut {
   int get hashCode => Object.hash(runtimeType, appId, appName, target, launchOptions, startDir, icon, isHidden,
       const DeepCollectionEquality().hash(_tags), lastPlayTime);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SteamShortcut
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SteamShortcutImplCopyWith<_$SteamShortcutImpl> get copyWith =>
@@ -290,7 +298,10 @@ abstract class _SteamShortcut implements SteamShortcut {
   List<String> get tags;
   @override
   int get lastPlayTime;
+
+  /// Create a copy of SteamShortcut
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SteamShortcutImplCopyWith<_$SteamShortcutImpl> get copyWith => throw _privateConstructorUsedError;
 }

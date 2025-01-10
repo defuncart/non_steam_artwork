@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:clock/clock.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:non_steam_artwork/core/extensions/file_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
 import 'package:non_steam_artwork/core/settings/sort_program_type.dart';
@@ -20,7 +21,7 @@ import 'package:steamgriddb/steamgriddb.dart';
 part 'home_state.g.dart';
 
 @Riverpod(keepAlive: true)
-FileManager _fileManager(_FileManagerRef ref) => FileManager(ref.read(loggerProvider));
+FileManager _fileManager(Ref ref) => FileManager(ref.read(loggerProvider));
 
 @riverpod
 class SteamFolderExistsController extends _$SteamFolderExistsController {
@@ -100,7 +101,7 @@ class CacheController extends _$CacheController {
 }
 
 @riverpod
-Future<bool> cacheBackupExistsController(CacheBackupExistsControllerRef ref) async {
+Future<bool> cacheBackupExistsController(Ref ref) async {
   final syncPath = p.join(
     (await getApplicationDocumentsDirectory()).path,
     'non_steam_artwork',
@@ -166,7 +167,7 @@ class SteamPrograms extends _$SteamPrograms {
 
 @riverpod
 Future<void> deleteArtwork(
-  DeleteArtworkRef ref, {
+  Ref ref, {
   required File file,
 }) async {
   await file.delete();
@@ -176,7 +177,7 @@ Future<void> deleteArtwork(
 
 @riverpod
 Future<void> copyArtwork(
-  CopyArtworkRef ref, {
+  Ref ref, {
   required File file,
   required SteamGridArtType artType,
 }) async {
@@ -207,7 +208,7 @@ Future<void> copyArtwork(
 
 @riverpod
 Future<void> createArtworkFile(
-  CreateArtworkFileRef ref, {
+  Ref ref, {
   required int appId,
   required File file,
   required String ext,
@@ -232,7 +233,7 @@ Future<void> createArtworkFile(
 
 @riverpod
 Future<void> createArtwork(
-  CreateArtworkRef ref, {
+  Ref ref, {
   required int appId,
   required Stream<Uint8List> bytesStream,
   required String ext,

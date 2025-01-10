@@ -26,7 +26,9 @@ class ShortcutsViewerScreen extends ConsumerWidget {
         AsyncData(:final value) => ShortcutsViewerScreenContent(shortcuts: value),
         AsyncError(:final error) => Center(
             child: Text(error.toString()),
-          )
+          ),
+        // TODO: Remove after upgrade to riverpod v3
+        _ => const SizedBox.shrink(),
       },
     );
   }
