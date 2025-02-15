@@ -6,7 +6,7 @@ part of 'state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$steamManagerHash() => r'4b6f755355da1c8b78b3eb27fb1211a0eef2ae48';
+String _$steamManagerHash() => r'60afbfcca71afa9ed26414d1d82f9821e05f62a6';
 
 /// See also [steamManager].
 @ProviderFor(steamManager)

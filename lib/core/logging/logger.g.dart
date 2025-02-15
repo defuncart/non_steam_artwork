@@ -6,7 +6,7 @@ part of 'logger.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loggerHash() => r'8ab3b23f1b5cf471e9fc7b988ba371c110dd1fc2';
+String _$loggerHash() => r'79c0d5c2da63f5684b297a70f7839110c31c391f';
 
 /// See also [logger].
 @ProviderFor(logger)
@@ -21,7 +21,7 @@ final loggerProvider = Provider<Logger>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef LoggerRef = ProviderRef<Logger>;
-String _$logsViewerHash() => r'74b91ad1a3dd5dee4fac487ade15712e5f5cd2bc';
+String _$logsViewerHash() => r'6b2c13567ba46cf1bfffb1fbd29ac2a6693d0d40';
 
 /// See also [logsViewer].
 @ProviderFor(logsViewer)

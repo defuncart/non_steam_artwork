@@ -6,7 +6,7 @@ part of 'viewer_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getShortcutsHash() => r'b8fa2679a209dfb75837df843363eca5875af3b4';
+String _$getShortcutsHash() => r'3e99aa0db197f2e7fb66c7ed63f4bba79ce3d7c8';
 
 /// See also [getShortcuts].
 @ProviderFor(getShortcuts)

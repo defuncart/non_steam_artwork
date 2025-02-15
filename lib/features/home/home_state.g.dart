@@ -6,7 +6,7 @@ part of 'home_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fileManagerHash() => r'16054c52e313d2a2d8a8ed6b491b0a1b4361bac8';
+String _$fileManagerHash() => r'735168694ba0c31dde76d61ee5f5eca8470e56e1';
 
 /// See also [_fileManager].
 @ProviderFor(_fileManager)
@@ -21,7 +21,7 @@ final _fileManagerProvider = Provider<FileManager>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef _FileManagerRef = ProviderRef<FileManager>;
-String _$cacheBackupExistsControllerHash() => r'96a66906b9d16812efb9ae9b0620145cf59320ae';
+String _$cacheBackupExistsControllerHash() => r'e6fd1afb7cfc020b99b96b3164211aab25556949';
 
 /// See also [cacheBackupExistsController].
 @ProviderFor(cacheBackupExistsController)
@@ -36,7 +36,7 @@ final cacheBackupExistsControllerProvider = AutoDisposeFutureProvider<bool>.inte
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef CacheBackupExistsControllerRef = AutoDisposeFutureProviderRef<bool>;
-String _$deleteArtworkHash() => r'd6680917a6dd88b69aed24a69072e30cd8b8d2f6';
+String _$deleteArtworkHash() => r'c1495b4b4de0d94d811c1f59933da1c0bc51a912';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -167,7 +167,7 @@ class _DeleteArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   File get file => (origin as DeleteArtworkProvider).file;
 }
 
-String _$copyArtworkHash() => r'049b3b43ccbda3c32a6d09c662c0ca4245bcebbb';
+String _$copyArtworkHash() => r'0d3ca34448b2151112d18e49d9bfd68f04be1680';
 
 /// See also [copyArtwork].
 @ProviderFor(copyArtwork)
@@ -287,7 +287,7 @@ class _CopyArtworkProviderElement extends AutoDisposeFutureProviderElement<void>
   SteamGridArtType get artType => (origin as CopyArtworkProvider).artType;
 }
 
-String _$createArtworkFileHash() => r'd5114b17144083e9e2494bcad054ef88878ef5a0';
+String _$createArtworkFileHash() => r'cdf043bc3c370d3bada6e788c54bdc66f29ccb0d';
 
 /// See also [createArtworkFile].
 @ProviderFor(createArtworkFile)
@@ -440,7 +440,7 @@ class _CreateArtworkFileProviderElement extends AutoDisposeFutureProviderElement
   SteamGridArtType get artType => (origin as CreateArtworkFileProvider).artType;
 }
 
-String _$createArtworkHash() => r'4dc1aa8badace29b7a59f8dca2d5101182568e0a';
+String _$createArtworkHash() => r'fd69b15aca82582cf7a69f7a509b7a7ef8656333';
 
 /// See also [createArtwork].
 @ProviderFor(createArtwork)
