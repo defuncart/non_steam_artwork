@@ -47,6 +47,9 @@ app.*.map.json
 # local assets
 assets_dev/l10n/
 
+# generated assets
+lib/core/l10n/generated
+
 # debug platforms
 /macos/
 

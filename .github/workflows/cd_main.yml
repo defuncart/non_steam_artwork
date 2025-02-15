@@ -35,8 +35,8 @@ jobs:
         with:
           flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
           channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
-      - name: Generate ARB files
-        run: dart run arb_generator
+      - name: Generate loca
+        run: sh bin/loca_generate.sh true
       - name: Install packages
         run: flutter pub get
       # https://docs.flutter.dev/get-started/install/linux/desktop#development-tools
