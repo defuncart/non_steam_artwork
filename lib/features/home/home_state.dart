@@ -102,11 +102,7 @@ class CacheController extends _$CacheController {
 
 @riverpod
 Future<bool> cacheBackupExistsController(Ref ref) async {
-  final syncPath = p.join(
-    (await getApplicationDocumentsDirectory()).path,
-    'non_steam_artwork',
-    'grid_backup',
-  );
+  final syncPath = p.join((await getApplicationDocumentsDirectory()).path, 'non_steam_artwork', 'grid_backup');
   final dir = Directory(syncPath);
   if (!await dir.exists()) {
     return false;
@@ -166,21 +162,14 @@ class SteamPrograms extends _$SteamPrograms {
 }
 
 @riverpod
-Future<void> deleteArtwork(
-  Ref ref, {
-  required File file,
-}) async {
+Future<void> deleteArtwork(Ref ref, {required File file}) async {
   await file.delete();
   ref.log('deleted artwork ${file.path}');
   ref.invalidate(steamProgramsProvider);
 }
 
 @riverpod
-Future<void> copyArtwork(
-  Ref ref, {
-  required File file,
-  required SteamGridArtType artType,
-}) async {
+Future<void> copyArtwork(Ref ref, {required File file, required SteamGridArtType artType}) async {
   assert(artType == SteamGridArtType.hero || artType == SteamGridArtType.background);
 
   ref.log('start copy ${file.path} as ${artType.name}');
@@ -215,10 +204,7 @@ Future<void> createArtworkFile(
   required SteamGridArtType artType,
 }) async {
   ref.log('start create ${artType.name} for $appId with extension $ext');
-  final (dir, basename) = await ref.read(steamManagerProvider).generateArtworkPath(
-        appId: appId,
-        artType: artType,
-      );
+  final (dir, basename) = await ref.read(steamManagerProvider).generateArtworkPath(appId: appId, artType: artType);
   final filepath = p.join(dir, '$basename$ext');
   final hasDeletedFile = await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: basename);
   if (hasDeletedFile) {
@@ -240,10 +226,7 @@ Future<void> createArtwork(
   required SteamGridArtType artType,
 }) async {
   ref.log('start create ${artType.name} for $appId with extension $ext');
-  final (dir, basename) = await ref.read(steamManagerProvider).generateArtworkPath(
-        appId: appId,
-        artType: artType,
-      );
+  final (dir, basename) = await ref.read(steamManagerProvider).generateArtworkPath(appId: appId, artType: artType);
   final filepath = p.join(dir, '$basename$ext');
   final file = File(filepath);
   final hasDeletedFile = await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: basename);
@@ -278,22 +261,17 @@ class WasFileReplacedController extends _$WasFileReplacedController {
   bool build(String path) => ref.watch(_replacedFilesControllerProvider).contains(path);
 }
 
-typedef DownloadableArtwork = ({
-  String url,
-  String thumbnail,
-});
+typedef DownloadableArtwork = ({String url, String thumbnail});
 
-typedef DownloadableArtworkState = ({
-  String searchTerm,
-  Iterable<ProgramSearchResult> programResults,
-  int? selectedProgram,
-  Iterable<DownloadableArtwork> downloadableArtworks,
-});
+typedef DownloadableArtworkState =
+    ({
+      String searchTerm,
+      Iterable<ProgramSearchResult> programResults,
+      int? selectedProgram,
+      Iterable<DownloadableArtwork> downloadableArtworks,
+    });
 
-typedef ProgramSearchResult = ({
-  int id,
-  String name,
-});
+typedef ProgramSearchResult = ({int id, String name});
 
 @riverpod
 class DownloadableArtworkController extends _$DownloadableArtworkController {
@@ -303,10 +281,7 @@ class DownloadableArtworkController extends _$DownloadableArtworkController {
   Iterable<DownloadableArtwork> _downloadableArtworks = <DownloadableArtwork>[];
 
   @override
-  Future<DownloadableArtworkState> build({
-    required String initialSearchTerm,
-    required SteamGridArtType artType,
-  }) {
+  Future<DownloadableArtworkState> build({required String initialSearchTerm, required SteamGridArtType artType}) {
     _searchTerm = initialSearchTerm;
     return _getProgramsForSearchTerm();
   }

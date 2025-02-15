@@ -1,6 +1,1 @@
-enum SortProgramType {
-  dateAdded,
-  alphabetic,
-  programId,
-  lastPlayed,
-}
+enum SortProgramType { dateAdded, alphabetic, programId, lastPlayed }

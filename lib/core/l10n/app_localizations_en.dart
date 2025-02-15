@@ -35,7 +35,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeErrorLabel2 => 'Please view logs and report this issue.';
 
   @override
-  String get homeTipsOnboardingManualDescription => 'Manual has not been viewed. Please consult the manual before first usage.';
+  String get homeTipsOnboardingManualDescription =>
+      'Manual has not been viewed. Please consult the manual before first usage.';
 
   @override
   String get homeTipsOnboardingManualCacheButton => 'View';
@@ -169,7 +170,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get steamGridDBDialogTitle => 'API key';
 
   @override
-  String get steamGridDBDialogDescription => 'An api key from [SteamGridDB](https://www.steamgriddb.com/) is required in order to download artwork.';
+  String get steamGridDBDialogDescription =>
+      'An api key from [SteamGridDB](https://www.steamgriddb.com/) is required in order to download artwork.';
 
   @override
   String get shortcutsScreenTitle => 'Shortcuts';

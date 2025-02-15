@@ -12,7 +12,8 @@ part of 'steam_program.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$SteamProgram {
@@ -37,16 +38,17 @@ abstract class $SteamProgramCopyWith<$Res> {
   factory $SteamProgramCopyWith(SteamProgram value, $Res Function(SteamProgram) then) =
       _$SteamProgramCopyWithImpl<$Res, SteamProgram>;
   @useResult
-  $Res call(
-      {int appId,
-      String appName,
-      SteamProgramType programType,
-      DateTime lastPlayed,
-      File? icon,
-      File? cover,
-      File? background,
-      File? logo,
-      File? hero});
+  $Res call({
+    int appId,
+    String appName,
+    SteamProgramType programType,
+    DateTime lastPlayed,
+    File? icon,
+    File? cover,
+    File? background,
+    File? logo,
+    File? hero,
+  });
 }
 
 /// @nodoc
@@ -73,44 +75,56 @@ class _$SteamProgramCopyWithImpl<$Res, $Val extends SteamProgram> implements $St
     Object? logo = freezed,
     Object? hero = freezed,
   }) {
-    return _then(_value.copyWith(
-      appId: null == appId
-          ? _value.appId
-          : appId // ignore: cast_nullable_to_non_nullable
-              as int,
-      appName: null == appName
-          ? _value.appName
-          : appName // ignore: cast_nullable_to_non_nullable
-              as String,
-      programType: null == programType
-          ? _value.programType
-          : programType // ignore: cast_nullable_to_non_nullable
-              as SteamProgramType,
-      lastPlayed: null == lastPlayed
-          ? _value.lastPlayed
-          : lastPlayed // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      icon: freezed == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as File?,
-      cover: freezed == cover
-          ? _value.cover
-          : cover // ignore: cast_nullable_to_non_nullable
-              as File?,
-      background: freezed == background
-          ? _value.background
-          : background // ignore: cast_nullable_to_non_nullable
-              as File?,
-      logo: freezed == logo
-          ? _value.logo
-          : logo // ignore: cast_nullable_to_non_nullable
-              as File?,
-      hero: freezed == hero
-          ? _value.hero
-          : hero // ignore: cast_nullable_to_non_nullable
-              as File?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            appId:
+                null == appId
+                    ? _value.appId
+                    : appId // ignore: cast_nullable_to_non_nullable
+                        as int,
+            appName:
+                null == appName
+                    ? _value.appName
+                    : appName // ignore: cast_nullable_to_non_nullable
+                        as String,
+            programType:
+                null == programType
+                    ? _value.programType
+                    : programType // ignore: cast_nullable_to_non_nullable
+                        as SteamProgramType,
+            lastPlayed:
+                null == lastPlayed
+                    ? _value.lastPlayed
+                    : lastPlayed // ignore: cast_nullable_to_non_nullable
+                        as DateTime,
+            icon:
+                freezed == icon
+                    ? _value.icon
+                    : icon // ignore: cast_nullable_to_non_nullable
+                        as File?,
+            cover:
+                freezed == cover
+                    ? _value.cover
+                    : cover // ignore: cast_nullable_to_non_nullable
+                        as File?,
+            background:
+                freezed == background
+                    ? _value.background
+                    : background // ignore: cast_nullable_to_non_nullable
+                        as File?,
+            logo:
+                freezed == logo
+                    ? _value.logo
+                    : logo // ignore: cast_nullable_to_non_nullable
+                        as File?,
+            hero:
+                freezed == hero
+                    ? _value.hero
+                    : hero // ignore: cast_nullable_to_non_nullable
+                        as File?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -120,23 +134,24 @@ abstract class _$$SteamProgramImplCopyWith<$Res> implements $SteamProgramCopyWit
       __$$SteamProgramImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int appId,
-      String appName,
-      SteamProgramType programType,
-      DateTime lastPlayed,
-      File? icon,
-      File? cover,
-      File? background,
-      File? logo,
-      File? hero});
+  $Res call({
+    int appId,
+    String appName,
+    SteamProgramType programType,
+    DateTime lastPlayed,
+    File? icon,
+    File? cover,
+    File? background,
+    File? logo,
+    File? hero,
+  });
 }
 
 /// @nodoc
 class __$$SteamProgramImplCopyWithImpl<$Res> extends _$SteamProgramCopyWithImpl<$Res, _$SteamProgramImpl>
     implements _$$SteamProgramImplCopyWith<$Res> {
   __$$SteamProgramImplCopyWithImpl(_$SteamProgramImpl _value, $Res Function(_$SteamProgramImpl) _then)
-      : super(_value, _then);
+    : super(_value, _then);
 
   /// Create a copy of SteamProgram
   /// with the given fields replaced by the non-null parameter values.
@@ -153,60 +168,72 @@ class __$$SteamProgramImplCopyWithImpl<$Res> extends _$SteamProgramCopyWithImpl<
     Object? logo = freezed,
     Object? hero = freezed,
   }) {
-    return _then(_$SteamProgramImpl(
-      appId: null == appId
-          ? _value.appId
-          : appId // ignore: cast_nullable_to_non_nullable
-              as int,
-      appName: null == appName
-          ? _value.appName
-          : appName // ignore: cast_nullable_to_non_nullable
-              as String,
-      programType: null == programType
-          ? _value.programType
-          : programType // ignore: cast_nullable_to_non_nullable
-              as SteamProgramType,
-      lastPlayed: null == lastPlayed
-          ? _value.lastPlayed
-          : lastPlayed // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      icon: freezed == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as File?,
-      cover: freezed == cover
-          ? _value.cover
-          : cover // ignore: cast_nullable_to_non_nullable
-              as File?,
-      background: freezed == background
-          ? _value.background
-          : background // ignore: cast_nullable_to_non_nullable
-              as File?,
-      logo: freezed == logo
-          ? _value.logo
-          : logo // ignore: cast_nullable_to_non_nullable
-              as File?,
-      hero: freezed == hero
-          ? _value.hero
-          : hero // ignore: cast_nullable_to_non_nullable
-              as File?,
-    ));
+    return _then(
+      _$SteamProgramImpl(
+        appId:
+            null == appId
+                ? _value.appId
+                : appId // ignore: cast_nullable_to_non_nullable
+                    as int,
+        appName:
+            null == appName
+                ? _value.appName
+                : appName // ignore: cast_nullable_to_non_nullable
+                    as String,
+        programType:
+            null == programType
+                ? _value.programType
+                : programType // ignore: cast_nullable_to_non_nullable
+                    as SteamProgramType,
+        lastPlayed:
+            null == lastPlayed
+                ? _value.lastPlayed
+                : lastPlayed // ignore: cast_nullable_to_non_nullable
+                    as DateTime,
+        icon:
+            freezed == icon
+                ? _value.icon
+                : icon // ignore: cast_nullable_to_non_nullable
+                    as File?,
+        cover:
+            freezed == cover
+                ? _value.cover
+                : cover // ignore: cast_nullable_to_non_nullable
+                    as File?,
+        background:
+            freezed == background
+                ? _value.background
+                : background // ignore: cast_nullable_to_non_nullable
+                    as File?,
+        logo:
+            freezed == logo
+                ? _value.logo
+                : logo // ignore: cast_nullable_to_non_nullable
+                    as File?,
+        hero:
+            freezed == hero
+                ? _value.hero
+                : hero // ignore: cast_nullable_to_non_nullable
+                    as File?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$SteamProgramImpl implements _SteamProgram {
-  const _$SteamProgramImpl(
-      {required this.appId,
-      required this.appName,
-      required this.programType,
-      required this.lastPlayed,
-      this.icon,
-      this.cover,
-      this.background,
-      this.logo,
-      this.hero});
+  const _$SteamProgramImpl({
+    required this.appId,
+    required this.appName,
+    required this.programType,
+    required this.lastPlayed,
+    this.icon,
+    this.cover,
+    this.background,
+    this.logo,
+    this.hero,
+  });
 
   @override
   final int appId;
@@ -262,16 +289,17 @@ class _$SteamProgramImpl implements _SteamProgram {
 }
 
 abstract class _SteamProgram implements SteamProgram {
-  const factory _SteamProgram(
-      {required final int appId,
-      required final String appName,
-      required final SteamProgramType programType,
-      required final DateTime lastPlayed,
-      final File? icon,
-      final File? cover,
-      final File? background,
-      final File? logo,
-      final File? hero}) = _$SteamProgramImpl;
+  const factory _SteamProgram({
+    required final int appId,
+    required final String appName,
+    required final SteamProgramType programType,
+    required final DateTime lastPlayed,
+    final File? icon,
+    final File? cover,
+    final File? background,
+    final File? logo,
+    final File? hero,
+  }) = _$SteamProgramImpl;
 
   @override
   int get appId;

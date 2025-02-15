@@ -46,19 +46,17 @@ class _SearchProgramsTextFieldState extends ConsumerState<SearchProgramsTextFiel
   void initState() {
     super.initState();
 
-    _controller = TextEditingController()
-      ..addListener(() {
-        ref.read(searchControllerProvider.notifier).updateSearch(_controller.text);
-      });
+    _controller =
+        TextEditingController()..addListener(() {
+          ref.read(searchControllerProvider.notifier).updateSearch(_controller.text);
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: _controller,
-      decoration: InputDecoration(
-        hintText: context.l10n.homeAppBarSearchHintLabel,
-      ),
+      decoration: InputDecoration(hintText: context.l10n.homeAppBarSearchHintLabel),
     );
   }
 }
@@ -107,14 +105,17 @@ class SortProgramsButton extends ConsumerWidget {
           ref.read(sortProgramTypeControllerProvider.notifier).set(value);
         }
       },
-      dropdownMenuEntries: SortProgramType.values
-          .map((sortType) => DropdownMenuEntry<SortProgramType>(
-                value: sortType,
-                leadingIcon: Icon(sortType.icon),
-                label: sortType.getLabel(context),
-                enabled: true,
-              ))
-          .toList(),
+      dropdownMenuEntries:
+          SortProgramType.values
+              .map(
+                (sortType) => DropdownMenuEntry<SortProgramType>(
+                  value: sortType,
+                  leadingIcon: Icon(sortType.icon),
+                  label: sortType.getLabel(context),
+                  enabled: true,
+                ),
+              )
+              .toList(),
       // expandedInsets: EdgeInsets.zero,
     );
   }
@@ -122,16 +123,16 @@ class SortProgramsButton extends ConsumerWidget {
 
 extension on SortProgramType {
   IconData get icon => switch (this) {
-        SortProgramType.dateAdded => Icons.edit_calendar,
-        SortProgramType.alphabetic => Icons.abc,
-        SortProgramType.programId => Icons.onetwothree,
-        SortProgramType.lastPlayed => Icons.history,
-      };
+    SortProgramType.dateAdded => Icons.edit_calendar,
+    SortProgramType.alphabetic => Icons.abc,
+    SortProgramType.programId => Icons.onetwothree,
+    SortProgramType.lastPlayed => Icons.history,
+  };
 
   String getLabel(BuildContext context) => switch (this) {
-        SortProgramType.dateAdded => context.l10n.homeAppBarSortDateAdded,
-        SortProgramType.alphabetic => context.l10n.homeAppBarSortAlphabetic,
-        SortProgramType.programId => context.l10n.homeAppBarSortProgramId,
-        SortProgramType.lastPlayed => context.l10n.homeAppBarSortLastPlayed,
-      };
+    SortProgramType.dateAdded => context.l10n.homeAppBarSortDateAdded,
+    SortProgramType.alphabetic => context.l10n.homeAppBarSortAlphabetic,
+    SortProgramType.programId => context.l10n.homeAppBarSortProgramId,
+    SortProgramType.lastPlayed => context.l10n.homeAppBarSortLastPlayed,
+  };
 }

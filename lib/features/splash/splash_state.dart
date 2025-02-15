@@ -20,13 +20,11 @@ Future<bool> splashState(Ref ref) async {
   final packageInfo = await PackageInfo.fromPlatform();
 
   ref.log(packageInfo.toString());
-  ref.log(
-    switch (defaultTargetPlatform) {
-      // LinuxDeviceInfo does not override toString
-      TargetPlatform.linux => 'DeviceInfo ${deviceInfo.data.toString()}',
-      _ => deviceInfo.toString(),
-    },
-  );
+  ref.log(switch (defaultTargetPlatform) {
+    // LinuxDeviceInfo does not override toString
+    TargetPlatform.linux => 'DeviceInfo ${deviceInfo.data.toString()}',
+    _ => deviceInfo.toString(),
+  });
 
   return true;
 }
