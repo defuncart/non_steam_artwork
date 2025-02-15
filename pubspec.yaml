@@ -4,8 +4,8 @@ publish_to: 'none'
 version: 0.0.1+1
 
 environment:
-  sdk: '>=3.6.0 <4.0.0'
-  flutter: '>=3.27.0 <4.0.0'
+  sdk: ^3.7.0
+  flutter: ^3.29.0
 
 dependencies:
   flutter:
@@ -13,7 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter 
   intl:
-  flex_color_scheme: ^8.0.2
+  flex_color_scheme:
   gap:
   steam_shortcuts_util:
     path: packages/steam_shortcuts_util/
