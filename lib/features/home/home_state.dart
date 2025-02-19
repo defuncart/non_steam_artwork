@@ -1,9 +1,11 @@
 import 'dart:io';
-import 'dart:typed_data';
+import 'dart:math';
 
 import 'package:clock/clock.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
 import 'package:non_steam_artwork/core/extensions/file_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
 import 'package:non_steam_artwork/core/settings/sort_program_type.dart';
@@ -365,4 +367,26 @@ class DownloadableArtworkController extends _$DownloadableArtworkController {
       });
     }
   }
+}
+
+@riverpod
+Future<String?> downloadFileSize(Ref ref, {required String url}) async {
+  final response = await http.head(Uri.parse(url));
+  final contentLength = response.headers['content-length'];
+
+  return convertContentLengthToDisplayString(contentLength);
+}
+
+@visibleForTesting
+String? convertContentLengthToDisplayString(String? contentLength) {
+  if (contentLength != null) {
+    final bytes = int.tryParse(contentLength);
+    if (bytes != null && bytes > 0) {
+      const sizes = ['B', 'KB', 'MB', 'GB'];
+      final index = (log(bytes) / log(1024)).floor().clamp(0, sizes.length - 1);
+      return '${(bytes / pow(1024, index)).toStringAsFixed(0)} ${sizes[index]}';
+    }
+  }
+
+  return null;
 }
