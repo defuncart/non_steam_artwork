@@ -13,9 +13,6 @@ class PrivacyPolicyScreen extends StatelessWidget {
     );
   }
 
-  static void show(BuildContext context) => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const PrivacyPolicyScreen(),
-        ),
-      );
+  static void show(BuildContext context) =>
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PrivacyPolicyScreen()));
 }

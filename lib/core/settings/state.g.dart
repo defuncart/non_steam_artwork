@@ -6,7 +6,7 @@ part of 'state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$settingsServiceHash() => r'4bccfb676ebd858ab40a19467757914c93e0fea6';
+String _$settingsServiceHash() => r'e658fddec33f128bd59e68bf761072afcc522e70';
 
 /// See also [settingsService].
 @ProviderFor(settingsService)
@@ -53,12 +53,13 @@ String _$filteredProgramTypesControllerHash() => r'75d56c062b66d32bce0028f4090a5
 @ProviderFor(FilteredProgramTypesController)
 final filteredProgramTypesControllerProvider =
     AutoDisposeNotifierProvider<FilteredProgramTypesController, Map<SteamProgramType, bool>>.internal(
-  FilteredProgramTypesController.new,
-  name: r'filteredProgramTypesControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$filteredProgramTypesControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      FilteredProgramTypesController.new,
+      name: r'filteredProgramTypesControllerProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product') ? null : _$filteredProgramTypesControllerHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$FilteredProgramTypesController = AutoDisposeNotifier<Map<SteamProgramType, bool>>;
 String _$sortProgramTypeControllerHash() => r'1842386459e03d964d242e63a3b1f60c0458268b';
@@ -67,12 +68,12 @@ String _$sortProgramTypeControllerHash() => r'1842386459e03d964d242e63a3b1f60c04
 @ProviderFor(SortProgramTypeController)
 final sortProgramTypeControllerProvider =
     AutoDisposeNotifierProvider<SortProgramTypeController, SortProgramType>.internal(
-  SortProgramTypeController.new,
-  name: r'sortProgramTypeControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$sortProgramTypeControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      SortProgramTypeController.new,
+      name: r'sortProgramTypeControllerProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$sortProgramTypeControllerHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$SortProgramTypeController = AutoDisposeNotifier<SortProgramType>;
 String _$sortingAscendingControllerHash() => r'f75956f5962b3d46fb782c534c107482006906fb';

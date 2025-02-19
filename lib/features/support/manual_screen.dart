@@ -13,9 +13,6 @@ class ManualScreen extends StatelessWidget {
     );
   }
 
-  static void show(BuildContext context) => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const ManualScreen(),
-        ),
-      );
+  static void show(BuildContext context) =>
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ManualScreen()));
 }

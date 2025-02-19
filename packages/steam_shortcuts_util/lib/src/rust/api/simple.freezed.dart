@@ -12,7 +12,8 @@ part of 'simple.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$SteamShortcut {
@@ -37,16 +38,17 @@ abstract class $SteamShortcutCopyWith<$Res> {
   factory $SteamShortcutCopyWith(SteamShortcut value, $Res Function(SteamShortcut) then) =
       _$SteamShortcutCopyWithImpl<$Res, SteamShortcut>;
   @useResult
-  $Res call(
-      {int appId,
-      String appName,
-      String target,
-      String launchOptions,
-      String startDir,
-      String icon,
-      bool isHidden,
-      List<String> tags,
-      int lastPlayTime});
+  $Res call({
+    int appId,
+    String appName,
+    String target,
+    String launchOptions,
+    String startDir,
+    String icon,
+    bool isHidden,
+    List<String> tags,
+    int lastPlayTime,
+  });
 }
 
 /// @nodoc
@@ -73,44 +75,56 @@ class _$SteamShortcutCopyWithImpl<$Res, $Val extends SteamShortcut> implements $
     Object? tags = null,
     Object? lastPlayTime = null,
   }) {
-    return _then(_value.copyWith(
-      appId: null == appId
-          ? _value.appId
-          : appId // ignore: cast_nullable_to_non_nullable
-              as int,
-      appName: null == appName
-          ? _value.appName
-          : appName // ignore: cast_nullable_to_non_nullable
-              as String,
-      target: null == target
-          ? _value.target
-          : target // ignore: cast_nullable_to_non_nullable
-              as String,
-      launchOptions: null == launchOptions
-          ? _value.launchOptions
-          : launchOptions // ignore: cast_nullable_to_non_nullable
-              as String,
-      startDir: null == startDir
-          ? _value.startDir
-          : startDir // ignore: cast_nullable_to_non_nullable
-              as String,
-      icon: null == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as String,
-      isHidden: null == isHidden
-          ? _value.isHidden
-          : isHidden // ignore: cast_nullable_to_non_nullable
-              as bool,
-      tags: null == tags
-          ? _value.tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      lastPlayTime: null == lastPlayTime
-          ? _value.lastPlayTime
-          : lastPlayTime // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            appId:
+                null == appId
+                    ? _value.appId
+                    : appId // ignore: cast_nullable_to_non_nullable
+                        as int,
+            appName:
+                null == appName
+                    ? _value.appName
+                    : appName // ignore: cast_nullable_to_non_nullable
+                        as String,
+            target:
+                null == target
+                    ? _value.target
+                    : target // ignore: cast_nullable_to_non_nullable
+                        as String,
+            launchOptions:
+                null == launchOptions
+                    ? _value.launchOptions
+                    : launchOptions // ignore: cast_nullable_to_non_nullable
+                        as String,
+            startDir:
+                null == startDir
+                    ? _value.startDir
+                    : startDir // ignore: cast_nullable_to_non_nullable
+                        as String,
+            icon:
+                null == icon
+                    ? _value.icon
+                    : icon // ignore: cast_nullable_to_non_nullable
+                        as String,
+            isHidden:
+                null == isHidden
+                    ? _value.isHidden
+                    : isHidden // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            tags:
+                null == tags
+                    ? _value.tags
+                    : tags // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+            lastPlayTime:
+                null == lastPlayTime
+                    ? _value.lastPlayTime
+                    : lastPlayTime // ignore: cast_nullable_to_non_nullable
+                        as int,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -120,23 +134,24 @@ abstract class _$$SteamShortcutImplCopyWith<$Res> implements $SteamShortcutCopyW
       __$$SteamShortcutImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int appId,
-      String appName,
-      String target,
-      String launchOptions,
-      String startDir,
-      String icon,
-      bool isHidden,
-      List<String> tags,
-      int lastPlayTime});
+  $Res call({
+    int appId,
+    String appName,
+    String target,
+    String launchOptions,
+    String startDir,
+    String icon,
+    bool isHidden,
+    List<String> tags,
+    int lastPlayTime,
+  });
 }
 
 /// @nodoc
 class __$$SteamShortcutImplCopyWithImpl<$Res> extends _$SteamShortcutCopyWithImpl<$Res, _$SteamShortcutImpl>
     implements _$$SteamShortcutImplCopyWith<$Res> {
   __$$SteamShortcutImplCopyWithImpl(_$SteamShortcutImpl _value, $Res Function(_$SteamShortcutImpl) _then)
-      : super(_value, _then);
+    : super(_value, _then);
 
   /// Create a copy of SteamShortcut
   /// with the given fields replaced by the non-null parameter values.
@@ -153,61 +168,72 @@ class __$$SteamShortcutImplCopyWithImpl<$Res> extends _$SteamShortcutCopyWithImp
     Object? tags = null,
     Object? lastPlayTime = null,
   }) {
-    return _then(_$SteamShortcutImpl(
-      appId: null == appId
-          ? _value.appId
-          : appId // ignore: cast_nullable_to_non_nullable
-              as int,
-      appName: null == appName
-          ? _value.appName
-          : appName // ignore: cast_nullable_to_non_nullable
-              as String,
-      target: null == target
-          ? _value.target
-          : target // ignore: cast_nullable_to_non_nullable
-              as String,
-      launchOptions: null == launchOptions
-          ? _value.launchOptions
-          : launchOptions // ignore: cast_nullable_to_non_nullable
-              as String,
-      startDir: null == startDir
-          ? _value.startDir
-          : startDir // ignore: cast_nullable_to_non_nullable
-              as String,
-      icon: null == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as String,
-      isHidden: null == isHidden
-          ? _value.isHidden
-          : isHidden // ignore: cast_nullable_to_non_nullable
-              as bool,
-      tags: null == tags
-          ? _value._tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      lastPlayTime: null == lastPlayTime
-          ? _value.lastPlayTime
-          : lastPlayTime // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _$SteamShortcutImpl(
+        appId:
+            null == appId
+                ? _value.appId
+                : appId // ignore: cast_nullable_to_non_nullable
+                    as int,
+        appName:
+            null == appName
+                ? _value.appName
+                : appName // ignore: cast_nullable_to_non_nullable
+                    as String,
+        target:
+            null == target
+                ? _value.target
+                : target // ignore: cast_nullable_to_non_nullable
+                    as String,
+        launchOptions:
+            null == launchOptions
+                ? _value.launchOptions
+                : launchOptions // ignore: cast_nullable_to_non_nullable
+                    as String,
+        startDir:
+            null == startDir
+                ? _value.startDir
+                : startDir // ignore: cast_nullable_to_non_nullable
+                    as String,
+        icon:
+            null == icon
+                ? _value.icon
+                : icon // ignore: cast_nullable_to_non_nullable
+                    as String,
+        isHidden:
+            null == isHidden
+                ? _value.isHidden
+                : isHidden // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        tags:
+            null == tags
+                ? _value._tags
+                : tags // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+        lastPlayTime:
+            null == lastPlayTime
+                ? _value.lastPlayTime
+                : lastPlayTime // ignore: cast_nullable_to_non_nullable
+                    as int,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$SteamShortcutImpl implements _SteamShortcut {
-  const _$SteamShortcutImpl(
-      {required this.appId,
-      required this.appName,
-      required this.target,
-      required this.launchOptions,
-      required this.startDir,
-      required this.icon,
-      required this.isHidden,
-      required final List<String> tags,
-      required this.lastPlayTime})
-      : _tags = tags;
+  const _$SteamShortcutImpl({
+    required this.appId,
+    required this.appName,
+    required this.target,
+    required this.launchOptions,
+    required this.startDir,
+    required this.icon,
+    required this.isHidden,
+    required final List<String> tags,
+    required this.lastPlayTime,
+  }) : _tags = tags;
 
   @override
   final int appId;
@@ -256,8 +282,18 @@ class _$SteamShortcutImpl implements _SteamShortcut {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, appId, appName, target, launchOptions, startDir, icon, isHidden,
-      const DeepCollectionEquality().hash(_tags), lastPlayTime);
+  int get hashCode => Object.hash(
+    runtimeType,
+    appId,
+    appName,
+    target,
+    launchOptions,
+    startDir,
+    icon,
+    isHidden,
+    const DeepCollectionEquality().hash(_tags),
+    lastPlayTime,
+  );
 
   /// Create a copy of SteamShortcut
   /// with the given fields replaced by the non-null parameter values.
@@ -269,16 +305,17 @@ class _$SteamShortcutImpl implements _SteamShortcut {
 }
 
 abstract class _SteamShortcut implements SteamShortcut {
-  const factory _SteamShortcut(
-      {required final int appId,
-      required final String appName,
-      required final String target,
-      required final String launchOptions,
-      required final String startDir,
-      required final String icon,
-      required final bool isHidden,
-      required final List<String> tags,
-      required final int lastPlayTime}) = _$SteamShortcutImpl;
+  const factory _SteamShortcut({
+    required final int appId,
+    required final String appName,
+    required final String target,
+    required final String launchOptions,
+    required final String startDir,
+    required final String icon,
+    required final bool isHidden,
+    required final List<String> tags,
+    required final int lastPlayTime,
+  }) = _$SteamShortcutImpl;
 
   @override
   int get appId;

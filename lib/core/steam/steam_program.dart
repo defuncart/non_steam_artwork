@@ -5,12 +5,7 @@ import 'package:meta/meta.dart' as meta;
 
 part 'steam_program.freezed.dart';
 
-enum SteamProgramType {
-  lutris,
-  heroic,
-  roms,
-  other,
-}
+enum SteamProgramType { lutris, heroic, roms, other }
 
 @freezed
 @meta.immutable

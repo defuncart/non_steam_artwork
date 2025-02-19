@@ -50,14 +50,7 @@ class SteamGridCache {
   }
 }
 
-typedef CacheProgramArtwork = ({
-  int id,
-  File? icon,
-  File? cover,
-  File? background,
-  File? logo,
-  File? hero,
-});
+typedef CacheProgramArtwork = ({int id, File? icon, File? cover, File? background, File? logo, File? hero});
 
 extension on File {
   bool get isImage {

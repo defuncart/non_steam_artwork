@@ -148,9 +148,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return switch (state) {
       AsyncLoading() => const SizedBox.shrink(),
       AsyncData() => const HomeScreenContent(),
-      AsyncError(:final error) => HomeScreenSteamError(
-          error: error,
-        ),
+      AsyncError(:final error) => HomeScreenSteamError(error: error),
       // TODO: Remove after upgrade to riverpod v3
       _ => const SizedBox.shrink(),
     };
@@ -166,15 +164,7 @@ class HomeScreenContent extends StatelessWidget {
     return const Scaffold(
       appBar: HomeAppBar(),
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            HomeTipsPanel(),
-            Expanded(
-              child: ProgramsView(),
-            ),
-          ],
-        ),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [HomeTipsPanel(), Expanded(child: ProgramsView())]),
       ),
     );
   }
@@ -182,10 +172,7 @@ class HomeScreenContent extends StatelessWidget {
 
 @visibleForTesting
 class HomeScreenSteamError extends StatelessWidget {
-  const HomeScreenSteamError({
-    required this.error,
-    super.key,
-  });
+  const HomeScreenSteamError({required this.error, super.key});
 
   final Object error;
 
@@ -195,10 +182,7 @@ class HomeScreenSteamError extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(context.l10n.homeErrorLabel1(error)),
-            Text(context.l10n.homeErrorLabel2),
-          ],
+          children: [Text(context.l10n.homeErrorLabel1(error)), Text(context.l10n.homeErrorLabel2)],
         ),
       ),
     );
@@ -214,27 +198,23 @@ class ProgramsView extends ConsumerWidget {
     final state = ref.watch(steamProgramsProvider);
 
     return switch (state) {
-      AsyncData(:final value) => value.isEmpty
-          ? Center(
+      AsyncData(:final value) =>
+        value.isEmpty
+            ? Center(
               child: Text(
                 ref.read(searchControllerProvider).isNotEmpty
                     ? context.l10n.homeSearchEmpty
                     : context.l10n.homeProgramsEmpty,
               ),
             )
-          : ListView.separated(
+            : ListView.separated(
               shrinkWrap: true,
               padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
               itemCount: value.length,
-              itemBuilder: (context, index) => ProgramView(
-                program: value.toList()[index],
-              ),
-              separatorBuilder: (context, index) => Center(
-                child: SizedBox(
-                  width: minWindowSize.width * 0.75,
-                  child: const Divider(),
-                ),
-              ),
+              itemBuilder: (context, index) => ProgramView(program: value.toList()[index]),
+              separatorBuilder:
+                  (context, index) =>
+                      Center(child: SizedBox(width: minWindowSize.width * 0.75, child: const Divider())),
             ),
       _ => const SizedBox.shrink(),
     };
@@ -243,10 +223,7 @@ class ProgramsView extends ConsumerWidget {
 
 @visibleForTesting
 class ProgramView extends ConsumerWidget {
-  const ProgramView({
-    required this.program,
-    super.key,
-  });
+  const ProgramView({required this.program, super.key});
 
   final SteamProgram program;
 
@@ -261,10 +238,7 @@ class ProgramView extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Gap(4),
-            Text(
-              program.appName,
-              style: context.textTheme.headlineSmall,
-            ),
+            Text(program.appName, style: context.textTheme.headlineSmall),
             const Gap(8),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -290,19 +264,18 @@ class ProgramView extends ConsumerWidget {
                     height: artType.size.height * 0.25 * widthFactor,
                     onDeleteFile: (file) => ref.read(deleteArtworkProvider(file: file)),
                     onCopyFile: (file, artType) => ref.read(copyArtworkProvider(file: file, artType: artType)),
-                    onCreateFile: (bytesStream, ext) => ref.read(createArtworkProvider(
-                      appId: program.appId,
-                      bytesStream: bytesStream,
-                      ext: ext,
-                      artType: artType,
-                    )),
+                    onCreateFile:
+                        (bytesStream, ext) => ref.read(
+                          createArtworkProvider(
+                            appId: program.appId,
+                            bytesStream: bytesStream,
+                            ext: ext,
+                            artType: artType,
+                          ),
+                        ),
                     onLog: ref.read(loggerProvider).log,
                     canDownloadArtwork: ref.watch(steamGridDBApiKeyControllerProvider) != null,
-                    onDownload: () => DownloadArtwork.show(
-                      context,
-                      program: program,
-                      artType: artType,
-                    ),
+                    onDownload: () => DownloadArtwork.show(context, program: program, artType: artType),
                   ),
               ].intersperse(Gap(12 * widthFactor)),
             ),
@@ -382,17 +355,25 @@ class _SteamArtworkState extends State<SteamArtwork> {
           final item = event.session.items.first;
           final reader = item.dataReader!;
           if (reader.canProvide(Formats.jpeg)) {
-            reader.getFile(Formats.jpeg, (file) {
-              widget.onCreateFile(file.getStream(), '.jpg');
-            }, onError: (error) {
-              widget.onLog('Error reading value $error');
-            });
+            reader.getFile(
+              Formats.jpeg,
+              (file) {
+                widget.onCreateFile(file.getStream(), '.jpg');
+              },
+              onError: (error) {
+                widget.onLog('Error reading value $error');
+              },
+            );
           } else if (reader.canProvide(Formats.png)) {
-            reader.getFile(Formats.png, (file) {
-              widget.onCreateFile(file.getStream(), '.png');
-            }, onError: (error) {
-              widget.onLog('Error reading value $error');
-            });
+            reader.getFile(
+              Formats.png,
+              (file) {
+                widget.onCreateFile(file.getStream(), '.png');
+              },
+              onError: (error) {
+                widget.onLog('Error reading value $error');
+              },
+            );
           }
         }
       },
@@ -410,22 +391,29 @@ class _SteamArtworkState extends State<SteamArtwork> {
 
               SystemClipboard.instance?.read().then((reader) {
                 if (reader.canProvide(Formats.jpeg)) {
-                  reader.getFile(Formats.jpeg, (file) {
-                    widget.onCreateFile(file.getStream(), '.jpg');
-                  }, onError: (error) {
-                    widget.onLog('Error reading value $error');
-                  });
+                  reader.getFile(
+                    Formats.jpeg,
+                    (file) {
+                      widget.onCreateFile(file.getStream(), '.jpg');
+                    },
+                    onError: (error) {
+                      widget.onLog('Error reading value $error');
+                    },
+                  );
                 } else if (reader.canProvide(Formats.png)) {
-                  reader.getFile(Formats.png, (file) {
-                    widget.onCreateFile(file.getStream(), '.png');
-                  }, onError: (error) {
-                    widget.onLog('Error reading value $error');
-                  });
+                  reader.getFile(
+                    Formats.png,
+                    (file) {
+                      widget.onCreateFile(file.getStream(), '.png');
+                    },
+                    onError: (error) {
+                      widget.onLog('Error reading value $error');
+                    },
+                  );
                 } else {
-                  scaffoldMessenger.showSnackBar(SnackBar(
-                    content: Text(l10n.homeProgramPasteError),
-                    duration: const Duration(seconds: 2),
-                  ));
+                  scaffoldMessenger.showSnackBar(
+                    SnackBar(content: Text(l10n.homeProgramPasteError), duration: const Duration(seconds: 2)),
+                  );
                   widget.onLog('clipboard contents is not .jpg nor .png');
                 }
               });
@@ -441,45 +429,32 @@ class _SteamArtworkState extends State<SteamArtwork> {
             }
           },
           menuItems: [
-            if (widget.canDownloadArtwork)
-              MenuItem(
-                title: context.l10n.homeProgramSearchSteamGridDB,
-              ),
-            MenuItem(
-              title: context.l10n.homeProgramArtworkPaste,
-            ),
-            if (widget.file != null)
-              MenuItem(
-                title: context.l10n.homeProgramArtworkDelete,
-              ),
+            if (widget.canDownloadArtwork) MenuItem(title: context.l10n.homeProgramSearchSteamGridDB),
+            MenuItem(title: context.l10n.homeProgramArtworkPaste),
+            if (widget.file != null) MenuItem(title: context.l10n.homeProgramArtworkDelete),
             if (widget.artType == SteamGridArtType.logo)
-              MenuItem(
-                title: context.l10n.homeProgramArtworkCreateEmptyLogo,
-              ),
+              MenuItem(title: context.l10n.homeProgramArtworkCreateEmptyLogo),
             if (widget.file != null && widget.artType == SteamGridArtType.background)
-              MenuItem(
-                title: context.l10n.homeProgramArtworkSetBackgroundAsHero,
-              ),
+              MenuItem(title: context.l10n.homeProgramArtworkSetBackgroundAsHero),
             if (widget.file != null && widget.artType == SteamGridArtType.hero)
-              MenuItem(
-                title: context.l10n.homeProgramArtworkSetHeroAsBackground,
-              ),
+              MenuItem(title: context.l10n.homeProgramArtworkSetHeroAsBackground),
           ],
           child: SizedBox(
             width: widget.width,
             height: widget.height,
             child: Opacity(
               opacity: _isDragging ? 0.75 : 1,
-              child: widget.file != null
-                  ? ArtworkImage(widget.file!)
-                  : ColoredBox(
-                      color: context.colorScheme.tertiary,
-                      child: Icon(
-                        Icons.broken_image,
-                        size: widget.width * 0.25,
-                        color: context.colorScheme.onTertiary,
+              child:
+                  widget.file != null
+                      ? ArtworkImage(widget.file!)
+                      : ColoredBox(
+                        color: context.colorScheme.tertiary,
+                        child: Icon(
+                          Icons.broken_image,
+                          size: widget.width * 0.25,
+                          color: context.colorScheme.onTertiary,
+                        ),
                       ),
-                    ),
             ),
           ),
         ),
@@ -493,10 +468,7 @@ class _SteamArtworkState extends State<SteamArtwork> {
 // replaced image should be rendered, Image.memory is used instead
 @visibleForTesting
 class ArtworkImage extends ConsumerWidget {
-  const ArtworkImage(
-    this.file, {
-    super.key,
-  });
+  const ArtworkImage(this.file, {super.key});
 
   final File file;
 

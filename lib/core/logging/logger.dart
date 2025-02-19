@@ -25,10 +25,7 @@ class Logger {
 
     // in debug mode log a clickable link to source file @ line number
     if (kDebugMode) {
-      final path = p.join(
-        Directory.current.path,
-        event.sourceFile?.replaceFirst('package:non_steam_artwork/', 'lib/'),
-      );
+      final path = p.join(Directory.current.path, event.sourceFile?.replaceFirst('package:non_steam_artwork/', 'lib/'));
       dev.log('file://$path:${event.lineNumber}');
     }
   }
@@ -69,13 +66,7 @@ class Logger {
   }
 }
 
-typedef LogEvent = ({
-  String message,
-  String? className,
-  String? methodName,
-  String? sourceFile,
-  String? lineNumber,
-});
+typedef LogEvent = ({String message, String? className, String? methodName, String? sourceFile, String? lineNumber});
 
 @Riverpod(keepAlive: true)
 Logger logger(Ref ref) => Logger._();

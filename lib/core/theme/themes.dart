@@ -5,6 +5,4 @@ final lightTheme = FlexThemeData.light(
   appBarBackground: FlexThemeData.light(scheme: FlexScheme.blueM3).colorScheme.surface,
 );
 
-final darkTheme = FlexThemeData.dark(
-  scheme: FlexScheme.blueM3,
-);
+final darkTheme = FlexThemeData.dark(scheme: FlexScheme.blueM3);

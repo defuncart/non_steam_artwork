@@ -9,11 +9,7 @@ import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
 
 class MarkdownScreen extends ConsumerStatefulWidget {
-  const MarkdownScreen({
-    required this.title,
-    required this.url,
-    super.key,
-  });
+  const MarkdownScreen({required this.title, required this.url, super.key});
 
   final String title;
   final String url;
@@ -30,58 +26,41 @@ class _MarkdownScreenState extends ConsumerState<MarkdownScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: FutureBuilder(
-          future: _getData(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState != ConnectionState.done) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
+    appBar: AppBar(title: Text(widget.title)),
+    body: FutureBuilder(
+      future: _getData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-            if (snapshot.hasData && snapshot.data!.isEmpty) {
-              ref.log('Empty content for ${widget.url}');
+        if (snapshot.hasData && snapshot.data!.isEmpty) {
+          ref.log('Empty content for ${widget.url}');
 
-              return Center(
-                child: Text(
-                  context.l10n.generalErrorTitle,
-                  style: context.textTheme.bodyLarge,
-                ),
-              );
-            }
+          return Center(child: Text(context.l10n.generalErrorTitle, style: context.textTheme.bodyLarge));
+        }
 
-            if (snapshot.hasError) {
-              ref.log('Error loading ${widget.url}: ${snapshot.error!}');
+        if (snapshot.hasError) {
+          ref.log('Error loading ${widget.url}: ${snapshot.error!}');
 
-              return Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      context.l10n.generalErrorTitle,
-                      style: context.textTheme.bodyLarge,
-                    ),
-                    Text(
-                      context.l10n.generalErrorNoInternetDescription,
-                    ),
-                    TextButton(
-                      onPressed: () => setState(() {}),
-                      child: Text(context.l10n.generalErrorTryAgain),
-                    ),
-                  ].intersperse(const Gap(4)),
-                ),
-              );
-            }
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(context.l10n.generalErrorTitle, style: context.textTheme.bodyLarge),
+                Text(context.l10n.generalErrorNoInternetDescription),
+                TextButton(onPressed: () => setState(() {}), child: Text(context.l10n.generalErrorTryAgain)),
+              ].intersperse(const Gap(4)),
+            ),
+          );
+        }
 
-            return MarkdownWidget(
-              selectable: true,
-              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
-              data: snapshot.data!,
-            );
-          },
-        ),
-      );
+        return MarkdownWidget(
+          selectable: true,
+          padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+          data: snapshot.data!,
+        );
+      },
+    ),
+  );
 }

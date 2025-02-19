@@ -16,36 +16,24 @@ class ShortcutsViewerScreen extends ConsumerWidget {
     final state = ref.watch(getShortcutsProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.shortcutsScreenTitle),
-      ),
+      appBar: AppBar(title: Text(context.l10n.shortcutsScreenTitle)),
       body: switch (state) {
-        AsyncLoading() => const Center(
-            child: CircularProgressIndicator(),
-          ),
+        AsyncLoading() => const Center(child: CircularProgressIndicator()),
         AsyncData(:final value) => ShortcutsViewerScreenContent(shortcuts: value),
-        AsyncError(:final error) => Center(
-            child: Text(error.toString()),
-          ),
+        AsyncError(:final error) => Center(child: Text(error.toString())),
         // TODO: Remove after upgrade to riverpod v3
         _ => const SizedBox.shrink(),
       },
     );
   }
 
-  static void show(BuildContext context) => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const ShortcutsViewerScreen(),
-        ),
-      );
+  static void show(BuildContext context) =>
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ShortcutsViewerScreen()));
 }
 
 @visibleForTesting
 class ShortcutsViewerScreenContent extends ConsumerStatefulWidget {
-  const ShortcutsViewerScreenContent({
-    required this.shortcuts,
-    super.key,
-  });
+  const ShortcutsViewerScreenContent({required this.shortcuts, super.key});
 
   final List<SteamShortcut> shortcuts;
 
@@ -59,9 +47,7 @@ class _ShortcutsViewerScreenContentState extends ConsumerState<ShortcutsViewerSc
   @override
   Widget build(BuildContext context) {
     if (widget.shortcuts.isEmpty) {
-      return Center(
-        child: Text(context.l10n.homeProgramsEmpty),
-      );
+      return Center(child: Text(context.l10n.homeProgramsEmpty));
     }
 
     return Row(
@@ -71,20 +57,15 @@ class _ShortcutsViewerScreenContentState extends ConsumerState<ShortcutsViewerSc
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: widget.shortcuts.length,
-            itemBuilder: (context, index) => ListTile(
-              dense: false,
-              title: Text(
-                widget.shortcuts[index].appName,
-              ),
-              onTap: () => setState(() => _selectedIndex = index),
-            ),
+            itemBuilder:
+                (context, index) => ListTile(
+                  dense: false,
+                  title: Text(widget.shortcuts[index].appName),
+                  onTap: () => setState(() => _selectedIndex = index),
+                ),
           ),
         ),
-        Expanded(
-          child: ShortcutDetails(
-            shortcut: widget.shortcuts[_selectedIndex],
-          ),
-        ),
+        Expanded(child: ShortcutDetails(shortcut: widget.shortcuts[_selectedIndex])),
       ],
     );
   }
@@ -92,10 +73,7 @@ class _ShortcutsViewerScreenContentState extends ConsumerState<ShortcutsViewerSc
 
 @visibleForTesting
 class ShortcutDetails extends StatelessWidget {
-  const ShortcutDetails({
-    required this.shortcut,
-    super.key,
-  });
+  const ShortcutDetails({required this.shortcut, super.key});
 
   final SteamShortcut shortcut;
 
@@ -110,19 +88,13 @@ class ShortcutDetails extends StatelessWidget {
             SizedBox(
               width: 64,
               height: 64,
-              child: shortcut.icon.isNotEmpty
-                  ? Tooltip(
-                      message: shortcut.icon,
-                      child: Image.file(File(shortcut.icon)),
-                    )
-                  : ColoredBox(
-                      color: context.colorScheme.tertiary,
-                      child: Icon(
-                        Icons.broken_image,
-                        size: 64 * 0.25,
-                        color: context.colorScheme.onTertiary,
+              child:
+                  shortcut.icon.isNotEmpty
+                      ? Tooltip(message: shortcut.icon, child: Image.file(File(shortcut.icon)))
+                      : ColoredBox(
+                        color: context.colorScheme.tertiary,
+                        child: Icon(Icons.broken_image, size: 64 * 0.25, color: context.colorScheme.onTertiary),
                       ),
-                    ),
             ),
             const Gap(16),
             Expanded(
@@ -130,14 +102,8 @@ class ShortcutDetails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    shortcut.appName,
-                    style: context.textTheme.headlineMedium,
-                  ),
-                  Text(
-                    shortcut.appId.toString(),
-                    style: context.textTheme.headlineSmall,
-                  ),
+                  Text(shortcut.appName, style: context.textTheme.headlineMedium),
+                  Text(shortcut.appId.toString(), style: context.textTheme.headlineSmall),
                 ],
               ),
             ),
@@ -147,36 +113,24 @@ class ShortcutDetails extends StatelessWidget {
         TextField(
           readOnly: true,
           controller: TextEditingController()..text = shortcut.target,
-          decoration: const InputDecoration(
-            label: Text('Target'),
-          ),
+          decoration: const InputDecoration(label: Text('Target')),
         ),
         const Gap(4),
         TextField(
           readOnly: true,
           controller: TextEditingController()..text = shortcut.startDir,
-          decoration: const InputDecoration(
-            label: Text('Start in'),
-          ),
+          decoration: const InputDecoration(label: Text('Start in')),
         ),
         const Gap(4),
         TextField(
           readOnly: true,
           controller: TextEditingController()..text = shortcut.launchOptions,
-          decoration: const InputDecoration(
-            label: Text('Launch options'),
-          ),
+          decoration: const InputDecoration(label: Text('Launch options')),
         ),
         const Gap(16),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Hidden'),
-            Switch(
-              value: shortcut.isHidden,
-              onChanged: null,
-            ),
-          ],
+          children: [const Text('Hidden'), Switch(value: shortcut.isHidden, onChanged: null)],
         ),
         const Gap(16),
         const Text('Tags'),

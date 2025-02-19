@@ -11,10 +11,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:steam_shortcuts_util/steam_shortcuts_util.dart';
 
 class SteamManager {
-  SteamManager({
-    this.steamShortcuts = const SteamShortcutsUtil(),
-    required this.logger,
-  });
+  SteamManager({this.steamShortcuts = const SteamShortcutsUtil(), required this.logger});
 
   final SteamShortcutsUtil steamShortcuts;
   final Logger logger;
@@ -94,16 +91,19 @@ class SteamManager {
     final shortcutGameIds = _shortcutPrograms.map((e) => e.appId);
     final unused = _cachedArtwork.where((element) => !shortcutGameIds.contains(element.id));
 
-    return unused.fold(
-        [],
-        (previousValue, element) => [
-              ...previousValue,
-              element.icon,
-              element.cover,
-              element.background,
-              element.logo,
-              element.hero,
-            ]).whereType<File>();
+    return unused
+        .fold(
+          [],
+          (previousValue, element) => [
+            ...previousValue,
+            element.icon,
+            element.cover,
+            element.background,
+            element.logo,
+            element.hero,
+          ],
+        )
+        .whereType<File>();
   }
 
   Future<Iterable<SteamProgram>> getPrograms(Iterable<SteamProgramType> validTypes) async {
@@ -149,10 +149,7 @@ class SteamManager {
     throw const SteamShortcutsFileNotFoundException();
   }
 
-  Future<(String, String)> generateArtworkPath({
-    required int appId,
-    required SteamGridArtType artType,
-  }) async {
+  Future<(String, String)> generateArtworkPath({required int appId, required SteamGridArtType artType}) async {
     final gridPath = _gridPath;
 
     // TODO: error check folder exists
@@ -192,11 +189,7 @@ final class SteamShortcutsFileCannotBeParsedException implements SteamException 
 }
 
 extension on SteamShortcut {
-  static const emulators = [
-    'org.libretro.RetroArch',
-    'org.duckstation.DuckStation',
-    'net.rpcs3.RPCS3',
-  ];
+  static const emulators = ['org.libretro.RetroArch', 'org.duckstation.DuckStation', 'net.rpcs3.RPCS3'];
 
   SteamProgramType toType() {
     if (launchOptions.contains('net.lutris.Lutris')) {

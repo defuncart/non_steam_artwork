@@ -28,56 +28,42 @@ class SettingsService extends ISettingsService {
   static const _name = 'settings';
 
   SettingsService() {
-    Hive.registerAdapter(
-      '$FilteredProgramTypes',
-      (json) => FilteredProgramTypes.fromJson(json),
-    );
+    Hive.registerAdapter('$FilteredProgramTypes', (json) => FilteredProgramTypes.fromJson(json));
     _box = Hive.box<dynamic>(name: _name);
   }
 
   @override
-  ThemeMode get themeMode => _getEnumValue<ThemeMode>(
-        key: _Keys.themeMode,
-        values: ThemeMode.values,
-        defaultValue: _Defaults.themeMode,
-      );
+  ThemeMode get themeMode =>
+      _getEnumValue<ThemeMode>(key: _Keys.themeMode, values: ThemeMode.values, defaultValue: _Defaults.themeMode);
 
   @override
   set themeMode(ThemeMode value) => _box.put(_Keys.themeMode, value.index);
 
   @override
-  bool get hasSeenOnboarding => _box.get(
-        _Keys.hasSeenOnboarding,
-        defaultValue: _Defaults.hasSeenOnboarding,
-      );
+  bool get hasSeenOnboarding => _box.get(_Keys.hasSeenOnboarding, defaultValue: _Defaults.hasSeenOnboarding);
 
   @override
   set hasSeenOnboarding(bool value) => _box.put(_Keys.hasSeenOnboarding, value);
 
   @override
-  FilteredProgramTypes get filteredProgramTypes => _box.get(
-        _Keys.filteredProgramTypes,
-        defaultValue: _Defaults.filteredProgramTypes,
-      );
+  FilteredProgramTypes get filteredProgramTypes =>
+      _box.get(_Keys.filteredProgramTypes, defaultValue: _Defaults.filteredProgramTypes);
 
   @override
   set filteredProgramTypes(FilteredProgramTypes value) => _box.put(_Keys.filteredProgramTypes, value);
 
   @override
   SortProgramType get sortProgramType => _getEnumValue<SortProgramType>(
-        key: _Keys.sortProgramType,
-        values: SortProgramType.values,
-        defaultValue: _Defaults.sortProgramType,
-      );
+    key: _Keys.sortProgramType,
+    values: SortProgramType.values,
+    defaultValue: _Defaults.sortProgramType,
+  );
 
   @override
   set sortProgramType(SortProgramType value) => _box.put(_Keys.sortProgramType, value.index);
 
   @override
-  bool get isSortingAscending => _box.get(
-        _Keys.isSortingAscending,
-        defaultValue: _Defaults.isSortingAscending,
-      );
+  bool get isSortingAscending => _box.get(_Keys.isSortingAscending, defaultValue: _Defaults.isSortingAscending);
 
   @override
   set isSortingAscending(bool value) => _box.put(_Keys.isSortingAscending, value);
@@ -88,11 +74,7 @@ class SettingsService extends ISettingsService {
   @override
   set steamGridDBApiKey(String? value) => _box.put(_Keys.steamGridDBApiKey, value);
 
-  T _getEnumValue<T extends Enum>({
-    required String key,
-    required List<T> values,
-    required T defaultValue,
-  }) {
+  T _getEnumValue<T extends Enum>({required String key, required List<T> values, required T defaultValue}) {
     try {
       final index = _box.get(key) as int;
       return values[index];

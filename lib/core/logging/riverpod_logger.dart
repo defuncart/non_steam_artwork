@@ -5,19 +5,12 @@ class RiverpodLogger extends ProviderObserver {
   const RiverpodLogger();
 
   @override
-  void didAddProvider(
-    ProviderBase<Object?> provider,
-    Object? value,
-    ProviderContainer container,
-  ) {
+  void didAddProvider(ProviderBase<Object?> provider, Object? value, ProviderContainer container) {
     debugPrint('Provider $provider was initialized with $value');
   }
 
   @override
-  void didDisposeProvider(
-    ProviderBase<Object?> provider,
-    ProviderContainer container,
-  ) {
+  void didDisposeProvider(ProviderBase<Object?> provider, ProviderContainer container) {
     debugPrint('Provider $provider was disposed');
   }
 

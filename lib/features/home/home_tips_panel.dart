@@ -16,18 +16,10 @@ class HomeTipsPanel extends StatelessWidget {
     return const Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Flexible(
-          child: OnboardingManualView(),
-        ),
-        Flexible(
-          child: BackupUpCacheView(),
-        ),
-        Flexible(
-          child: CleanUpCacheView(),
-        ),
-        Flexible(
-          child: AddApiKeyView(),
-        ),
+        Flexible(child: OnboardingManualView()),
+        Flexible(child: BackupUpCacheView()),
+        Flexible(child: CleanUpCacheView()),
+        Flexible(child: AddApiKeyView()),
       ],
     );
   }
@@ -44,16 +36,16 @@ class OnboardingManualView extends ConsumerWidget {
     return state
         ? const SizedBox.shrink()
         : TipCard(
-            backgroundColor: context.colorScheme.tertiaryContainer,
-            foregroundColor: context.colorScheme.onTertiaryContainer,
-            title: context.l10n.homeTipsOnboardingManualDescription,
-            buttonIcon: Icons.menu_book,
-            buttonLabel: context.l10n.homeTipsOnboardingManualCacheButton,
-            onButtonPressed: () {
-              ref.read(hasSeenOnboardingControllerProvider.notifier).toggle();
-              ManualScreen.show(context);
-            },
-          );
+          backgroundColor: context.colorScheme.tertiaryContainer,
+          foregroundColor: context.colorScheme.onTertiaryContainer,
+          title: context.l10n.homeTipsOnboardingManualDescription,
+          buttonIcon: Icons.menu_book,
+          buttonLabel: context.l10n.homeTipsOnboardingManualCacheButton,
+          onButtonPressed: () {
+            ref.read(hasSeenOnboardingControllerProvider.notifier).toggle();
+            ManualScreen.show(context);
+          },
+        );
   }
 }
 
@@ -66,9 +58,10 @@ class BackupUpCacheView extends ConsumerWidget {
     final state = ref.watch(cacheBackupExistsControllerProvider);
 
     return switch (state) {
-      AsyncData(:final value) => value
-          ? const SizedBox.shrink()
-          : TipCard(
+      AsyncData(:final value) =>
+        value
+            ? const SizedBox.shrink()
+            : TipCard(
               backgroundColor: context.colorScheme.primaryContainer,
               foregroundColor: context.colorScheme.onPrimaryContainer,
               title: context.l10n.homeTipsBackupCacheDescription,
@@ -93,9 +86,10 @@ class CleanUpCacheView extends ConsumerWidget {
     final state = ref.watch(cacheControllerProvider);
 
     return switch (state) {
-      AsyncData(:final value) => value == 0
-          ? const SizedBox.shrink()
-          : TipCard(
+      AsyncData(:final value) =>
+        value == 0
+            ? const SizedBox.shrink()
+            : TipCard(
               backgroundColor: context.colorScheme.secondaryContainer,
               foregroundColor: context.colorScheme.onSecondaryContainer,
               title: context.l10n.homeTipsCleanUpCacheDescription(value.displaySize),
@@ -118,13 +112,13 @@ class AddApiKeyView extends ConsumerWidget {
 
     return state == null
         ? TipCard(
-            backgroundColor: context.colorScheme.errorContainer,
-            foregroundColor: context.colorScheme.onErrorContainer,
-            title: context.l10n.homeTipsAddApiKeyDescription,
-            buttonIcon: Icons.language,
-            buttonLabel: context.l10n.homeTipsAddApiKeyButton,
-            onButtonPressed: () => SteamGridDBDialog.show(context),
-          )
+          backgroundColor: context.colorScheme.errorContainer,
+          foregroundColor: context.colorScheme.onErrorContainer,
+          title: context.l10n.homeTipsAddApiKeyDescription,
+          buttonIcon: Icons.language,
+          buttonLabel: context.l10n.homeTipsAddApiKeyButton,
+          onButtonPressed: () => SteamGridDBDialog.show(context),
+        )
         : const SizedBox.shrink();
   }
 }
@@ -160,16 +154,10 @@ class TipCard extends StatelessWidget {
             Text(title),
             const SizedBox(height: 16),
             Theme(
-              data: Theme.of(context).copyWith(
-                colorScheme: Theme.of(context).colorScheme.copyWith(
-                      primary: foregroundColor,
-                    ),
-              ),
-              child: TextButton.icon(
-                onPressed: onButtonPressed,
-                icon: Icon(buttonIcon),
-                label: Text(buttonLabel),
-              ),
+              data: Theme.of(
+                context,
+              ).copyWith(colorScheme: Theme.of(context).colorScheme.copyWith(primary: foregroundColor)),
+              child: TextButton.icon(onPressed: onButtonPressed, icon: Icon(buttonIcon), label: Text(buttonLabel)),
             ),
           ],
         ),

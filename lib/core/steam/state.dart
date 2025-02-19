@@ -6,6 +6,4 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'state.g.dart';
 
 @Riverpod(keepAlive: true)
-SteamManager steamManager(Ref ref) => SteamManager(
-      logger: ref.read(loggerProvider),
-    );
+SteamManager steamManager(Ref ref) => SteamManager(logger: ref.read(loggerProvider));

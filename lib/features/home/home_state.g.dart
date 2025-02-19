@@ -6,7 +6,7 @@ part of 'home_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fileManagerHash() => r'16054c52e313d2a2d8a8ed6b491b0a1b4361bac8';
+String _$fileManagerHash() => r'735168694ba0c31dde76d61ee5f5eca8470e56e1';
 
 /// See also [_fileManager].
 @ProviderFor(_fileManager)
@@ -21,7 +21,7 @@ final _fileManagerProvider = Provider<FileManager>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef _FileManagerRef = ProviderRef<FileManager>;
-String _$cacheBackupExistsControllerHash() => r'96a66906b9d16812efb9ae9b0620145cf59320ae';
+String _$cacheBackupExistsControllerHash() => r'e6fd1afb7cfc020b99b96b3164211aab25556949';
 
 /// See also [cacheBackupExistsController].
 @ProviderFor(cacheBackupExistsController)
@@ -36,7 +36,7 @@ final cacheBackupExistsControllerProvider = AutoDisposeFutureProvider<bool>.inte
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef CacheBackupExistsControllerRef = AutoDisposeFutureProviderRef<bool>;
-String _$deleteArtworkHash() => r'd6680917a6dd88b69aed24a69072e30cd8b8d2f6';
+String _$deleteArtworkHash() => r'c1495b4b4de0d94d811c1f59933da1c0bc51a912';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -69,21 +69,13 @@ class DeleteArtworkFamily extends Family<AsyncValue<void>> {
   const DeleteArtworkFamily();
 
   /// See also [deleteArtwork].
-  DeleteArtworkProvider call({
-    required File file,
-  }) {
-    return DeleteArtworkProvider(
-      file: file,
-    );
+  DeleteArtworkProvider call({required File file}) {
+    return DeleteArtworkProvider(file: file);
   }
 
   @override
-  DeleteArtworkProvider getProviderOverride(
-    covariant DeleteArtworkProvider provider,
-  ) {
-    return call(
-      file: provider.file,
-    );
+  DeleteArtworkProvider getProviderOverride(covariant DeleteArtworkProvider provider) {
+    return call(file: provider.file);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -103,20 +95,16 @@ class DeleteArtworkFamily extends Family<AsyncValue<void>> {
 /// See also [deleteArtwork].
 class DeleteArtworkProvider extends AutoDisposeFutureProvider<void> {
   /// See also [deleteArtwork].
-  DeleteArtworkProvider({
-    required File file,
-  }) : this._internal(
-          (ref) => deleteArtwork(
-            ref as DeleteArtworkRef,
-            file: file,
-          ),
-          from: deleteArtworkProvider,
-          name: r'deleteArtworkProvider',
-          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$deleteArtworkHash,
-          dependencies: DeleteArtworkFamily._dependencies,
-          allTransitiveDependencies: DeleteArtworkFamily._allTransitiveDependencies,
-          file: file,
-        );
+  DeleteArtworkProvider({required File file})
+    : this._internal(
+        (ref) => deleteArtwork(ref as DeleteArtworkRef, file: file),
+        from: deleteArtworkProvider,
+        name: r'deleteArtworkProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$deleteArtworkHash,
+        dependencies: DeleteArtworkFamily._dependencies,
+        allTransitiveDependencies: DeleteArtworkFamily._allTransitiveDependencies,
+        file: file,
+      );
 
   DeleteArtworkProvider._internal(
     super._createNotifier, {
@@ -131,9 +119,7 @@ class DeleteArtworkProvider extends AutoDisposeFutureProvider<void> {
   final File file;
 
   @override
-  Override overrideWith(
-    FutureOr<void> Function(DeleteArtworkRef provider) create,
-  ) {
+  Override overrideWith(FutureOr<void> Function(DeleteArtworkRef provider) create) {
     return ProviderOverride(
       origin: this,
       override: DeleteArtworkProvider._internal(
@@ -181,7 +167,7 @@ class _DeleteArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   File get file => (origin as DeleteArtworkProvider).file;
 }
 
-String _$copyArtworkHash() => r'049b3b43ccbda3c32a6d09c662c0ca4245bcebbb';
+String _$copyArtworkHash() => r'0d3ca34448b2151112d18e49d9bfd68f04be1680';
 
 /// See also [copyArtwork].
 @ProviderFor(copyArtwork)
@@ -193,24 +179,13 @@ class CopyArtworkFamily extends Family<AsyncValue<void>> {
   const CopyArtworkFamily();
 
   /// See also [copyArtwork].
-  CopyArtworkProvider call({
-    required File file,
-    required SteamGridArtType artType,
-  }) {
-    return CopyArtworkProvider(
-      file: file,
-      artType: artType,
-    );
+  CopyArtworkProvider call({required File file, required SteamGridArtType artType}) {
+    return CopyArtworkProvider(file: file, artType: artType);
   }
 
   @override
-  CopyArtworkProvider getProviderOverride(
-    covariant CopyArtworkProvider provider,
-  ) {
-    return call(
-      file: provider.file,
-      artType: provider.artType,
-    );
+  CopyArtworkProvider getProviderOverride(covariant CopyArtworkProvider provider) {
+    return call(file: provider.file, artType: provider.artType);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -230,23 +205,17 @@ class CopyArtworkFamily extends Family<AsyncValue<void>> {
 /// See also [copyArtwork].
 class CopyArtworkProvider extends AutoDisposeFutureProvider<void> {
   /// See also [copyArtwork].
-  CopyArtworkProvider({
-    required File file,
-    required SteamGridArtType artType,
-  }) : this._internal(
-          (ref) => copyArtwork(
-            ref as CopyArtworkRef,
-            file: file,
-            artType: artType,
-          ),
-          from: copyArtworkProvider,
-          name: r'copyArtworkProvider',
-          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$copyArtworkHash,
-          dependencies: CopyArtworkFamily._dependencies,
-          allTransitiveDependencies: CopyArtworkFamily._allTransitiveDependencies,
-          file: file,
-          artType: artType,
-        );
+  CopyArtworkProvider({required File file, required SteamGridArtType artType})
+    : this._internal(
+        (ref) => copyArtwork(ref as CopyArtworkRef, file: file, artType: artType),
+        from: copyArtworkProvider,
+        name: r'copyArtworkProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$copyArtworkHash,
+        dependencies: CopyArtworkFamily._dependencies,
+        allTransitiveDependencies: CopyArtworkFamily._allTransitiveDependencies,
+        file: file,
+        artType: artType,
+      );
 
   CopyArtworkProvider._internal(
     super._createNotifier, {
@@ -263,9 +232,7 @@ class CopyArtworkProvider extends AutoDisposeFutureProvider<void> {
   final SteamGridArtType artType;
 
   @override
-  Override overrideWith(
-    FutureOr<void> Function(CopyArtworkRef provider) create,
-  ) {
+  Override overrideWith(FutureOr<void> Function(CopyArtworkRef provider) create) {
     return ProviderOverride(
       origin: this,
       override: CopyArtworkProvider._internal(
@@ -320,7 +287,7 @@ class _CopyArtworkProviderElement extends AutoDisposeFutureProviderElement<void>
   SteamGridArtType get artType => (origin as CopyArtworkProvider).artType;
 }
 
-String _$createArtworkFileHash() => r'd5114b17144083e9e2494bcad054ef88878ef5a0';
+String _$createArtworkFileHash() => r'cdf043bc3c370d3bada6e788c54bdc66f29ccb0d';
 
 /// See also [createArtworkFile].
 @ProviderFor(createArtworkFile)
@@ -338,24 +305,12 @@ class CreateArtworkFileFamily extends Family<AsyncValue<void>> {
     required String ext,
     required SteamGridArtType artType,
   }) {
-    return CreateArtworkFileProvider(
-      appId: appId,
-      file: file,
-      ext: ext,
-      artType: artType,
-    );
+    return CreateArtworkFileProvider(appId: appId, file: file, ext: ext, artType: artType);
   }
 
   @override
-  CreateArtworkFileProvider getProviderOverride(
-    covariant CreateArtworkFileProvider provider,
-  ) {
-    return call(
-      appId: provider.appId,
-      file: provider.file,
-      ext: provider.ext,
-      artType: provider.artType,
-    );
+  CreateArtworkFileProvider getProviderOverride(covariant CreateArtworkFileProvider provider) {
+    return call(appId: provider.appId, file: provider.file, ext: provider.ext, artType: provider.artType);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -381,23 +336,17 @@ class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
     required String ext,
     required SteamGridArtType artType,
   }) : this._internal(
-          (ref) => createArtworkFile(
-            ref as CreateArtworkFileRef,
-            appId: appId,
-            file: file,
-            ext: ext,
-            artType: artType,
-          ),
-          from: createArtworkFileProvider,
-          name: r'createArtworkFileProvider',
-          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$createArtworkFileHash,
-          dependencies: CreateArtworkFileFamily._dependencies,
-          allTransitiveDependencies: CreateArtworkFileFamily._allTransitiveDependencies,
-          appId: appId,
-          file: file,
-          ext: ext,
-          artType: artType,
-        );
+         (ref) => createArtworkFile(ref as CreateArtworkFileRef, appId: appId, file: file, ext: ext, artType: artType),
+         from: createArtworkFileProvider,
+         name: r'createArtworkFileProvider',
+         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$createArtworkFileHash,
+         dependencies: CreateArtworkFileFamily._dependencies,
+         allTransitiveDependencies: CreateArtworkFileFamily._allTransitiveDependencies,
+         appId: appId,
+         file: file,
+         ext: ext,
+         artType: artType,
+       );
 
   CreateArtworkFileProvider._internal(
     super._createNotifier, {
@@ -418,9 +367,7 @@ class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
   final SteamGridArtType artType;
 
   @override
-  Override overrideWith(
-    FutureOr<void> Function(CreateArtworkFileRef provider) create,
-  ) {
+  Override overrideWith(FutureOr<void> Function(CreateArtworkFileRef provider) create) {
     return ProviderOverride(
       origin: this,
       override: CreateArtworkFileProvider._internal(
@@ -493,7 +440,7 @@ class _CreateArtworkFileProviderElement extends AutoDisposeFutureProviderElement
   SteamGridArtType get artType => (origin as CreateArtworkFileProvider).artType;
 }
 
-String _$createArtworkHash() => r'4dc1aa8badace29b7a59f8dca2d5101182568e0a';
+String _$createArtworkHash() => r'fd69b15aca82582cf7a69f7a509b7a7ef8656333';
 
 /// See also [createArtwork].
 @ProviderFor(createArtwork)
@@ -511,24 +458,12 @@ class CreateArtworkFamily extends Family<AsyncValue<void>> {
     required String ext,
     required SteamGridArtType artType,
   }) {
-    return CreateArtworkProvider(
-      appId: appId,
-      bytesStream: bytesStream,
-      ext: ext,
-      artType: artType,
-    );
+    return CreateArtworkProvider(appId: appId, bytesStream: bytesStream, ext: ext, artType: artType);
   }
 
   @override
-  CreateArtworkProvider getProviderOverride(
-    covariant CreateArtworkProvider provider,
-  ) {
-    return call(
-      appId: provider.appId,
-      bytesStream: provider.bytesStream,
-      ext: provider.ext,
-      artType: provider.artType,
-    );
+  CreateArtworkProvider getProviderOverride(covariant CreateArtworkProvider provider) {
+    return call(appId: provider.appId, bytesStream: provider.bytesStream, ext: provider.ext, artType: provider.artType);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -554,23 +489,18 @@ class CreateArtworkProvider extends AutoDisposeFutureProvider<void> {
     required String ext,
     required SteamGridArtType artType,
   }) : this._internal(
-          (ref) => createArtwork(
-            ref as CreateArtworkRef,
-            appId: appId,
-            bytesStream: bytesStream,
-            ext: ext,
-            artType: artType,
-          ),
-          from: createArtworkProvider,
-          name: r'createArtworkProvider',
-          debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$createArtworkHash,
-          dependencies: CreateArtworkFamily._dependencies,
-          allTransitiveDependencies: CreateArtworkFamily._allTransitiveDependencies,
-          appId: appId,
-          bytesStream: bytesStream,
-          ext: ext,
-          artType: artType,
-        );
+         (ref) =>
+             createArtwork(ref as CreateArtworkRef, appId: appId, bytesStream: bytesStream, ext: ext, artType: artType),
+         from: createArtworkProvider,
+         name: r'createArtworkProvider',
+         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$createArtworkHash,
+         dependencies: CreateArtworkFamily._dependencies,
+         allTransitiveDependencies: CreateArtworkFamily._allTransitiveDependencies,
+         appId: appId,
+         bytesStream: bytesStream,
+         ext: ext,
+         artType: artType,
+       );
 
   CreateArtworkProvider._internal(
     super._createNotifier, {
@@ -591,9 +521,7 @@ class CreateArtworkProvider extends AutoDisposeFutureProvider<void> {
   final SteamGridArtType artType;
 
   @override
-  Override overrideWith(
-    FutureOr<void> Function(CreateArtworkRef provider) create,
-  ) {
+  Override overrideWith(FutureOr<void> Function(CreateArtworkRef provider) create) {
     return ProviderOverride(
       origin: this,
       override: CreateArtworkProvider._internal(
@@ -672,12 +600,13 @@ String _$steamFolderExistsControllerHash() => r'00ef2fb8acab6278a869af79a8d8e30f
 @ProviderFor(SteamFolderExistsController)
 final steamFolderExistsControllerProvider =
     AutoDisposeAsyncNotifierProvider<SteamFolderExistsController, bool>.internal(
-  SteamFolderExistsController.new,
-  name: r'steamFolderExistsControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$steamFolderExistsControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      SteamFolderExistsController.new,
+      name: r'steamFolderExistsControllerProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product') ? null : _$steamFolderExistsControllerHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$SteamFolderExistsController = AutoDisposeAsyncNotifier<bool>;
 String _$cacheControllerHash() => r'f2c77ef7969f1ca19a70927e3e55159deff8ef79';
@@ -737,9 +666,7 @@ String _$wasFileReplacedControllerHash() => r'69297efee1b523fd9c6bd670bc8a6df416
 abstract class _$WasFileReplacedController extends BuildlessAutoDisposeNotifier<bool> {
   late final String path;
 
-  bool build(
-    String path,
-  );
+  bool build(String path);
 }
 
 /// See also [WasFileReplacedController].
@@ -752,21 +679,13 @@ class WasFileReplacedControllerFamily extends Family<bool> {
   const WasFileReplacedControllerFamily();
 
   /// See also [WasFileReplacedController].
-  WasFileReplacedControllerProvider call(
-    String path,
-  ) {
-    return WasFileReplacedControllerProvider(
-      path,
-    );
+  WasFileReplacedControllerProvider call(String path) {
+    return WasFileReplacedControllerProvider(path);
   }
 
   @override
-  WasFileReplacedControllerProvider getProviderOverride(
-    covariant WasFileReplacedControllerProvider provider,
-  ) {
-    return call(
-      provider.path,
-    );
+  WasFileReplacedControllerProvider getProviderOverride(covariant WasFileReplacedControllerProvider provider) {
+    return call(provider.path);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -786,18 +705,17 @@ class WasFileReplacedControllerFamily extends Family<bool> {
 /// See also [WasFileReplacedController].
 class WasFileReplacedControllerProvider extends AutoDisposeNotifierProviderImpl<WasFileReplacedController, bool> {
   /// See also [WasFileReplacedController].
-  WasFileReplacedControllerProvider(
-    String path,
-  ) : this._internal(
-          () => WasFileReplacedController()..path = path,
-          from: wasFileReplacedControllerProvider,
-          name: r'wasFileReplacedControllerProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product') ? null : _$wasFileReplacedControllerHash,
-          dependencies: WasFileReplacedControllerFamily._dependencies,
-          allTransitiveDependencies: WasFileReplacedControllerFamily._allTransitiveDependencies,
-          path: path,
-        );
+  WasFileReplacedControllerProvider(String path)
+    : this._internal(
+        () => WasFileReplacedController()..path = path,
+        from: wasFileReplacedControllerProvider,
+        name: r'wasFileReplacedControllerProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product') ? null : _$wasFileReplacedControllerHash,
+        dependencies: WasFileReplacedControllerFamily._dependencies,
+        allTransitiveDependencies: WasFileReplacedControllerFamily._allTransitiveDependencies,
+        path: path,
+      );
 
   WasFileReplacedControllerProvider._internal(
     super._createNotifier, {
@@ -812,12 +730,8 @@ class WasFileReplacedControllerProvider extends AutoDisposeNotifierProviderImpl<
   final String path;
 
   @override
-  bool runNotifierBuild(
-    covariant WasFileReplacedController notifier,
-  ) {
-    return notifier.build(
-      path,
-    );
+  bool runNotifierBuild(covariant WasFileReplacedController notifier) {
+    return notifier.build(path);
   }
 
   @override
@@ -863,7 +777,8 @@ mixin WasFileReplacedControllerRef on AutoDisposeNotifierProviderRef<bool> {
 }
 
 class _WasFileReplacedControllerProviderElement
-    extends AutoDisposeNotifierProviderElement<WasFileReplacedController, bool> with WasFileReplacedControllerRef {
+    extends AutoDisposeNotifierProviderElement<WasFileReplacedController, bool>
+    with WasFileReplacedControllerRef {
   _WasFileReplacedControllerProviderElement(super.provider);
 
   @override
@@ -876,10 +791,7 @@ abstract class _$DownloadableArtworkController extends BuildlessAutoDisposeAsync
   late final String initialSearchTerm;
   late final SteamGridArtType artType;
 
-  FutureOr<DownloadableArtworkState> build({
-    required String initialSearchTerm,
-    required SteamGridArtType artType,
-  });
+  FutureOr<DownloadableArtworkState> build({required String initialSearchTerm, required SteamGridArtType artType});
 }
 
 /// See also [DownloadableArtworkController].
@@ -892,24 +804,13 @@ class DownloadableArtworkControllerFamily extends Family<AsyncValue<Downloadable
   const DownloadableArtworkControllerFamily();
 
   /// See also [DownloadableArtworkController].
-  DownloadableArtworkControllerProvider call({
-    required String initialSearchTerm,
-    required SteamGridArtType artType,
-  }) {
-    return DownloadableArtworkControllerProvider(
-      initialSearchTerm: initialSearchTerm,
-      artType: artType,
-    );
+  DownloadableArtworkControllerProvider call({required String initialSearchTerm, required SteamGridArtType artType}) {
+    return DownloadableArtworkControllerProvider(initialSearchTerm: initialSearchTerm, artType: artType);
   }
 
   @override
-  DownloadableArtworkControllerProvider getProviderOverride(
-    covariant DownloadableArtworkControllerProvider provider,
-  ) {
-    return call(
-      initialSearchTerm: provider.initialSearchTerm,
-      artType: provider.artType,
-    );
+  DownloadableArtworkControllerProvider getProviderOverride(covariant DownloadableArtworkControllerProvider provider) {
+    return call(initialSearchTerm: provider.initialSearchTerm, artType: provider.artType);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -930,22 +831,21 @@ class DownloadableArtworkControllerFamily extends Family<AsyncValue<Downloadable
 class DownloadableArtworkControllerProvider
     extends AutoDisposeAsyncNotifierProviderImpl<DownloadableArtworkController, DownloadableArtworkState> {
   /// See also [DownloadableArtworkController].
-  DownloadableArtworkControllerProvider({
-    required String initialSearchTerm,
-    required SteamGridArtType artType,
-  }) : this._internal(
-          () => DownloadableArtworkController()
-            ..initialSearchTerm = initialSearchTerm
-            ..artType = artType,
-          from: downloadableArtworkControllerProvider,
-          name: r'downloadableArtworkControllerProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product') ? null : _$downloadableArtworkControllerHash,
-          dependencies: DownloadableArtworkControllerFamily._dependencies,
-          allTransitiveDependencies: DownloadableArtworkControllerFamily._allTransitiveDependencies,
-          initialSearchTerm: initialSearchTerm,
-          artType: artType,
-        );
+  DownloadableArtworkControllerProvider({required String initialSearchTerm, required SteamGridArtType artType})
+    : this._internal(
+        () =>
+            DownloadableArtworkController()
+              ..initialSearchTerm = initialSearchTerm
+              ..artType = artType,
+        from: downloadableArtworkControllerProvider,
+        name: r'downloadableArtworkControllerProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product') ? null : _$downloadableArtworkControllerHash,
+        dependencies: DownloadableArtworkControllerFamily._dependencies,
+        allTransitiveDependencies: DownloadableArtworkControllerFamily._allTransitiveDependencies,
+        initialSearchTerm: initialSearchTerm,
+        artType: artType,
+      );
 
   DownloadableArtworkControllerProvider._internal(
     super._createNotifier, {
@@ -962,13 +862,8 @@ class DownloadableArtworkControllerProvider
   final SteamGridArtType artType;
 
   @override
-  FutureOr<DownloadableArtworkState> runNotifierBuild(
-    covariant DownloadableArtworkController notifier,
-  ) {
-    return notifier.build(
-      initialSearchTerm: initialSearchTerm,
-      artType: artType,
-    );
+  FutureOr<DownloadableArtworkState> runNotifierBuild(covariant DownloadableArtworkController notifier) {
+    return notifier.build(initialSearchTerm: initialSearchTerm, artType: artType);
   }
 
   @override
@@ -976,9 +871,10 @@ class DownloadableArtworkControllerProvider
     return ProviderOverride(
       origin: this,
       override: DownloadableArtworkControllerProvider._internal(
-        () => create()
-          ..initialSearchTerm = initialSearchTerm
-          ..artType = artType,
+        () =>
+            create()
+              ..initialSearchTerm = initialSearchTerm
+              ..artType = artType,
         from: from,
         name: null,
         dependencies: null,
@@ -1032,5 +928,6 @@ class _DownloadableArtworkControllerProviderElement
   @override
   SteamGridArtType get artType => (origin as DownloadableArtworkControllerProvider).artType;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
