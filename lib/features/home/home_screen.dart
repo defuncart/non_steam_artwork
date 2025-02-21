@@ -18,6 +18,7 @@ import 'package:non_steam_artwork/features/home/download_artwork.dart';
 import 'package:non_steam_artwork/features/home/home_app_bar.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/home_tips_panel.dart';
+import 'package:non_steam_artwork/features/home/logo_position_screen.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:non_steam_artwork/features/support/licenses_screen.dart';
 import 'package:non_steam_artwork/features/support/logs_screen.dart';
@@ -282,6 +283,7 @@ class ProgramView extends ConsumerWidget {
                     onLog: ref.read(loggerProvider).log,
                     canDownloadArtwork: ref.watch(steamGridDBApiKeyControllerProvider) != null,
                     onDownload: () => DownloadArtwork.show(context, program: program, artType: artType),
+                    onPositionLogo: () => LogoPositionScreen.show(context, program: program),
                   ),
               ],
             ),
@@ -306,6 +308,7 @@ class SteamArtwork extends StatefulWidget {
     required this.onLog,
     required this.canDownloadArtwork,
     required this.onDownload,
+    required this.onPositionLogo,
     super.key,
   });
 
@@ -320,6 +323,7 @@ class SteamArtwork extends StatefulWidget {
   final void Function(String) onLog;
   final bool canDownloadArtwork;
   final VoidCallback onDownload;
+  final VoidCallback onPositionLogo;
 
   @override
   State<SteamArtwork> createState() => _SteamArtworkState();
@@ -430,6 +434,8 @@ class _SteamArtworkState extends State<SteamArtwork> {
             } else if (item.title == context.l10n.homeProgramArtworkCreateEmptyLogo) {
               final bytes = const Base64Codec().decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
               widget.onCreateFile(Stream.value(bytes), '.jpg');
+            } else if (item.title == 'title') {
+              widget.onPositionLogo();
             } else if (item.title == context.l10n.homeProgramArtworkSetBannerAsHero) {
               widget.onCopyFile(widget.file!, SteamGridArtType.hero);
             }
@@ -444,6 +450,7 @@ class _SteamArtworkState extends State<SteamArtwork> {
               MenuItem(title: context.l10n.homeProgramArtworkCreateEmptyLogo),
             if (widget.file != null && widget.artType == SteamGridArtType.banner)
               MenuItem(title: context.l10n.homeProgramArtworkSetBannerAsHero),
+            if (widget.artType == SteamGridArtType.logo && widget.file != null) MenuItem(title: 'title'),
           ],
           child: SizedBox(
             width: widget.width,
