@@ -9,7 +9,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'state.g.dart';
 
 @riverpod
-ISettingsService settingsService(Ref ref) => SettingsService();
+ISettingsService settingsService(Ref ref) => throw UnimplementedError();
 
 @Riverpod(keepAlive: true)
 class ThemeModeController extends _$ThemeModeController {

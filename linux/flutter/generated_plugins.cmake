@@ -4,7 +4,6 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   irondash_engine_context
-  isar_flutter_libs
   menubar
   native_context_menu
   super_native_extensions

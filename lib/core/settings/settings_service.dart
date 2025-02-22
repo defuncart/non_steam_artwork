@@ -1,9 +1,17 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:non_steam_artwork/core/settings/filtered_program_types.dart';
 import 'package:non_steam_artwork/core/settings/sort_program_type.dart';
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 
 abstract class ISettingsService {
+  Future<void> init();
+  String get defaultDirectory;
+
   ThemeMode get themeMode;
   set themeMode(ThemeMode value);
 
@@ -26,11 +34,22 @@ abstract class ISettingsService {
 class SettingsService extends ISettingsService {
   late final Box<dynamic> _box;
   static const _name = 'settings';
+  late final String _defaultDirectory;
 
-  SettingsService() {
-    Hive.registerAdapter('$FilteredProgramTypes', (json) => FilteredProgramTypes.fromJson(json));
-    _box = Hive.box<dynamic>(name: _name);
+  @override
+  Future<void> init() async {
+    final dir = await getApplicationSupportDirectory();
+    _defaultDirectory = p.join(dir.path, 'non_steam_artwork');
+    if (!await Directory(_defaultDirectory).exists()) {
+      await Directory(_defaultDirectory).create(recursive: true);
+    }
+    Hive.init(_defaultDirectory);
+
+    _box = await Hive.openBox<dynamic>(_name);
   }
+
+  @override
+  String get defaultDirectory => _defaultDirectory;
 
   @override
   ThemeMode get themeMode =>
@@ -46,11 +65,22 @@ class SettingsService extends ISettingsService {
   set hasSeenOnboarding(bool value) => _box.put(_Keys.hasSeenOnboarding, value);
 
   @override
-  FilteredProgramTypes get filteredProgramTypes =>
-      _box.get(_Keys.filteredProgramTypes, defaultValue: _Defaults.filteredProgramTypes);
+  FilteredProgramTypes get filteredProgramTypes {
+    final rawString = _box.get(_Keys.filteredProgramTypes);
+    if (rawString != null) {
+      try {
+        final json = jsonDecode(rawString);
+        return FilteredProgramTypes.fromJson(json);
+      } catch (_) {}
+    }
+
+    return _Defaults.filteredProgramTypes;
+  }
 
   @override
-  set filteredProgramTypes(FilteredProgramTypes value) => _box.put(_Keys.filteredProgramTypes, value);
+  set filteredProgramTypes(FilteredProgramTypes value) {
+    _box.put(_Keys.filteredProgramTypes, jsonEncode(value.toJson()));
+  }
 
   @override
   SortProgramType get sortProgramType => _getEnumValue<SortProgramType>(
