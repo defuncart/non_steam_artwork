@@ -594,6 +594,116 @@ class _CreateArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   SteamGridArtType get artType => (origin as CreateArtworkProvider).artType;
 }
 
+String _$downloadFileSizeHash() => r'aed36248e896b207bf825b4d1b6524a9a59211c2';
+
+/// See also [downloadFileSize].
+@ProviderFor(downloadFileSize)
+const downloadFileSizeProvider = DownloadFileSizeFamily();
+
+/// See also [downloadFileSize].
+class DownloadFileSizeFamily extends Family<AsyncValue<String?>> {
+  /// See also [downloadFileSize].
+  const DownloadFileSizeFamily();
+
+  /// See also [downloadFileSize].
+  DownloadFileSizeProvider call({required String url}) {
+    return DownloadFileSizeProvider(url: url);
+  }
+
+  @override
+  DownloadFileSizeProvider getProviderOverride(covariant DownloadFileSizeProvider provider) {
+    return call(url: provider.url);
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+
+  @override
+  String? get name => r'downloadFileSizeProvider';
+}
+
+/// See also [downloadFileSize].
+class DownloadFileSizeProvider extends AutoDisposeFutureProvider<String?> {
+  /// See also [downloadFileSize].
+  DownloadFileSizeProvider({required String url})
+    : this._internal(
+        (ref) => downloadFileSize(ref as DownloadFileSizeRef, url: url),
+        from: downloadFileSizeProvider,
+        name: r'downloadFileSizeProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$downloadFileSizeHash,
+        dependencies: DownloadFileSizeFamily._dependencies,
+        allTransitiveDependencies: DownloadFileSizeFamily._allTransitiveDependencies,
+        url: url,
+      );
+
+  DownloadFileSizeProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.url,
+  }) : super.internal();
+
+  final String url;
+
+  @override
+  Override overrideWith(FutureOr<String?> Function(DownloadFileSizeRef provider) create) {
+    return ProviderOverride(
+      origin: this,
+      override: DownloadFileSizeProvider._internal(
+        (ref) => create(ref as DownloadFileSizeRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        url: url,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<String?> createElement() {
+    return _DownloadFileSizeProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is DownloadFileSizeProvider && other.url == url;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, url.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin DownloadFileSizeRef on AutoDisposeFutureProviderRef<String?> {
+  /// The parameter `url` of this provider.
+  String get url;
+}
+
+class _DownloadFileSizeProviderElement extends AutoDisposeFutureProviderElement<String?> with DownloadFileSizeRef {
+  _DownloadFileSizeProviderElement(super.provider);
+
+  @override
+  String get url => (origin as DownloadFileSizeProvider).url;
+}
+
 String _$steamFolderExistsControllerHash() => r'00ef2fb8acab6278a869af79a8d8e30f651a38ca';
 
 /// See also [SteamFolderExistsController].

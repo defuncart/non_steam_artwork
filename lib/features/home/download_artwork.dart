@@ -131,7 +131,31 @@ class _ArtworkSelectorState extends State<ArtworkSelector> {
                             child: CachedNetworkImage(
                               cacheManager: _cacheManager,
                               imageUrl: artwork.thumbnail,
-                              imageBuilder: (context, imageProvider) => Image(image: imageProvider),
+                              imageBuilder:
+                                  (context, imageProvider) => Stack(
+                                    children: [
+                                      Image(image: imageProvider),
+                                      // show file size
+                                      Consumer(
+                                        builder: (context, ref, child) {
+                                          final state = ref.watch(downloadFileSizeProvider(url: artwork.url));
+                                          if (state.hasValue) {
+                                            return Container(
+                                              margin: const EdgeInsets.all(4),
+                                              padding: const EdgeInsets.all(4),
+                                              decoration: BoxDecoration(
+                                                color: context.colorScheme.surface,
+                                                borderRadius: BorderRadius.circular(4),
+                                              ),
+                                              child: Text(state.value!),
+                                            );
+                                          }
+
+                                          return const SizedBox.shrink();
+                                        },
+                                      ),
+                                    ],
+                                  ),
                               progressIndicatorBuilder:
                                   (context, url, downloadProgress) =>
                                       Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
