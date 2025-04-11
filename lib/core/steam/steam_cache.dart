@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:path/path.dart' as p;
 
 class SteamGridCache {
@@ -11,7 +12,7 @@ class SteamGridCache {
   Future<List<CacheProgramArtwork>> getCacheArtwork() async {
     final dir = Directory(path);
     if (await dir.exists()) {
-      final contents = (await dir.list().toList()).whereType<File>().where((file) => file.isImage).toList();
+      final contents = (await dir.list().toList()).whereType<File>().where((file) => file.isValid).toList();
       contents.sort((a, b) => p.basename(a.path).compareTo(p.basename(b.path)));
 
       const steamAppIdLength = 10;
@@ -31,6 +32,9 @@ class SteamGridCache {
         final cover = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('p'));
         final hero = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('_hero'));
         final logo = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('_logo'));
+        final logoPosition = await LogoPositionUtils.readFromFile(
+          kvp.value.firstWhereOrNull((file) => p.extension(file.path) == '.json'), // id.json
+        );
         final banner = kvp.value.firstWhereOrNull(
           (file) => p.basenameWithoutExtension(file.path).length == steamAppIdLength,
         );
@@ -40,9 +44,11 @@ class SteamGridCache {
           cover: cover,
           hero: hero,
           logo: logo,
+          logoPosition: logoPosition,
           banner: banner,
         ));
       }
+
       return programs;
     }
 
@@ -50,11 +56,19 @@ class SteamGridCache {
   }
 }
 
-typedef CacheProgramArtwork = ({int id, File? icon, File? cover, File? hero, File? logo, File? banner});
+typedef CacheProgramArtwork = ({
+  int id,
+  File? icon,
+  File? cover,
+  File? hero,
+  File? logo,
+  LogoPosition? logoPosition,
+  File? banner,
+});
 
 extension on File {
-  bool get isImage {
+  bool get isValid {
     final ext = p.extension(path).toLowerCase();
-    return ext == '.jpg' || ext == '.png' || ext == '.ico';
+    return ext == '.jpg' || ext == '.png' || ext == '.ico' || ext == '.json';
   }
 }
