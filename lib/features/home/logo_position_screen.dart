@@ -55,9 +55,9 @@ class _LogoPositionScreenState extends State<LogoPositionScreen> {
                       widget.program.background != null
                           ? ArtworkImage(widget.program.background!)
                           : ColoredBox(
-                            color: context.colorScheme.tertiary,
-                            child: Icon(Icons.broken_image, color: context.colorScheme.onTertiary),
-                          ),
+                              color: context.colorScheme.tertiary,
+                              child: Icon(Icons.broken_image, color: context.colorScheme.onTertiary),
+                            ),
                       if (widget.program.logo != null)
                         _Positioned(
                           position: _position,
