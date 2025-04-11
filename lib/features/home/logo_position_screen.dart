@@ -19,6 +19,7 @@ class LogoPositionScreen extends StatefulWidget {
 
 class _LogoPositionScreenState extends State<LogoPositionScreen> {
   var _position = _LogoPosition.bottomLeft;
+  var _size = 0.5;
 
   @override
   Widget build(BuildContext context) {
@@ -27,37 +28,65 @@ class _LogoPositionScreenState extends State<LogoPositionScreen> {
         final widthFactor = constraints.maxWidth / (minWindowSize.width - 16);
 
         return Scaffold(
-          appBar: AppBar(title: Text(widget.program.appName)),
+          appBar: AppBar(
+            title: Text(widget.program.appName),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: IconButton(
+                  onPressed: () {
+                    // save
+                  },
+                  icon: const Icon(Icons.save),
+                ),
+              ),
+            ],
+          ),
           body: Center(
             child: SizedBox(
               width: SteamGridArtType.background.size.width * widthFactor,
               // height: SteamGridArtType.background.size.width * widthFactor SteamGridArtType.background.size.height * widthFactor,
-              child: Stack(
-                alignment: Alignment.topLeft,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  widget.program.background != null
-                      ? ArtworkImage(widget.program.background!)
-                      : ColoredBox(
-                        color: context.colorScheme.tertiary,
-                        child: Icon(Icons.broken_image, color: context.colorScheme.onTertiary),
-                      ),
-                  if (widget.program.logo != null)
-                    _Positioned(
-                      position: _position,
-                      child: SizedBox(
-                        width: constraints.maxWidth * 0.25,
-                        height: constraints.maxHeight * 0.25,
-                        child: ArtworkImage(widget.program.logo!),
-                      ),
+                  Stack(
+                    alignment: Alignment.topLeft,
+                    children: [
+                      widget.program.background != null
+                          ? ArtworkImage(widget.program.background!)
+                          : ColoredBox(
+                            color: context.colorScheme.tertiary,
+                            child: Icon(Icons.broken_image, color: context.colorScheme.onTertiary),
+                          ),
+                      if (widget.program.logo != null)
+                        _Positioned(
+                          position: _position,
+                          child: SizedBox(
+                            width: constraints.maxWidth * _size * 0.5,
+                            height: constraints.maxHeight * _size * 0.5,
+                            child: ArtworkImage(widget.program.logo!),
+                          ),
+                        ),
+                      for (final position in _LogoPosition.values)
+                        _Positioned(
+                          position: position,
+                          child: IconButton(
+                            onPressed: () => setState(() => _position = position),
+                            icon: Icon(Icons.check_box_outline_blank, color: context.colorScheme.primary),
+                          ),
+                        ),
+                    ],
+                  ),
+                  if (widget.program.logo != null) ...[
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('Size'),
+                        Slider(value: _size, onChanged: (value) => setState(() => _size = value)),
+                      ],
                     ),
-                  for (final position in _LogoPosition.values)
-                    _Positioned(
-                      position: position,
-                      child: IconButton(
-                        onPressed: () => setState(() => _position = position),
-                        icon: Icon(Icons.check_box_outline_blank, color: context.colorScheme.primary),
-                      ),
-                    ),
+                  ],
                 ],
               ),
             ),
