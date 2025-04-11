@@ -11,15 +11,29 @@ class LogoPositionScreen extends StatefulWidget {
   final SteamProgram program;
 
   @override
-  State<LogoPositionScreen> createState() => _LogoPositionScreenState();
+  State<LogoPositionScreen> createState() => LogoPositionTypeScreenState();
 
   static void show(BuildContext context, {required SteamProgram program}) =>
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => LogoPositionScreen(program: program)));
 }
 
-class _LogoPositionScreenState extends State<LogoPositionScreen> {
-  var _position = _LogoPosition.bottomLeft;
-  var _size = 0.5;
+class LogoPositionTypeScreenState extends State<LogoPositionScreen> {
+  late LogoPositionType _position;
+  late double _size;
+
+  @override
+  void initState() {
+    super.initState();
+
+    print(widget.program);
+    print(widget.program.logoPosition);
+
+    _position = widget.program.logoPosition?.position ?? LogoPositionType.bottomLeft;
+    _size = (widget.program.logoPosition?.width ?? 50.0).clamp(0, 100) / 100;
+
+    print('_position: $_position');
+    print('_size: $_size');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +81,7 @@ class _LogoPositionScreenState extends State<LogoPositionScreen> {
                             child: ArtworkImage(widget.program.logo!),
                           ),
                         ),
-                      for (final position in _LogoPosition.values)
+                      for (final position in LogoPositionType.values)
                         _Positioned(
                           position: position,
                           child: IconButton(
@@ -100,7 +114,7 @@ class _LogoPositionScreenState extends State<LogoPositionScreen> {
 class _Positioned extends StatelessWidget {
   const _Positioned({required this.position, required this.child});
 
-  final _LogoPosition position;
+  final LogoPositionType position;
   final Widget child;
 
   @override
@@ -108,15 +122,13 @@ class _Positioned extends StatelessWidget {
     return Positioned.fill(
       child: Align(
         alignment: switch (position) {
-          _LogoPosition.bottomLeft => Alignment.bottomLeft,
-          _LogoPosition.centerTop => Alignment.topCenter,
-          _LogoPosition.centerCenter => Alignment.center,
-          _LogoPosition.centerBottom => Alignment.bottomCenter,
+          LogoPositionType.bottomLeft => Alignment.bottomLeft,
+          LogoPositionType.centerTop => Alignment.topCenter,
+          LogoPositionType.centerCenter => Alignment.center,
+          LogoPositionType.centerBottom => Alignment.bottomCenter,
         },
         child: child,
       ),
     );
   }
 }
-
-enum _LogoPosition { bottomLeft, centerTop, centerCenter, centerBottom }
