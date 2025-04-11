@@ -126,6 +126,7 @@ class SteamManager {
             cover: cachedItem?.cover,
             background: cachedItem?.background,
             logo: cachedItem?.logo,
+            logoPosition: cachedItem?.logoPosition,
             hero: cachedItem?.hero,
           );
         }

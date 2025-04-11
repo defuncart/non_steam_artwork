@@ -25,6 +25,7 @@ mixin _$SteamProgram {
   File? get cover => throw _privateConstructorUsedError;
   File? get background => throw _privateConstructorUsedError;
   File? get logo => throw _privateConstructorUsedError;
+  LogoPosition? get logoPosition => throw _privateConstructorUsedError;
   File? get hero => throw _privateConstructorUsedError;
 
   /// Create a copy of SteamProgram
@@ -47,8 +48,11 @@ abstract class $SteamProgramCopyWith<$Res> {
     File? cover,
     File? background,
     File? logo,
+    LogoPosition? logoPosition,
     File? hero,
   });
+
+  $LogoPositionCopyWith<$Res>? get logoPosition;
 }
 
 /// @nodoc
@@ -73,6 +77,7 @@ class _$SteamProgramCopyWithImpl<$Res, $Val extends SteamProgram> implements $St
     Object? cover = freezed,
     Object? background = freezed,
     Object? logo = freezed,
+    Object? logoPosition = freezed,
     Object? hero = freezed,
   }) {
     return _then(
@@ -117,6 +122,11 @@ class _$SteamProgramCopyWithImpl<$Res, $Val extends SteamProgram> implements $St
                     ? _value.logo
                     : logo // ignore: cast_nullable_to_non_nullable
                         as File?,
+            logoPosition:
+                freezed == logoPosition
+                    ? _value.logoPosition
+                    : logoPosition // ignore: cast_nullable_to_non_nullable
+                        as LogoPosition?,
             hero:
                 freezed == hero
                     ? _value.hero
@@ -125,6 +135,20 @@ class _$SteamProgramCopyWithImpl<$Res, $Val extends SteamProgram> implements $St
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of SteamProgram
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LogoPositionCopyWith<$Res>? get logoPosition {
+    if (_value.logoPosition == null) {
+      return null;
+    }
+
+    return $LogoPositionCopyWith<$Res>(_value.logoPosition!, (value) {
+      return _then(_value.copyWith(logoPosition: value) as $Val);
+    });
   }
 }
 
@@ -143,8 +167,12 @@ abstract class _$$SteamProgramImplCopyWith<$Res> implements $SteamProgramCopyWit
     File? cover,
     File? background,
     File? logo,
+    LogoPosition? logoPosition,
     File? hero,
   });
+
+  @override
+  $LogoPositionCopyWith<$Res>? get logoPosition;
 }
 
 /// @nodoc
@@ -166,6 +194,7 @@ class __$$SteamProgramImplCopyWithImpl<$Res> extends _$SteamProgramCopyWithImpl<
     Object? cover = freezed,
     Object? background = freezed,
     Object? logo = freezed,
+    Object? logoPosition = freezed,
     Object? hero = freezed,
   }) {
     return _then(
@@ -210,6 +239,11 @@ class __$$SteamProgramImplCopyWithImpl<$Res> extends _$SteamProgramCopyWithImpl<
                 ? _value.logo
                 : logo // ignore: cast_nullable_to_non_nullable
                     as File?,
+        logoPosition:
+            freezed == logoPosition
+                ? _value.logoPosition
+                : logoPosition // ignore: cast_nullable_to_non_nullable
+                    as LogoPosition?,
         hero:
             freezed == hero
                 ? _value.hero
@@ -232,6 +266,7 @@ class _$SteamProgramImpl implements _SteamProgram {
     this.cover,
     this.background,
     this.logo,
+    this.logoPosition,
     this.hero,
   });
 
@@ -252,11 +287,13 @@ class _$SteamProgramImpl implements _SteamProgram {
   @override
   final File? logo;
   @override
+  final LogoPosition? logoPosition;
+  @override
   final File? hero;
 
   @override
   String toString() {
-    return 'SteamProgram(appId: $appId, appName: $appName, programType: $programType, lastPlayed: $lastPlayed, icon: $icon, cover: $cover, background: $background, logo: $logo, hero: $hero)';
+    return 'SteamProgram(appId: $appId, appName: $appName, programType: $programType, lastPlayed: $lastPlayed, icon: $icon, cover: $cover, background: $background, logo: $logo, logoPosition: $logoPosition, hero: $hero)';
   }
 
   @override
@@ -272,12 +309,24 @@ class _$SteamProgramImpl implements _SteamProgram {
             (identical(other.cover, cover) || other.cover == cover) &&
             (identical(other.background, background) || other.background == background) &&
             (identical(other.logo, logo) || other.logo == logo) &&
+            (identical(other.logoPosition, logoPosition) || other.logoPosition == logoPosition) &&
             (identical(other.hero, hero) || other.hero == hero));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, appId, appName, programType, lastPlayed, icon, cover, background, logo, hero);
+  int get hashCode => Object.hash(
+    runtimeType,
+    appId,
+    appName,
+    programType,
+    lastPlayed,
+    icon,
+    cover,
+    background,
+    logo,
+    logoPosition,
+    hero,
+  );
 
   /// Create a copy of SteamProgram
   /// with the given fields replaced by the non-null parameter values.
@@ -298,6 +347,7 @@ abstract class _SteamProgram implements SteamProgram {
     final File? cover,
     final File? background,
     final File? logo,
+    final LogoPosition? logoPosition,
     final File? hero,
   }) = _$SteamProgramImpl;
 
@@ -318,6 +368,8 @@ abstract class _SteamProgram implements SteamProgram {
   @override
   File? get logo;
   @override
+  LogoPosition? get logoPosition;
+  @override
   File? get hero;
 
   /// Create a copy of SteamProgram
@@ -325,4 +377,163 @@ abstract class _SteamProgram implements SteamProgram {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SteamProgramImplCopyWith<_$SteamProgramImpl> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$LogoPosition {
+  LogoPositionType get position => throw _privateConstructorUsedError;
+  double get width => throw _privateConstructorUsedError;
+  double get height => throw _privateConstructorUsedError;
+
+  /// Create a copy of LogoPosition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $LogoPositionCopyWith<LogoPosition> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LogoPositionCopyWith<$Res> {
+  factory $LogoPositionCopyWith(LogoPosition value, $Res Function(LogoPosition) then) =
+      _$LogoPositionCopyWithImpl<$Res, LogoPosition>;
+  @useResult
+  $Res call({LogoPositionType position, double width, double height});
+}
+
+/// @nodoc
+class _$LogoPositionCopyWithImpl<$Res, $Val extends LogoPosition> implements $LogoPositionCopyWith<$Res> {
+  _$LogoPositionCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of LogoPosition
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? position = null, Object? width = null, Object? height = null}) {
+    return _then(
+      _value.copyWith(
+            position:
+                null == position
+                    ? _value.position
+                    : position // ignore: cast_nullable_to_non_nullable
+                        as LogoPositionType,
+            width:
+                null == width
+                    ? _value.width
+                    : width // ignore: cast_nullable_to_non_nullable
+                        as double,
+            height:
+                null == height
+                    ? _value.height
+                    : height // ignore: cast_nullable_to_non_nullable
+                        as double,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$LogoPositionImplCopyWith<$Res> implements $LogoPositionCopyWith<$Res> {
+  factory _$$LogoPositionImplCopyWith(_$LogoPositionImpl value, $Res Function(_$LogoPositionImpl) then) =
+      __$$LogoPositionImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({LogoPositionType position, double width, double height});
+}
+
+/// @nodoc
+class __$$LogoPositionImplCopyWithImpl<$Res> extends _$LogoPositionCopyWithImpl<$Res, _$LogoPositionImpl>
+    implements _$$LogoPositionImplCopyWith<$Res> {
+  __$$LogoPositionImplCopyWithImpl(_$LogoPositionImpl _value, $Res Function(_$LogoPositionImpl) _then)
+    : super(_value, _then);
+
+  /// Create a copy of LogoPosition
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? position = null, Object? width = null, Object? height = null}) {
+    return _then(
+      _$LogoPositionImpl(
+        position:
+            null == position
+                ? _value.position
+                : position // ignore: cast_nullable_to_non_nullable
+                    as LogoPositionType,
+        width:
+            null == width
+                ? _value.width
+                : width // ignore: cast_nullable_to_non_nullable
+                    as double,
+        height:
+            null == height
+                ? _value.height
+                : height // ignore: cast_nullable_to_non_nullable
+                    as double,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$LogoPositionImpl implements _LogoPosition {
+  const _$LogoPositionImpl({required this.position, required this.width, required this.height});
+
+  @override
+  final LogoPositionType position;
+  @override
+  final double width;
+  @override
+  final double height;
+
+  @override
+  String toString() {
+    return 'LogoPosition(position: $position, width: $width, height: $height)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LogoPositionImpl &&
+            (identical(other.position, position) || other.position == position) &&
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.height, height) || other.height == height));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, position, width, height);
+
+  /// Create a copy of LogoPosition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LogoPositionImplCopyWith<_$LogoPositionImpl> get copyWith =>
+      __$$LogoPositionImplCopyWithImpl<_$LogoPositionImpl>(this, _$identity);
+}
+
+abstract class _LogoPosition implements LogoPosition {
+  const factory _LogoPosition({
+    required final LogoPositionType position,
+    required final double width,
+    required final double height,
+  }) = _$LogoPositionImpl;
+
+  @override
+  LogoPositionType get position;
+  @override
+  double get width;
+  @override
+  double get height;
+
+  /// Create a copy of LogoPosition
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LogoPositionImplCopyWith<_$LogoPositionImpl> get copyWith => throw _privateConstructorUsedError;
 }
