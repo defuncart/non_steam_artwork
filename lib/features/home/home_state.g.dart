@@ -644,6 +644,139 @@ class _CreateArtworkProviderElement extends AutoDisposeFutureProviderElement<voi
   SteamGridArtType get artType => (origin as CreateArtworkProvider).artType;
 }
 
+String _$saveLogoPositionHash() => r'e8898674c15c55aadec426e423ba98971856cd54';
+
+/// See also [saveLogoPosition].
+@ProviderFor(saveLogoPosition)
+const saveLogoPositionProvider = SaveLogoPositionFamily();
+
+/// See also [saveLogoPosition].
+class SaveLogoPositionFamily extends Family<AsyncValue<void>> {
+  /// See also [saveLogoPosition].
+  const SaveLogoPositionFamily();
+
+  /// See also [saveLogoPosition].
+  SaveLogoPositionProvider call({required int appId, required LogoPositionType position, required double size}) {
+    return SaveLogoPositionProvider(appId: appId, position: position, size: size);
+  }
+
+  @override
+  SaveLogoPositionProvider getProviderOverride(covariant SaveLogoPositionProvider provider) {
+    return call(appId: provider.appId, position: provider.position, size: provider.size);
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+
+  @override
+  String? get name => r'saveLogoPositionProvider';
+}
+
+/// See also [saveLogoPosition].
+class SaveLogoPositionProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [saveLogoPosition].
+  SaveLogoPositionProvider({required int appId, required LogoPositionType position, required double size})
+    : this._internal(
+        (ref) => saveLogoPosition(ref as SaveLogoPositionRef, appId: appId, position: position, size: size),
+        from: saveLogoPositionProvider,
+        name: r'saveLogoPositionProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$saveLogoPositionHash,
+        dependencies: SaveLogoPositionFamily._dependencies,
+        allTransitiveDependencies: SaveLogoPositionFamily._allTransitiveDependencies,
+        appId: appId,
+        position: position,
+        size: size,
+      );
+
+  SaveLogoPositionProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.appId,
+    required this.position,
+    required this.size,
+  }) : super.internal();
+
+  final int appId;
+  final LogoPositionType position;
+  final double size;
+
+  @override
+  Override overrideWith(FutureOr<void> Function(SaveLogoPositionRef provider) create) {
+    return ProviderOverride(
+      origin: this,
+      override: SaveLogoPositionProvider._internal(
+        (ref) => create(ref as SaveLogoPositionRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        appId: appId,
+        position: position,
+        size: size,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<void> createElement() {
+    return _SaveLogoPositionProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is SaveLogoPositionProvider &&
+        other.appId == appId &&
+        other.position == position &&
+        other.size == size;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, appId.hashCode);
+    hash = _SystemHash.combine(hash, position.hashCode);
+    hash = _SystemHash.combine(hash, size.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin SaveLogoPositionRef on AutoDisposeFutureProviderRef<void> {
+  /// The parameter `appId` of this provider.
+  int get appId;
+
+  /// The parameter `position` of this provider.
+  LogoPositionType get position;
+
+  /// The parameter `size` of this provider.
+  double get size;
+}
+
+class _SaveLogoPositionProviderElement extends AutoDisposeFutureProviderElement<void> with SaveLogoPositionRef {
+  _SaveLogoPositionProviderElement(super.provider);
+
+  @override
+  int get appId => (origin as SaveLogoPositionProvider).appId;
+  @override
+  LogoPositionType get position => (origin as SaveLogoPositionProvider).position;
+  @override
+  double get size => (origin as SaveLogoPositionProvider).size;
+}
+
 String _$downloadFileSizeHash() => r'3eda62d6f71e02e73cd8120274092f548d17d337';
 
 /// See also [downloadFileSize].
