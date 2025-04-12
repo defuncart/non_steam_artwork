@@ -434,7 +434,7 @@ class _SteamArtworkState extends State<SteamArtwork> {
             } else if (item.title == context.l10n.homeProgramArtworkCreateEmptyLogo) {
               final bytes = const Base64Codec().decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
               widget.onCreateFile(Stream.value(bytes), '.jpg');
-            } else if (item.title == 'title') {
+            } else if (item.title == context.l10n.homeProgramArtworkEditLogoPosition) {
               widget.onPositionLogo();
             } else if (item.title == context.l10n.homeProgramArtworkSetBannerAsHero) {
               widget.onCopyFile(widget.file!, SteamGridArtType.hero);
@@ -450,7 +450,8 @@ class _SteamArtworkState extends State<SteamArtwork> {
               MenuItem(title: context.l10n.homeProgramArtworkCreateEmptyLogo),
             if (widget.file != null && widget.artType == SteamGridArtType.banner)
               MenuItem(title: context.l10n.homeProgramArtworkSetBannerAsHero),
-            if (widget.artType == SteamGridArtType.logo && widget.file != null) MenuItem(title: 'title'),
+            if (widget.artType == SteamGridArtType.logo && widget.file != null)
+              MenuItem(title: context.l10n.homeProgramArtworkEditLogoPosition),
           ],
           child: SizedBox(
             width: widget.width,
