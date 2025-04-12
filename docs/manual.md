@@ -78,3 +78,13 @@ When 'Search on SteamGridDB' option is chosen, the program's name is initially u
 Artwork for 'Mozilla Firefox' can be loaded by either selecting the program from the dropdown menu, or manually updating the search term.
 
 Note that as SteamGridDB is community-based, not all games nor artworks are available.
+
+## Edit Logo Position
+
+When a logo has an image, the following options are available:
+
+| Type       | Command            | Description                                                |
+| ---------- | ------------------ | ---------------------------------------------------------- |
+| logo       | Edit logo position | Edits logo position and size relative to background image. |
+
+![](https://raw.githubusercontent.com/defuncart/non_steam_artwork/main/docs/images/04.png)
