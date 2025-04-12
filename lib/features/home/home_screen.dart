@@ -283,7 +283,7 @@ class ProgramView extends ConsumerWidget {
                     onLog: ref.read(loggerProvider).log,
                     canDownloadArtwork: ref.watch(steamGridDBApiKeyControllerProvider) != null,
                     onDownload: () => DownloadArtwork.show(context, program: program, artType: artType),
-                    onPositionLogo: () => LogoPositionScreen.show(context, program: program),
+                    onEditLogoPosition: () => LogoPositionScreen.show(context, program: program),
                   ),
               ],
             ),
@@ -308,7 +308,7 @@ class SteamArtwork extends StatefulWidget {
     required this.onLog,
     required this.canDownloadArtwork,
     required this.onDownload,
-    required this.onPositionLogo,
+    required this.onEditLogoPosition,
     super.key,
   });
 
@@ -323,7 +323,7 @@ class SteamArtwork extends StatefulWidget {
   final void Function(String) onLog;
   final bool canDownloadArtwork;
   final VoidCallback onDownload;
-  final VoidCallback onPositionLogo;
+  final VoidCallback onEditLogoPosition;
 
   @override
   State<SteamArtwork> createState() => _SteamArtworkState();
@@ -435,7 +435,7 @@ class _SteamArtworkState extends State<SteamArtwork> {
               final bytes = const Base64Codec().decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
               widget.onCreateFile(Stream.value(bytes), '.jpg');
             } else if (item.title == context.l10n.homeProgramArtworkEditLogoPosition) {
-              widget.onPositionLogo();
+              widget.onEditLogoPosition();
             } else if (item.title == context.l10n.homeProgramArtworkSetBannerAsHero) {
               widget.onCopyFile(widget.file!, SteamGridArtType.hero);
             }
