@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:non_steam_artwork/core/configs/window_config.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
+import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/home_screen.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
@@ -117,7 +118,7 @@ class LogoPositionTypeScreenState extends State<LogoPositionScreenContent> {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text('Size'),
+                        Text(context.l10n.logoPositionScreenSize),
                         Slider(value: _size, onChanged: (value) => setState(() => _size = value)),
                       ],
                     ),
