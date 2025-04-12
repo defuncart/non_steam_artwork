@@ -89,5 +89,3 @@ extension on LogoPositionType {
     LogoPositionType.centerBottom => 'CenterBottom',
   };
 }
-
-// {"nVersion":1,"logoPosition":{"pinnedPosition":"BottomLeft","nWidthPct":24.042553191489347,"nHeightPct":47.30865319100613}}
