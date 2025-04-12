@@ -41,15 +41,20 @@ sealed class LogoPositionUtils {
       final jsonData = jsonDecode(jsonAsString);
 
       try {
-        final position = (jsonData['logoPosition']['pinnedPosition'] as String).fromJson();
-        final width = jsonData['logoPosition']['nWidthPct'] as double;
-        final height = jsonData['logoPosition']['nHeightPct'] as double;
-
-        return LogoPosition(position: position, width: width, height: height);
+        return LogoPositionUtils.fromJson(jsonData);
       } catch (_) {}
     }
 
     return null;
+  }
+
+  @visibleForTesting
+  static LogoPosition? fromJson(Map<String, dynamic> jsonData) {
+    final position = (jsonData['logoPosition']['pinnedPosition'] as String).fromJson();
+    final width = (jsonData['logoPosition']['nWidthPct'] as num).toDouble();
+    final height = (jsonData['logoPosition']['nHeightPct'] as num).toDouble();
+
+    return LogoPosition(position: position, width: width, height: height);
   }
 }
 
@@ -72,7 +77,7 @@ extension on String {
     'CenterTop' => LogoPositionType.centerTop,
     'CenterCenter' => LogoPositionType.centerCenter,
     'CenterBottom' => LogoPositionType.centerBottom,
-    _ => LogoPositionType.bottomLeft,
+    _ => throw ArgumentError(),
   };
 }
 
