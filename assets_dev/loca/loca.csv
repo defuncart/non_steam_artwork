@@ -22,6 +22,7 @@ homeProgramSearchSteamGridDB;Search on SteamGridDB
 homeProgramArtworkPaste;Paste
 homeProgramArtworkDelete;Delete
 homeProgramArtworkCreateEmptyLogo;Create empty logo
+homeProgramArtworkEditLogoPosition;Edit logo position
 homeProgramArtworkSetBackgroundAsHero;Set as hero
 homeProgramArtworkSetHeroAsBackground;Set as background
 homeProgramPasteError;Clipboard contents is not JPEG/PNG
@@ -49,6 +50,7 @@ generalErrorTryAgain;Try again
 generalOk;Ok
 logsScreenTitle;Logs
 privacyPolicyScreenTitle;Privacy Policy
+logoPositionScreenSize;Size
 manualScreenTitle;Manual
 steamGridDBDialogTitle;API key
 steamGridDBDialogDescription;An api key from [SteamGridDB](https://www.steamgriddb.com/) is required in order to download artwork.
