@@ -1,38 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:non_steam_artwork/core/configs/window_config.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/features/home/home_screen.dart';
+import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 
-class LogoPositionScreen extends StatefulWidget {
+class LogoPositionScreen extends ConsumerWidget {
   const LogoPositionScreen({super.key, required this.program});
 
   final SteamProgram program;
 
-  @override
-  State<LogoPositionScreen> createState() => LogoPositionTypeScreenState();
-
   static void show(BuildContext context, {required SteamProgram program}) =>
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => LogoPositionScreen(program: program)));
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return LogoPositionScreenContent(
+      program: program,
+      onSave: (position, size) async {
+        final navigator = Navigator.of(context);
+        await ref.read(saveLogoPositionProvider(appId: program.appId, position: position, size: size).future);
+        navigator.pop();
+      },
+    );
+  }
 }
 
-class LogoPositionTypeScreenState extends State<LogoPositionScreen> {
+@visibleForTesting
+class LogoPositionScreenContent extends StatefulWidget {
+  const LogoPositionScreenContent({super.key, required this.program, required this.onSave});
+
+  final SteamProgram program;
+  final void Function(LogoPositionType, double) onSave;
+
+  @override
+  State<LogoPositionScreenContent> createState() => LogoPositionTypeScreenState();
+}
+
+class LogoPositionTypeScreenState extends State<LogoPositionScreenContent> {
   late LogoPositionType _position;
   late double _size;
+  var _isSaving = false;
 
   @override
   void initState() {
     super.initState();
 
-    print(widget.program);
-    print(widget.program.logoPosition);
-
     _position = widget.program.logoPosition?.position ?? LogoPositionType.bottomLeft;
     _size = (widget.program.logoPosition?.width ?? 50.0).clamp(0, 100) / 100;
-
-    print('_position: $_position');
-    print('_size: $_size');
   }
 
   @override
@@ -48,9 +65,13 @@ class LogoPositionTypeScreenState extends State<LogoPositionScreen> {
               Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: IconButton(
-                  onPressed: () {
-                    // save
-                  },
+                  onPressed:
+                      !_isSaving
+                          ? () {
+                            widget.onSave(_position, _size * 100);
+                            _isSaving = true;
+                          }
+                          : null,
                   icon: const Icon(Icons.save),
                 ),
               ),
