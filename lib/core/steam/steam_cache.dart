@@ -33,7 +33,10 @@ class SteamGridCache {
         final hero = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('_hero'));
         final logo = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('_logo'));
         final logoPosition = await LogoPositionUtils.readFromFile(
-          kvp.value.firstWhereOrNull((file) => p.extension(file.path) == '.json'), // id.json
+          kvp.value.firstWhereOrNull(
+            (file) =>
+                p.basenameWithoutExtension(file.path).length == steamAppIdLength && p.extension(file.path) == '.json',
+          ), // id.json
         );
         final banner = kvp.value.firstWhereOrNull(
           (file) => p.basenameWithoutExtension(file.path).length == steamAppIdLength,
