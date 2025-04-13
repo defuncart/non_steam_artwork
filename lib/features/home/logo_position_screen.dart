@@ -4,6 +4,7 @@ import 'package:non_steam_artwork/core/configs/window_config.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
+import 'package:non_steam_artwork/core/ui/common/default_artwork.dart';
 import 'package:non_steam_artwork/features/home/home_screen.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
@@ -66,13 +67,12 @@ class LogoPositionTypeScreenState extends State<LogoPositionScreenContent> {
               Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: IconButton(
-                  onPressed:
-                      !_isSaving
-                          ? () {
-                            widget.onSave(_position, _size * 100);
-                            _isSaving = true;
-                          }
-                          : null,
+                  onPressed: !_isSaving
+                      ? () {
+                          widget.onSave(_position, _size * 100);
+                          _isSaving = true;
+                        }
+                      : null,
                   icon: const Icon(Icons.save),
                 ),
               ),
@@ -88,12 +88,7 @@ class LogoPositionTypeScreenState extends State<LogoPositionScreenContent> {
                   Stack(
                     alignment: Alignment.topLeft,
                     children: [
-                      widget.program.hero != null
-                          ? ArtworkImage(widget.program.hero!)
-                          : ColoredBox(
-                              color: context.colorScheme.tertiary,
-                              child: Icon(Icons.broken_image, color: context.colorScheme.onTertiary),
-                            ),
+                      widget.program.hero != null ? ArtworkImage(widget.program.hero!) : const DefaultArtwork(),
                       if (widget.program.logo != null)
                         _Positioned(
                           position: _position,

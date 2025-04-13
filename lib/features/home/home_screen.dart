@@ -14,6 +14,7 @@ import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
 import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
+import 'package:non_steam_artwork/core/ui/common/default_artwork.dart';
 import 'package:non_steam_artwork/features/home/download_artwork.dart';
 import 'package:non_steam_artwork/features/home/home_app_bar.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
@@ -460,16 +461,7 @@ class _SteamArtworkState extends State<SteamArtwork> {
             height: widget.height,
             child: Opacity(
               opacity: _isDragging ? 0.75 : 1,
-              child: widget.file != null
-                  ? ArtworkImage(widget.file!)
-                  : ColoredBox(
-                      color: context.colorScheme.tertiary,
-                      child: Icon(
-                        Icons.broken_image,
-                        size: widget.width * 0.25,
-                        color: context.colorScheme.onTertiary,
-                      ),
-                    ),
+              child: widget.file != null ? ArtworkImage(widget.file!) : const DefaultArtwork(),
             ),
           ),
         ),
