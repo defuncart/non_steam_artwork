@@ -145,9 +145,9 @@ class _Positioned extends StatelessWidget {
       child: Align(
         alignment: switch (position) {
           LogoPositionType.bottomLeft => Alignment.bottomLeft,
-          LogoPositionType.centerTop => Alignment.topCenter,
+          LogoPositionType.upperCenter => Alignment.topCenter,
           LogoPositionType.centerCenter => Alignment.center,
-          LogoPositionType.centerBottom => Alignment.bottomCenter,
+          LogoPositionType.bottomCenter => Alignment.bottomCenter,
         },
         child: child,
       ),
