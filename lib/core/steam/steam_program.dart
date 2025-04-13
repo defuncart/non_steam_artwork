@@ -69,14 +69,14 @@ extension LogoPositionExtensions on LogoPosition {
   }
 }
 
-enum LogoPositionType { bottomLeft, centerTop, centerCenter, centerBottom }
+enum LogoPositionType { bottomLeft, upperCenter, centerCenter, bottomCenter }
 
 extension on String {
   LogoPositionType fromJson() => switch (this) {
     'BottomLeft' => LogoPositionType.bottomLeft,
-    'CenterTop' => LogoPositionType.centerTop,
+    'UpperCenter' => LogoPositionType.upperCenter,
     'CenterCenter' => LogoPositionType.centerCenter,
-    'CenterBottom' => LogoPositionType.centerBottom,
+    'BottomCenter' => LogoPositionType.bottomCenter,
     _ => throw ArgumentError(),
   };
 }
@@ -84,8 +84,8 @@ extension on String {
 extension on LogoPositionType {
   String toJson() => switch (this) {
     LogoPositionType.bottomLeft => 'BottomLeft',
-    LogoPositionType.centerTop => 'CenterTop',
+    LogoPositionType.upperCenter => 'UpperCenter',
     LogoPositionType.centerCenter => 'CenterCenter',
-    LogoPositionType.centerBottom => 'CenterBottom',
+    LogoPositionType.bottomCenter => 'BottomCenter',
   };
 }
