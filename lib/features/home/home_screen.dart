@@ -475,9 +475,10 @@ class _SteamArtworkState extends State<SteamArtwork> {
 // replaced image should be rendered, Image.memory is used instead
 @visibleForTesting
 class ArtworkImage extends ConsumerWidget {
-  const ArtworkImage(this.file, {super.key});
+  const ArtworkImage(this.file, {super.key, this.alignment});
 
   final File file;
+  final Alignment? alignment;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -492,6 +493,6 @@ class ArtworkImage extends ConsumerWidget {
       }
     }
 
-    return Image.file(file);
+    return Image.file(file, alignment: alignment ?? Alignment.center);
   }
 }

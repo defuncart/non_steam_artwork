@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:non_steam_artwork/core/configs/window_config.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
@@ -56,46 +55,68 @@ class LogoPositionTypeScreenState extends State<LogoPositionScreenContent> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final widthFactor = constraints.maxWidth / (minWindowSize.width - 16);
-
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(widget.program.appName),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: IconButton(
-                  onPressed: !_isSaving
-                      ? () {
-                          widget.onSave(_position, _size * 100);
-                          _isSaving = true;
-                        }
-                      : null,
-                  icon: const Icon(Icons.save),
-                ),
-              ),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.program.appName),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: IconButton(
+              onPressed: !_isSaving
+                  ? () {
+                      widget.onSave(_position, _size * 100);
+                      _isSaving = true;
+                    }
+                  : null,
+              icon: const Icon(Icons.save),
+            ),
           ),
-          body: Center(
-            child: SizedBox(
-              width: SteamGridArtType.hero.size.width * widthFactor,
-              // height: SteamGridArtType.background.size.width * widthFactor SteamGridArtType.background.size.height * widthFactor,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Stack(
+        ],
+      ),
+      body: Center(
+        child: SizedBox(
+          // width: SteamGridArtType.background.size.width * widthFactor,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final widthFactor = 1;
+                  print(constraints);
+
+                  print(
+                    (constraints.maxWidth / SteamGridArtType.hero.size.width) * SteamGridArtType.hero.size.height,
+                  );
+
+                  return Stack(
                     alignment: Alignment.topLeft,
                     children: [
-                      widget.program.hero != null ? ArtworkImage(widget.program.hero!) : const DefaultArtwork(),
+                      widget.program.hero != null
+                          ? ArtworkImage(widget.program.hero!)
+                          // : SizedBox(
+                          //   width: constraints.maxWidth,
+                          //   height:
+                          //       (constraints.maxWidth / SteamGridArtType.background.size.width) *
+                          //       SteamGridArtType.background.size.height,
+                          //   // height: SteamGridArtType.background.size.height * widthFactor,
+                          //   child: const DefaultArtwork(),
+                          // ),
+                          : Positioned.fill(child: const DefaultArtwork()),
                       if (widget.program.logo != null)
                         _Positioned(
                           position: _position,
-                          child: SizedBox(
-                            width: constraints.maxWidth * _size * 0.5,
-                            height: constraints.maxHeight * _size * 0.5,
-                            child: ArtworkImage(widget.program.logo!),
+                          child: Padding(
+                            padding: switch (_position) {
+                              LogoPositionType.bottomLeft => const EdgeInsets.only(left: 8, bottom: 8),
+                              LogoPositionType.upperCenter => const EdgeInsets.only(top: 8),
+                              LogoPositionType.centerCenter => EdgeInsets.zero,
+                              LogoPositionType.bottomCenter => const EdgeInsets.only(bottom: 8),
+                            },
+                            child: SizedBox(
+                              width: constraints.maxWidth * _size * 0.5,
+                              height: constraints.maxHeight * _size * 0.5,
+                              child: ArtworkImage(widget.program.logo!, alignment: _position.alignment),
+                            ),
                           ),
                         ),
                       for (final position in LogoPositionType.values)
@@ -107,23 +128,23 @@ class LogoPositionTypeScreenState extends State<LogoPositionScreenContent> {
                           ),
                         ),
                     ],
-                  ),
-                  if (widget.program.logo != null) ...[
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(context.l10n.logoPositionScreenSize),
-                        Slider(value: _size, onChanged: (value) => setState(() => _size = value)),
-                      ],
-                    ),
-                  ],
-                ],
+                  );
+                },
               ),
-            ),
+              if (widget.program.logo != null) ...[
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(context.l10n.logoPositionScreenSize),
+                    Slider(value: _size, onChanged: (value) => setState(() => _size = value)),
+                  ],
+                ),
+              ],
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
@@ -137,15 +158,16 @@ class _Positioned extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned.fill(
-      child: Align(
-        alignment: switch (position) {
-          LogoPositionType.bottomLeft => Alignment.bottomLeft,
-          LogoPositionType.upperCenter => Alignment.topCenter,
-          LogoPositionType.centerCenter => Alignment.center,
-          LogoPositionType.bottomCenter => Alignment.bottomCenter,
-        },
-        child: child,
-      ),
+      child: Align(alignment: position.alignment, child: child),
     );
   }
+}
+
+extension on LogoPositionType {
+  Alignment get alignment => switch (this) {
+    LogoPositionType.bottomLeft => Alignment.bottomLeft,
+    LogoPositionType.upperCenter => Alignment.topCenter,
+    LogoPositionType.centerCenter => Alignment.center,
+    LogoPositionType.bottomCenter => Alignment.bottomCenter,
+  };
 }
