@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gap/gap.dart';
 import 'package:http/http.dart' as http;
 import 'package:markdown_widget/markdown_widget.dart';
-import 'package:non_steam_artwork/core/extensions/iterable_widget_extension.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
@@ -46,11 +44,12 @@ class _MarkdownScreenState extends ConsumerState<MarkdownScreen> {
           return Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              spacing: 4,
               children: [
                 Text(context.l10n.generalErrorTitle, style: context.textTheme.bodyLarge),
                 Text(context.l10n.generalErrorNoInternetDescription),
                 TextButton(onPressed: () => setState(() {}), child: Text(context.l10n.generalErrorTryAgain)),
-              ].intersperse(const Gap(4)),
+              ],
             ),
           );
         }

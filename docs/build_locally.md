@@ -6,9 +6,9 @@ To build locally on Linux, the following are required:
 - FVM (optional)
 - Rust (recommended)
 
-Flutter can be installed as per [official documentation](https://docs.flutter.dev/get-started/install/linux) either as a snap, or manually via `git`. Ensure all linux [pre-requisites](https://docs.flutter.dev/get-started/install/linux#linux-prerequisites) are also installed.
+Flutter can be installed as per [official documentation](https://docs.flutter.dev/get-started/install/linux) either as a snap, or manually via `git`. Ensure all linux dependencies are also installed (see [CD pipeline](.github/workflows/cd_main.yml) for more info).
 
-[FVM](https://fvm.app/) is a Flutter version management tool used to pin a flutter version for the project. Although it is not strictly required when building locally, some scripts utilize FVM, while when contributing please ensure that you are running the correct version.
+[FVM](https://fvm.app/) is a Flutter version management tool used to pin a flutter version for the project. Although it is not strictly required when building locally, some scripts utilize FVM, while when contributing please ensure that you are running the correct Flutter version.
 
 Finally, Rust can be installed via [rustup](https://www.rust-lang.org/tools/install).
 

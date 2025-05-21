@@ -36,16 +36,16 @@ class OnboardingManualView extends ConsumerWidget {
     return state
         ? const SizedBox.shrink()
         : TipCard(
-          backgroundColor: context.colorScheme.tertiaryContainer,
-          foregroundColor: context.colorScheme.onTertiaryContainer,
-          title: context.l10n.homeTipsOnboardingManualDescription,
-          buttonIcon: Icons.menu_book,
-          buttonLabel: context.l10n.homeTipsOnboardingManualCacheButton,
-          onButtonPressed: () {
-            ref.read(hasSeenOnboardingControllerProvider.notifier).toggle();
-            ManualScreen.show(context);
-          },
-        );
+            backgroundColor: context.colorScheme.tertiaryContainer,
+            foregroundColor: context.colorScheme.onTertiaryContainer,
+            title: context.l10n.homeTipsOnboardingManualDescription,
+            buttonIcon: Icons.menu_book,
+            buttonLabel: context.l10n.homeTipsOnboardingManualCacheButton,
+            onButtonPressed: () {
+              ref.read(hasSeenOnboardingControllerProvider.notifier).toggle();
+              ManualScreen.show(context);
+            },
+          );
   }
 }
 
@@ -62,16 +62,16 @@ class BackupUpCacheView extends ConsumerWidget {
         value
             ? const SizedBox.shrink()
             : TipCard(
-              backgroundColor: context.colorScheme.primaryContainer,
-              foregroundColor: context.colorScheme.onPrimaryContainer,
-              title: context.l10n.homeTipsBackupCacheDescription,
-              buttonIcon: Icons.backup,
-              buttonLabel: context.l10n.homeTipsBackupCacheButton,
-              onButtonPressed: () async {
-                await ref.read(cacheControllerProvider.notifier).backup();
-                ref.invalidate(cacheBackupExistsControllerProvider);
-              },
-            ),
+                backgroundColor: context.colorScheme.primaryContainer,
+                foregroundColor: context.colorScheme.onPrimaryContainer,
+                title: context.l10n.homeTipsBackupCacheDescription,
+                buttonIcon: Icons.backup,
+                buttonLabel: context.l10n.homeTipsBackupCacheButton,
+                onButtonPressed: () async {
+                  await ref.read(cacheControllerProvider.notifier).backup();
+                  ref.invalidate(cacheBackupExistsControllerProvider);
+                },
+              ),
       _ => const SizedBox.shrink(),
     };
   }
@@ -90,13 +90,13 @@ class CleanUpCacheView extends ConsumerWidget {
         value == 0
             ? const SizedBox.shrink()
             : TipCard(
-              backgroundColor: context.colorScheme.secondaryContainer,
-              foregroundColor: context.colorScheme.onSecondaryContainer,
-              title: context.l10n.homeTipsCleanUpCacheDescription(value.displaySize),
-              buttonIcon: Icons.delete_sweep_rounded,
-              buttonLabel: context.l10n.homeTipsCleanUpCacheButton,
-              onButtonPressed: ref.read(cacheControllerProvider.notifier).cleanUp,
-            ),
+                backgroundColor: context.colorScheme.secondaryContainer,
+                foregroundColor: context.colorScheme.onSecondaryContainer,
+                title: context.l10n.homeTipsCleanUpCacheDescription(value.displaySize),
+                buttonIcon: Icons.delete_sweep_rounded,
+                buttonLabel: context.l10n.homeTipsCleanUpCacheButton,
+                onButtonPressed: ref.read(cacheControllerProvider.notifier).cleanUp,
+              ),
       _ => const SizedBox.shrink(),
     };
   }
@@ -112,13 +112,13 @@ class AddApiKeyView extends ConsumerWidget {
 
     return state == null
         ? TipCard(
-          backgroundColor: context.colorScheme.errorContainer,
-          foregroundColor: context.colorScheme.onErrorContainer,
-          title: context.l10n.homeTipsAddApiKeyDescription,
-          buttonIcon: Icons.language,
-          buttonLabel: context.l10n.homeTipsAddApiKeyButton,
-          onButtonPressed: () => SteamGridDBDialog.show(context),
-        )
+            backgroundColor: context.colorScheme.errorContainer,
+            foregroundColor: context.colorScheme.onErrorContainer,
+            title: context.l10n.homeTipsAddApiKeyDescription,
+            buttonIcon: Icons.language,
+            buttonLabel: context.l10n.homeTipsAddApiKeyButton,
+            onButtonPressed: () => SteamGridDBDialog.show(context),
+          )
         : const SizedBox.shrink();
   }
 }

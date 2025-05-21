@@ -8,7 +8,7 @@ class LicensesScreen {
   static void show(BuildContext context) => showLicensePage(
     context: context,
     applicationName: 'Non-Steam Artwork',
-    applicationLegalese: '©2024 com.defuncart',
+    applicationLegalese: '©2025 com.defuncart',
   );
 
   static var _isInitialized = false;

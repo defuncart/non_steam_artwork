@@ -57,12 +57,11 @@ class _ShortcutsViewerScreenContentState extends ConsumerState<ShortcutsViewerSc
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: widget.shortcuts.length,
-            itemBuilder:
-                (context, index) => ListTile(
-                  dense: false,
-                  title: Text(widget.shortcuts[index].appName),
-                  onTap: () => setState(() => _selectedIndex = index),
-                ),
+            itemBuilder: (context, index) => ListTile(
+              dense: false,
+              title: Text(widget.shortcuts[index].appName),
+              onTap: () => setState(() => _selectedIndex = index),
+            ),
           ),
         ),
         Expanded(child: ShortcutDetails(shortcut: widget.shortcuts[_selectedIndex])),
@@ -88,13 +87,12 @@ class ShortcutDetails extends StatelessWidget {
             SizedBox(
               width: 64,
               height: 64,
-              child:
-                  shortcut.icon.isNotEmpty
-                      ? Tooltip(message: shortcut.icon, child: Image.file(File(shortcut.icon)))
-                      : ColoredBox(
-                        color: context.colorScheme.tertiary,
-                        child: Icon(Icons.broken_image, size: 64 * 0.25, color: context.colorScheme.onTertiary),
-                      ),
+              child: shortcut.icon.isNotEmpty
+                  ? Tooltip(message: shortcut.icon, child: Image.file(File(shortcut.icon)))
+                  : ColoredBox(
+                      color: context.colorScheme.tertiary,
+                      child: Icon(Icons.broken_image, size: 64 * 0.25, color: context.colorScheme.onTertiary),
+                    ),
             ),
             const Gap(16),
             Expanded(
@@ -130,7 +128,10 @@ class ShortcutDetails extends StatelessWidget {
         const Gap(16),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [const Text('Hidden'), Switch(value: shortcut.isHidden, onChanged: null)],
+          children: [
+            const Text('Hidden'),
+            Switch(value: shortcut.isHidden, onChanged: null),
+          ],
         ),
         const Gap(16),
         const Text('Tags'),

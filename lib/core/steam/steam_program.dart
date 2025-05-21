@@ -9,7 +9,7 @@ enum SteamProgramType { lutris, heroic, roms, other }
 
 @freezed
 @meta.immutable
-class SteamProgram with _$SteamProgram {
+sealed class SteamProgram with _$SteamProgram {
   const factory SteamProgram({
     required int appId,
     required String appName,

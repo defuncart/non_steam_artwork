@@ -712,8 +712,9 @@ final steamFolderExistsControllerProvider =
     AutoDisposeAsyncNotifierProvider<SteamFolderExistsController, bool>.internal(
       SteamFolderExistsController.new,
       name: r'steamFolderExistsControllerProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product') ? null : _$steamFolderExistsControllerHash,
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$steamFolderExistsControllerHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
@@ -820,8 +821,9 @@ class WasFileReplacedControllerProvider extends AutoDisposeNotifierProviderImpl<
         () => WasFileReplacedController()..path = path,
         from: wasFileReplacedControllerProvider,
         name: r'wasFileReplacedControllerProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product') ? null : _$wasFileReplacedControllerHash,
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$wasFileReplacedControllerHash,
         dependencies: WasFileReplacedControllerFamily._dependencies,
         allTransitiveDependencies: WasFileReplacedControllerFamily._allTransitiveDependencies,
         path: path,
@@ -943,14 +945,14 @@ class DownloadableArtworkControllerProvider
   /// See also [DownloadableArtworkController].
   DownloadableArtworkControllerProvider({required String initialSearchTerm, required SteamGridArtType artType})
     : this._internal(
-        () =>
-            DownloadableArtworkController()
-              ..initialSearchTerm = initialSearchTerm
-              ..artType = artType,
+        () => DownloadableArtworkController()
+          ..initialSearchTerm = initialSearchTerm
+          ..artType = artType,
         from: downloadableArtworkControllerProvider,
         name: r'downloadableArtworkControllerProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product') ? null : _$downloadableArtworkControllerHash,
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$downloadableArtworkControllerHash,
         dependencies: DownloadableArtworkControllerFamily._dependencies,
         allTransitiveDependencies: DownloadableArtworkControllerFamily._allTransitiveDependencies,
         initialSearchTerm: initialSearchTerm,
@@ -981,10 +983,9 @@ class DownloadableArtworkControllerProvider
     return ProviderOverride(
       origin: this,
       override: DownloadableArtworkControllerProvider._internal(
-        () =>
-            create()
-              ..initialSearchTerm = initialSearchTerm
-              ..artType = artType,
+        () => create()
+          ..initialSearchTerm = initialSearchTerm
+          ..artType = artType,
         from: from,
         name: null,
         dependencies: null,

@@ -36,20 +36,21 @@ class DownloadArtwork extends ConsumerWidget {
             AsyncData(:final value) =>
               value.programResults.isNotEmpty
                   ? Padding(
-                    // 16 right, 2 vertically to better align
-                    padding: const EdgeInsets.only(right: 16, top: 2, bottom: 2),
-                    child: DropdownMenu(
-                      dropdownMenuEntries:
-                          value.programResults.map((e) => DropdownMenuEntry(value: e.id, label: e.name)).toList(),
-                      initialSelection: value.selectedProgram,
-                      requestFocusOnTap: false,
-                      onSelected: (id) {
-                        if (id != null) {
-                          ref.read(provider.notifier).updateSelectedProgram(id);
-                        }
-                      },
-                    ),
-                  )
+                      // 16 right, 2 vertically to better align
+                      padding: const EdgeInsets.only(right: 16, top: 2, bottom: 2),
+                      child: DropdownMenu(
+                        dropdownMenuEntries: value.programResults
+                            .map((e) => DropdownMenuEntry(value: e.id, label: e.name))
+                            .toList(),
+                        initialSelection: value.selectedProgram,
+                        requestFocusOnTap: false,
+                        onSelected: (id) {
+                          if (id != null) {
+                            ref.read(provider.notifier).updateSelectedProgram(id);
+                          }
+                        },
+                      ),
+                    )
                   : const SizedBox.shrink(),
             _ => const SizedBox.shrink(),
           },
@@ -62,14 +63,16 @@ class DownloadArtwork extends ConsumerWidget {
               : value.downloadableArtworks.isEmpty
               ? Center(child: Text(context.l10n.homeArtworkEmpty))
               : ArtworkSelector(
-                artType: artType,
-                downloadableArtworks: value.downloadableArtworks,
-                onSelect: (file) {
-                  ref.read(createArtworkFileProvider(appId: program.appId, file: file, ext: '.png', artType: artType));
+                  artType: artType,
+                  downloadableArtworks: value.downloadableArtworks,
+                  onSelect: (file) {
+                    ref.read(
+                      createArtworkFileProvider(appId: program.appId, file: file, ext: '.png', artType: artType),
+                    );
 
-                  Navigator.of(context).pop();
-                },
-              ),
+                    Navigator.of(context).pop();
+                  },
+                ),
         AsyncLoading() => const Center(child: CircularProgressIndicator()),
         AsyncError(:final error) => Center(
           child: Column(
@@ -89,7 +92,11 @@ class DownloadArtwork extends ConsumerWidget {
   static void show(BuildContext context, {required SteamProgram program, required SteamGridArtType artType}) =>
       Navigator.of(
         context,
-      ).push(MaterialPageRoute(builder: (context) => DownloadArtwork(program: program, artType: artType)));
+      ).push(
+        MaterialPageRoute(
+          builder: (context) => DownloadArtwork(program: program, artType: artType),
+        ),
+      );
 }
 
 @visibleForTesting
@@ -116,58 +123,54 @@ class _ArtworkSelectorState extends State<ArtworkSelector> {
           child: Wrap(
             spacing: 8,
             runSpacing: 8,
-            children:
-                widget.downloadableArtworks
-                    .map(
-                      (artwork) => GestureDetector(
-                        onTap:
-                            () => Overlay.of(context).showDownloadOverlay(
-                              future: _cacheManager.getSingleFile(artwork.url),
-                              onSuccess: (file) => widget.onSelect(file),
-                            ),
-                        child: HoverableWidget(
-                          child: SizedBox.fromSize(
-                            size: widget.artType.size * 0.5,
-                            child: CachedNetworkImage(
-                              cacheManager: _cacheManager,
-                              imageUrl: artwork.thumbnail,
-                              imageBuilder:
-                                  (context, imageProvider) => Stack(
-                                    children: [
-                                      Image(image: imageProvider),
-                                      // show file size
-                                      Consumer(
-                                        builder: (context, ref, child) {
-                                          final state = ref.watch(downloadFileSizeProvider(url: artwork.url));
-                                          if (state.hasValue) {
-                                            return Container(
-                                              margin: const EdgeInsets.all(4),
-                                              padding: const EdgeInsets.all(4),
-                                              decoration: BoxDecoration(
-                                                color: context.colorScheme.surface,
-                                                borderRadius: BorderRadius.circular(4),
-                                              ),
-                                              child: Text(state.value!),
-                                            );
-                                          }
-
-                                          return const SizedBox.shrink();
-                                        },
+            children: widget.downloadableArtworks
+                .map(
+                  (artwork) => GestureDetector(
+                    onTap: () => Overlay.of(context).showDownloadOverlay(
+                      future: _cacheManager.getSingleFile(artwork.url),
+                      onSuccess: (file) => widget.onSelect(file),
+                    ),
+                    child: HoverableWidget(
+                      child: SizedBox.fromSize(
+                        size: widget.artType.size * 0.5,
+                        child: CachedNetworkImage(
+                          cacheManager: _cacheManager,
+                          imageUrl: artwork.thumbnail,
+                          imageBuilder: (context, imageProvider) => Stack(
+                            children: [
+                              Image(image: imageProvider),
+                              // show file size
+                              Consumer(
+                                builder: (context, ref, child) {
+                                  final state = ref.watch(downloadFileSizeProvider(url: artwork.url));
+                                  if (state.hasValue) {
+                                    return Container(
+                                      margin: const EdgeInsets.all(4),
+                                      padding: const EdgeInsets.all(4),
+                                      decoration: BoxDecoration(
+                                        color: context.colorScheme.surface,
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
-                                    ],
-                                  ),
-                              progressIndicatorBuilder:
-                                  (context, url, downloadProgress) =>
-                                      Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
-                              fadeInDuration: Duration.zero,
-                              fadeOutDuration: Duration.zero,
-                              errorWidget: (context, url, error) => const Icon(Icons.error),
-                            ),
+                                      child: Text(state.value!),
+                                    );
+                                  }
+
+                                  return const SizedBox.shrink();
+                                },
+                              ),
+                            ],
                           ),
+                          progressIndicatorBuilder: (_, _, downloadProgress) =>
+                              Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
+                          fadeInDuration: Duration.zero,
+                          fadeOutDuration: Duration.zero,
+                          errorWidget: (_, _, error) => const Icon(Icons.error),
                         ),
                       ),
-                    )
-                    .toList(),
+                    ),
+                  ),
+                )
+                .toList(),
           ),
         ),
       ),
@@ -205,15 +208,14 @@ extension on OverlayState {
   void showDownloadOverlay({required Future<File> future, required void Function(File) onSuccess}) {
     dismiss();
     _overlayEntry = OverlayEntry(
-      builder:
-          (context) => DownloadOverlayEntry(
-            future: future,
-            onSuccess: (file) {
-              dismiss();
-              onSuccess(file);
-            },
-            onClose: dismiss,
-          ),
+      builder: (context) => DownloadOverlayEntry(
+        future: future,
+        onSuccess: (file) {
+          dismiss();
+          onSuccess(file);
+        },
+        onClose: dismiss,
+      ),
     );
     insert(_overlayEntry!);
   }
@@ -277,20 +279,19 @@ class _DownloadOverlayEntryState extends State<DownloadOverlayEntry> {
             ),
           ),
           Center(
-            child:
-                _error != null
-                    ? SizedBox(
-                      width: MediaQuery.sizeOf(context).width * 0.5,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(context.l10n.generalErrorTitle, style: context.textTheme.bodyLarge),
-                          const Gap(8),
-                          Text(_error!.toString()),
-                        ],
-                      ),
-                    )
-                    : const CircularProgressIndicator(),
+            child: _error != null
+                ? SizedBox(
+                    width: MediaQuery.sizeOf(context).width * 0.5,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(context.l10n.generalErrorTitle, style: context.textTheme.bodyLarge),
+                        const Gap(8),
+                        Text(_error!.toString()),
+                      ],
+                    ),
+                  )
+                : const CircularProgressIndicator(),
           ),
         ],
       ),

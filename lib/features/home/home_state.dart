@@ -265,13 +265,12 @@ class WasFileReplacedController extends _$WasFileReplacedController {
 
 typedef DownloadableArtwork = ({String url, String thumbnail});
 
-typedef DownloadableArtworkState =
-    ({
-      String searchTerm,
-      Iterable<ProgramSearchResult> programResults,
-      int? selectedProgram,
-      Iterable<DownloadableArtwork> downloadableArtworks,
-    });
+typedef DownloadableArtworkState = ({
+  String searchTerm,
+  Iterable<ProgramSearchResult> programResults,
+  int? selectedProgram,
+  Iterable<DownloadableArtwork> downloadableArtworks,
+});
 
 typedef ProgramSearchResult = ({int id, String name});
 

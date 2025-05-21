@@ -14,8 +14,9 @@ class LogsScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(context.l10n.logsScreenTitle)),
       body: switch (state) {
         AsyncData(:final value) => ListView(
-          children:
-              value.map((log) => ListTile(dense: true, title: Text(log.message), subtitle: log.subtitle)).toList(),
+          children: value
+              .map((log) => ListTile(dense: true, title: Text(log.message), subtitle: log.subtitle))
+              .toList(),
         ),
         _ => const SizedBox.shrink(),
       },

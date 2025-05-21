@@ -29,15 +29,14 @@ class _SteamGridDBDialogState extends ConsumerState<SteamGridDBDialog> {
 
     final apiKey = ref.read(steamGridDBApiKeyControllerProvider);
     _canDelete = apiKey != null;
-    _controller =
-        TextEditingController()
-          ..text = apiKey ?? ''
-          ..addListener(() {
-            final canSubmit = _controller.text.length == 32;
-            if (canSubmit != _canSubmit) {
-              setState(() => _canSubmit = canSubmit);
-            }
-          });
+    _controller = TextEditingController()
+      ..text = apiKey ?? ''
+      ..addListener(() {
+        final canSubmit = _controller.text.length == 32;
+        if (canSubmit != _canSubmit) {
+          setState(() => _canSubmit = canSubmit);
+        }
+      });
     _focusNode = FocusNode();
     if (apiKey == null) {
       _focusNode.requestFocus();
@@ -79,13 +78,12 @@ class _SteamGridDBDialogState extends ConsumerState<SteamGridDBDialog> {
       ),
       actions: [
         TextButton(
-          onPressed:
-              _canDelete
-                  ? () {
-                    ref.read(steamGridDBApiKeyControllerProvider.notifier).set(null);
-                    Navigator.of(context).pop();
-                  }
-                  : null,
+          onPressed: _canDelete
+              ? () {
+                  ref.read(steamGridDBApiKeyControllerProvider.notifier).set(null);
+                  Navigator.of(context).pop();
+                }
+              : null,
           child: Text(
             MaterialLocalizations.of(context).deleteButtonTooltip,
             style: _canDelete ? TextStyle(color: context.colorScheme.error) : null,
@@ -96,13 +94,12 @@ class _SteamGridDBDialogState extends ConsumerState<SteamGridDBDialog> {
           child: Text(MaterialLocalizations.of(context).closeButtonLabel),
         ),
         TextButton(
-          onPressed:
-              _canSubmit
-                  ? () {
-                    ref.read(steamGridDBApiKeyControllerProvider.notifier).set(_controller.text);
-                    Navigator.of(context).pop();
-                  }
-                  : null,
+          onPressed: _canSubmit
+              ? () {
+                  ref.read(steamGridDBApiKeyControllerProvider.notifier).set(_controller.text);
+                  Navigator.of(context).pop();
+                }
+              : null,
           child: Text(MaterialLocalizations.of(context).continueButtonLabel),
         ),
       ],

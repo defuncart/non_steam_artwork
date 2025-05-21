@@ -9,7 +9,6 @@ import 'package:gap/gap.dart';
 import 'package:menubar/menubar.dart';
 import 'package:native_context_menu/native_context_menu.dart';
 import 'package:non_steam_artwork/core/configs/window_config.dart';
-import 'package:non_steam_artwork/core/extensions/iterable_widget_extension.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
@@ -164,7 +163,13 @@ class HomeScreenContent extends StatelessWidget {
     return const Scaffold(
       appBar: HomeAppBar(),
       body: Center(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [HomeTipsPanel(), Expanded(child: ProgramsView())]),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            HomeTipsPanel(),
+            Expanded(child: ProgramsView()),
+          ],
+        ),
       ),
     );
   }
@@ -201,21 +206,21 @@ class ProgramsView extends ConsumerWidget {
       AsyncData(:final value) =>
         value.isEmpty
             ? Center(
-              child: Text(
-                ref.read(searchControllerProvider).isNotEmpty
-                    ? context.l10n.homeSearchEmpty
-                    : context.l10n.homeProgramsEmpty,
-              ),
-            )
+                child: Text(
+                  ref.read(searchControllerProvider).isNotEmpty
+                      ? context.l10n.homeSearchEmpty
+                      : context.l10n.homeProgramsEmpty,
+                ),
+              )
             : ListView.separated(
-              shrinkWrap: true,
-              padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
-              itemCount: value.length,
-              itemBuilder: (context, index) => ProgramView(program: value.toList()[index]),
-              separatorBuilder:
-                  (context, index) =>
-                      Center(child: SizedBox(width: minWindowSize.width * 0.75, child: const Divider())),
-            ),
+                shrinkWrap: true,
+                padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
+                itemCount: value.length,
+                itemBuilder: (context, index) => ProgramView(program: value.toList()[index]),
+                separatorBuilder: (context, index) => Center(
+                  child: SizedBox(width: minWindowSize.width * 0.75, child: const Divider()),
+                ),
+              ),
       _ => const SizedBox.shrink(),
     };
   }
@@ -242,6 +247,7 @@ class ProgramView extends ConsumerWidget {
             const Gap(8),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 12 * widthFactor,
               children: [
                 for (final artType in [
                   // currently icon is not supported
@@ -264,20 +270,19 @@ class ProgramView extends ConsumerWidget {
                     height: artType.size.height * 0.25 * widthFactor,
                     onDeleteFile: (file) => ref.read(deleteArtworkProvider(file: file)),
                     onCopyFile: (file, artType) => ref.read(copyArtworkProvider(file: file, artType: artType)),
-                    onCreateFile:
-                        (bytesStream, ext) => ref.read(
-                          createArtworkProvider(
-                            appId: program.appId,
-                            bytesStream: bytesStream,
-                            ext: ext,
-                            artType: artType,
-                          ),
-                        ),
+                    onCreateFile: (bytesStream, ext) => ref.read(
+                      createArtworkProvider(
+                        appId: program.appId,
+                        bytesStream: bytesStream,
+                        ext: ext,
+                        artType: artType,
+                      ),
+                    ),
                     onLog: ref.read(loggerProvider).log,
                     canDownloadArtwork: ref.watch(steamGridDBApiKeyControllerProvider) != null,
                     onDownload: () => DownloadArtwork.show(context, program: program, artType: artType),
                   ),
-              ].intersperse(Gap(12 * widthFactor)),
+              ],
             ),
             const Gap(8),
           ],
@@ -444,17 +449,16 @@ class _SteamArtworkState extends State<SteamArtwork> {
             height: widget.height,
             child: Opacity(
               opacity: _isDragging ? 0.75 : 1,
-              child:
-                  widget.file != null
-                      ? ArtworkImage(widget.file!)
-                      : ColoredBox(
-                        color: context.colorScheme.tertiary,
-                        child: Icon(
-                          Icons.broken_image,
-                          size: widget.width * 0.25,
-                          color: context.colorScheme.onTertiary,
-                        ),
+              child: widget.file != null
+                  ? ArtworkImage(widget.file!)
+                  : ColoredBox(
+                      color: context.colorScheme.tertiary,
+                      child: Icon(
+                        Icons.broken_image,
+                        size: widget.width * 0.25,
+                        color: context.colorScheme.onTertiary,
                       ),
+                    ),
             ),
           ),
         ),
