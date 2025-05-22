@@ -1,8 +1,8 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive/hive.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
+import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/state.dart';
 import 'package:non_steam_artwork/features/support/licenses_screen.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -12,7 +12,7 @@ part 'splash_state.g.dart';
 
 @riverpod
 Future<bool> splashState(Ref ref) async {
-  ref.log('Hive.defaultDirectory: ${Hive.defaultDirectory}');
+  ref.log('Settings stored in ${ref.read(settingsServiceProvider).defaultDirectory}');
   await ref.read(steamManagerProvider).init();
   LicensesScreen.initRegistry();
 

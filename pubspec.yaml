@@ -42,8 +42,7 @@ dependencies:
   device_info_plus:
   markdown_widget: ^2.3.2
   http:
-  hive: ^4.0.0-dev.2
-  isar_flutter_libs: ^4.0.0-dev.14
+  hive_ce: ^2.11.2
   steamgriddb:
     git:
       url: https://github.com/defuncart/steamgriddb
