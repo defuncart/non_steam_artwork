@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:non_steam_artwork/core/extensions/iterable_widget_extension.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/settings/sort_program_type.dart';
 import 'package:non_steam_artwork/core/settings/state.dart';
@@ -46,10 +45,10 @@ class _SearchProgramsTextFieldState extends ConsumerState<SearchProgramsTextFiel
   void initState() {
     super.initState();
 
-    _controller =
-        TextEditingController()..addListener(() {
-          ref.read(searchControllerProvider.notifier).updateSearch(_controller.text);
-        });
+    _controller = TextEditingController()
+      ..addListener(() {
+        ref.read(searchControllerProvider.notifier).updateSearch(_controller.text);
+      });
   }
 
   @override
@@ -70,6 +69,7 @@ class FilterProgramChips extends ConsumerWidget {
     final state = ref.watch(filteredProgramTypesControllerProvider);
 
     return Row(
+      spacing: 4,
       children: [
         for (final type in SteamProgramType.values)
           FilterChip(
@@ -77,7 +77,7 @@ class FilterProgramChips extends ConsumerWidget {
             selected: state[type]!,
             onSelected: (_) => ref.read(filteredProgramTypesControllerProvider.notifier).toggle(type),
           ),
-      ].intersperse(const Gap(4)),
+      ],
     );
   }
 }
@@ -105,17 +105,16 @@ class SortProgramsButton extends ConsumerWidget {
           ref.read(sortProgramTypeControllerProvider.notifier).set(value);
         }
       },
-      dropdownMenuEntries:
-          SortProgramType.values
-              .map(
-                (sortType) => DropdownMenuEntry<SortProgramType>(
-                  value: sortType,
-                  leadingIcon: Icon(sortType.icon),
-                  label: sortType.getLabel(context),
-                  enabled: true,
-                ),
-              )
-              .toList(),
+      dropdownMenuEntries: SortProgramType.values
+          .map(
+            (sortType) => DropdownMenuEntry<SortProgramType>(
+              value: sortType,
+              leadingIcon: Icon(sortType.icon),
+              label: sortType.getLabel(context),
+              enabled: true,
+            ),
+          )
+          .toList(),
       // expandedInsets: EdgeInsets.zero,
     );
   }

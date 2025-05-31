@@ -55,8 +55,9 @@ final filteredProgramTypesControllerProvider =
     AutoDisposeNotifierProvider<FilteredProgramTypesController, Map<SteamProgramType, bool>>.internal(
       FilteredProgramTypesController.new,
       name: r'filteredProgramTypesControllerProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product') ? null : _$filteredProgramTypesControllerHash,
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$filteredProgramTypesControllerHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );

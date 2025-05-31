@@ -4,8 +4,8 @@ publish_to: 'none'
 version: 0.0.1+1
 
 environment:
-  sdk: ^3.7.0
-  flutter: ^3.29.0
+  sdk: ^3.8.0
+  flutter: ^3.32.0
 
 dependencies:
   flutter:
@@ -60,6 +60,16 @@ dev_dependencies:
   riverpod_generator:
   riverpod_lint:
   custom_lint:
+
+dependency_overrides:
+  super_drag_and_drop:
+    git:
+      url: https://github.com/superlistapp/super_native_extensions/
+      path: super_drag_and_drop
+  super_clipboard:
+    git:
+      url: https://github.com/superlistapp/super_native_extensions/
+      path: super_clipboard
 
 flutter:
   uses-material-design: true
