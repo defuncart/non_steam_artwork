@@ -214,7 +214,7 @@ class ProgramsView extends ConsumerWidget {
               )
             : ListView.separated(
                 shrinkWrap: true,
-                padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 itemCount: value.length,
                 itemBuilder: (context, index) => ProgramView(program: value.toList()[index]),
                 separatorBuilder: (context, index) => Center(
@@ -266,8 +266,9 @@ class ProgramView extends ConsumerWidget {
                       SteamGridArtType.logo => program.logo,
                       SteamGridArtType.hero => program.hero,
                     },
-                    width: artType.size.width * 0.25 * widthFactor,
-                    height: artType.size.height * 0.25 * widthFactor,
+                    // 0.26215 is a magic number which correctly scales artwork depending on widthFactor and min window width
+                    width: artType.size.width * 0.26215 * widthFactor,
+                    height: artType.size.height * 0.26215 * widthFactor,
                     onDeleteFile: (file) => ref.read(deleteArtworkProvider(file: file)),
                     onCopyFile: (file, artType) => ref.read(copyArtworkProvider(file: file, artType: artType)),
                     onCreateFile: (bytesStream, ext) => ref.read(
