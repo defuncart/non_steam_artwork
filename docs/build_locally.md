@@ -34,7 +34,7 @@ Steam artwork consists of five images:
 | cover      | Vertical box art                   | `{gameid}p`     | 600x900  |
 | background | Horizontal details background      | `{gameid}`      | 1290x620 |
 | logo       | Horizontal logo on details view    | `{gameid}_logo` | 650x248  |
-| hero       | Horizontal banner when last played | `{gameid}_hero` | 1290x620 |
+| hero       | Horizontal banner when last played | `{gameid}_hero` | 920x430  |
 
 Artwork in `/grid/` can be easily modified, replaced and deleted without affecting the shortcut database. A reboot, however, of the steam launcher is required to see resulting changes.
 

@@ -1,3 +1,3 @@
 import 'dart:ui';
 
-const minWindowSize = Size(1024, 580);
+const minWindowSize = Size(960, 540);
