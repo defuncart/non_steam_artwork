@@ -6,13 +6,13 @@
 
 Each program in the Steam library has five visual elements that can be customized:
 
-| Element    | Number | Description                                                                           |
-| ---------- | ------ | ------------------------------------------------------------------------------------- |
-| hero       | 1      | Launcher icon visible left of the program's name in sidebar.                          |
-| cover      | 2      | Vertical box cover (akin to a physical game box).                                     |
-| background | 3      | Large rectangular background image on details page.                                   |
-| logo       | 4      | Foreground logo on top of background. When not specified, the program's name is used. |
-| icon*      | N/A    | Launcher icon visible in sidebar to the left of the program's name.                   |
+| Element    | Number | Description                                                                     |
+| ---------- | ------ | ------------------------------------------------------------------------------- |
+| banner     | 1      | Horizontal banner displayed when program was last opened.                       |
+| cover      | 2      | Vertical box cover (akin to a physical game box).                               |
+| hero       | 3      | Large rectangular hero image on details page.                                   |
+| logo       | 4      | Foreground logo on top of hero. When not specified, the program's name is used. |
+| icon*      | N/A    | Launcher icon visible in sidebar to the left of the program's name.             |
 
 \* icons are currently not supported.
 
@@ -32,7 +32,7 @@ A couple of helpful tips are displayed when relevant:
 
 ## Artwork Grid
 
-Artwork is displayed in a grid, with each row consisting of a separate program, with the artwork types 'cover', 'background', 'logo', 'hero' displayed from left to right.
+Artwork is displayed in a grid, with each row consisting of a separate program, with the artwork types 'cover', 'hero', 'logo', 'banner' displayed from left to right.
 
 The programs can be filtered by
 - search term
@@ -61,11 +61,11 @@ In addition, artwork can be added by drag'n'drop PNG/JPG images.
 
 The following options are specified for specific artwork types:
 
-| Type       | Command           | Description                                                                                                     |
-| ---------- | ----------------- | --------------------------------------------------------------------------------------------------------------- |
-| background | Set as hero       | Copies background image for hero. Useful when both hero and background should be identical.                     |
-| logo       | Create empty logo | Creates an empty logo. Useful when background already contains a logo, or program name should not be displayed. |
-| hero       | Set as background | Copies hero image for background. Useful when both hero and background should be identical.                     |
+| Type    | Command           | Description                                                                                               |
+| --------| ----------------- | --------------------------------------------------------------------------------------------------------- |
+| hero    | Set as banner     | Copies hero image for banner. Useful when both hero and banner should be identical.                       |
+| logo    | Create empty logo | Creates an empty logo. Useful when hero already contains a logo, or program name should not be displayed. |
+| banner  | Set as hero       | Copies banner image for hero. Useful when both hero and banner should be identical.                       |
 
 After artwork has been updated, Steam needs to be re-started in order for changes to be visible.
 

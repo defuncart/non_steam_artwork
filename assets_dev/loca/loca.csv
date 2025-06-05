@@ -22,8 +22,8 @@ homeProgramSearchSteamGridDB;Search on SteamGridDB
 homeProgramArtworkPaste;Paste
 homeProgramArtworkDelete;Delete
 homeProgramArtworkCreateEmptyLogo;Create empty logo
-homeProgramArtworkSetBackgroundAsHero;Set as hero
-homeProgramArtworkSetHeroAsBackground;Set as background
+homeProgramArtworkSetBannerAsHero;Set as hero
+homeProgramArtworkSetHeroAsBanner;Set as banner
 homeProgramPasteError;Clipboard contents is not JPEG/PNG
 menuBarFile;File
 menuBarFileQuit;Quit

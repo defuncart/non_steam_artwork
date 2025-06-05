@@ -990,7 +990,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: dc2dc185f6c179485854dbf6366ad6cb07156bdb
+      resolved-ref: "3e528bdb054fc52721c447b119d74fe315de95a5"
       url: "https://github.com/defuncart/steamgriddb"
     source: git
     version: "0.0.1"

@@ -252,9 +252,9 @@ class ProgramView extends ConsumerWidget {
                 for (final artType in [
                   // currently icon is not supported
                   SteamGridArtType.cover,
-                  SteamGridArtType.background,
-                  SteamGridArtType.logo,
                   SteamGridArtType.hero,
+                  SteamGridArtType.logo,
+                  SteamGridArtType.banner,
                 ])
                   SteamArtwork(
                     // key: UniqueKey(),
@@ -262,9 +262,9 @@ class ProgramView extends ConsumerWidget {
                     file: switch (artType) {
                       SteamGridArtType.icon => program.icon,
                       SteamGridArtType.cover => program.cover,
-                      SteamGridArtType.background => program.background,
-                      SteamGridArtType.logo => program.logo,
                       SteamGridArtType.hero => program.hero,
+                      SteamGridArtType.logo => program.logo,
+                      SteamGridArtType.banner => program.banner,
                     },
                     // 0.26215 is a magic number which correctly scales artwork depending on widthFactor and min window width
                     width: artType.size.width * 0.26215 * widthFactor,
@@ -425,25 +425,25 @@ class _SteamArtworkState extends State<SteamArtwork> {
               });
             } else if (item.title == context.l10n.homeProgramArtworkDelete) {
               widget.onDeleteFile(widget.file!);
+            } else if (item.title == context.l10n.homeProgramArtworkSetHeroAsBanner) {
+              widget.onCopyFile(widget.file!, SteamGridArtType.banner);
             } else if (item.title == context.l10n.homeProgramArtworkCreateEmptyLogo) {
               final bytes = const Base64Codec().decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
               widget.onCreateFile(Stream.value(bytes), '.jpg');
-            } else if (item.title == context.l10n.homeProgramArtworkSetBackgroundAsHero) {
+            } else if (item.title == context.l10n.homeProgramArtworkSetBannerAsHero) {
               widget.onCopyFile(widget.file!, SteamGridArtType.hero);
-            } else if (item.title == context.l10n.homeProgramArtworkSetHeroAsBackground) {
-              widget.onCopyFile(widget.file!, SteamGridArtType.background);
             }
           },
           menuItems: [
             if (widget.canDownloadArtwork) MenuItem(title: context.l10n.homeProgramSearchSteamGridDB),
             MenuItem(title: context.l10n.homeProgramArtworkPaste),
             if (widget.file != null) MenuItem(title: context.l10n.homeProgramArtworkDelete),
+            if (widget.file != null && widget.artType == SteamGridArtType.hero)
+              MenuItem(title: context.l10n.homeProgramArtworkSetHeroAsBanner),
             if (widget.artType == SteamGridArtType.logo)
               MenuItem(title: context.l10n.homeProgramArtworkCreateEmptyLogo),
-            if (widget.file != null && widget.artType == SteamGridArtType.background)
-              MenuItem(title: context.l10n.homeProgramArtworkSetBackgroundAsHero),
-            if (widget.file != null && widget.artType == SteamGridArtType.hero)
-              MenuItem(title: context.l10n.homeProgramArtworkSetHeroAsBackground),
+            if (widget.file != null && widget.artType == SteamGridArtType.banner)
+              MenuItem(title: context.l10n.homeProgramArtworkSetBannerAsHero),
           ],
           child: SizedBox(
             width: widget.width,
