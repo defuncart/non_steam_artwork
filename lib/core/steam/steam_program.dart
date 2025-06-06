@@ -17,8 +17,8 @@ sealed class SteamProgram with _$SteamProgram {
     required DateTime lastPlayed,
     File? icon,
     File? cover,
-    File? background,
-    File? logo,
     File? hero,
+    File? logo,
+    File? banner,
   }) = _SteamProgram;
 }

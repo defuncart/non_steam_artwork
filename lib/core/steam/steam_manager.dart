@@ -98,9 +98,9 @@ class SteamManager {
             ...previousValue,
             element.icon,
             element.cover,
-            element.background,
-            element.logo,
             element.hero,
+            element.logo,
+            element.banner,
           ],
         )
         .whereType<File>();
@@ -124,9 +124,9 @@ class SteamManager {
             lastPlayed: DateTime.fromMillisecondsSinceEpoch(program.lastPlayTime * 1000),
             icon: cachedItem?.icon,
             cover: cachedItem?.cover,
-            background: cachedItem?.background,
-            logo: cachedItem?.logo,
             hero: cachedItem?.hero,
+            logo: cachedItem?.logo,
+            banner: cachedItem?.banner,
           );
         }
         return null;
@@ -157,9 +157,9 @@ class SteamManager {
     final filename = switch (artType) {
       SteamGridArtType.icon => '${appId}_icon',
       SteamGridArtType.cover => '${appId}p',
-      SteamGridArtType.background => appId.toString(),
-      SteamGridArtType.logo => '${appId}_logo',
       SteamGridArtType.hero => '${appId}_hero',
+      SteamGridArtType.logo => '${appId}_logo',
+      SteamGridArtType.banner => appId.toString(),
     };
 
     return (gridPath, filename);

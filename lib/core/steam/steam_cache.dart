@@ -29,18 +29,18 @@ class SteamGridCache {
       for (final kvp in mapped.entries) {
         final icon = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('_icon'));
         final cover = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('p'));
-        final background = kvp.value.firstWhereOrNull(
+        final hero = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('_hero'));
+        final logo = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('_logo'));
+        final banner = kvp.value.firstWhereOrNull(
           (file) => p.basenameWithoutExtension(file.path).length == steamAppIdLength,
         );
-        final logo = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('_logo'));
-        final hero = kvp.value.firstWhereOrNull((file) => p.basenameWithoutExtension(file.path).contains('_hero'));
         programs.add((
           id: int.parse(kvp.key),
           icon: icon,
           cover: cover,
-          background: background,
-          logo: logo,
           hero: hero,
+          logo: logo,
+          banner: banner,
         ));
       }
       return programs;
@@ -50,7 +50,7 @@ class SteamGridCache {
   }
 }
 
-typedef CacheProgramArtwork = ({int id, File? icon, File? cover, File? background, File? logo, File? hero});
+typedef CacheProgramArtwork = ({int id, File? icon, File? cover, File? hero, File? logo, File? banner});
 
 extension on File {
   bool get isImage {

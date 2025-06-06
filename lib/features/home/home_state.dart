@@ -172,7 +172,7 @@ Future<void> deleteArtwork(Ref ref, {required File file}) async {
 
 @riverpod
 Future<void> copyArtwork(Ref ref, {required File file, required SteamGridArtType artType}) async {
-  assert(artType == SteamGridArtType.hero || artType == SteamGridArtType.background);
+  assert(artType == SteamGridArtType.hero || artType == SteamGridArtType.banner);
 
   ref.log('start copy ${file.path} as ${artType.name}');
 
@@ -327,8 +327,8 @@ class DownloadableArtworkController extends _$DownloadableArtworkController {
 
     final List<Grid> artworkResults;
     switch (artType) {
-      case SteamGridArtType.background:
-        artworkResults = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
+      case SteamGridArtType.banner:
+        artworkResults = await ref.read(steamGridDBClientProvider).getBannersForGame(gameId);
       case SteamGridArtType.hero:
         artworkResults = await ref.read(steamGridDBClientProvider).getHeroesForGame(gameId);
       case SteamGridArtType.cover:
