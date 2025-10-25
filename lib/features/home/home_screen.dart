@@ -453,8 +453,6 @@ class _SteamArtworkState extends State<SteamArtwork> {
                   : MenuItem(title: context.l10n.homeProgramArtworkCreateEmptyLogo),
             if (widget.file != null && widget.artType == SteamGridArtType.banner)
               MenuItem(title: context.l10n.homeProgramArtworkSetBannerAsHero),
-            if (widget.artType == SteamGridArtType.logo && widget.file != null)
-              MenuItem(title: context.l10n.homeProgramArtworkEditLogoPosition),
           ],
           child: SizedBox(
             width: widget.width,
