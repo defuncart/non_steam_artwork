@@ -4,8 +4,8 @@ publish_to: 'none'
 version: 0.0.1+1
 
 environment:
-  sdk: ^3.8.0
-  flutter: ^3.32.0
+  sdk: ^3.9.0
+  flutter: ^3.35.0
 
 dependencies:
   flutter:
@@ -22,11 +22,11 @@ dependencies:
   path:
   path_provider:
   collection:
-  flutter_riverpod:
+  flutter_riverpod: 2.6.1
   riverpod_annotation:
   native_context_menu: ^0.2.2+5
-  super_drag_and_drop: ^0.8.24
-  super_clipboard: ^0.8.24
+  super_drag_and_drop:
+  super_clipboard:
   window_size:
     git:
       url: https://github.com/google/flutter-desktop-embedding
@@ -53,7 +53,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints:
   arb_generator:
   freezed:
   build_runner:
@@ -63,16 +63,6 @@ dev_dependencies:
   app_store_screenshots:
     git: 
       url: https://github.com/defuncart/app_store_screenshots
-
-dependency_overrides:
-  super_drag_and_drop:
-    git:
-      url: https://github.com/superlistapp/super_native_extensions/
-      path: super_drag_and_drop
-  super_clipboard:
-    git:
-      url: https://github.com/superlistapp/super_native_extensions/
-      path: super_clipboard
 
 flutter:
   uses-material-design: true
