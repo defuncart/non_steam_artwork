@@ -14,10 +14,12 @@ import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
 import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/steam_program.dart';
+import 'package:non_steam_artwork/core/ui/common/default_artwork.dart';
 import 'package:non_steam_artwork/features/home/download_artwork.dart';
 import 'package:non_steam_artwork/features/home/home_app_bar.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/home_tips_panel.dart';
+import 'package:non_steam_artwork/features/home/logo_position_screen.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 import 'package:non_steam_artwork/features/support/licenses_screen.dart';
 import 'package:non_steam_artwork/features/support/logs_screen.dart';
@@ -282,6 +284,7 @@ class ProgramView extends ConsumerWidget {
                     onLog: ref.read(loggerProvider).log,
                     canDownloadArtwork: ref.watch(steamGridDBApiKeyControllerProvider) != null,
                     onDownload: () => DownloadArtwork.show(context, program: program, artType: artType),
+                    onEditLogoPosition: () => LogoPositionScreen.show(context, program: program),
                   ),
               ],
             ),
@@ -306,6 +309,7 @@ class SteamArtwork extends StatefulWidget {
     required this.onLog,
     required this.canDownloadArtwork,
     required this.onDownload,
+    required this.onEditLogoPosition,
     super.key,
   });
 
@@ -320,6 +324,7 @@ class SteamArtwork extends StatefulWidget {
   final void Function(String) onLog;
   final bool canDownloadArtwork;
   final VoidCallback onDownload;
+  final VoidCallback onEditLogoPosition;
 
   @override
   State<SteamArtwork> createState() => _SteamArtworkState();
@@ -430,6 +435,8 @@ class _SteamArtworkState extends State<SteamArtwork> {
             } else if (item.title == context.l10n.homeProgramArtworkCreateEmptyLogo) {
               final bytes = const Base64Codec().decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
               widget.onCreateFile(Stream.value(bytes), '.jpg');
+            } else if (item.title == context.l10n.homeProgramArtworkEditLogoPosition) {
+              widget.onEditLogoPosition();
             } else if (item.title == context.l10n.homeProgramArtworkSetBannerAsHero) {
               widget.onCopyFile(widget.file!, SteamGridArtType.hero);
             }
@@ -441,7 +448,9 @@ class _SteamArtworkState extends State<SteamArtwork> {
             if (widget.file != null && widget.artType == SteamGridArtType.hero)
               MenuItem(title: context.l10n.homeProgramArtworkSetHeroAsBanner),
             if (widget.artType == SteamGridArtType.logo)
-              MenuItem(title: context.l10n.homeProgramArtworkCreateEmptyLogo),
+              widget.file != null
+                  ? MenuItem(title: context.l10n.homeProgramArtworkEditLogoPosition)
+                  : MenuItem(title: context.l10n.homeProgramArtworkCreateEmptyLogo),
             if (widget.file != null && widget.artType == SteamGridArtType.banner)
               MenuItem(title: context.l10n.homeProgramArtworkSetBannerAsHero),
           ],
@@ -450,16 +459,7 @@ class _SteamArtworkState extends State<SteamArtwork> {
             height: widget.height,
             child: Opacity(
               opacity: _isDragging ? 0.75 : 1,
-              child: widget.file != null
-                  ? ArtworkImage(widget.file!)
-                  : ColoredBox(
-                      color: context.colorScheme.tertiary,
-                      child: Icon(
-                        Icons.broken_image,
-                        size: widget.width * 0.25,
-                        color: context.colorScheme.onTertiary,
-                      ),
-                    ),
+              child: widget.file != null ? ArtworkImage(widget.file!) : const DefaultArtwork(),
             ),
           ),
         ),
@@ -473,9 +473,10 @@ class _SteamArtworkState extends State<SteamArtwork> {
 // replaced image should be rendered, Image.memory is used instead
 @visibleForTesting
 class ArtworkImage extends ConsumerWidget {
-  const ArtworkImage(this.file, {super.key});
+  const ArtworkImage(this.file, {super.key, this.alignment});
 
   final File file;
+  final Alignment? alignment;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -490,6 +491,6 @@ class ArtworkImage extends ConsumerWidget {
       }
     }
 
-    return Image.file(file);
+    return Image.file(file, alignment: alignment ?? Alignment.center);
   }
 }

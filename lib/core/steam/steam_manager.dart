@@ -126,6 +126,7 @@ class SteamManager {
             cover: cachedItem?.cover,
             hero: cachedItem?.hero,
             logo: cachedItem?.logo,
+            logoPosition: cachedItem?.logoPosition,
             banner: cachedItem?.banner,
           );
         }
@@ -164,6 +165,8 @@ class SteamManager {
 
     return (gridPath, filename);
   }
+
+  String generateLogoPositionPath(int appId) => path.join(_gridPath, '$appId.json');
 
   Future<void> deleteCache() async {
     final gridPath = _gridPath;

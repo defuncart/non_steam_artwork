@@ -243,6 +243,21 @@ Future<void> createArtwork(
   ref.invalidate(steamProgramsProvider);
 }
 
+@riverpod
+Future<void> saveLogoPosition(
+  Ref ref, {
+  required int appId,
+  required LogoPositionType position,
+  required double size,
+}) async {
+  ref.log('start save logo position ($position, $size) for $appId');
+  final filepath = ref.read(steamManagerProvider).generateLogoPositionPath(appId);
+  final logoPosition = LogoPosition(position: position, width: size, height: size);
+  await logoPosition.saveToDisk(filepath);
+  ref.log('logo position $filepath saved');
+  ref.invalidate(steamProgramsProvider);
+}
+
 @Riverpod(keepAlive: true)
 class _ReplacedFilesController extends _$ReplacedFilesController {
   @override
