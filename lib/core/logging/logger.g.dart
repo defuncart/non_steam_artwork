@@ -6,35 +6,84 @@ part of 'logger.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(logger)
+const loggerProvider = LoggerProvider._();
+
+final class LoggerProvider extends $FunctionalProvider<Logger, Logger, Logger>
+    with $Provider<Logger> {
+  const LoggerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'loggerProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$loggerHash();
+
+  @$internal
+  @override
+  $ProviderElement<Logger> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  Logger create(Ref ref) {
+    return logger(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Logger value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Logger>(value),
+    );
+  }
+}
+
 String _$loggerHash() => r'79c0d5c2da63f5684b297a70f7839110c31c391f';
 
-/// See also [logger].
-@ProviderFor(logger)
-final loggerProvider = Provider<Logger>.internal(
-  logger,
-  name: r'loggerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$loggerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef LoggerRef = ProviderRef<Logger>;
-String _$logsViewerHash() => r'6b2c13567ba46cf1bfffb1fbd29ac2a6693d0d40';
-
-/// See also [logsViewer].
 @ProviderFor(logsViewer)
-final logsViewerProvider = StreamProvider<List<LogEvent>>.internal(
-  logsViewer,
-  name: r'logsViewerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$logsViewerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const logsViewerProvider = LogsViewerProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef LogsViewerRef = StreamProviderRef<List<LogEvent>>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class LogsViewerProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<LogEvent>>,
+          List<LogEvent>,
+          Stream<List<LogEvent>>
+        >
+    with $FutureModifier<List<LogEvent>>, $StreamProvider<List<LogEvent>> {
+  const LogsViewerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'logsViewerProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$logsViewerHash();
+
+  @$internal
+  @override
+  $StreamProviderElement<List<LogEvent>> $createElement(
+    $ProviderPointer pointer,
+  ) => $StreamProviderElement(pointer);
+
+  @override
+  Stream<List<LogEvent>> create(Ref ref) {
+    return logsViewer(ref);
+  }
+}
+
+String _$logsViewerHash() => r'6b2c13567ba46cf1bfffb1fbd29ac2a6693d0d40';

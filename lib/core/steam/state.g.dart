@@ -6,20 +6,46 @@ part of 'state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$steamManagerHash() => r'60afbfcca71afa9ed26414d1d82f9821e05f62a6';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [steamManager].
 @ProviderFor(steamManager)
-final steamManagerProvider = Provider<SteamManager>.internal(
-  steamManager,
-  name: r'steamManagerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$steamManagerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const steamManagerProvider = SteamManagerProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef SteamManagerRef = ProviderRef<SteamManager>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class SteamManagerProvider
+    extends $FunctionalProvider<SteamManager, SteamManager, SteamManager>
+    with $Provider<SteamManager> {
+  const SteamManagerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'steamManagerProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$steamManagerHash();
+
+  @$internal
+  @override
+  $ProviderElement<SteamManager> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  SteamManager create(Ref ref) {
+    return steamManager(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SteamManager value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SteamManager>(value),
+    );
+  }
+}
+
+String _$steamManagerHash() => r'60afbfcca71afa9ed26414d1d82f9821e05f62a6';

@@ -22,7 +22,7 @@ dependencies:
   path:
   path_provider:
   collection:
-  flutter_riverpod: 2.6.1
+  flutter_riverpod:
   riverpod_annotation:
   native_context_menu: ^0.2.2+5
   super_drag_and_drop:

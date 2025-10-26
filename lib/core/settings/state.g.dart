@@ -6,102 +6,389 @@ part of 'state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(settingsService)
+const settingsServiceProvider = SettingsServiceProvider._();
+
+final class SettingsServiceProvider
+    extends
+        $FunctionalProvider<
+          ISettingsService,
+          ISettingsService,
+          ISettingsService
+        >
+    with $Provider<ISettingsService> {
+  const SettingsServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'settingsServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$settingsServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<ISettingsService> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  ISettingsService create(Ref ref) {
+    return settingsService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ISettingsService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ISettingsService>(value),
+    );
+  }
+}
+
 String _$settingsServiceHash() => r'6fb7bdf9781dc225a819622866251cae63e2ca54';
 
-/// See also [settingsService].
-@ProviderFor(settingsService)
-final settingsServiceProvider = AutoDisposeProvider<ISettingsService>.internal(
-  settingsService,
-  name: r'settingsServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$settingsServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef SettingsServiceRef = AutoDisposeProviderRef<ISettingsService>;
-String _$themeModeControllerHash() => r'7f13422a905d453327b0d5cb3e84131779d7c32d';
-
-/// See also [ThemeModeController].
 @ProviderFor(ThemeModeController)
-final themeModeControllerProvider = NotifierProvider<ThemeModeController, ThemeMode>.internal(
-  ThemeModeController.new,
-  name: r'themeModeControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$themeModeControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const themeModeControllerProvider = ThemeModeControllerProvider._();
 
-typedef _$ThemeModeController = Notifier<ThemeMode>;
-String _$hasSeenOnboardingControllerHash() => r'1d87a3dc1c5c8e00d3879b5b78a24cd264df06ba';
+final class ThemeModeControllerProvider
+    extends $NotifierProvider<ThemeModeController, ThemeMode> {
+  const ThemeModeControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'themeModeControllerProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [HasSeenOnboardingController].
+  @override
+  String debugGetCreateSourceHash() => _$themeModeControllerHash();
+
+  @$internal
+  @override
+  ThemeModeController create() => ThemeModeController();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ThemeMode value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ThemeMode>(value),
+    );
+  }
+}
+
+String _$themeModeControllerHash() =>
+    r'7f13422a905d453327b0d5cb3e84131779d7c32d';
+
+abstract class _$ThemeModeController extends $Notifier<ThemeMode> {
+  ThemeMode build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<ThemeMode, ThemeMode>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<ThemeMode, ThemeMode>,
+              ThemeMode,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
+
 @ProviderFor(HasSeenOnboardingController)
-final hasSeenOnboardingControllerProvider = AutoDisposeNotifierProvider<HasSeenOnboardingController, bool>.internal(
-  HasSeenOnboardingController.new,
-  name: r'hasSeenOnboardingControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$hasSeenOnboardingControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const hasSeenOnboardingControllerProvider =
+    HasSeenOnboardingControllerProvider._();
 
-typedef _$HasSeenOnboardingController = AutoDisposeNotifier<bool>;
-String _$filteredProgramTypesControllerHash() => r'75d56c062b66d32bce0028f4090a5b4b0f32df4c';
+final class HasSeenOnboardingControllerProvider
+    extends $NotifierProvider<HasSeenOnboardingController, bool> {
+  const HasSeenOnboardingControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'hasSeenOnboardingControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [FilteredProgramTypesController].
+  @override
+  String debugGetCreateSourceHash() => _$hasSeenOnboardingControllerHash();
+
+  @$internal
+  @override
+  HasSeenOnboardingController create() => HasSeenOnboardingController();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(bool value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<bool>(value),
+    );
+  }
+}
+
+String _$hasSeenOnboardingControllerHash() =>
+    r'1d87a3dc1c5c8e00d3879b5b78a24cd264df06ba';
+
+abstract class _$HasSeenOnboardingController extends $Notifier<bool> {
+  bool build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<bool, bool>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<bool, bool>,
+              bool,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
+
 @ProviderFor(FilteredProgramTypesController)
-final filteredProgramTypesControllerProvider =
-    AutoDisposeNotifierProvider<FilteredProgramTypesController, Map<SteamProgramType, bool>>.internal(
-      FilteredProgramTypesController.new,
-      name: r'filteredProgramTypesControllerProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$filteredProgramTypesControllerHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
+const filteredProgramTypesControllerProvider =
+    FilteredProgramTypesControllerProvider._();
+
+final class FilteredProgramTypesControllerProvider
+    extends
+        $NotifierProvider<
+          FilteredProgramTypesController,
+          Map<SteamProgramType, bool>
+        > {
+  const FilteredProgramTypesControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'filteredProgramTypesControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$filteredProgramTypesControllerHash();
+
+  @$internal
+  @override
+  FilteredProgramTypesController create() => FilteredProgramTypesController();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Map<SteamProgramType, bool> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Map<SteamProgramType, bool>>(value),
     );
+  }
+}
 
-typedef _$FilteredProgramTypesController = AutoDisposeNotifier<Map<SteamProgramType, bool>>;
-String _$sortProgramTypeControllerHash() => r'1842386459e03d964d242e63a3b1f60c0458268b';
+String _$filteredProgramTypesControllerHash() =>
+    r'75d56c062b66d32bce0028f4090a5b4b0f32df4c';
 
-/// See also [SortProgramTypeController].
+abstract class _$FilteredProgramTypesController
+    extends $Notifier<Map<SteamProgramType, bool>> {
+  Map<SteamProgramType, bool> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref =
+        this.ref
+            as $Ref<Map<SteamProgramType, bool>, Map<SteamProgramType, bool>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<
+                Map<SteamProgramType, bool>,
+                Map<SteamProgramType, bool>
+              >,
+              Map<SteamProgramType, bool>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
+
 @ProviderFor(SortProgramTypeController)
-final sortProgramTypeControllerProvider =
-    AutoDisposeNotifierProvider<SortProgramTypeController, SortProgramType>.internal(
-      SortProgramTypeController.new,
-      name: r'sortProgramTypeControllerProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$sortProgramTypeControllerHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
+const sortProgramTypeControllerProvider = SortProgramTypeControllerProvider._();
+
+final class SortProgramTypeControllerProvider
+    extends $NotifierProvider<SortProgramTypeController, SortProgramType> {
+  const SortProgramTypeControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'sortProgramTypeControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$sortProgramTypeControllerHash();
+
+  @$internal
+  @override
+  SortProgramTypeController create() => SortProgramTypeController();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SortProgramType value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SortProgramType>(value),
     );
+  }
+}
 
-typedef _$SortProgramTypeController = AutoDisposeNotifier<SortProgramType>;
-String _$sortingAscendingControllerHash() => r'f75956f5962b3d46fb782c534c107482006906fb';
+String _$sortProgramTypeControllerHash() =>
+    r'1842386459e03d964d242e63a3b1f60c0458268b';
 
-/// See also [SortingAscendingController].
+abstract class _$SortProgramTypeController extends $Notifier<SortProgramType> {
+  SortProgramType build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<SortProgramType, SortProgramType>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<SortProgramType, SortProgramType>,
+              SortProgramType,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
+
 @ProviderFor(SortingAscendingController)
-final sortingAscendingControllerProvider = AutoDisposeNotifierProvider<SortingAscendingController, bool>.internal(
-  SortingAscendingController.new,
-  name: r'sortingAscendingControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$sortingAscendingControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const sortingAscendingControllerProvider =
+    SortingAscendingControllerProvider._();
 
-typedef _$SortingAscendingController = AutoDisposeNotifier<bool>;
-String _$steamGridDBApiKeyControllerHash() => r'b5a955a9364dc7e42ad83fbe56b1dc4c66544890';
+final class SortingAscendingControllerProvider
+    extends $NotifierProvider<SortingAscendingController, bool> {
+  const SortingAscendingControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'sortingAscendingControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [SteamGridDBApiKeyController].
+  @override
+  String debugGetCreateSourceHash() => _$sortingAscendingControllerHash();
+
+  @$internal
+  @override
+  SortingAscendingController create() => SortingAscendingController();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(bool value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<bool>(value),
+    );
+  }
+}
+
+String _$sortingAscendingControllerHash() =>
+    r'f75956f5962b3d46fb782c534c107482006906fb';
+
+abstract class _$SortingAscendingController extends $Notifier<bool> {
+  bool build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<bool, bool>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<bool, bool>,
+              bool,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
+
 @ProviderFor(SteamGridDBApiKeyController)
-final steamGridDBApiKeyControllerProvider = AutoDisposeNotifierProvider<SteamGridDBApiKeyController, String?>.internal(
-  SteamGridDBApiKeyController.new,
-  name: r'steamGridDBApiKeyControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$steamGridDBApiKeyControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const steamGridDBApiKeyControllerProvider =
+    SteamGridDBApiKeyControllerProvider._();
 
-typedef _$SteamGridDBApiKeyController = AutoDisposeNotifier<String?>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class SteamGridDBApiKeyControllerProvider
+    extends $NotifierProvider<SteamGridDBApiKeyController, String?> {
+  const SteamGridDBApiKeyControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'steamGridDBApiKeyControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$steamGridDBApiKeyControllerHash();
+
+  @$internal
+  @override
+  SteamGridDBApiKeyController create() => SteamGridDBApiKeyController();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(String? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<String?>(value),
+    );
+  }
+}
+
+String _$steamGridDBApiKeyControllerHash() =>
+    r'b5a955a9364dc7e42ad83fbe56b1dc4c66544890';
+
+abstract class _$SteamGridDBApiKeyController extends $Notifier<String?> {
+  String? build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<String?, String?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<String?, String?>,
+              String?,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}

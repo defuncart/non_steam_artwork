@@ -14,5 +14,12 @@ Future<void> main() async {
 
   setWindowMinSize(minWindowSize);
 
-  runApp(ProviderScope(overrides: [settingsServiceProvider.overrideWithValue(settingsService)], child: const MyApp()));
+  runApp(
+    ProviderScope(
+      overrides: [
+        settingsServiceProvider.overrideWithValue(settingsService),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }

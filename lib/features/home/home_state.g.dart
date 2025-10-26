@@ -6,1273 +6,1050 @@ part of 'home_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fileManagerHash() => r'735168694ba0c31dde76d61ee5f5eca8470e56e1';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [_fileManager].
 @ProviderFor(_fileManager)
-final _fileManagerProvider = Provider<FileManager>.internal(
-  _fileManager,
-  name: r'_fileManagerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$fileManagerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const _fileManagerProvider = _FileManagerProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef _FileManagerRef = ProviderRef<FileManager>;
-String _$cacheBackupExistsControllerHash() => r'e6fd1afb7cfc020b99b96b3164211aab25556949';
-
-/// See also [cacheBackupExistsController].
-@ProviderFor(cacheBackupExistsController)
-final cacheBackupExistsControllerProvider = AutoDisposeFutureProvider<bool>.internal(
-  cacheBackupExistsController,
-  name: r'cacheBackupExistsControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$cacheBackupExistsControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef CacheBackupExistsControllerRef = AutoDisposeFutureProviderRef<bool>;
-String _$deleteArtworkHash() => r'c1495b4b4de0d94d811c1f59933da1c0bc51a912';
-
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-/// See also [deleteArtwork].
-@ProviderFor(deleteArtwork)
-const deleteArtworkProvider = DeleteArtworkFamily();
-
-/// See also [deleteArtwork].
-class DeleteArtworkFamily extends Family<AsyncValue<void>> {
-  /// See also [deleteArtwork].
-  const DeleteArtworkFamily();
-
-  /// See also [deleteArtwork].
-  DeleteArtworkProvider call({required File file}) {
-    return DeleteArtworkProvider(file: file);
-  }
-
-  @override
-  DeleteArtworkProvider getProviderOverride(
-    covariant DeleteArtworkProvider provider,
-  ) {
-    return call(file: provider.file);
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'deleteArtworkProvider';
-}
-
-/// See also [deleteArtwork].
-class DeleteArtworkProvider extends AutoDisposeFutureProvider<void> {
-  /// See also [deleteArtwork].
-  DeleteArtworkProvider({required File file})
-    : this._internal(
-        (ref) => deleteArtwork(ref as DeleteArtworkRef, file: file),
-        from: deleteArtworkProvider,
-        name: r'deleteArtworkProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$deleteArtworkHash,
-        dependencies: DeleteArtworkFamily._dependencies,
-        allTransitiveDependencies: DeleteArtworkFamily._allTransitiveDependencies,
-        file: file,
+final class _FileManagerProvider
+    extends $FunctionalProvider<FileManager, FileManager, FileManager>
+    with $Provider<FileManager> {
+  const _FileManagerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'_fileManagerProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
       );
 
-  DeleteArtworkProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.file,
-  }) : super.internal();
+  @override
+  String debugGetCreateSourceHash() => _$_fileManagerHash();
 
-  final File file;
+  @$internal
+  @override
+  $ProviderElement<FileManager> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
 
   @override
-  Override overrideWith(
-    FutureOr<void> Function(DeleteArtworkRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: DeleteArtworkProvider._internal(
-        (ref) => create(ref as DeleteArtworkRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        file: file,
-      ),
-    );
+  FileManager create(Ref ref) {
+    return _fileManager(ref);
   }
 
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(FileManager value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<FileManager>(value),
+    );
+  }
+}
+
+String _$_fileManagerHash() => r'735168694ba0c31dde76d61ee5f5eca8470e56e1';
+
+@ProviderFor(SteamFolderExistsController)
+const steamFolderExistsControllerProvider =
+    SteamFolderExistsControllerProvider._();
+
+final class SteamFolderExistsControllerProvider
+    extends $AsyncNotifierProvider<SteamFolderExistsController, bool> {
+  const SteamFolderExistsControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'steamFolderExistsControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
   @override
-  AutoDisposeFutureProviderElement<void> createElement() {
-    return _DeleteArtworkProviderElement(this);
+  String debugGetCreateSourceHash() => _$steamFolderExistsControllerHash();
+
+  @$internal
+  @override
+  SteamFolderExistsController create() => SteamFolderExistsController();
+}
+
+String _$steamFolderExistsControllerHash() =>
+    r'00ef2fb8acab6278a869af79a8d8e30f651a38ca';
+
+abstract class _$SteamFolderExistsController extends $AsyncNotifier<bool> {
+  FutureOr<bool> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<AsyncValue<bool>, bool>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<bool>, bool>,
+              AsyncValue<bool>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
+
+@ProviderFor(CacheController)
+const cacheControllerProvider = CacheControllerProvider._();
+
+final class CacheControllerProvider
+    extends $AsyncNotifierProvider<CacheController, int> {
+  const CacheControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'cacheControllerProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$cacheControllerHash();
+
+  @$internal
+  @override
+  CacheController create() => CacheController();
+}
+
+String _$cacheControllerHash() => r'f2c77ef7969f1ca19a70927e3e55159deff8ef79';
+
+abstract class _$CacheController extends $AsyncNotifier<int> {
+  FutureOr<int> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<AsyncValue<int>, int>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<int>, int>,
+              AsyncValue<int>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
+
+@ProviderFor(cacheBackupExistsController)
+const cacheBackupExistsControllerProvider =
+    CacheBackupExistsControllerProvider._();
+
+final class CacheBackupExistsControllerProvider
+    extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
+    with $FutureModifier<bool>, $FutureProvider<bool> {
+  const CacheBackupExistsControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'cacheBackupExistsControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$cacheBackupExistsControllerHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<bool> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<bool> create(Ref ref) {
+    return cacheBackupExistsController(ref);
+  }
+}
+
+String _$cacheBackupExistsControllerHash() =>
+    r'e6fd1afb7cfc020b99b96b3164211aab25556949';
+
+@ProviderFor(SearchController)
+const searchControllerProvider = SearchControllerProvider._();
+
+final class SearchControllerProvider
+    extends $NotifierProvider<SearchController, String> {
+  const SearchControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'searchControllerProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$searchControllerHash();
+
+  @$internal
+  @override
+  SearchController create() => SearchController();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(String value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<String>(value),
+    );
+  }
+}
+
+String _$searchControllerHash() => r'7efb716fb420b888117b1599b12b86aff5179cb6';
+
+abstract class _$SearchController extends $Notifier<String> {
+  String build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<String, String>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<String, String>,
+              String,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
+
+@ProviderFor(SteamPrograms)
+const steamProgramsProvider = SteamProgramsProvider._();
+
+final class SteamProgramsProvider
+    extends $AsyncNotifierProvider<SteamPrograms, Iterable<SteamProgram>> {
+  const SteamProgramsProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'steamProgramsProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$steamProgramsHash();
+
+  @$internal
+  @override
+  SteamPrograms create() => SteamPrograms();
+}
+
+String _$steamProgramsHash() => r'f9b8d1cbbcbdb1cd2e8369d2e774beb1d26feb32';
+
+abstract class _$SteamPrograms extends $AsyncNotifier<Iterable<SteamProgram>> {
+  FutureOr<Iterable<SteamProgram>> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref =
+        this.ref
+            as $Ref<AsyncValue<Iterable<SteamProgram>>, Iterable<SteamProgram>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<
+                AsyncValue<Iterable<SteamProgram>>,
+                Iterable<SteamProgram>
+              >,
+              AsyncValue<Iterable<SteamProgram>>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
+
+@ProviderFor(deleteArtwork)
+const deleteArtworkProvider = DeleteArtworkFamily._();
+
+final class DeleteArtworkProvider
+    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+    with $FutureModifier<void>, $FutureProvider<void> {
+  const DeleteArtworkProvider._({
+    required DeleteArtworkFamily super.from,
+    required File super.argument,
+  }) : super(
+         retry: null,
+         name: r'deleteArtworkProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$deleteArtworkHash();
+
+  @override
+  String toString() {
+    return r'deleteArtworkProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<void> create(Ref ref) {
+    final argument = this.argument as File;
+    return deleteArtwork(ref, file: argument);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is DeleteArtworkProvider && other.file == file;
+    return other is DeleteArtworkProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, file.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin DeleteArtworkRef on AutoDisposeFutureProviderRef<void> {
-  /// The parameter `file` of this provider.
-  File get file;
-}
+String _$deleteArtworkHash() => r'c1495b4b4de0d94d811c1f59933da1c0bc51a912';
 
-class _DeleteArtworkProviderElement extends AutoDisposeFutureProviderElement<void> with DeleteArtworkRef {
-  _DeleteArtworkProviderElement(super.provider);
+final class DeleteArtworkFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<void>, File> {
+  const DeleteArtworkFamily._()
+    : super(
+        retry: null,
+        name: r'deleteArtworkProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  DeleteArtworkProvider call({required File file}) =>
+      DeleteArtworkProvider._(argument: file, from: this);
 
   @override
-  File get file => (origin as DeleteArtworkProvider).file;
+  String toString() => r'deleteArtworkProvider';
+}
+
+@ProviderFor(copyArtwork)
+const copyArtworkProvider = CopyArtworkFamily._();
+
+final class CopyArtworkProvider
+    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+    with $FutureModifier<void>, $FutureProvider<void> {
+  const CopyArtworkProvider._({
+    required CopyArtworkFamily super.from,
+    required ({File file, SteamGridArtType artType}) super.argument,
+  }) : super(
+         retry: null,
+         name: r'copyArtworkProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$copyArtworkHash();
+
+  @override
+  String toString() {
+    return r'copyArtworkProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<void> create(Ref ref) {
+    final argument = this.argument as ({File file, SteamGridArtType artType});
+    return copyArtwork(ref, file: argument.file, artType: argument.artType);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is CopyArtworkProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
 String _$copyArtworkHash() => r'7745522c0d87c4914ee03b10f59bafc23d14c67b';
 
-/// See also [copyArtwork].
-@ProviderFor(copyArtwork)
-const copyArtworkProvider = CopyArtworkFamily();
+final class CopyArtworkFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<void>,
+          ({File file, SteamGridArtType artType})
+        > {
+  const CopyArtworkFamily._()
+    : super(
+        retry: null,
+        name: r'copyArtworkProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
 
-/// See also [copyArtwork].
-class CopyArtworkFamily extends Family<AsyncValue<void>> {
-  /// See also [copyArtwork].
-  const CopyArtworkFamily();
-
-  /// See also [copyArtwork].
   CopyArtworkProvider call({
     required File file,
     required SteamGridArtType artType,
-  }) {
-    return CopyArtworkProvider(file: file, artType: artType);
-  }
+  }) => CopyArtworkProvider._(
+    argument: (file: file, artType: artType),
+    from: this,
+  );
 
   @override
-  CopyArtworkProvider getProviderOverride(
-    covariant CopyArtworkProvider provider,
-  ) {
-    return call(file: provider.file, artType: provider.artType);
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'copyArtworkProvider';
+  String toString() => r'copyArtworkProvider';
 }
 
-/// See also [copyArtwork].
-class CopyArtworkProvider extends AutoDisposeFutureProvider<void> {
-  /// See also [copyArtwork].
-  CopyArtworkProvider({required File file, required SteamGridArtType artType})
-    : this._internal(
-        (ref) => copyArtwork(ref as CopyArtworkRef, file: file, artType: artType),
-        from: copyArtworkProvider,
-        name: r'copyArtworkProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$copyArtworkHash,
-        dependencies: CopyArtworkFamily._dependencies,
-        allTransitiveDependencies: CopyArtworkFamily._allTransitiveDependencies,
-        file: file,
-        artType: artType,
-      );
+@ProviderFor(createArtworkFile)
+const createArtworkFileProvider = CreateArtworkFileFamily._();
 
-  CopyArtworkProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.file,
-    required this.artType,
-  }) : super.internal();
-
-  final File file;
-  final SteamGridArtType artType;
+final class CreateArtworkFileProvider
+    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+    with $FutureModifier<void>, $FutureProvider<void> {
+  const CreateArtworkFileProvider._({
+    required CreateArtworkFileFamily super.from,
+    required ({int appId, File file, String ext, SteamGridArtType artType})
+    super.argument,
+  }) : super(
+         retry: null,
+         name: r'createArtworkFileProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
   @override
-  Override overrideWith(
-    FutureOr<void> Function(CopyArtworkRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: CopyArtworkProvider._internal(
-        (ref) => create(ref as CopyArtworkRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        file: file,
-        artType: artType,
-      ),
+  String debugGetCreateSourceHash() => _$createArtworkFileHash();
+
+  @override
+  String toString() {
+    return r'createArtworkFileProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<void> create(Ref ref) {
+    final argument =
+        this.argument
+            as ({int appId, File file, String ext, SteamGridArtType artType});
+    return createArtworkFile(
+      ref,
+      appId: argument.appId,
+      file: argument.file,
+      ext: argument.ext,
+      artType: argument.artType,
     );
   }
 
   @override
-  AutoDisposeFutureProviderElement<void> createElement() {
-    return _CopyArtworkProviderElement(this);
-  }
-
-  @override
   bool operator ==(Object other) {
-    return other is CopyArtworkProvider && other.file == file && other.artType == artType;
+    return other is CreateArtworkFileProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, file.hashCode);
-    hash = _SystemHash.combine(hash, artType.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
-}
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin CopyArtworkRef on AutoDisposeFutureProviderRef<void> {
-  /// The parameter `file` of this provider.
-  File get file;
-
-  /// The parameter `artType` of this provider.
-  SteamGridArtType get artType;
-}
-
-class _CopyArtworkProviderElement extends AutoDisposeFutureProviderElement<void> with CopyArtworkRef {
-  _CopyArtworkProviderElement(super.provider);
-
-  @override
-  File get file => (origin as CopyArtworkProvider).file;
-  @override
-  SteamGridArtType get artType => (origin as CopyArtworkProvider).artType;
 }
 
 String _$createArtworkFileHash() => r'cdf043bc3c370d3bada6e788c54bdc66f29ccb0d';
 
-/// See also [createArtworkFile].
-@ProviderFor(createArtworkFile)
-const createArtworkFileProvider = CreateArtworkFileFamily();
+final class CreateArtworkFileFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<void>,
+          ({int appId, File file, String ext, SteamGridArtType artType})
+        > {
+  const CreateArtworkFileFamily._()
+    : super(
+        retry: null,
+        name: r'createArtworkFileProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
 
-/// See also [createArtworkFile].
-class CreateArtworkFileFamily extends Family<AsyncValue<void>> {
-  /// See also [createArtworkFile].
-  const CreateArtworkFileFamily();
-
-  /// See also [createArtworkFile].
   CreateArtworkFileProvider call({
     required int appId,
     required File file,
     required String ext,
     required SteamGridArtType artType,
-  }) {
-    return CreateArtworkFileProvider(
-      appId: appId,
-      file: file,
-      ext: ext,
-      artType: artType,
-    );
-  }
+  }) => CreateArtworkFileProvider._(
+    argument: (appId: appId, file: file, ext: ext, artType: artType),
+    from: this,
+  );
 
   @override
-  CreateArtworkFileProvider getProviderOverride(
-    covariant CreateArtworkFileProvider provider,
-  ) {
-    return call(
-      appId: provider.appId,
-      file: provider.file,
-      ext: provider.ext,
-      artType: provider.artType,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'createArtworkFileProvider';
+  String toString() => r'createArtworkFileProvider';
 }
 
-/// See also [createArtworkFile].
-class CreateArtworkFileProvider extends AutoDisposeFutureProvider<void> {
-  /// See also [createArtworkFile].
-  CreateArtworkFileProvider({
-    required int appId,
-    required File file,
-    required String ext,
-    required SteamGridArtType artType,
-  }) : this._internal(
-         (ref) => createArtworkFile(
-           ref as CreateArtworkFileRef,
-           appId: appId,
-           file: file,
-           ext: ext,
-           artType: artType,
-         ),
-         from: createArtworkFileProvider,
-         name: r'createArtworkFileProvider',
-         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$createArtworkFileHash,
-         dependencies: CreateArtworkFileFamily._dependencies,
-         allTransitiveDependencies: CreateArtworkFileFamily._allTransitiveDependencies,
-         appId: appId,
-         file: file,
-         ext: ext,
-         artType: artType,
+@ProviderFor(createArtwork)
+const createArtworkProvider = CreateArtworkFamily._();
+
+final class CreateArtworkProvider
+    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+    with $FutureModifier<void>, $FutureProvider<void> {
+  const CreateArtworkProvider._({
+    required CreateArtworkFamily super.from,
+    required ({
+      int appId,
+      Stream<Uint8List> bytesStream,
+      String ext,
+      SteamGridArtType artType,
+    })
+    super.argument,
+  }) : super(
+         retry: null,
+         name: r'createArtworkProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
        );
 
-  CreateArtworkFileProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.appId,
-    required this.file,
-    required this.ext,
-    required this.artType,
-  }) : super.internal();
-
-  final int appId;
-  final File file;
-  final String ext;
-  final SteamGridArtType artType;
+  @override
+  String debugGetCreateSourceHash() => _$createArtworkHash();
 
   @override
-  Override overrideWith(
-    FutureOr<void> Function(CreateArtworkFileRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: CreateArtworkFileProvider._internal(
-        (ref) => create(ref as CreateArtworkFileRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        appId: appId,
-        file: file,
-        ext: ext,
-        artType: artType,
-      ),
-    );
+  String toString() {
+    return r'createArtworkProvider'
+        ''
+        '$argument';
   }
 
+  @$internal
   @override
-  AutoDisposeFutureProviderElement<void> createElement() {
-    return _CreateArtworkFileProviderElement(this);
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<void> create(Ref ref) {
+    final argument =
+        this.argument
+            as ({
+              int appId,
+              Stream<Uint8List> bytesStream,
+              String ext,
+              SteamGridArtType artType,
+            });
+    return createArtwork(
+      ref,
+      appId: argument.appId,
+      bytesStream: argument.bytesStream,
+      ext: argument.ext,
+      artType: argument.artType,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return other is CreateArtworkFileProvider &&
-        other.appId == appId &&
-        other.file == file &&
-        other.ext == ext &&
-        other.artType == artType;
+    return other is CreateArtworkProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, appId.hashCode);
-    hash = _SystemHash.combine(hash, file.hashCode);
-    hash = _SystemHash.combine(hash, ext.hashCode);
-    hash = _SystemHash.combine(hash, artType.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
-}
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin CreateArtworkFileRef on AutoDisposeFutureProviderRef<void> {
-  /// The parameter `appId` of this provider.
-  int get appId;
-
-  /// The parameter `file` of this provider.
-  File get file;
-
-  /// The parameter `ext` of this provider.
-  String get ext;
-
-  /// The parameter `artType` of this provider.
-  SteamGridArtType get artType;
-}
-
-class _CreateArtworkFileProviderElement extends AutoDisposeFutureProviderElement<void> with CreateArtworkFileRef {
-  _CreateArtworkFileProviderElement(super.provider);
-
-  @override
-  int get appId => (origin as CreateArtworkFileProvider).appId;
-  @override
-  File get file => (origin as CreateArtworkFileProvider).file;
-  @override
-  String get ext => (origin as CreateArtworkFileProvider).ext;
-  @override
-  SteamGridArtType get artType => (origin as CreateArtworkFileProvider).artType;
 }
 
 String _$createArtworkHash() => r'fd69b15aca82582cf7a69f7a509b7a7ef8656333';
 
-/// See also [createArtwork].
-@ProviderFor(createArtwork)
-const createArtworkProvider = CreateArtworkFamily();
+final class CreateArtworkFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<void>,
+          ({
+            int appId,
+            Stream<Uint8List> bytesStream,
+            String ext,
+            SteamGridArtType artType,
+          })
+        > {
+  const CreateArtworkFamily._()
+    : super(
+        retry: null,
+        name: r'createArtworkProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
 
-/// See also [createArtwork].
-class CreateArtworkFamily extends Family<AsyncValue<void>> {
-  /// See also [createArtwork].
-  const CreateArtworkFamily();
-
-  /// See also [createArtwork].
   CreateArtworkProvider call({
     required int appId,
     required Stream<Uint8List> bytesStream,
     required String ext,
     required SteamGridArtType artType,
-  }) {
-    return CreateArtworkProvider(
+  }) => CreateArtworkProvider._(
+    argument: (
       appId: appId,
       bytesStream: bytesStream,
       ext: ext,
       artType: artType,
-    );
-  }
+    ),
+    from: this,
+  );
 
   @override
-  CreateArtworkProvider getProviderOverride(
-    covariant CreateArtworkProvider provider,
-  ) {
-    return call(
-      appId: provider.appId,
-      bytesStream: provider.bytesStream,
-      ext: provider.ext,
-      artType: provider.artType,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'createArtworkProvider';
+  String toString() => r'createArtworkProvider';
 }
 
-/// See also [createArtwork].
-class CreateArtworkProvider extends AutoDisposeFutureProvider<void> {
-  /// See also [createArtwork].
-  CreateArtworkProvider({
-    required int appId,
-    required Stream<Uint8List> bytesStream,
-    required String ext,
-    required SteamGridArtType artType,
-  }) : this._internal(
-         (ref) => createArtwork(
-           ref as CreateArtworkRef,
-           appId: appId,
-           bytesStream: bytesStream,
-           ext: ext,
-           artType: artType,
-         ),
-         from: createArtworkProvider,
-         name: r'createArtworkProvider',
-         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$createArtworkHash,
-         dependencies: CreateArtworkFamily._dependencies,
-         allTransitiveDependencies: CreateArtworkFamily._allTransitiveDependencies,
-         appId: appId,
-         bytesStream: bytesStream,
-         ext: ext,
-         artType: artType,
+@ProviderFor(saveLogoPosition)
+const saveLogoPositionProvider = SaveLogoPositionFamily._();
+
+final class SaveLogoPositionProvider
+    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+    with $FutureModifier<void>, $FutureProvider<void> {
+  const SaveLogoPositionProvider._({
+    required SaveLogoPositionFamily super.from,
+    required ({int appId, LogoPositionType position, double size})
+    super.argument,
+  }) : super(
+         retry: null,
+         name: r'saveLogoPositionProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
        );
 
-  CreateArtworkProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.appId,
-    required this.bytesStream,
-    required this.ext,
-    required this.artType,
-  }) : super.internal();
-
-  final int appId;
-  final Stream<Uint8List> bytesStream;
-  final String ext;
-  final SteamGridArtType artType;
+  @override
+  String debugGetCreateSourceHash() => _$saveLogoPositionHash();
 
   @override
-  Override overrideWith(
-    FutureOr<void> Function(CreateArtworkRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: CreateArtworkProvider._internal(
-        (ref) => create(ref as CreateArtworkRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        appId: appId,
-        bytesStream: bytesStream,
-        ext: ext,
-        artType: artType,
-      ),
-    );
+  String toString() {
+    return r'saveLogoPositionProvider'
+        ''
+        '$argument';
   }
 
+  @$internal
   @override
-  AutoDisposeFutureProviderElement<void> createElement() {
-    return _CreateArtworkProviderElement(this);
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<void> create(Ref ref) {
+    final argument =
+        this.argument as ({int appId, LogoPositionType position, double size});
+    return saveLogoPosition(
+      ref,
+      appId: argument.appId,
+      position: argument.position,
+      size: argument.size,
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return other is CreateArtworkProvider &&
-        other.appId == appId &&
-        other.bytesStream == bytesStream &&
-        other.ext == ext &&
-        other.artType == artType;
+    return other is SaveLogoPositionProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, appId.hashCode);
-    hash = _SystemHash.combine(hash, bytesStream.hashCode);
-    hash = _SystemHash.combine(hash, ext.hashCode);
-    hash = _SystemHash.combine(hash, artType.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
-}
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin CreateArtworkRef on AutoDisposeFutureProviderRef<void> {
-  /// The parameter `appId` of this provider.
-  int get appId;
-
-  /// The parameter `bytesStream` of this provider.
-  Stream<Uint8List> get bytesStream;
-
-  /// The parameter `ext` of this provider.
-  String get ext;
-
-  /// The parameter `artType` of this provider.
-  SteamGridArtType get artType;
-}
-
-class _CreateArtworkProviderElement extends AutoDisposeFutureProviderElement<void> with CreateArtworkRef {
-  _CreateArtworkProviderElement(super.provider);
-
-  @override
-  int get appId => (origin as CreateArtworkProvider).appId;
-  @override
-  Stream<Uint8List> get bytesStream => (origin as CreateArtworkProvider).bytesStream;
-  @override
-  String get ext => (origin as CreateArtworkProvider).ext;
-  @override
-  SteamGridArtType get artType => (origin as CreateArtworkProvider).artType;
 }
 
 String _$saveLogoPositionHash() => r'e8898674c15c55aadec426e423ba98971856cd54';
 
-/// See also [saveLogoPosition].
-@ProviderFor(saveLogoPosition)
-const saveLogoPositionProvider = SaveLogoPositionFamily();
+final class SaveLogoPositionFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<void>,
+          ({int appId, LogoPositionType position, double size})
+        > {
+  const SaveLogoPositionFamily._()
+    : super(
+        retry: null,
+        name: r'saveLogoPositionProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
 
-/// See also [saveLogoPosition].
-class SaveLogoPositionFamily extends Family<AsyncValue<void>> {
-  /// See also [saveLogoPosition].
-  const SaveLogoPositionFamily();
-
-  /// See also [saveLogoPosition].
   SaveLogoPositionProvider call({
     required int appId,
     required LogoPositionType position,
     required double size,
-  }) {
-    return SaveLogoPositionProvider(
-      appId: appId,
-      position: position,
-      size: size,
-    );
-  }
+  }) => SaveLogoPositionProvider._(
+    argument: (appId: appId, position: position, size: size),
+    from: this,
+  );
 
   @override
-  SaveLogoPositionProvider getProviderOverride(
-    covariant SaveLogoPositionProvider provider,
-  ) {
-    return call(
-      appId: provider.appId,
-      position: provider.position,
-      size: provider.size,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'saveLogoPositionProvider';
+  String toString() => r'saveLogoPositionProvider';
 }
 
-/// See also [saveLogoPosition].
-class SaveLogoPositionProvider extends AutoDisposeFutureProvider<void> {
-  /// See also [saveLogoPosition].
-  SaveLogoPositionProvider({
-    required int appId,
-    required LogoPositionType position,
-    required double size,
-  }) : this._internal(
-         (ref) => saveLogoPosition(
-           ref as SaveLogoPositionRef,
-           appId: appId,
-           position: position,
-           size: size,
-         ),
-         from: saveLogoPositionProvider,
-         name: r'saveLogoPositionProvider',
-         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$saveLogoPositionHash,
-         dependencies: SaveLogoPositionFamily._dependencies,
-         allTransitiveDependencies: SaveLogoPositionFamily._allTransitiveDependencies,
-         appId: appId,
-         position: position,
-         size: size,
+@ProviderFor(_ReplacedFilesController)
+const _replacedFilesControllerProvider = _ReplacedFilesControllerProvider._();
+
+final class _ReplacedFilesControllerProvider
+    extends $NotifierProvider<_ReplacedFilesController, Set<String>> {
+  const _ReplacedFilesControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'_replacedFilesControllerProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$_replacedFilesControllerHash();
+
+  @$internal
+  @override
+  _ReplacedFilesController create() => _ReplacedFilesController();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Set<String> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Set<String>>(value),
+    );
+  }
+}
+
+String _$_replacedFilesControllerHash() =>
+    r'f701387fd3dca548fecaf909c453be847d29a0ec';
+
+abstract class _$ReplacedFilesController extends $Notifier<Set<String>> {
+  Set<String> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<Set<String>, Set<String>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<Set<String>, Set<String>>,
+              Set<String>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
+
+@ProviderFor(WasFileReplacedController)
+const wasFileReplacedControllerProvider = WasFileReplacedControllerFamily._();
+
+final class WasFileReplacedControllerProvider
+    extends $NotifierProvider<WasFileReplacedController, bool> {
+  const WasFileReplacedControllerProvider._({
+    required WasFileReplacedControllerFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'wasFileReplacedControllerProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
        );
 
-  SaveLogoPositionProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.appId,
-    required this.position,
-    required this.size,
-  }) : super.internal();
-
-  final int appId;
-  final LogoPositionType position;
-  final double size;
+  @override
+  String debugGetCreateSourceHash() => _$wasFileReplacedControllerHash();
 
   @override
-  Override overrideWith(
-    FutureOr<void> Function(SaveLogoPositionRef provider) create,
-  ) {
-    return ProviderOverride(
+  String toString() {
+    return r'wasFileReplacedControllerProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  WasFileReplacedController create() => WasFileReplacedController();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(bool value) {
+    return $ProviderOverride(
       origin: this,
-      override: SaveLogoPositionProvider._internal(
-        (ref) => create(ref as SaveLogoPositionRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        appId: appId,
-        position: position,
-        size: size,
-      ),
+      providerOverride: $SyncValueProvider<bool>(value),
     );
   }
 
   @override
-  AutoDisposeFutureProviderElement<void> createElement() {
-    return _SaveLogoPositionProviderElement(this);
-  }
-
-  @override
   bool operator ==(Object other) {
-    return other is SaveLogoPositionProvider &&
-        other.appId == appId &&
-        other.position == position &&
-        other.size == size;
+    return other is WasFileReplacedControllerProvider &&
+        other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, appId.hashCode);
-    hash = _SystemHash.combine(hash, position.hashCode);
-    hash = _SystemHash.combine(hash, size.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin SaveLogoPositionRef on AutoDisposeFutureProviderRef<void> {
-  /// The parameter `appId` of this provider.
-  int get appId;
+String _$wasFileReplacedControllerHash() =>
+    r'69297efee1b523fd9c6bd670bc8a6df416aaaf94';
 
-  /// The parameter `position` of this provider.
-  LogoPositionType get position;
-
-  /// The parameter `size` of this provider.
-  double get size;
-}
-
-class _SaveLogoPositionProviderElement extends AutoDisposeFutureProviderElement<void> with SaveLogoPositionRef {
-  _SaveLogoPositionProviderElement(super.provider);
-
-  @override
-  int get appId => (origin as SaveLogoPositionProvider).appId;
-  @override
-  LogoPositionType get position => (origin as SaveLogoPositionProvider).position;
-  @override
-  double get size => (origin as SaveLogoPositionProvider).size;
-}
-
-String _$downloadFileSizeHash() => r'3eda62d6f71e02e73cd8120274092f548d17d337';
-
-/// See also [downloadFileSize].
-@ProviderFor(downloadFileSize)
-const downloadFileSizeProvider = DownloadFileSizeFamily();
-
-/// See also [downloadFileSize].
-class DownloadFileSizeFamily extends Family<AsyncValue<String?>> {
-  /// See also [downloadFileSize].
-  const DownloadFileSizeFamily();
-
-  /// See also [downloadFileSize].
-  DownloadFileSizeProvider call({required String url}) {
-    return DownloadFileSizeProvider(url: url);
-  }
-
-  @override
-  DownloadFileSizeProvider getProviderOverride(
-    covariant DownloadFileSizeProvider provider,
-  ) {
-    return call(url: provider.url);
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'downloadFileSizeProvider';
-}
-
-/// See also [downloadFileSize].
-class DownloadFileSizeProvider extends AutoDisposeFutureProvider<String?> {
-  /// See also [downloadFileSize].
-  DownloadFileSizeProvider({required String url})
-    : this._internal(
-        (ref) => downloadFileSize(ref as DownloadFileSizeRef, url: url),
-        from: downloadFileSizeProvider,
-        name: r'downloadFileSizeProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$downloadFileSizeHash,
-        dependencies: DownloadFileSizeFamily._dependencies,
-        allTransitiveDependencies: DownloadFileSizeFamily._allTransitiveDependencies,
-        url: url,
+final class WasFileReplacedControllerFamily extends $Family
+    with
+        $ClassFamilyOverride<
+          WasFileReplacedController,
+          bool,
+          bool,
+          bool,
+          String
+        > {
+  const WasFileReplacedControllerFamily._()
+    : super(
+        retry: null,
+        name: r'wasFileReplacedControllerProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
       );
 
-  DownloadFileSizeProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.url,
-  }) : super.internal();
-
-  final String url;
+  WasFileReplacedControllerProvider call(String path) =>
+      WasFileReplacedControllerProvider._(argument: path, from: this);
 
   @override
-  Override overrideWith(
-    FutureOr<String?> Function(DownloadFileSizeRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: DownloadFileSizeProvider._internal(
-        (ref) => create(ref as DownloadFileSizeRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        url: url,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<String?> createElement() {
-    return _DownloadFileSizeProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is DownloadFileSizeProvider && other.url == url;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, url.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
+  String toString() => r'wasFileReplacedControllerProvider';
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin DownloadFileSizeRef on AutoDisposeFutureProviderRef<String?> {
-  /// The parameter `url` of this provider.
-  String get url;
-}
-
-class _DownloadFileSizeProviderElement extends AutoDisposeFutureProviderElement<String?> with DownloadFileSizeRef {
-  _DownloadFileSizeProviderElement(super.provider);
-
-  @override
-  String get url => (origin as DownloadFileSizeProvider).url;
-}
-
-String _$steamFolderExistsControllerHash() => r'00ef2fb8acab6278a869af79a8d8e30f651a38ca';
-
-/// See also [SteamFolderExistsController].
-@ProviderFor(SteamFolderExistsController)
-final steamFolderExistsControllerProvider =
-    AutoDisposeAsyncNotifierProvider<SteamFolderExistsController, bool>.internal(
-      SteamFolderExistsController.new,
-      name: r'steamFolderExistsControllerProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$steamFolderExistsControllerHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-typedef _$SteamFolderExistsController = AutoDisposeAsyncNotifier<bool>;
-String _$cacheControllerHash() => r'f2c77ef7969f1ca19a70927e3e55159deff8ef79';
-
-/// See also [CacheController].
-@ProviderFor(CacheController)
-final cacheControllerProvider = AsyncNotifierProvider<CacheController, int>.internal(
-  CacheController.new,
-  name: r'cacheControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$cacheControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$CacheController = AsyncNotifier<int>;
-String _$searchControllerHash() => r'7efb716fb420b888117b1599b12b86aff5179cb6';
-
-/// See also [SearchController].
-@ProviderFor(SearchController)
-final searchControllerProvider = NotifierProvider<SearchController, String>.internal(
-  SearchController.new,
-  name: r'searchControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$searchControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$SearchController = Notifier<String>;
-String _$steamProgramsHash() => r'f9b8d1cbbcbdb1cd2e8369d2e774beb1d26feb32';
-
-/// See also [SteamPrograms].
-@ProviderFor(SteamPrograms)
-final steamProgramsProvider = AutoDisposeAsyncNotifierProvider<SteamPrograms, Iterable<SteamProgram>>.internal(
-  SteamPrograms.new,
-  name: r'steamProgramsProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$steamProgramsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$SteamPrograms = AutoDisposeAsyncNotifier<Iterable<SteamProgram>>;
-String _$replacedFilesControllerHash() => r'f701387fd3dca548fecaf909c453be847d29a0ec';
-
-/// See also [_ReplacedFilesController].
-@ProviderFor(_ReplacedFilesController)
-final _replacedFilesControllerProvider = NotifierProvider<_ReplacedFilesController, Set<String>>.internal(
-  _ReplacedFilesController.new,
-  name: r'_replacedFilesControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$replacedFilesControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$ReplacedFilesController = Notifier<Set<String>>;
-String _$wasFileReplacedControllerHash() => r'69297efee1b523fd9c6bd670bc8a6df416aaaf94';
-
-abstract class _$WasFileReplacedController extends BuildlessAutoDisposeNotifier<bool> {
-  late final String path;
+abstract class _$WasFileReplacedController extends $Notifier<bool> {
+  late final _$args = ref.$arg as String;
+  String get path => _$args;
 
   bool build(String path);
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build(_$args);
+    final ref = this.ref as $Ref<bool, bool>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<bool, bool>,
+              bool,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
 }
 
-/// See also [WasFileReplacedController].
-@ProviderFor(WasFileReplacedController)
-const wasFileReplacedControllerProvider = WasFileReplacedControllerFamily();
+@ProviderFor(DownloadableArtworkController)
+const downloadableArtworkControllerProvider =
+    DownloadableArtworkControllerFamily._();
 
-/// See also [WasFileReplacedController].
-class WasFileReplacedControllerFamily extends Family<bool> {
-  /// See also [WasFileReplacedController].
-  const WasFileReplacedControllerFamily();
+final class DownloadableArtworkControllerProvider
+    extends
+        $AsyncNotifierProvider<
+          DownloadableArtworkController,
+          DownloadableArtworkState
+        > {
+  const DownloadableArtworkControllerProvider._({
+    required DownloadableArtworkControllerFamily super.from,
+    required ({String initialSearchTerm, SteamGridArtType artType})
+    super.argument,
+  }) : super(
+         retry: null,
+         name: r'downloadableArtworkControllerProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [WasFileReplacedController].
-  WasFileReplacedControllerProvider call(String path) {
-    return WasFileReplacedControllerProvider(path);
+  @override
+  String debugGetCreateSourceHash() => _$downloadableArtworkControllerHash();
+
+  @override
+  String toString() {
+    return r'downloadableArtworkControllerProvider'
+        ''
+        '$argument';
   }
 
+  @$internal
   @override
-  WasFileReplacedControllerProvider getProviderOverride(
-    covariant WasFileReplacedControllerProvider provider,
-  ) {
-    return call(provider.path);
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'wasFileReplacedControllerProvider';
-}
-
-/// See also [WasFileReplacedController].
-class WasFileReplacedControllerProvider extends AutoDisposeNotifierProviderImpl<WasFileReplacedController, bool> {
-  /// See also [WasFileReplacedController].
-  WasFileReplacedControllerProvider(String path)
-    : this._internal(
-        () => WasFileReplacedController()..path = path,
-        from: wasFileReplacedControllerProvider,
-        name: r'wasFileReplacedControllerProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-            ? null
-            : _$wasFileReplacedControllerHash,
-        dependencies: WasFileReplacedControllerFamily._dependencies,
-        allTransitiveDependencies: WasFileReplacedControllerFamily._allTransitiveDependencies,
-        path: path,
-      );
-
-  WasFileReplacedControllerProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.path,
-  }) : super.internal();
-
-  final String path;
-
-  @override
-  bool runNotifierBuild(covariant WasFileReplacedController notifier) {
-    return notifier.build(path);
-  }
-
-  @override
-  Override overrideWith(WasFileReplacedController Function() create) {
-    return ProviderOverride(
-      origin: this,
-      override: WasFileReplacedControllerProvider._internal(
-        () => create()..path = path,
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        path: path,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeNotifierProviderElement<WasFileReplacedController, bool> createElement() {
-    return _WasFileReplacedControllerProviderElement(this);
-  }
+  DownloadableArtworkController create() => DownloadableArtworkController();
 
   @override
   bool operator ==(Object other) {
-    return other is WasFileReplacedControllerProvider && other.path == path;
+    return other is DownloadableArtworkControllerProvider &&
+        other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, path.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin WasFileReplacedControllerRef on AutoDisposeNotifierProviderRef<bool> {
-  /// The parameter `path` of this provider.
-  String get path;
-}
+String _$downloadableArtworkControllerHash() =>
+    r'1515038bfd153f75fbfd6bbc35aaa5d490003b79';
 
-class _WasFileReplacedControllerProviderElement
-    extends AutoDisposeNotifierProviderElement<WasFileReplacedController, bool>
-    with WasFileReplacedControllerRef {
-  _WasFileReplacedControllerProviderElement(super.provider);
+final class DownloadableArtworkControllerFamily extends $Family
+    with
+        $ClassFamilyOverride<
+          DownloadableArtworkController,
+          AsyncValue<DownloadableArtworkState>,
+          DownloadableArtworkState,
+          FutureOr<DownloadableArtworkState>,
+          ({String initialSearchTerm, SteamGridArtType artType})
+        > {
+  const DownloadableArtworkControllerFamily._()
+    : super(
+        retry: null,
+        name: r'downloadableArtworkControllerProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  DownloadableArtworkControllerProvider call({
+    required String initialSearchTerm,
+    required SteamGridArtType artType,
+  }) => DownloadableArtworkControllerProvider._(
+    argument: (initialSearchTerm: initialSearchTerm, artType: artType),
+    from: this,
+  );
 
   @override
-  String get path => (origin as WasFileReplacedControllerProvider).path;
+  String toString() => r'downloadableArtworkControllerProvider';
 }
 
-String _$downloadableArtworkControllerHash() => r'1515038bfd153f75fbfd6bbc35aaa5d490003b79';
-
-abstract class _$DownloadableArtworkController extends BuildlessAutoDisposeAsyncNotifier<DownloadableArtworkState> {
-  late final String initialSearchTerm;
-  late final SteamGridArtType artType;
+abstract class _$DownloadableArtworkController
+    extends $AsyncNotifier<DownloadableArtworkState> {
+  late final _$args =
+      ref.$arg as ({String initialSearchTerm, SteamGridArtType artType});
+  String get initialSearchTerm => _$args.initialSearchTerm;
+  SteamGridArtType get artType => _$args.artType;
 
   FutureOr<DownloadableArtworkState> build({
     required String initialSearchTerm,
     required SteamGridArtType artType,
   });
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build(
+      initialSearchTerm: _$args.initialSearchTerm,
+      artType: _$args.artType,
+    );
+    final ref =
+        this.ref
+            as $Ref<
+              AsyncValue<DownloadableArtworkState>,
+              DownloadableArtworkState
+            >;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<
+                AsyncValue<DownloadableArtworkState>,
+                DownloadableArtworkState
+              >,
+              AsyncValue<DownloadableArtworkState>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
 }
 
-/// See also [DownloadableArtworkController].
-@ProviderFor(DownloadableArtworkController)
-const downloadableArtworkControllerProvider = DownloadableArtworkControllerFamily();
+@ProviderFor(downloadFileSize)
+const downloadFileSizeProvider = DownloadFileSizeFamily._();
 
-/// See also [DownloadableArtworkController].
-class DownloadableArtworkControllerFamily extends Family<AsyncValue<DownloadableArtworkState>> {
-  /// See also [DownloadableArtworkController].
-  const DownloadableArtworkControllerFamily();
-
-  /// See also [DownloadableArtworkController].
-  DownloadableArtworkControllerProvider call({
-    required String initialSearchTerm,
-    required SteamGridArtType artType,
-  }) {
-    return DownloadableArtworkControllerProvider(
-      initialSearchTerm: initialSearchTerm,
-      artType: artType,
-    );
-  }
-
-  @override
-  DownloadableArtworkControllerProvider getProviderOverride(
-    covariant DownloadableArtworkControllerProvider provider,
-  ) {
-    return call(
-      initialSearchTerm: provider.initialSearchTerm,
-      artType: provider.artType,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
-
-  @override
-  String? get name => r'downloadableArtworkControllerProvider';
-}
-
-/// See also [DownloadableArtworkController].
-class DownloadableArtworkControllerProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<DownloadableArtworkController, DownloadableArtworkState> {
-  /// See also [DownloadableArtworkController].
-  DownloadableArtworkControllerProvider({
-    required String initialSearchTerm,
-    required SteamGridArtType artType,
-  }) : this._internal(
-         () => DownloadableArtworkController()
-           ..initialSearchTerm = initialSearchTerm
-           ..artType = artType,
-         from: downloadableArtworkControllerProvider,
-         name: r'downloadableArtworkControllerProvider',
-         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-             ? null
-             : _$downloadableArtworkControllerHash,
-         dependencies: DownloadableArtworkControllerFamily._dependencies,
-         allTransitiveDependencies: DownloadableArtworkControllerFamily._allTransitiveDependencies,
-         initialSearchTerm: initialSearchTerm,
-         artType: artType,
+final class DownloadFileSizeProvider
+    extends $FunctionalProvider<AsyncValue<String?>, String?, FutureOr<String?>>
+    with $FutureModifier<String?>, $FutureProvider<String?> {
+  const DownloadFileSizeProvider._({
+    required DownloadFileSizeFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'downloadFileSizeProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
        );
 
-  DownloadableArtworkControllerProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.initialSearchTerm,
-    required this.artType,
-  }) : super.internal();
-
-  final String initialSearchTerm;
-  final SteamGridArtType artType;
+  @override
+  String debugGetCreateSourceHash() => _$downloadFileSizeHash();
 
   @override
-  FutureOr<DownloadableArtworkState> runNotifierBuild(
-    covariant DownloadableArtworkController notifier,
-  ) {
-    return notifier.build(
-      initialSearchTerm: initialSearchTerm,
-      artType: artType,
-    );
+  String toString() {
+    return r'downloadFileSizeProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  Override overrideWith(DownloadableArtworkController Function() create) {
-    return ProviderOverride(
-      origin: this,
-      override: DownloadableArtworkControllerProvider._internal(
-        () => create()
-          ..initialSearchTerm = initialSearchTerm
-          ..artType = artType,
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        initialSearchTerm: initialSearchTerm,
-        artType: artType,
-      ),
-    );
-  }
+  $FutureProviderElement<String?> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<DownloadableArtworkController, DownloadableArtworkState> createElement() {
-    return _DownloadableArtworkControllerProviderElement(this);
+  FutureOr<String?> create(Ref ref) {
+    final argument = this.argument as String;
+    return downloadFileSize(ref, url: argument);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is DownloadableArtworkControllerProvider &&
-        other.initialSearchTerm == initialSearchTerm &&
-        other.artType == artType;
+    return other is DownloadFileSizeProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, initialSearchTerm.hashCode);
-    hash = _SystemHash.combine(hash, artType.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin DownloadableArtworkControllerRef on AutoDisposeAsyncNotifierProviderRef<DownloadableArtworkState> {
-  /// The parameter `initialSearchTerm` of this provider.
-  String get initialSearchTerm;
+String _$downloadFileSizeHash() => r'3eda62d6f71e02e73cd8120274092f548d17d337';
 
-  /// The parameter `artType` of this provider.
-  SteamGridArtType get artType;
-}
+final class DownloadFileSizeFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<String?>, String> {
+  const DownloadFileSizeFamily._()
+    : super(
+        retry: null,
+        name: r'downloadFileSizeProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
 
-class _DownloadableArtworkControllerProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<DownloadableArtworkController, DownloadableArtworkState>
-    with DownloadableArtworkControllerRef {
-  _DownloadableArtworkControllerProviderElement(super.provider);
+  DownloadFileSizeProvider call({required String url}) =>
+      DownloadFileSizeProvider._(argument: url, from: this);
 
   @override
-  String get initialSearchTerm => (origin as DownloadableArtworkControllerProvider).initialSearchTerm;
-  @override
-  SteamGridArtType get artType => (origin as DownloadableArtworkControllerProvider).artType;
+  String toString() => r'downloadFileSizeProvider';
 }
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

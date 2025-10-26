@@ -6,20 +6,46 @@ part of 'state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$steamGridDBClientHash() => r'04a20516aec258f14be18f9aaa6a1fea2155a2d8';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [steamGridDBClient].
 @ProviderFor(steamGridDBClient)
-final steamGridDBClientProvider = AutoDisposeProvider<SteamGridDB>.internal(
-  steamGridDBClient,
-  name: r'steamGridDBClientProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$steamGridDBClientHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const steamGridDBClientProvider = SteamGridDBClientProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef SteamGridDBClientRef = AutoDisposeProviderRef<SteamGridDB>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class SteamGridDBClientProvider
+    extends $FunctionalProvider<SteamGridDB, SteamGridDB, SteamGridDB>
+    with $Provider<SteamGridDB> {
+  const SteamGridDBClientProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'steamGridDBClientProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$steamGridDBClientHash();
+
+  @$internal
+  @override
+  $ProviderElement<SteamGridDB> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  SteamGridDB create(Ref ref) {
+    return steamGridDBClient(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SteamGridDB value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SteamGridDB>(value),
+    );
+  }
+}
+
+String _$steamGridDBClientHash() => r'04a20516aec258f14be18f9aaa6a1fea2155a2d8';
