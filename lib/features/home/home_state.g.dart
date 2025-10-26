@@ -656,13 +656,27 @@ class SaveLogoPositionFamily extends Family<AsyncValue<void>> {
   const SaveLogoPositionFamily();
 
   /// See also [saveLogoPosition].
-  SaveLogoPositionProvider call({required int appId, required LogoPositionType position, required double size}) {
-    return SaveLogoPositionProvider(appId: appId, position: position, size: size);
+  SaveLogoPositionProvider call({
+    required int appId,
+    required LogoPositionType position,
+    required double size,
+  }) {
+    return SaveLogoPositionProvider(
+      appId: appId,
+      position: position,
+      size: size,
+    );
   }
 
   @override
-  SaveLogoPositionProvider getProviderOverride(covariant SaveLogoPositionProvider provider) {
-    return call(appId: provider.appId, position: provider.position, size: provider.size);
+  SaveLogoPositionProvider getProviderOverride(
+    covariant SaveLogoPositionProvider provider,
+  ) {
+    return call(
+      appId: provider.appId,
+      position: provider.position,
+      size: provider.size,
+    );
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -682,18 +696,26 @@ class SaveLogoPositionFamily extends Family<AsyncValue<void>> {
 /// See also [saveLogoPosition].
 class SaveLogoPositionProvider extends AutoDisposeFutureProvider<void> {
   /// See also [saveLogoPosition].
-  SaveLogoPositionProvider({required int appId, required LogoPositionType position, required double size})
-    : this._internal(
-        (ref) => saveLogoPosition(ref as SaveLogoPositionRef, appId: appId, position: position, size: size),
-        from: saveLogoPositionProvider,
-        name: r'saveLogoPositionProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$saveLogoPositionHash,
-        dependencies: SaveLogoPositionFamily._dependencies,
-        allTransitiveDependencies: SaveLogoPositionFamily._allTransitiveDependencies,
-        appId: appId,
-        position: position,
-        size: size,
-      );
+  SaveLogoPositionProvider({
+    required int appId,
+    required LogoPositionType position,
+    required double size,
+  }) : this._internal(
+         (ref) => saveLogoPosition(
+           ref as SaveLogoPositionRef,
+           appId: appId,
+           position: position,
+           size: size,
+         ),
+         from: saveLogoPositionProvider,
+         name: r'saveLogoPositionProvider',
+         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$saveLogoPositionHash,
+         dependencies: SaveLogoPositionFamily._dependencies,
+         allTransitiveDependencies: SaveLogoPositionFamily._allTransitiveDependencies,
+         appId: appId,
+         position: position,
+         size: size,
+       );
 
   SaveLogoPositionProvider._internal(
     super._createNotifier, {
@@ -712,7 +734,9 @@ class SaveLogoPositionProvider extends AutoDisposeFutureProvider<void> {
   final double size;
 
   @override
-  Override overrideWith(FutureOr<void> Function(SaveLogoPositionRef provider) create) {
+  Override overrideWith(
+    FutureOr<void> Function(SaveLogoPositionRef provider) create,
+  ) {
     return ProviderOverride(
       origin: this,
       override: SaveLogoPositionProvider._internal(

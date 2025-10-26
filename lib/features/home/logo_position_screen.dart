@@ -6,7 +6,6 @@ import 'package:non_steam_artwork/core/steam/steam_program.dart';
 import 'package:non_steam_artwork/core/ui/common/default_artwork.dart';
 import 'package:non_steam_artwork/features/home/home_screen.dart';
 import 'package:non_steam_artwork/features/home/home_state.dart';
-import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 
 class LogoPositionScreen extends ConsumerWidget {
   const LogoPositionScreen({
@@ -98,27 +97,14 @@ class LogoPositionTypeScreenState extends State<LogoPositionScreenContent> {
           children: [
             LayoutBuilder(
               builder: (context, constraints) {
-                final widthFactor = 1;
-                print(constraints);
-
-                print(
-                  (constraints.maxWidth / SteamGridArtType.hero.size.width) * SteamGridArtType.hero.size.height,
-                );
-
                 return Stack(
                   alignment: Alignment.topLeft,
                   children: [
                     widget.program.hero != null
                         ? ArtworkImage(widget.program.hero!)
-                        // : SizedBox(
-                        //   width: constraints.maxWidth,
-                        //   height:
-                        //       (constraints.maxWidth / SteamGridArtType.background.size.width) *
-                        //       SteamGridArtType.background.size.height,
-                        //   // height: SteamGridArtType.background.size.height * widthFactor,
-                        //   child: const DefaultArtwork(),
-                        // ),
-                        : Positioned.fill(child: const DefaultArtwork()),
+                        : const Positioned.fill(
+                            child: DefaultArtwork(),
+                          ),
                     if (widget.program.logo != null)
                       _Positioned(
                         position: _position,
