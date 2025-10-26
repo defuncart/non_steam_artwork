@@ -25,8 +25,8 @@ jobs:
           generate_release_notes: false
   build_linux:
     name: Build + Upload Linux
-    # There are missing dependency issues for apps build on ubuntu-latest (24.04.01) and running on SteamOS (Arch)
-    runs-on: ubuntu-22.04
+    # Hardcode OS to avoid dependency issue between ubuntu/SteamOS (Arch)
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v1
       - uses: kuhnroyal/flutter-fvm-config-action@v2
