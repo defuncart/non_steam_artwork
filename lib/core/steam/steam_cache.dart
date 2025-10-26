@@ -36,11 +36,13 @@ class SteamGridCache {
           kvp.value.firstWhereOrNull(
             (file) =>
                 p.basenameWithoutExtension(file.path).length == steamAppIdLength && p.extension(file.path) == '.json',
-          ), // id.json
+          ),
         );
         final banner = kvp.value.firstWhereOrNull(
-          (file) => p.basenameWithoutExtension(file.path).length == steamAppIdLength,
+          (file) =>
+              p.basenameWithoutExtension(file.path).length == steamAppIdLength && p.extension(file.path) != '.json',
         );
+
         programs.add((
           id: int.parse(kvp.key),
           icon: icon,
