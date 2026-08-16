@@ -208,7 +208,7 @@ return $default(_that.appId,_that.appName,_that.target,_that.launchOptions,_that
 
 
 class _SteamShortcut implements SteamShortcut {
-  const _SteamShortcut({required this.appId, required this.appName, required this.target, required this.launchOptions, required this.startDir, required this.icon, required this.isHidden, required final  List<String> tags, required this.lastPlayTime}): _tags = tags;
+  const _SteamShortcut({required this.appId, required this.appName, required this.target, required this.launchOptions, required this.startDir, required this.icon, required this.isHidden, required  List<String> tags, required this.lastPlayTime}): _tags = tags;
   
 
 @override final  int appId;
