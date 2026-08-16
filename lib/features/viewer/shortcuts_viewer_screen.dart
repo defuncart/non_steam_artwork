@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
+import 'package:non_steam_artwork/core/ui/common/default_artwork.dart';
 import 'package:non_steam_artwork/features/viewer/viewer_state.dart';
 import 'package:steam_shortcuts_util/steam_shortcuts_util.dart';
 
@@ -89,10 +90,7 @@ class ShortcutDetails extends StatelessWidget {
               height: 64,
               child: shortcut.icon.isNotEmpty
                   ? Tooltip(message: shortcut.icon, child: Image.file(File(shortcut.icon)))
-                  : ColoredBox(
-                      color: context.colorScheme.tertiary,
-                      child: Icon(Icons.broken_image, size: 64 * 0.25, color: context.colorScheme.onTertiary),
-                    ),
+                  : const DefaultArtwork(),
             ),
             const Gap(16),
             Expanded(
