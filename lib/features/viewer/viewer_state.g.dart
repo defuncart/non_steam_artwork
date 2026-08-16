@@ -10,19 +10,12 @@ part of 'viewer_state.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(getShortcuts)
-const getShortcutsProvider = GetShortcutsProvider._();
+final getShortcutsProvider = GetShortcutsProvider._();
 
 final class GetShortcutsProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<SteamShortcut>>,
-          List<SteamShortcut>,
-          FutureOr<List<SteamShortcut>>
-        >
-    with
-        $FutureModifier<List<SteamShortcut>>,
-        $FutureProvider<List<SteamShortcut>> {
-  const GetShortcutsProvider._()
+    extends $FunctionalProvider<AsyncValue<List<SteamShortcut>>, List<SteamShortcut>, FutureOr<List<SteamShortcut>>>
+    with $FutureModifier<List<SteamShortcut>>, $FutureProvider<List<SteamShortcut>> {
+  GetShortcutsProvider._()
     : super(
         from: null,
         argument: null,

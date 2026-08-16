@@ -10,12 +10,11 @@ part of 'splash_state.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(splashState)
-const splashStateProvider = SplashStateProvider._();
+final splashStateProvider = SplashStateProvider._();
 
-final class SplashStateProvider
-    extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
+final class SplashStateProvider extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
     with $FutureModifier<bool>, $FutureProvider<bool> {
-  const SplashStateProvider._()
+  SplashStateProvider._()
     : super(
         from: null,
         argument: null,
@@ -31,8 +30,7 @@ final class SplashStateProvider
 
   @$internal
   @override
-  $FutureProviderElement<bool> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<bool> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<bool> create(Ref ref) {

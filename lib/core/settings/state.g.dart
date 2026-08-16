@@ -10,17 +10,11 @@ part of 'state.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(settingsService)
-const settingsServiceProvider = SettingsServiceProvider._();
+final settingsServiceProvider = SettingsServiceProvider._();
 
-final class SettingsServiceProvider
-    extends
-        $FunctionalProvider<
-          ISettingsService,
-          ISettingsService,
-          ISettingsService
-        >
+final class SettingsServiceProvider extends $FunctionalProvider<ISettingsService, ISettingsService, ISettingsService>
     with $Provider<ISettingsService> {
-  const SettingsServiceProvider._()
+  SettingsServiceProvider._()
     : super(
         from: null,
         argument: null,
@@ -36,8 +30,7 @@ final class SettingsServiceProvider
 
   @$internal
   @override
-  $ProviderElement<ISettingsService> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+  $ProviderElement<ISettingsService> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   ISettingsService create(Ref ref) {
@@ -56,11 +49,10 @@ final class SettingsServiceProvider
 String _$settingsServiceHash() => r'6fb7bdf9781dc225a819622866251cae63e2ca54';
 
 @ProviderFor(ThemeModeController)
-const themeModeControllerProvider = ThemeModeControllerProvider._();
+final themeModeControllerProvider = ThemeModeControllerProvider._();
 
-final class ThemeModeControllerProvider
-    extends $NotifierProvider<ThemeModeController, ThemeMode> {
-  const ThemeModeControllerProvider._()
+final class ThemeModeControllerProvider extends $NotifierProvider<ThemeModeController, ThemeMode> {
+  ThemeModeControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -87,35 +79,25 @@ final class ThemeModeControllerProvider
   }
 }
 
-String _$themeModeControllerHash() =>
-    r'7f13422a905d453327b0d5cb3e84131779d7c32d';
+String _$themeModeControllerHash() => r'7f13422a905d453327b0d5cb3e84131779d7c32d';
 
 abstract class _$ThemeModeController extends $Notifier<ThemeMode> {
   ThemeMode build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<ThemeMode, ThemeMode>;
     final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<ThemeMode, ThemeMode>,
-              ThemeMode,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+        ref.element as $ClassProviderElement<AnyNotifier<ThemeMode, ThemeMode>, ThemeMode, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(HasSeenOnboardingController)
-const hasSeenOnboardingControllerProvider =
-    HasSeenOnboardingControllerProvider._();
+final hasSeenOnboardingControllerProvider = HasSeenOnboardingControllerProvider._();
 
-final class HasSeenOnboardingControllerProvider
-    extends $NotifierProvider<HasSeenOnboardingController, bool> {
-  const HasSeenOnboardingControllerProvider._()
+final class HasSeenOnboardingControllerProvider extends $NotifierProvider<HasSeenOnboardingController, bool> {
+  HasSeenOnboardingControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -142,39 +124,25 @@ final class HasSeenOnboardingControllerProvider
   }
 }
 
-String _$hasSeenOnboardingControllerHash() =>
-    r'1d87a3dc1c5c8e00d3879b5b78a24cd264df06ba';
+String _$hasSeenOnboardingControllerHash() => r'1d87a3dc1c5c8e00d3879b5b78a24cd264df06ba';
 
 abstract class _$HasSeenOnboardingController extends $Notifier<bool> {
   bool build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<bool, bool>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<bool, bool>,
-              bool,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+    final element = ref.element as $ClassProviderElement<AnyNotifier<bool, bool>, bool, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(FilteredProgramTypesController)
-const filteredProgramTypesControllerProvider =
-    FilteredProgramTypesControllerProvider._();
+final filteredProgramTypesControllerProvider = FilteredProgramTypesControllerProvider._();
 
 final class FilteredProgramTypesControllerProvider
-    extends
-        $NotifierProvider<
-          FilteredProgramTypesController,
-          Map<SteamProgramType, bool>
-        > {
-  const FilteredProgramTypesControllerProvider._()
+    extends $NotifierProvider<FilteredProgramTypesController, Map<SteamProgramType, bool>> {
+  FilteredProgramTypesControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -201,40 +169,31 @@ final class FilteredProgramTypesControllerProvider
   }
 }
 
-String _$filteredProgramTypesControllerHash() =>
-    r'75d56c062b66d32bce0028f4090a5b4b0f32df4c';
+String _$filteredProgramTypesControllerHash() => r'75d56c062b66d32bce0028f4090a5b4b0f32df4c';
 
-abstract class _$FilteredProgramTypesController
-    extends $Notifier<Map<SteamProgramType, bool>> {
+abstract class _$FilteredProgramTypesController extends $Notifier<Map<SteamProgramType, bool>> {
   Map<SteamProgramType, bool> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
-    final ref =
-        this.ref
-            as $Ref<Map<SteamProgramType, bool>, Map<SteamProgramType, bool>>;
+    final ref = this.ref as $Ref<Map<SteamProgramType, bool>, Map<SteamProgramType, bool>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<
-                Map<SteamProgramType, bool>,
-                Map<SteamProgramType, bool>
-              >,
+              AnyNotifier<Map<SteamProgramType, bool>, Map<SteamProgramType, bool>>,
               Map<SteamProgramType, bool>,
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(SortProgramTypeController)
-const sortProgramTypeControllerProvider = SortProgramTypeControllerProvider._();
+final sortProgramTypeControllerProvider = SortProgramTypeControllerProvider._();
 
-final class SortProgramTypeControllerProvider
-    extends $NotifierProvider<SortProgramTypeController, SortProgramType> {
-  const SortProgramTypeControllerProvider._()
+final class SortProgramTypeControllerProvider extends $NotifierProvider<SortProgramTypeController, SortProgramType> {
+  SortProgramTypeControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -261,35 +220,26 @@ final class SortProgramTypeControllerProvider
   }
 }
 
-String _$sortProgramTypeControllerHash() =>
-    r'1842386459e03d964d242e63a3b1f60c0458268b';
+String _$sortProgramTypeControllerHash() => r'1842386459e03d964d242e63a3b1f60c0458268b';
 
 abstract class _$SortProgramTypeController extends $Notifier<SortProgramType> {
   SortProgramType build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<SortProgramType, SortProgramType>;
     final element =
         ref.element
-            as $ClassProviderElement<
-              AnyNotifier<SortProgramType, SortProgramType>,
-              SortProgramType,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+            as $ClassProviderElement<AnyNotifier<SortProgramType, SortProgramType>, SortProgramType, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(SortingAscendingController)
-const sortingAscendingControllerProvider =
-    SortingAscendingControllerProvider._();
+final sortingAscendingControllerProvider = SortingAscendingControllerProvider._();
 
-final class SortingAscendingControllerProvider
-    extends $NotifierProvider<SortingAscendingController, bool> {
-  const SortingAscendingControllerProvider._()
+final class SortingAscendingControllerProvider extends $NotifierProvider<SortingAscendingController, bool> {
+  SortingAscendingControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -316,35 +266,24 @@ final class SortingAscendingControllerProvider
   }
 }
 
-String _$sortingAscendingControllerHash() =>
-    r'f75956f5962b3d46fb782c534c107482006906fb';
+String _$sortingAscendingControllerHash() => r'f75956f5962b3d46fb782c534c107482006906fb';
 
 abstract class _$SortingAscendingController extends $Notifier<bool> {
   bool build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<bool, bool>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<bool, bool>,
-              bool,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+    final element = ref.element as $ClassProviderElement<AnyNotifier<bool, bool>, bool, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(SteamGridDBApiKeyController)
-const steamGridDBApiKeyControllerProvider =
-    SteamGridDBApiKeyControllerProvider._();
+final steamGridDBApiKeyControllerProvider = SteamGridDBApiKeyControllerProvider._();
 
-final class SteamGridDBApiKeyControllerProvider
-    extends $NotifierProvider<SteamGridDBApiKeyController, String?> {
-  const SteamGridDBApiKeyControllerProvider._()
+final class SteamGridDBApiKeyControllerProvider extends $NotifierProvider<SteamGridDBApiKeyController, String?> {
+  SteamGridDBApiKeyControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -371,24 +310,15 @@ final class SteamGridDBApiKeyControllerProvider
   }
 }
 
-String _$steamGridDBApiKeyControllerHash() =>
-    r'b5a955a9364dc7e42ad83fbe56b1dc4c66544890';
+String _$steamGridDBApiKeyControllerHash() => r'b5a955a9364dc7e42ad83fbe56b1dc4c66544890';
 
 abstract class _$SteamGridDBApiKeyController extends $Notifier<String?> {
   String? build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<String?, String?>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<String?, String?>,
-              String?,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+    final element = ref.element as $ClassProviderElement<AnyNotifier<String?, String?>, String?, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }

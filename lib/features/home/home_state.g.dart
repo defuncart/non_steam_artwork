@@ -10,12 +10,11 @@ part of 'home_state.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(_fileManager)
-const _fileManagerProvider = _FileManagerProvider._();
+final _fileManagerProvider = _FileManagerProvider._();
 
-final class _FileManagerProvider
-    extends $FunctionalProvider<FileManager, FileManager, FileManager>
+final class _FileManagerProvider extends $FunctionalProvider<FileManager, FileManager, FileManager>
     with $Provider<FileManager> {
-  const _FileManagerProvider._()
+  _FileManagerProvider._()
     : super(
         from: null,
         argument: null,
@@ -31,8 +30,7 @@ final class _FileManagerProvider
 
   @$internal
   @override
-  $ProviderElement<FileManager> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+  $ProviderElement<FileManager> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   FileManager create(Ref ref) {
@@ -51,12 +49,10 @@ final class _FileManagerProvider
 String _$_fileManagerHash() => r'735168694ba0c31dde76d61ee5f5eca8470e56e1';
 
 @ProviderFor(SteamFolderExistsController)
-const steamFolderExistsControllerProvider =
-    SteamFolderExistsControllerProvider._();
+final steamFolderExistsControllerProvider = SteamFolderExistsControllerProvider._();
 
-final class SteamFolderExistsControllerProvider
-    extends $AsyncNotifierProvider<SteamFolderExistsController, bool> {
-  const SteamFolderExistsControllerProvider._()
+final class SteamFolderExistsControllerProvider extends $AsyncNotifierProvider<SteamFolderExistsController, bool> {
+  SteamFolderExistsControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -75,34 +71,25 @@ final class SteamFolderExistsControllerProvider
   SteamFolderExistsController create() => SteamFolderExistsController();
 }
 
-String _$steamFolderExistsControllerHash() =>
-    r'00ef2fb8acab6278a869af79a8d8e30f651a38ca';
+String _$steamFolderExistsControllerHash() => r'00ef2fb8acab6278a869af79a8d8e30f651a38ca';
 
 abstract class _$SteamFolderExistsController extends $AsyncNotifier<bool> {
   FutureOr<bool> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<AsyncValue<bool>, bool>;
     final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<AsyncValue<bool>, bool>,
-              AsyncValue<bool>,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+        ref.element as $ClassProviderElement<AnyNotifier<AsyncValue<bool>, bool>, AsyncValue<bool>, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(CacheController)
-const cacheControllerProvider = CacheControllerProvider._();
+final cacheControllerProvider = CacheControllerProvider._();
 
-final class CacheControllerProvider
-    extends $AsyncNotifierProvider<CacheController, int> {
-  const CacheControllerProvider._()
+final class CacheControllerProvider extends $AsyncNotifierProvider<CacheController, int> {
+  CacheControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -128,28 +115,19 @@ abstract class _$CacheController extends $AsyncNotifier<int> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<AsyncValue<int>, int>;
     final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<AsyncValue<int>, int>,
-              AsyncValue<int>,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+        ref.element as $ClassProviderElement<AnyNotifier<AsyncValue<int>, int>, AsyncValue<int>, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(cacheBackupExistsController)
-const cacheBackupExistsControllerProvider =
-    CacheBackupExistsControllerProvider._();
+final cacheBackupExistsControllerProvider = CacheBackupExistsControllerProvider._();
 
-final class CacheBackupExistsControllerProvider
-    extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
+final class CacheBackupExistsControllerProvider extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
     with $FutureModifier<bool>, $FutureProvider<bool> {
-  const CacheBackupExistsControllerProvider._()
+  CacheBackupExistsControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -165,8 +143,7 @@ final class CacheBackupExistsControllerProvider
 
   @$internal
   @override
-  $FutureProviderElement<bool> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<bool> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<bool> create(Ref ref) {
@@ -174,15 +151,13 @@ final class CacheBackupExistsControllerProvider
   }
 }
 
-String _$cacheBackupExistsControllerHash() =>
-    r'e6fd1afb7cfc020b99b96b3164211aab25556949';
+String _$cacheBackupExistsControllerHash() => r'e6fd1afb7cfc020b99b96b3164211aab25556949';
 
 @ProviderFor(SearchController)
-const searchControllerProvider = SearchControllerProvider._();
+final searchControllerProvider = SearchControllerProvider._();
 
-final class SearchControllerProvider
-    extends $NotifierProvider<SearchController, String> {
-  const SearchControllerProvider._()
+final class SearchControllerProvider extends $NotifierProvider<SearchController, String> {
+  SearchControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -216,26 +191,17 @@ abstract class _$SearchController extends $Notifier<String> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<String, String>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<String, String>,
-              String,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+    final element = ref.element as $ClassProviderElement<AnyNotifier<String, String>, String, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(SteamPrograms)
-const steamProgramsProvider = SteamProgramsProvider._();
+final steamProgramsProvider = SteamProgramsProvider._();
 
-final class SteamProgramsProvider
-    extends $AsyncNotifierProvider<SteamPrograms, Iterable<SteamProgram>> {
-  const SteamProgramsProvider._()
+final class SteamProgramsProvider extends $AsyncNotifierProvider<SteamPrograms, Iterable<SteamProgram>> {
+  SteamProgramsProvider._()
     : super(
         from: null,
         argument: null,
@@ -261,32 +227,25 @@ abstract class _$SteamPrograms extends $AsyncNotifier<Iterable<SteamProgram>> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
-    final ref =
-        this.ref
-            as $Ref<AsyncValue<Iterable<SteamProgram>>, Iterable<SteamProgram>>;
+    final ref = this.ref as $Ref<AsyncValue<Iterable<SteamProgram>>, Iterable<SteamProgram>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<
-                AsyncValue<Iterable<SteamProgram>>,
-                Iterable<SteamProgram>
-              >,
+              AnyNotifier<AsyncValue<Iterable<SteamProgram>>, Iterable<SteamProgram>>,
               AsyncValue<Iterable<SteamProgram>>,
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(deleteArtwork)
-const deleteArtworkProvider = DeleteArtworkFamily._();
+final deleteArtworkProvider = DeleteArtworkFamily._();
 
-final class DeleteArtworkProvider
-    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+final class DeleteArtworkProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const DeleteArtworkProvider._({
+  DeleteArtworkProvider._({
     required DeleteArtworkFamily super.from,
     required File super.argument,
   }) : super(
@@ -309,8 +268,7 @@ final class DeleteArtworkProvider
 
   @$internal
   @override
-  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<void> create(Ref ref) {
@@ -331,9 +289,8 @@ final class DeleteArtworkProvider
 
 String _$deleteArtworkHash() => r'c1495b4b4de0d94d811c1f59933da1c0bc51a912';
 
-final class DeleteArtworkFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<void>, File> {
-  const DeleteArtworkFamily._()
+final class DeleteArtworkFamily extends $Family with $FunctionalFamilyOverride<FutureOr<void>, File> {
+  DeleteArtworkFamily._()
     : super(
         retry: null,
         name: r'deleteArtworkProvider',
@@ -342,20 +299,18 @@ final class DeleteArtworkFamily extends $Family
         isAutoDispose: true,
       );
 
-  DeleteArtworkProvider call({required File file}) =>
-      DeleteArtworkProvider._(argument: file, from: this);
+  DeleteArtworkProvider call({required File file}) => DeleteArtworkProvider._(argument: file, from: this);
 
   @override
   String toString() => r'deleteArtworkProvider';
 }
 
 @ProviderFor(copyArtwork)
-const copyArtworkProvider = CopyArtworkFamily._();
+final copyArtworkProvider = CopyArtworkFamily._();
 
-final class CopyArtworkProvider
-    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+final class CopyArtworkProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const CopyArtworkProvider._({
+  CopyArtworkProvider._({
     required CopyArtworkFamily super.from,
     required ({File file, SteamGridArtType artType}) super.argument,
   }) : super(
@@ -378,8 +333,7 @@ final class CopyArtworkProvider
 
   @$internal
   @override
-  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<void> create(Ref ref) {
@@ -401,12 +355,8 @@ final class CopyArtworkProvider
 String _$copyArtworkHash() => r'7745522c0d87c4914ee03b10f59bafc23d14c67b';
 
 final class CopyArtworkFamily extends $Family
-    with
-        $FunctionalFamilyOverride<
-          FutureOr<void>,
-          ({File file, SteamGridArtType artType})
-        > {
-  const CopyArtworkFamily._()
+    with $FunctionalFamilyOverride<FutureOr<void>, ({File file, SteamGridArtType artType})> {
+  CopyArtworkFamily._()
     : super(
         retry: null,
         name: r'copyArtworkProvider',
@@ -428,15 +378,13 @@ final class CopyArtworkFamily extends $Family
 }
 
 @ProviderFor(createArtworkFile)
-const createArtworkFileProvider = CreateArtworkFileFamily._();
+final createArtworkFileProvider = CreateArtworkFileFamily._();
 
-final class CreateArtworkFileProvider
-    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+final class CreateArtworkFileProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const CreateArtworkFileProvider._({
+  CreateArtworkFileProvider._({
     required CreateArtworkFileFamily super.from,
-    required ({int appId, File file, String ext, SteamGridArtType artType})
-    super.argument,
+    required ({int appId, File file, String ext, SteamGridArtType artType}) super.argument,
   }) : super(
          retry: null,
          name: r'createArtworkFileProvider',
@@ -457,14 +405,11 @@ final class CreateArtworkFileProvider
 
   @$internal
   @override
-  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<void> create(Ref ref) {
-    final argument =
-        this.argument
-            as ({int appId, File file, String ext, SteamGridArtType artType});
+    final argument = this.argument as ({int appId, File file, String ext, SteamGridArtType artType});
     return createArtworkFile(
       ref,
       appId: argument.appId,
@@ -488,12 +433,8 @@ final class CreateArtworkFileProvider
 String _$createArtworkFileHash() => r'cdf043bc3c370d3bada6e788c54bdc66f29ccb0d';
 
 final class CreateArtworkFileFamily extends $Family
-    with
-        $FunctionalFamilyOverride<
-          FutureOr<void>,
-          ({int appId, File file, String ext, SteamGridArtType artType})
-        > {
-  const CreateArtworkFileFamily._()
+    with $FunctionalFamilyOverride<FutureOr<void>, ({int appId, File file, String ext, SteamGridArtType artType})> {
+  CreateArtworkFileFamily._()
     : super(
         retry: null,
         name: r'createArtworkFileProvider',
@@ -517,12 +458,11 @@ final class CreateArtworkFileFamily extends $Family
 }
 
 @ProviderFor(createArtwork)
-const createArtworkProvider = CreateArtworkFamily._();
+final createArtworkProvider = CreateArtworkFamily._();
 
-final class CreateArtworkProvider
-    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+final class CreateArtworkProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const CreateArtworkProvider._({
+  CreateArtworkProvider._({
     required CreateArtworkFamily super.from,
     required ({
       int appId,
@@ -551,8 +491,7 @@ final class CreateArtworkProvider
 
   @$internal
   @override
-  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<void> create(Ref ref) {
@@ -597,7 +536,7 @@ final class CreateArtworkFamily extends $Family
             SteamGridArtType artType,
           })
         > {
-  const CreateArtworkFamily._()
+  CreateArtworkFamily._()
     : super(
         retry: null,
         name: r'createArtworkProvider',
@@ -626,15 +565,13 @@ final class CreateArtworkFamily extends $Family
 }
 
 @ProviderFor(saveLogoPosition)
-const saveLogoPositionProvider = SaveLogoPositionFamily._();
+final saveLogoPositionProvider = SaveLogoPositionFamily._();
 
-final class SaveLogoPositionProvider
-    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+final class SaveLogoPositionProvider extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const SaveLogoPositionProvider._({
+  SaveLogoPositionProvider._({
     required SaveLogoPositionFamily super.from,
-    required ({int appId, LogoPositionType position, double size})
-    super.argument,
+    required ({int appId, LogoPositionType position, double size}) super.argument,
   }) : super(
          retry: null,
          name: r'saveLogoPositionProvider',
@@ -655,13 +592,11 @@ final class SaveLogoPositionProvider
 
   @$internal
   @override
-  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<void> create(Ref ref) {
-    final argument =
-        this.argument as ({int appId, LogoPositionType position, double size});
+    final argument = this.argument as ({int appId, LogoPositionType position, double size});
     return saveLogoPosition(
       ref,
       appId: argument.appId,
@@ -684,12 +619,8 @@ final class SaveLogoPositionProvider
 String _$saveLogoPositionHash() => r'e8898674c15c55aadec426e423ba98971856cd54';
 
 final class SaveLogoPositionFamily extends $Family
-    with
-        $FunctionalFamilyOverride<
-          FutureOr<void>,
-          ({int appId, LogoPositionType position, double size})
-        > {
-  const SaveLogoPositionFamily._()
+    with $FunctionalFamilyOverride<FutureOr<void>, ({int appId, LogoPositionType position, double size})> {
+  SaveLogoPositionFamily._()
     : super(
         retry: null,
         name: r'saveLogoPositionProvider',
@@ -712,11 +643,10 @@ final class SaveLogoPositionFamily extends $Family
 }
 
 @ProviderFor(_ReplacedFilesController)
-const _replacedFilesControllerProvider = _ReplacedFilesControllerProvider._();
+final _replacedFilesControllerProvider = _ReplacedFilesControllerProvider._();
 
-final class _ReplacedFilesControllerProvider
-    extends $NotifierProvider<_ReplacedFilesController, Set<String>> {
-  const _ReplacedFilesControllerProvider._()
+final class _ReplacedFilesControllerProvider extends $NotifierProvider<_ReplacedFilesController, Set<String>> {
+  _ReplacedFilesControllerProvider._()
     : super(
         from: null,
         argument: null,
@@ -743,34 +673,25 @@ final class _ReplacedFilesControllerProvider
   }
 }
 
-String _$_replacedFilesControllerHash() =>
-    r'f701387fd3dca548fecaf909c453be847d29a0ec';
+String _$_replacedFilesControllerHash() => r'f701387fd3dca548fecaf909c453be847d29a0ec';
 
 abstract class _$ReplacedFilesController extends $Notifier<Set<String>> {
   Set<String> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<Set<String>, Set<String>>;
     final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<Set<String>, Set<String>>,
-              Set<String>,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+        ref.element as $ClassProviderElement<AnyNotifier<Set<String>, Set<String>>, Set<String>, Object?, Object?>;
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(WasFileReplacedController)
-const wasFileReplacedControllerProvider = WasFileReplacedControllerFamily._();
+final wasFileReplacedControllerProvider = WasFileReplacedControllerFamily._();
 
-final class WasFileReplacedControllerProvider
-    extends $NotifierProvider<WasFileReplacedController, bool> {
-  const WasFileReplacedControllerProvider._({
+final class WasFileReplacedControllerProvider extends $NotifierProvider<WasFileReplacedController, bool> {
+  WasFileReplacedControllerProvider._({
     required WasFileReplacedControllerFamily super.from,
     required String super.argument,
   }) : super(
@@ -805,8 +726,7 @@ final class WasFileReplacedControllerProvider
 
   @override
   bool operator ==(Object other) {
-    return other is WasFileReplacedControllerProvider &&
-        other.argument == argument;
+    return other is WasFileReplacedControllerProvider && other.argument == argument;
   }
 
   @override
@@ -815,19 +735,11 @@ final class WasFileReplacedControllerProvider
   }
 }
 
-String _$wasFileReplacedControllerHash() =>
-    r'69297efee1b523fd9c6bd670bc8a6df416aaaf94';
+String _$wasFileReplacedControllerHash() => r'69297efee1b523fd9c6bd670bc8a6df416aaaf94';
 
 final class WasFileReplacedControllerFamily extends $Family
-    with
-        $ClassFamilyOverride<
-          WasFileReplacedController,
-          bool,
-          bool,
-          bool,
-          String
-        > {
-  const WasFileReplacedControllerFamily._()
+    with $ClassFamilyOverride<WasFileReplacedController, bool, bool, bool, String> {
+  WasFileReplacedControllerFamily._()
     : super(
         retry: null,
         name: r'wasFileReplacedControllerProvider',
@@ -851,34 +763,20 @@ abstract class _$WasFileReplacedController extends $Notifier<bool> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(_$args);
     final ref = this.ref as $Ref<bool, bool>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<bool, bool>,
-              bool,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
+    final element = ref.element as $ClassProviderElement<AnyNotifier<bool, bool>, bool, Object?, Object?>;
+    element.handleCreate(ref, () => build(_$args));
   }
 }
 
 @ProviderFor(DownloadableArtworkController)
-const downloadableArtworkControllerProvider =
-    DownloadableArtworkControllerFamily._();
+final downloadableArtworkControllerProvider = DownloadableArtworkControllerFamily._();
 
 final class DownloadableArtworkControllerProvider
-    extends
-        $AsyncNotifierProvider<
-          DownloadableArtworkController,
-          DownloadableArtworkState
-        > {
-  const DownloadableArtworkControllerProvider._({
+    extends $AsyncNotifierProvider<DownloadableArtworkController, DownloadableArtworkState> {
+  DownloadableArtworkControllerProvider._({
     required DownloadableArtworkControllerFamily super.from,
-    required ({String initialSearchTerm, SteamGridArtType artType})
-    super.argument,
+    required ({String initialSearchTerm, SteamGridArtType artType}) super.argument,
   }) : super(
          retry: null,
          name: r'downloadableArtworkControllerProvider',
@@ -903,8 +801,7 @@ final class DownloadableArtworkControllerProvider
 
   @override
   bool operator ==(Object other) {
-    return other is DownloadableArtworkControllerProvider &&
-        other.argument == argument;
+    return other is DownloadableArtworkControllerProvider && other.argument == argument;
   }
 
   @override
@@ -913,8 +810,7 @@ final class DownloadableArtworkControllerProvider
   }
 }
 
-String _$downloadableArtworkControllerHash() =>
-    r'1515038bfd153f75fbfd6bbc35aaa5d490003b79';
+String _$downloadableArtworkControllerHash() => r'1515038bfd153f75fbfd6bbc35aaa5d490003b79';
 
 final class DownloadableArtworkControllerFamily extends $Family
     with
@@ -925,7 +821,7 @@ final class DownloadableArtworkControllerFamily extends $Family
           FutureOr<DownloadableArtworkState>,
           ({String initialSearchTerm, SteamGridArtType artType})
         > {
-  const DownloadableArtworkControllerFamily._()
+  DownloadableArtworkControllerFamily._()
     : super(
         retry: null,
         name: r'downloadableArtworkControllerProvider',
@@ -946,10 +842,8 @@ final class DownloadableArtworkControllerFamily extends $Family
   String toString() => r'downloadableArtworkControllerProvider';
 }
 
-abstract class _$DownloadableArtworkController
-    extends $AsyncNotifier<DownloadableArtworkState> {
-  late final _$args =
-      ref.$arg as ({String initialSearchTerm, SteamGridArtType artType});
+abstract class _$DownloadableArtworkController extends $AsyncNotifier<DownloadableArtworkState> {
+  late final _$args = ref.$arg as ({String initialSearchTerm, SteamGridArtType artType});
   String get initialSearchTerm => _$args.initialSearchTerm;
   SteamGridArtType get artType => _$args.artType;
 
@@ -960,38 +854,31 @@ abstract class _$DownloadableArtworkController
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(
-      initialSearchTerm: _$args.initialSearchTerm,
-      artType: _$args.artType,
-    );
-    final ref =
-        this.ref
-            as $Ref<
-              AsyncValue<DownloadableArtworkState>,
-              DownloadableArtworkState
-            >;
+    final ref = this.ref as $Ref<AsyncValue<DownloadableArtworkState>, DownloadableArtworkState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<
-                AsyncValue<DownloadableArtworkState>,
-                DownloadableArtworkState
-              >,
+              AnyNotifier<AsyncValue<DownloadableArtworkState>, DownloadableArtworkState>,
               AsyncValue<DownloadableArtworkState>,
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(
+      ref,
+      () => build(
+        initialSearchTerm: _$args.initialSearchTerm,
+        artType: _$args.artType,
+      ),
+    );
   }
 }
 
 @ProviderFor(downloadFileSize)
-const downloadFileSizeProvider = DownloadFileSizeFamily._();
+final downloadFileSizeProvider = DownloadFileSizeFamily._();
 
-final class DownloadFileSizeProvider
-    extends $FunctionalProvider<AsyncValue<String?>, String?, FutureOr<String?>>
+final class DownloadFileSizeProvider extends $FunctionalProvider<AsyncValue<String?>, String?, FutureOr<String?>>
     with $FutureModifier<String?>, $FutureProvider<String?> {
-  const DownloadFileSizeProvider._({
+  DownloadFileSizeProvider._({
     required DownloadFileSizeFamily super.from,
     required String super.argument,
   }) : super(
@@ -1014,8 +901,7 @@ final class DownloadFileSizeProvider
 
   @$internal
   @override
-  $FutureProviderElement<String?> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<String?> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<String?> create(Ref ref) {
@@ -1036,9 +922,8 @@ final class DownloadFileSizeProvider
 
 String _$downloadFileSizeHash() => r'3eda62d6f71e02e73cd8120274092f548d17d337';
 
-final class DownloadFileSizeFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<String?>, String> {
-  const DownloadFileSizeFamily._()
+final class DownloadFileSizeFamily extends $Family with $FunctionalFamilyOverride<FutureOr<String?>, String> {
+  DownloadFileSizeFamily._()
     : super(
         retry: null,
         name: r'downloadFileSizeProvider',
@@ -1047,8 +932,7 @@ final class DownloadFileSizeFamily extends $Family
         isAutoDispose: true,
       );
 
-  DownloadFileSizeProvider call({required String url}) =>
-      DownloadFileSizeProvider._(argument: url, from: this);
+  DownloadFileSizeProvider call({required String url}) => DownloadFileSizeProvider._(argument: url, from: this);
 
   @override
   String toString() => r'downloadFileSizeProvider';

@@ -10,12 +10,11 @@ part of 'state.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(steamGridDBClient)
-const steamGridDBClientProvider = SteamGridDBClientProvider._();
+final steamGridDBClientProvider = SteamGridDBClientProvider._();
 
-final class SteamGridDBClientProvider
-    extends $FunctionalProvider<SteamGridDB, SteamGridDB, SteamGridDB>
+final class SteamGridDBClientProvider extends $FunctionalProvider<SteamGridDB, SteamGridDB, SteamGridDB>
     with $Provider<SteamGridDB> {
-  const SteamGridDBClientProvider._()
+  SteamGridDBClientProvider._()
     : super(
         from: null,
         argument: null,
@@ -31,8 +30,7 @@ final class SteamGridDBClientProvider
 
   @$internal
   @override
-  $ProviderElement<SteamGridDB> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+  $ProviderElement<SteamGridDB> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   SteamGridDB create(Ref ref) {

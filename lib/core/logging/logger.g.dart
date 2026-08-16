@@ -10,11 +10,10 @@ part of 'logger.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(logger)
-const loggerProvider = LoggerProvider._();
+final loggerProvider = LoggerProvider._();
 
-final class LoggerProvider extends $FunctionalProvider<Logger, Logger, Logger>
-    with $Provider<Logger> {
-  const LoggerProvider._()
+final class LoggerProvider extends $FunctionalProvider<Logger, Logger, Logger> with $Provider<Logger> {
+  LoggerProvider._()
     : super(
         from: null,
         argument: null,
@@ -30,8 +29,7 @@ final class LoggerProvider extends $FunctionalProvider<Logger, Logger, Logger>
 
   @$internal
   @override
-  $ProviderElement<Logger> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+  $ProviderElement<Logger> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   Logger create(Ref ref) {
@@ -50,17 +48,12 @@ final class LoggerProvider extends $FunctionalProvider<Logger, Logger, Logger>
 String _$loggerHash() => r'79c0d5c2da63f5684b297a70f7839110c31c391f';
 
 @ProviderFor(logsViewer)
-const logsViewerProvider = LogsViewerProvider._();
+final logsViewerProvider = LogsViewerProvider._();
 
 final class LogsViewerProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<LogEvent>>,
-          List<LogEvent>,
-          Stream<List<LogEvent>>
-        >
+    extends $FunctionalProvider<AsyncValue<List<LogEvent>>, List<LogEvent>, Stream<List<LogEvent>>>
     with $FutureModifier<List<LogEvent>>, $StreamProvider<List<LogEvent>> {
-  const LogsViewerProvider._()
+  LogsViewerProvider._()
     : super(
         from: null,
         argument: null,

@@ -10,12 +10,11 @@ part of 'state.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(steamManager)
-const steamManagerProvider = SteamManagerProvider._();
+final steamManagerProvider = SteamManagerProvider._();
 
-final class SteamManagerProvider
-    extends $FunctionalProvider<SteamManager, SteamManager, SteamManager>
+final class SteamManagerProvider extends $FunctionalProvider<SteamManager, SteamManager, SteamManager>
     with $Provider<SteamManager> {
-  const SteamManagerProvider._()
+  SteamManagerProvider._()
     : super(
         from: null,
         argument: null,
@@ -31,8 +30,7 @@ final class SteamManagerProvider
 
   @$internal
   @override
-  $ProviderElement<SteamManager> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+  $ProviderElement<SteamManager> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   SteamManager create(Ref ref) {
