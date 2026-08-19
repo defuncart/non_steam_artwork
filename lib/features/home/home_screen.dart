@@ -269,16 +269,17 @@ class ProgramView extends ConsumerWidget {
                     // 0.26215 is a magic number which correctly scales artwork depending on widthFactor and min window width
                     width: artType.size.width * 0.26215 * widthFactor,
                     height: artType.size.height * 0.26215 * widthFactor,
-                    onDeleteFile: (file) => ref.read(deleteArtworkProvider(file: file)),
-                    onCopyFile: (file, artType) => ref.read(copyArtworkProvider(file: file, artType: artType)),
-                    onCreateFile: (bytesStream, ext) => ref.read(
-                      createArtworkProvider(
-                        appId: program.appId,
-                        bytesStream: bytesStream,
-                        ext: ext,
-                        artType: artType,
-                      ),
-                    ),
+                    onDeleteFile: (file) => ref.read(steamProgramsProvider.notifier).deleteArtwork(file: file),
+                    onCopyFile: (file, artType) =>
+                        ref.read(steamProgramsProvider.notifier).copyArtwork(file: file, artType: artType),
+                    onCreateFile: (bytesStream, ext) => ref
+                        .read(steamProgramsProvider.notifier)
+                        .createArtwork(
+                          appId: program.appId,
+                          bytesStream: bytesStream,
+                          ext: ext,
+                          artType: artType,
+                        ),
                     onLog: ref.read(loggerProvider).log,
                     canDownloadArtwork: ref.watch(steamGridDBApiKeyControllerProvider) != null,
                     onDownload: () => DownloadArtwork.show(context, program: program, artType: artType),

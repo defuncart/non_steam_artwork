@@ -61,7 +61,7 @@ class CacheController extends _$CacheController {
     state = const AsyncValue.loading();
     await ref.read(steamManagerProvider).deleteCache();
     ref.log('deleted cache');
-    ref.invalidate(steamProgramsProvider);
+    await ref.read(steamProgramsProvider.notifier).refresh();
     state = await AsyncValue.guard(_determineBytesUnusedInCache);
   }
 
@@ -128,7 +128,9 @@ class SearchController extends _$SearchController {
 @riverpod
 class SteamPrograms extends _$SteamPrograms {
   @override
-  FutureOr<Iterable<SteamProgram>> build() async {
+  FutureOr<Iterable<SteamProgram>> build() => _load();
+
+  Future<Iterable<SteamProgram>> _load() async {
     final types = ref.watch(filteredProgramTypesControllerProvider);
     final validTypes = types.entries.map((kvp) => kvp.value ? kvp.key : null).whereType<SteamProgramType>();
     var filteredPrograms = await ref.read(steamManagerProvider).getPrograms(validTypes);
@@ -160,101 +162,95 @@ class SteamPrograms extends _$SteamPrograms {
 
     return filteredPrograms;
   }
-}
 
-@riverpod
-Future<void> deleteArtwork(Ref ref, {required File file}) async {
-  await file.delete();
-  ref.log('deleted artwork ${file.path}');
-  ref.invalidate(steamProgramsProvider);
-}
-
-@riverpod
-Future<void> copyArtwork(Ref ref, {required File file, required SteamGridArtType artType}) async {
-  assert(artType == SteamGridArtType.hero || artType == SteamGridArtType.banner);
-
-  ref.log('start copy ${file.path} as ${artType.name}');
-
-  final dir = p.dirname(file.path);
-  final fileExt = p.extension(file.path);
-  var filename = p.basenameWithoutExtension(file.path);
-  if (artType == SteamGridArtType.hero) {
-    filename += '_hero';
-  } else {
-    filename = filename.replaceAll('_hero', '');
+  Future<void> refresh() async {
+    state = await AsyncValue.guard(_load);
   }
 
-  final fullpath = p.join(dir, '$filename$fileExt');
-  final hasDeletedFile = await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: filename);
-  if (hasDeletedFile) {
-    ref.read(_replacedFilesControllerProvider.notifier).add(fullpath);
+  Future<void> _replaceExistingFile({required String dir, required String basename, required String newPath}) async {
+    final hasDeletedFile = await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: basename);
+    if (hasDeletedFile) {
+      ref.read(_replacedFilesControllerProvider.notifier).add(newPath);
+    }
   }
 
-  await file.copy(fullpath);
-  ref.log('artwork copied to $fullpath');
-
-  ref.invalidate(steamProgramsProvider);
-}
-
-@riverpod
-Future<void> createArtworkFile(
-  Ref ref, {
-  required int appId,
-  required File file,
-  required String ext,
-  required SteamGridArtType artType,
-}) async {
-  ref.log('start create ${artType.name} for $appId with extension $ext');
-  final (dir, basename) = await ref.read(steamManagerProvider).generateArtworkPath(appId: appId, artType: artType);
-  final filepath = p.join(dir, '$basename$ext');
-  final hasDeletedFile = await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: basename);
-  if (hasDeletedFile) {
-    ref.read(_replacedFilesControllerProvider.notifier).add(filepath);
+  Future<void> deleteArtwork({required File file}) async {
+    await file.delete();
+    ref.log('deleted artwork ${file.path}');
+    await refresh();
   }
 
-  await file.copy(filepath);
-  ref.log('artwork $filepath created');
+  Future<void> copyArtwork({required File file, required SteamGridArtType artType}) async {
+    assert(artType == SteamGridArtType.hero || artType == SteamGridArtType.banner);
 
-  ref.invalidate(steamProgramsProvider);
-}
+    ref.log('start copy ${file.path} as ${artType.name}');
 
-@riverpod
-Future<void> createArtwork(
-  Ref ref, {
-  required int appId,
-  required Stream<Uint8List> bytesStream,
-  required String ext,
-  required SteamGridArtType artType,
-}) async {
-  ref.log('start create ${artType.name} for $appId with extension $ext');
-  final (dir, basename) = await ref.read(steamManagerProvider).generateArtworkPath(appId: appId, artType: artType);
-  final filepath = p.join(dir, '$basename$ext');
-  final file = File(filepath);
-  final hasDeletedFile = await ref.read(_fileManagerProvider).deleteInWithBasename(dirPath: dir, pattern: basename);
-  if (hasDeletedFile) {
-    ref.read(_replacedFilesControllerProvider.notifier).add(filepath);
+    final dir = p.dirname(file.path);
+    final fileExt = p.extension(file.path);
+    var filename = p.basenameWithoutExtension(file.path);
+    if (artType == SteamGridArtType.hero) {
+      filename += '_hero';
+    } else {
+      filename = filename.replaceAll('_hero', '');
+    }
+
+    final fullpath = p.join(dir, '$filename$fileExt');
+    await _replaceExistingFile(dir: dir, basename: filename, newPath: fullpath);
+
+    await file.copy(fullpath);
+    ref.log('artwork copied to $fullpath');
+
+    await refresh();
   }
 
-  final bytes = await bytesStream.toList();
-  await file.writeAsBytes(bytes.first, mode: FileMode.writeOnly);
-  ref.log('artwork $filepath created');
+  Future<void> createArtworkFile({
+    required int appId,
+    required File file,
+    required String ext,
+    required SteamGridArtType artType,
+  }) async {
+    ref.log('start create ${artType.name} for $appId with extension $ext');
+    final (dir, basename) = await ref.read(steamManagerProvider).generateArtworkPath(appId: appId, artType: artType);
+    final filepath = p.join(dir, '$basename$ext');
+    await _replaceExistingFile(dir: dir, basename: basename, newPath: filepath);
 
-  ref.invalidate(steamProgramsProvider);
-}
+    await file.copy(filepath);
+    ref.log('artwork $filepath created');
 
-@riverpod
-Future<void> saveLogoPosition(
-  Ref ref, {
-  required int appId,
-  required LogoPositionType position,
-  required double size,
-}) async {
-  ref.log('start save logo position ($position, $size) for $appId');
-  final filepath = ref.read(steamManagerProvider).generateLogoPositionPath(appId);
-  final logoPosition = LogoPosition(position: position, width: size, height: size);
-  await logoPosition.saveToDisk(filepath);
-  ref.log('logo position $filepath saved');
-  ref.invalidate(steamProgramsProvider);
+    await refresh();
+  }
+
+  Future<void> createArtwork({
+    required int appId,
+    required Stream<Uint8List> bytesStream,
+    required String ext,
+    required SteamGridArtType artType,
+  }) async {
+    ref.log('start create ${artType.name} for $appId with extension $ext');
+    final (dir, basename) = await ref.read(steamManagerProvider).generateArtworkPath(appId: appId, artType: artType);
+    final filepath = p.join(dir, '$basename$ext');
+    final file = File(filepath);
+    await _replaceExistingFile(dir: dir, basename: basename, newPath: filepath);
+
+    final bytes = await bytesStream.toList();
+    await file.writeAsBytes(bytes.first, mode: FileMode.writeOnly);
+    ref.log('artwork $filepath created');
+
+    await refresh();
+  }
+
+  Future<void> saveLogoPosition({
+    required int appId,
+    required LogoPositionType position,
+    required double size,
+  }) async {
+    ref.log('start save logo position ($position, $size) for $appId');
+    final filepath = ref.read(steamManagerProvider).generateLogoPositionPath(appId);
+    final logoPosition = LogoPosition(position: position, width: size, height: size);
+    await logoPosition.saveToDisk(filepath);
+    ref.log('logo position $filepath saved');
+    await refresh();
+  }
 }
 
 @Riverpod(keepAlive: true)

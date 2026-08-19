@@ -72,17 +72,19 @@ class DownloadArtwork extends ConsumerWidget {
               : ArtworkSelector(
                   artType: artType,
                   downloadableArtworks: value.downloadableArtworks,
-                  onSelect: (file) {
-                    ref.read(
-                      createArtworkFileProvider(
-                        appId: program.appId,
-                        file: file,
-                        ext: '.png',
-                        artType: artType,
-                      ),
-                    );
+                  onSelect: (file) async {
+                    await ref
+                        .read(steamProgramsProvider.notifier)
+                        .createArtworkFile(
+                          appId: program.appId,
+                          file: file,
+                          ext: '.png',
+                          artType: artType,
+                        );
 
-                    Navigator.of(context).pop();
+                    if (context.mounted) {
+                      Navigator.of(context).pop();
+                    }
                   },
                 ),
         AsyncLoading() => const Center(child: CircularProgressIndicator()),

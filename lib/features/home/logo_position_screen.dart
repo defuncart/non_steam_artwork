@@ -30,13 +30,13 @@ class LogoPositionScreen extends ConsumerWidget {
       program: program,
       onSave: (position, size) async {
         final navigator = Navigator.of(context);
-        await ref.read(
-          saveLogoPositionProvider(
-            appId: program.appId,
-            position: position,
-            size: size,
-          ).future,
-        );
+        await ref
+            .read(steamProgramsProvider.notifier)
+            .saveLogoPosition(
+              appId: program.appId,
+              position: position,
+              size: size,
+            );
         navigator.pop();
       },
     );
