@@ -285,10 +285,10 @@ abstract class _$ReplacedFilesController extends $Notifier<Set<String>> {
   }
 }
 
-@ProviderFor(WasFileReplacedController)
+@ProviderFor(wasFileReplacedController)
 final wasFileReplacedControllerProvider = WasFileReplacedControllerFamily._();
 
-final class WasFileReplacedControllerProvider extends $NotifierProvider<WasFileReplacedController, bool> {
+final class WasFileReplacedControllerProvider extends $FunctionalProvider<bool, bool, bool> with $Provider<bool> {
   WasFileReplacedControllerProvider._({
     required WasFileReplacedControllerFamily super.from,
     required String super.argument,
@@ -312,7 +312,13 @@ final class WasFileReplacedControllerProvider extends $NotifierProvider<WasFileR
 
   @$internal
   @override
-  WasFileReplacedController create() => WasFileReplacedController();
+  $ProviderElement<bool> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
+
+  @override
+  bool create(Ref ref) {
+    final argument = this.argument as String;
+    return wasFileReplacedController(ref, argument);
+  }
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(bool value) {
@@ -333,10 +339,9 @@ final class WasFileReplacedControllerProvider extends $NotifierProvider<WasFileR
   }
 }
 
-String _$wasFileReplacedControllerHash() => r'69297efee1b523fd9c6bd670bc8a6df416aaaf94';
+String _$wasFileReplacedControllerHash() => r'207998e29bfa59798cffa5ece4ca9150754beab6';
 
-final class WasFileReplacedControllerFamily extends $Family
-    with $ClassFamilyOverride<WasFileReplacedController, bool, bool, bool, String> {
+final class WasFileReplacedControllerFamily extends $Family with $FunctionalFamilyOverride<bool, String> {
   WasFileReplacedControllerFamily._()
     : super(
         retry: null,
@@ -351,20 +356,6 @@ final class WasFileReplacedControllerFamily extends $Family
 
   @override
   String toString() => r'wasFileReplacedControllerProvider';
-}
-
-abstract class _$WasFileReplacedController extends $Notifier<bool> {
-  late final _$args = ref.$arg as String;
-  String get path => _$args;
-
-  bool build(String path);
-  @$mustCallSuper
-  @override
-  void runBuild() {
-    final ref = this.ref as $Ref<bool, bool>;
-    final element = ref.element as $ClassProviderElement<AnyNotifier<bool, bool>, bool, Object?, Object?>;
-    element.handleCreate(ref, () => build(_$args));
-  }
 }
 
 @ProviderFor(DownloadableArtworkController)

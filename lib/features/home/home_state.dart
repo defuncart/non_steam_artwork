@@ -268,10 +268,7 @@ class _ReplacedFilesController extends _$ReplacedFilesController {
 }
 
 @riverpod
-class WasFileReplacedController extends _$WasFileReplacedController {
-  @override
-  bool build(String path) => ref.watch(_replacedFilesControllerProvider).contains(path);
-}
+bool wasFileReplacedController(Ref ref, String path) => ref.watch(_replacedFilesControllerProvider).contains(path);
 
 typedef DownloadableArtwork = ({String url, String thumbnail});
 
