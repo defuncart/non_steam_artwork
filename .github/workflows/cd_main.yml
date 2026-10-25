@@ -25,32 +25,37 @@ jobs:
           generate_release_notes: false
   build_linux:
     name: Build + Upload Linux
-    # Hardcode OS to avoid dependency issue between ubuntu/SteamOS (Arch)
-    runs-on: ubuntu-24.04
+    # Build using arch to avoid dependency issues for SteamOS
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux/archlinux:base-devel-20261018.0.612668
     steps:
-      - uses: actions/checkout@v1
+      - name: Setup Arch Deps
+        run: |
+          pacman -Syu --noconfirm --needed
+          pacman -S --noconfirm --needed \
+            jq curl git unzip xz zip glu \
+            clang cmake ninja pkgconf \
+            gtk3 lz4 gcc rustup perl
+          rustup default stable
+          # shasum (used by cargokit) lives here and is not on PATH in non-login shells
+          echo "/usr/bin/core_perl" >> "$GITHUB_PATH"
+      - uses: actions/checkout@v4
       - uses: kuhnroyal/flutter-fvm-config-action@v2
         id: fvm-config-action
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
           channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
+      # By default, git will block flutter and the workspace as they have a different owner
+      - name: Configure Git safe directory
+        run: git config --global --add safe.directory '*'
       - name: Generate loca
         run: sh bin/loca_generate.sh true
       - name: Install packages
         run: flutter pub get
-      # https://docs.flutter.dev/get-started/install/linux/desktop#development-tools
-      - name: Install dependencies for Linux
-        run: |
-          sudo apt-get update -y && sudo apt-get upgrade -y;
-          sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa
-          sudo apt-get install \
-            clang cmake git \
-            ninja-build pkg-config \
-            libgtk-3-dev liblzma-dev \
-            libstdc++-12-dev
       - name: Build Linux
-        run: flutter build linux --release
+        run: flutter build linux --release -v
       - name: Construct full artifact name
         run: echo "ARTIFACT_FULL_NAME=${{ env.ARTIFACT_NAME }}_linux.zip" >> $GITHUB_ENV
       - name: Create zip
@@ -62,7 +67,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          tag_name: ${{ needs.create_release.outputs.tag-name }}
           files: ${{ env.BUILD_PATH_LINUX }}/${{ env.ARTIFACT_FULL_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
