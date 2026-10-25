@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:menubar/menubar.dart';
-import 'package:native_context_menu/native_context_menu.dart';
 import 'package:non_steam_artwork/core/configs/window_config.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
@@ -28,6 +27,7 @@ import 'package:non_steam_artwork/features/support/privacy_policy_screen.dart';
 import 'package:non_steam_artwork/features/support/steamgriddb_dialog.dart';
 import 'package:non_steam_artwork/features/viewer/shortcuts_viewer_screen.dart';
 import 'package:super_clipboard/super_clipboard.dart';
+import 'package:super_context_menu/super_context_menu.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -390,69 +390,7 @@ class _SteamArtworkState extends State<SteamArtwork> {
       // when dragging, do not allow right-click
       child: IgnorePointer(
         ignoring: _isDragging,
-        child: ContextMenuRegion(
-          onDismissed: () {},
-          onItemSelected: (item) {
-            if (item.title == 'Search on SteamGridDB') {
-              widget.onDownload();
-            } else if (item.title == context.l10n.homeProgramArtworkPaste) {
-              final scaffoldMessenger = ScaffoldMessenger.of(context);
-              final l10n = context.l10n;
-
-              SystemClipboard.instance?.read().then((reader) {
-                if (reader.canProvide(Formats.jpeg)) {
-                  reader.getFile(
-                    Formats.jpeg,
-                    (file) {
-                      widget.onCreateFile(file.getStream(), '.jpg');
-                    },
-                    onError: (error) {
-                      widget.onLog('Error reading value $error');
-                    },
-                  );
-                } else if (reader.canProvide(Formats.png)) {
-                  reader.getFile(
-                    Formats.png,
-                    (file) {
-                      widget.onCreateFile(file.getStream(), '.png');
-                    },
-                    onError: (error) {
-                      widget.onLog('Error reading value $error');
-                    },
-                  );
-                } else {
-                  scaffoldMessenger.showSnackBar(
-                    SnackBar(content: Text(l10n.homeProgramPasteError), duration: const Duration(seconds: 2)),
-                  );
-                  widget.onLog('clipboard contents is not .jpg nor .png');
-                }
-              });
-            } else if (item.title == context.l10n.homeProgramArtworkDelete) {
-              widget.onDeleteFile(widget.file!);
-            } else if (item.title == context.l10n.homeProgramArtworkSetHeroAsBanner) {
-              widget.onCopyFile(widget.file!, SteamGridArtType.banner);
-            } else if (item.title == context.l10n.homeProgramArtworkCreateEmptyLogo) {
-              final bytes = const Base64Codec().decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
-              widget.onCreateFile(Stream.value(bytes), '.jpg');
-            } else if (item.title == context.l10n.homeProgramArtworkEditLogoPosition) {
-              widget.onEditLogoPosition();
-            } else if (item.title == context.l10n.homeProgramArtworkSetBannerAsHero) {
-              widget.onCopyFile(widget.file!, SteamGridArtType.hero);
-            }
-          },
-          menuItems: [
-            if (widget.canDownloadArtwork) MenuItem(title: context.l10n.homeProgramSearchSteamGridDB),
-            MenuItem(title: context.l10n.homeProgramArtworkPaste),
-            if (widget.file != null) MenuItem(title: context.l10n.homeProgramArtworkDelete),
-            if (widget.file != null && widget.artType == SteamGridArtType.hero)
-              MenuItem(title: context.l10n.homeProgramArtworkSetHeroAsBanner),
-            if (widget.artType == SteamGridArtType.logo)
-              widget.file != null
-                  ? MenuItem(title: context.l10n.homeProgramArtworkEditLogoPosition)
-                  : MenuItem(title: context.l10n.homeProgramArtworkCreateEmptyLogo),
-            if (widget.file != null && widget.artType == SteamGridArtType.banner)
-              MenuItem(title: context.l10n.homeProgramArtworkSetBannerAsHero),
-          ],
+        child: ContextMenuWidget(
           child: SizedBox(
             width: widget.width,
             height: widget.height,
@@ -461,6 +399,83 @@ class _SteamArtworkState extends State<SteamArtwork> {
               child: widget.file != null ? ArtworkImage(widget.file!) : const DefaultArtwork(),
             ),
           ),
+          menuProvider: (_) {
+            return Menu(
+              children: [
+                if (widget.canDownloadArtwork)
+                  MenuAction(
+                    title: context.l10n.homeProgramSearchSteamGridDB,
+                    callback: widget.onDownload,
+                  ),
+                MenuAction(
+                  title: context.l10n.homeProgramArtworkPaste,
+                  callback: () {
+                    final scaffoldMessenger = ScaffoldMessenger.of(context);
+                    final l10n = context.l10n;
+
+                    SystemClipboard.instance?.read().then((reader) {
+                      if (reader.canProvide(Formats.jpeg)) {
+                        reader.getFile(
+                          Formats.jpeg,
+                          (file) {
+                            widget.onCreateFile(file.getStream(), '.jpg');
+                          },
+                          onError: (error) {
+                            widget.onLog('Error reading value $error');
+                          },
+                        );
+                      } else if (reader.canProvide(Formats.png)) {
+                        reader.getFile(
+                          Formats.png,
+                          (file) {
+                            widget.onCreateFile(file.getStream(), '.png');
+                          },
+                          onError: (error) {
+                            widget.onLog('Error reading value $error');
+                          },
+                        );
+                      } else {
+                        scaffoldMessenger.showSnackBar(
+                          SnackBar(content: Text(l10n.homeProgramPasteError), duration: const Duration(seconds: 2)),
+                        );
+                        widget.onLog('clipboard contents is not .jpg nor .png');
+                      }
+                    });
+                  },
+                ),
+                if (widget.file != null)
+                  MenuAction(
+                    title: context.l10n.homeProgramArtworkDelete,
+                    callback: () => widget.onDeleteFile(widget.file!),
+                  ),
+                if (widget.file != null && widget.artType == SteamGridArtType.hero)
+                  MenuAction(
+                    title: context.l10n.homeProgramArtworkSetHeroAsBanner,
+                    callback: () => widget.onCopyFile(widget.file!, SteamGridArtType.banner),
+                  ),
+                if (widget.artType == SteamGridArtType.logo)
+                  widget.file != null
+                      ? MenuAction(
+                          title: context.l10n.homeProgramArtworkEditLogoPosition,
+                          callback: () => widget.onEditLogoPosition(),
+                        )
+                      : MenuAction(
+                          title: context.l10n.homeProgramArtworkCreateEmptyLogo,
+                          callback: () {
+                            final bytes = const Base64Codec().decode(
+                              'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+                            );
+                            widget.onCreateFile(Stream.value(bytes), '.jpg');
+                          },
+                        ),
+                if (widget.file != null && widget.artType == SteamGridArtType.banner)
+                  MenuAction(
+                    title: context.l10n.homeProgramArtworkSetBannerAsHero,
+                    callback: () => widget.onCopyFile(widget.file!, SteamGridArtType.hero),
+                  ),
+              ],
+            );
+          },
         ),
       ),
     );

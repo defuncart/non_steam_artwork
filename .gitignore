@@ -54,5 +54,8 @@ lib/core/l10n/generated
 # debug platforms
 /macos/
 
+# Widget Preview related
+.widget_preview/
+
 # FVM Version Cache
 .fvm/

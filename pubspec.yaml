@@ -24,7 +24,7 @@ dependencies:
   collection:
   flutter_riverpod:
   riverpod_annotation:
-  native_context_menu: ^0.2.2+5
+  super_context_menu:
   super_drag_and_drop: ^0.9.1
   super_clipboard:
   window_size:
