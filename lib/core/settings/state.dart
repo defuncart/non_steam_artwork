@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:non_steam_artwork/core/settings/filtered_program_types.dart';
 import 'package:non_steam_artwork/core/settings/settings_service.dart';
 import 'package:non_steam_artwork/core/settings/sort_program_type.dart';

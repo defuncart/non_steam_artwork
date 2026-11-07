@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:non_steam_artwork/core/l10n/l10n_extension.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';

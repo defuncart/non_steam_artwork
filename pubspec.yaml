@@ -13,6 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter 
   intl:
+  material_ui:
   flex_color_scheme:
   gap:
   steam_shortcuts_util:
