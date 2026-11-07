@@ -60,7 +60,6 @@ dev_dependencies:
   build_runner:
   riverpod_generator:
   riverpod_lint:
-  custom_lint:
   app_store_screenshots:
     git: 
       url: https://github.com/defuncart/app_store_screenshots

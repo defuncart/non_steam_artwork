@@ -77,11 +77,11 @@ abstract class _$SteamFolderExistsController extends $AsyncNotifier<bool> {
   FutureOr<bool> build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AsyncValue<bool>, bool>;
     final element =
         ref.element as $ClassProviderElement<AnyNotifier<AsyncValue<bool>, bool>, AsyncValue<bool>, Object?, Object?>;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
 
@@ -114,11 +114,11 @@ abstract class _$CacheController extends $AsyncNotifier<int> {
   FutureOr<int> build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AsyncValue<int>, int>;
     final element =
         ref.element as $ClassProviderElement<AnyNotifier<AsyncValue<int>, int>, AsyncValue<int>, Object?, Object?>;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
 
@@ -190,10 +190,10 @@ abstract class _$SearchController extends $Notifier<String> {
   String build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<String, String>;
     final element = ref.element as $ClassProviderElement<AnyNotifier<String, String>, String, Object?, Object?>;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
 
@@ -226,7 +226,7 @@ abstract class _$SteamPrograms extends $AsyncNotifier<Iterable<SteamProgram>> {
   FutureOr<Iterable<SteamProgram>> build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AsyncValue<Iterable<SteamProgram>>, Iterable<SteamProgram>>;
     final element =
         ref.element
@@ -236,7 +236,7 @@ abstract class _$SteamPrograms extends $AsyncNotifier<Iterable<SteamProgram>> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
 
@@ -277,11 +277,11 @@ abstract class _$ReplacedFilesController extends $Notifier<Set<String>> {
   Set<String> build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<Set<String>, Set<String>>;
     final element =
         ref.element as $ClassProviderElement<AnyNotifier<Set<String>, Set<String>>, Set<String>, Object?, Object?>;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
 
@@ -442,7 +442,7 @@ abstract class _$DownloadableArtworkController extends $AsyncNotifier<Downloadab
   });
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AsyncValue<DownloadableArtworkState>, DownloadableArtworkState>;
     final element =
         ref.element
@@ -452,7 +452,7 @@ abstract class _$DownloadableArtworkController extends $AsyncNotifier<Downloadab
               Object?,
               Object?
             >;
-    element.handleCreate(
+    return element.handleCreate(
       ref,
       () => build(
         initialSearchTerm: _$args.initialSearchTerm,

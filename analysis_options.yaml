@@ -10,7 +10,7 @@ analyzer:
     - macos/**
     - linux/**
   plugins:
-      - custom_lint
+      - riverpod_lint
 linter:
   rules:
     - prefer_const_constructors

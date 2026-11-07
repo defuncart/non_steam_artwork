@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'steam_program.dart';
@@ -9,6 +9,7 @@ part of 'steam_program.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $SteamProgramCopyWith<SteamProgram> get copyWith => _$SteamProgramCopyWithImpl<S
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SteamProgram&&(identical(other.appId, appId) || other.appId == appId)&&(identical(other.appName, appName) || other.appName == appName)&&(identical(other.programType, programType) || other.programType == programType)&&(identical(other.lastPlayed, lastPlayed) || other.lastPlayed == lastPlayed)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.cover, cover) || other.cover == cover)&&(identical(other.hero, hero) || other.hero == hero)&&(identical(other.logo, logo) || other.logo == logo)&&(identical(other.logoPosition, logoPosition) || other.logoPosition == logoPosition)&&(identical(other.banner, banner) || other.banner == banner));
+  final _this = this as SteamProgram;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SteamProgram&&(identical(other.appId, _this.appId) || other.appId == _this.appId)&&(identical(other.appName, _this.appName) || other.appName == _this.appName)&&(identical(other.programType, _this.programType) || other.programType == _this.programType)&&(identical(other.lastPlayed, _this.lastPlayed) || other.lastPlayed == _this.lastPlayed)&&(identical(other.icon, _this.icon) || other.icon == _this.icon)&&(identical(other.cover, _this.cover) || other.cover == _this.cover)&&(identical(other.hero, _this.hero) || other.hero == _this.hero)&&(identical(other.logo, _this.logo) || other.logo == _this.logo)&&(identical(other.logoPosition, _this.logoPosition) || other.logoPosition == _this.logoPosition)&&(identical(other.banner, _this.banner) || other.banner == _this.banner));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,appId,appName,programType,lastPlayed,icon,cover,hero,logo,logoPosition,banner);
+int get hashCode {
+  final _this = this as SteamProgram;
+  return Object.hash(runtimeType,_this.appId,_this.appName,_this.programType,_this.lastPlayed,_this.icon,_this.cover,_this.hero,_this.logo,_this.logoPosition,_this.banner);
+}
 
 @override
 String toString() {
-  return 'SteamProgram(appId: $appId, appName: $appName, programType: $programType, lastPlayed: $lastPlayed, icon: $icon, cover: $cover, hero: $hero, logo: $logo, logoPosition: $logoPosition, banner: $banner)';
+  final _this = this as SteamProgram;
+  return 'SteamProgram(appId: ${_this.appId}, appName: ${_this.appName}, programType: ${_this.programType}, lastPlayed: ${_this.lastPlayed}, icon: ${_this.icon}, cover: ${_this.cover}, hero: ${_this.hero}, logo: ${_this.logo}, logoPosition: ${_this.logoPosition}, banner: ${_this.banner})';
 }
 
 
@@ -63,7 +69,7 @@ class _$SteamProgramCopyWithImpl<$Res>
 /// Create a copy of SteamProgram
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? appId = null,Object? appName = null,Object? programType = null,Object? lastPlayed = null,Object? icon = freezed,Object? cover = freezed,Object? hero = freezed,Object? logo = freezed,Object? logoPosition = freezed,Object? banner = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(SteamProgram(
 appId: null == appId ? _self.appId : appId // ignore: cast_nullable_to_non_nullable
 as int,appName: null == appName ? _self.appName : appName // ignore: cast_nullable_to_non_nullable
 as String,programType: null == programType ? _self.programType : programType // ignore: cast_nullable_to_non_nullable
@@ -245,16 +251,18 @@ _$SteamProgramCopyWith<_SteamProgram> get copyWith => __$SteamProgramCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SteamProgram&&(identical(other.appId, appId) || other.appId == appId)&&(identical(other.appName, appName) || other.appName == appName)&&(identical(other.programType, programType) || other.programType == programType)&&(identical(other.lastPlayed, lastPlayed) || other.lastPlayed == lastPlayed)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.cover, cover) || other.cover == cover)&&(identical(other.hero, hero) || other.hero == hero)&&(identical(other.logo, logo) || other.logo == logo)&&(identical(other.logoPosition, logoPosition) || other.logoPosition == logoPosition)&&(identical(other.banner, banner) || other.banner == banner));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SteamProgram&&(identical(other.appId, appId) || other.appId == appId)&&(identical(other.appName, appName) || other.appName == appName)&&(identical(other.programType, programType) || other.programType == programType)&&(identical(other.lastPlayed, lastPlayed) || other.lastPlayed == lastPlayed)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.cover, cover) || other.cover == cover)&&(identical(other.hero, hero) || other.hero == hero)&&(identical(other.logo, logo) || other.logo == logo)&&(identical(other.logoPosition, logoPosition) || other.logoPosition == logoPosition)&&(identical(other.banner, banner) || other.banner == banner));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,appId,appName,programType,lastPlayed,icon,cover,hero,logo,logoPosition,banner);
+int get hashCode {
+    return Object.hash(runtimeType,appId,appName,programType,lastPlayed,icon,cover,hero,logo,logoPosition,banner);
+}
 
 @override
 String toString() {
-  return 'SteamProgram(appId: $appId, appName: $appName, programType: $programType, lastPlayed: $lastPlayed, icon: $icon, cover: $cover, hero: $hero, logo: $logo, logoPosition: $logoPosition, banner: $banner)';
+    return 'SteamProgram(appId: $appId, appName: $appName, programType: $programType, lastPlayed: $lastPlayed, icon: $icon, cover: $cover, hero: $hero, logo: $logo, logoPosition: $logoPosition, banner: $banner)';
 }
 
 
@@ -327,16 +335,21 @@ $LogoPositionCopyWith<LogoPosition> get copyWith => _$LogoPositionCopyWithImpl<L
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LogoPosition&&(identical(other.position, position) || other.position == position)&&(identical(other.width, width) || other.width == width)&&(identical(other.height, height) || other.height == height));
+  final _this = this as LogoPosition;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LogoPosition&&(identical(other.position, _this.position) || other.position == _this.position)&&(identical(other.width, _this.width) || other.width == _this.width)&&(identical(other.height, _this.height) || other.height == _this.height));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,position,width,height);
+int get hashCode {
+  final _this = this as LogoPosition;
+  return Object.hash(runtimeType,_this.position,_this.width,_this.height);
+}
 
 @override
 String toString() {
-  return 'LogoPosition(position: $position, width: $width, height: $height)';
+  final _this = this as LogoPosition;
+  return 'LogoPosition(position: ${_this.position}, width: ${_this.width}, height: ${_this.height})';
 }
 
 
@@ -365,7 +378,7 @@ class _$LogoPositionCopyWithImpl<$Res>
 /// Create a copy of LogoPosition
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? position = null,Object? width = null,Object? height = null,}) {
-  return _then(_self.copyWith(
+  return _then(LogoPosition(
 position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as LogoPositionType,width: null == width ? _self.width : width // ignore: cast_nullable_to_non_nullable
 as double,height: null == height ? _self.height : height // ignore: cast_nullable_to_non_nullable
@@ -521,16 +534,18 @@ _$LogoPositionCopyWith<_LogoPosition> get copyWith => __$LogoPositionCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LogoPosition&&(identical(other.position, position) || other.position == position)&&(identical(other.width, width) || other.width == width)&&(identical(other.height, height) || other.height == height));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _LogoPosition&&(identical(other.position, position) || other.position == position)&&(identical(other.width, width) || other.width == width)&&(identical(other.height, height) || other.height == height));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,position,width,height);
+int get hashCode {
+    return Object.hash(runtimeType,position,width,height);
+}
 
 @override
 String toString() {
-  return 'LogoPosition(position: $position, width: $width, height: $height)';
+    return 'LogoPosition(position: $position, width: $width, height: $height)';
 }
 
 
