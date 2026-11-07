@@ -66,7 +66,7 @@ dev_dependencies:
 
 # Ensure frb mission matches steam_shortcuts_util
 dependency_overrides:
-  flutter_rust_bridge: 2.12.0
+  flutter_rust_bridge: 2.13.0
 
 flutter:
   uses-material-design: true
