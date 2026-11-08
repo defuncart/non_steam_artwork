@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:non_steam_artwork/core/l10n/generated/app_localizations.dart';
 import 'package:non_steam_artwork/core/settings/state.dart';

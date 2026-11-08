@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 
 class DefaultArtwork extends StatelessWidget {

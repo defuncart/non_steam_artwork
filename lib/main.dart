@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:non_steam_artwork/core/configs/window_config.dart';
 import 'package:non_steam_artwork/core/settings/settings_service.dart';
@@ -14,5 +14,12 @@ Future<void> main() async {
 
   setWindowMinSize(minWindowSize);
 
-  runApp(ProviderScope(overrides: [settingsServiceProvider.overrideWithValue(settingsService)], child: const MyApp()));
+  runApp(
+    ProviderScope(
+      overrides: [
+        settingsServiceProvider.overrideWithValue(settingsService),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }

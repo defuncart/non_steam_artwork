@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:non_steam_artwork/core/l10n/generated/app_localizations.dart';
 
 extension L10nExtension on BuildContext {

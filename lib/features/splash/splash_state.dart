@@ -1,6 +1,5 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:non_steam_artwork/core/logging/logger.dart';
 import 'package:non_steam_artwork/core/settings/state.dart';
 import 'package:non_steam_artwork/core/steam/state.dart';

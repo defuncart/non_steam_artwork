@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -12,14 +12,21 @@ import 'package:non_steam_artwork/features/home/home_state.dart';
 import 'package:non_steam_artwork/features/home/steam_grid_art_type.dart';
 
 class DownloadArtwork extends ConsumerWidget {
-  const DownloadArtwork({required this.program, required this.artType, super.key});
+  const DownloadArtwork({
+    required this.program,
+    required this.artType,
+    super.key,
+  });
 
   final SteamProgram program;
   final SteamGridArtType artType;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final provider = downloadableArtworkControllerProvider(initialSearchTerm: program.appName, artType: artType);
+    final provider = downloadableArtworkControllerProvider(
+      initialSearchTerm: program.appName,
+      artType: artType,
+    );
     final state = ref.watch(provider);
 
     return Scaffold(
@@ -65,12 +72,19 @@ class DownloadArtwork extends ConsumerWidget {
               : ArtworkSelector(
                   artType: artType,
                   downloadableArtworks: value.downloadableArtworks,
-                  onSelect: (file) {
-                    ref.read(
-                      createArtworkFileProvider(appId: program.appId, file: file, ext: '.png', artType: artType),
-                    );
+                  onSelect: (file) async {
+                    await ref
+                        .read(steamProgramsProvider.notifier)
+                        .createArtworkFile(
+                          appId: program.appId,
+                          file: file,
+                          ext: '.png',
+                          artType: artType,
+                        );
 
-                    Navigator.of(context).pop();
+                    if (context.mounted) {
+                      Navigator.of(context).pop();
+                    }
                   },
                 ),
         AsyncLoading() => const Center(child: CircularProgressIndicator()),
@@ -79,17 +93,22 @@ class DownloadArtwork extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(error.toString()),
-              TextButton(onPressed: () => ref.invalidate(provider), child: Text(context.l10n.generalErrorTryAgain)),
+              TextButton(
+                onPressed: () => ref.invalidate(provider),
+                child: Text(context.l10n.generalErrorTryAgain),
+              ),
             ],
           ),
         ),
-        // TODO: Remove after upgrade to riverpod v3
-        _ => const SizedBox.shrink(),
       },
     );
   }
 
-  static void show(BuildContext context, {required SteamProgram program, required SteamGridArtType artType}) =>
+  static void show(
+    BuildContext context, {
+    required SteamProgram program,
+    required SteamGridArtType artType,
+  }) =>
       Navigator.of(
         context,
       ).push(
@@ -101,7 +120,12 @@ class DownloadArtwork extends ConsumerWidget {
 
 @visibleForTesting
 class ArtworkSelector extends StatefulWidget {
-  const ArtworkSelector({required this.artType, required this.downloadableArtworks, required this.onSelect, super.key});
+  const ArtworkSelector({
+    required this.artType,
+    required this.downloadableArtworks,
+    required this.onSelect,
+    super.key,
+  });
 
   final SteamGridArtType artType;
   final Iterable<DownloadableArtwork> downloadableArtworks;
@@ -160,8 +184,11 @@ class _ArtworkSelectorState extends State<ArtworkSelector> {
                               ),
                             ],
                           ),
-                          progressIndicatorBuilder: (_, _, downloadProgress) =>
-                              Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
+                          progressIndicatorBuilder: (_, _, downloadProgress) => Center(
+                            child: CircularProgressIndicator(
+                              value: downloadProgress.progress,
+                            ),
+                          ),
                           fadeInDuration: Duration.zero,
                           fadeOutDuration: Duration.zero,
                           errorWidget: (_, _, error) => const Icon(Icons.error),
@@ -205,7 +232,10 @@ class _HoverableWidgetState extends State<HoverableWidget> {
 OverlayEntry? _overlayEntry;
 
 extension on OverlayState {
-  void showDownloadOverlay({required Future<File> future, required void Function(File) onSuccess}) {
+  void showDownloadOverlay({
+    required Future<File> future,
+    required void Function(File) onSuccess,
+  }) {
     dismiss();
     _overlayEntry = OverlayEntry(
       builder: (context) => DownloadOverlayEntry(
@@ -228,7 +258,12 @@ extension on OverlayState {
 
 @visibleForTesting
 class DownloadOverlayEntry extends StatefulWidget {
-  const DownloadOverlayEntry({required this.future, required this.onSuccess, required this.onClose, super.key});
+  const DownloadOverlayEntry({
+    required this.future,
+    required this.onSuccess,
+    required this.onClose,
+    super.key,
+  });
 
   final Future<File> future;
   final void Function(File) onSuccess;

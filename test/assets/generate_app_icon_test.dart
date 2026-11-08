@@ -1,5 +1,5 @@
 import 'package:app_store_screenshots/app_store_screenshots.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
 import 'package:non_steam_artwork/core/theme/themes.dart';
 

@@ -74,7 +74,7 @@ class SteamManager {
 
     try {
       _shortcutPrograms = await getShortcuts();
-      return _determineUnusedCache();
+      return await _determineUnusedCache();
     } catch (_) {}
 
     return [];
@@ -141,7 +141,7 @@ class SteamManager {
     final shortcutsPath = _shortcutPath;
     if (await File(shortcutsPath).exists()) {
       try {
-        return steamShortcuts.getShortcuts(shortcutsPath);
+        return await steamShortcuts.getShortcuts(shortcutsPath);
       } catch (_) {
         throw const SteamShortcutsFileCannotBeParsedException();
       }

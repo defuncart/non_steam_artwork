@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:non_steam_artwork/features/home/home_screen.dart';
 import 'package:non_steam_artwork/features/splash/splash_state.dart';

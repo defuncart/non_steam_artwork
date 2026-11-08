@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:non_steam_artwork/core/extensions/theme_extensions.dart';
@@ -22,8 +22,6 @@ class ShortcutsViewerScreen extends ConsumerWidget {
         AsyncLoading() => const Center(child: CircularProgressIndicator()),
         AsyncData(:final value) => ShortcutsViewerScreenContent(shortcuts: value),
         AsyncError(:final error) => Center(child: Text(error.toString())),
-        // TODO: Remove after upgrade to riverpod v3
-        _ => const SizedBox.shrink(),
       },
     );
   }
